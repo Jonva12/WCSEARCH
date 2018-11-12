@@ -14,3 +14,5 @@
 Route::get('/', function(){
 	return view('pages/index');
 });
+
+Route::get('form', 'formController@insert'); 

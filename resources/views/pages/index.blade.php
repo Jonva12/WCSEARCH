@@ -108,24 +108,25 @@
           <h2 class="mb-4">Contact Form</h2>
           <hr class="light my-4" />
         </div>
-        <form>
+        <form method="get" action="form" onsubmit=" return alert(' Message Sent!')">
           <div class="form-group">
             <label for="exampleFormControlInput1">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Yaiza Muñoz">
+            <input type="text" class="form-control" name="name" id="name" placeholder="Yaiza Muñoz">
           </div>
           <div class="form-group">
             <label for="exampleFormControlInput1">Email address</label>
-            <input type="email" class="form-control" id="email" placeholder="name@example.com">
+            <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com">
           </div>
           <div class="form-group">
             <label for="exampleFormControlTextarea1">Message</label>
-            <textarea class="form-control" id="email" rows="3"></textarea>
+            <textarea class="form-control" id="message" name="messages" rows="3"></textarea>
+          </div>
+          <div class="form-group text-center">
+            <input class="btn btn-light btn-xl js-scroll-trigger" type="submit" name="submit" value="Enviar">
           </div>
         </form>
       </div>
     </section>
+
     @endsection
-    
-
-
-</html>
+  
