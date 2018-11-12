@@ -108,7 +108,8 @@
           <h2 class="mb-4">Contact Form</h2>
           <hr class="light my-4" />
         </div>
-        <form method="get" action="form" onsubmit=" return alert(' Message Sent!')">
+        <form method="post" action="form" onsubmit=" return alert(' Message Sent!')">
+          @csrf
           <div class="form-group">
             <label for="exampleFormControlInput1">Name</label>
             <input type="text" class="form-control" name="name" id="name" placeholder="Yaiza Muñoz">
