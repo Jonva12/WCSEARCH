@@ -58,41 +58,94 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h2 class="section-heading">What We Offer</h2>
+            <h2 class="section-heading">Opiniones</h2>
             <hr class="my-4">
           </div>
         </div>
       </div>
       <div class="container">
         <div class="row">
-          <div class="col-lg-3 col-md-6 text-center">
-            <div class="service-box mt-5 mx-auto">
-              <i class="fas fa-4x fa-crosshairs text-primary mb-3 sr-icon-1"></i>
-              <h3 class="mb-3">WC Locator</h3>
-              <p class="text-muted mb-0">We use geolocation for showing the toilets available near you.</p>
+          <div class="col-lg-3">
+          <div class="home-post">
+            <div class="post-meta">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <br>
+              <span class="date">Junio 19, 2013</span>
+            </div>
+            <div class="entry-content">
+              <h5><strong><a href="#">Aitor Menta</a></strong></h5>
+              <p>
+                Muchas gracias, me ayudo mucho cuando estaba en una cita con mi crush.
+              </p>
+
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 text-center">
-            <div class="service-box mt-5 mx-auto">
-              <i class="far fa-4x fa-address-card text-primary mb-3 sr-icon-2"></i>
-              <h3 class="mb-3">WC Information</h3>
-              <p class="text-muted mb-0">We display all the necessary information about the WCs.</p>
+        </div>
+        <div class="col-lg-3">
+          <div class="home-post">
+            <div class="post-meta">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+              <br>
+              <span class="date">Agosto 19, 2013</span>
+            </div>
+            <div class="entry-content">
+              <h5><strong><a href="#">Iker Tena</a></strong></h5>
+              <p>
+                Me salvo, menos mal que encontre un servicio rapido #AsomaLaTortuga UwU
+              </p>
+
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 text-center">
-            <div class="service-box mt-5 mx-auto">
-              <i class="far fa-4x fa-comments text-primary mb-3 sr-icon-3"></i>
-              <h3 class="mb-3">Reviews</h3>
-              <p class="text-muted mb-0">We use the comments of the users to show them in the WCs Card for you.</p>
+        </div>
+        <div class="col-lg-3">
+          <div class="home-post">
+            <div class="post-meta">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              <br>
+              <span class="date">Junio 22, 2013</span>
+            </div>
+            <div class="entry-content">
+              <h5><strong><a href="#">Miren Amiano</a></strong></h5>
+              <p>
+                Una aplicacion sencilla y bonita para utilizar. 
+              </p>
+
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 text-center">
-            <div class="service-box mt-5 mx-auto">
-              <i class="far fa-4x fa-thumbs-up text-primary mb-3 sr-icon-4"></i>
-              <h3 class="mb-3">Ratings</h3>
-              <p class="text-muted mb-0">Each toilet is rated by the community to choose better.</p>
+        </div>
+        <div class="col-lg-3">
+          <div class="home-post">
+            <div class="post-meta">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <br>
+              <span class="date">Octubre 27, 2013</span>
+
+            </div>
+            <div class="entry-content">
+              <h5><strong><a href="#">Marcia Ana</a></strong></h5>
+              <p>
+                Gracias por poner los precios, me ha ayudado a encontrar baños gratuitos. 
+              </p>
             </div>
           </div>
+        </div>
+      </div>
         </div>
       </div>
     </section>

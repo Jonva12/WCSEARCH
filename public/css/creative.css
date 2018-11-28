@@ -318,3 +318,18 @@ header.masthead p {
 #welcome{
   font-size: 50px;
 }
+
+.home-post .post-meta {
+  background: #44c868;
+  padding: 20px;
+  overflow: hidden;
+  color: #fcfcfc;
+}
+
+.home-post .entry-content {
+  padding: 20px;
+}
+
+.home-post:hover{
+  box-shadow: 5px 5px 10px lightgrey;
+}
