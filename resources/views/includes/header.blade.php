@@ -11,10 +11,10 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">Que Ofrecemos</a>
+              <a class="nav-link js-scroll-trigger" href="#about">Que es WCSearch?</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+              <a class="nav-link js-scroll-trigger" href="#">Comentarios y Estadisticas</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#we">Quienes Somos</a>
