@@ -324,6 +324,10 @@ header.masthead p {
   font-size: 50px;
 }
 
+.home-post{
+  margin-bottom: 15px; 
+}
+
 .home-post .post-meta {
   background: #44c868;
   padding: 20px;

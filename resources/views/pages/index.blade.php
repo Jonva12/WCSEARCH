@@ -99,7 +99,7 @@
             <div class="entry-content">
               <h5><strong><a href="#">Iker Tena</a></strong></h5>
               <p>
-                Me salvo, menos mal que encontre un servicio rapido #AsomaLaTortuga UwU
+                Me salvo, menos mal que encontre un servicio rapido #AsomaLaTortuga
               </p>
 
             </div>
@@ -154,7 +154,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h2 class="section-heading">Who we are</h2>
+            <h2 class="section-heading">Quienes somos</h2>
             <hr class="my-4">
           </div>
         </div>
@@ -165,21 +165,21 @@
             <div class="service-box mt-5 mx-auto">
               <img class="fas fa-4x fa-crosshairs text-primary mb-3 sr-icon-1" src="img/participants/artola.png"></i>
               <h3 class="mb-3">Jon Artola</h3>
-              <p class="text-muted mb-0">Director and Coordinator</p>
+              <p class="text-muted mb-0">Director y coordinador</p>
             </div>
           </div>
           <div class="col-lg-4 col-md-12 text-center">
             <div class="service-box mt-5 mx-auto">
               <img class="far fa-4x fa-address-card text-primary mb-3 sr-icon-2" src="img/participants/yaiza.png"></i>
               <h3 class="mb-3">Yaiza Muñoz</h3>
-              <p class="text-muted mb-0">2º head of Direction</p>
+              <p class="text-muted mb-0">2ª jefa de direccion</p>
             </div>
           </div>
           <div class="col-lg-4 col-md-12 text-center">
             <div class="service-box mt-5 mx-auto">
               <img class="far fa-4x fa-comments text-primary mb-3 sr-icon-3" src="img/participants/valdes.png"></i>
               <h3 class="mb-3">Jon Valdes</h3>
-              <p class="text-muted mb-0">Technician</p>
+              <p class="text-muted mb-0">Tecnico</p>
             </div>
           </div>
         </div>
@@ -190,21 +190,21 @@
     <section class="bg-success text-white" id="contact">
       <div class="container">
         <div class="container text-center">
-          <h2 class="mb-4">Contact Form</h2>
+          <h2 class="mb-4">Contactos</h2>
           <hr class="light my-4" />
         </div>
-        <form method="post" action="form" onsubmit=" return alert(' Message Sent!')">
+        <form method="post" action="form" onsubmit=" return alert(' Mensaje enviado!')">
           @csrf
           <div class="form-group">
-            <label for="exampleFormControlInput1">Name</label>
+            <label for="exampleFormControlInput1">Nombre</label>
             <input type="text" class="form-control" name="name" id="name" placeholder="Yaiza Muñoz">
           </div>
           <div class="form-group">
-            <label for="exampleFormControlInput1">Email address</label>
+            <label for="exampleFormControlInput1">Direccion email</label>
             <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com">
           </div>
           <div class="form-group">
-            <label for="exampleFormControlTextarea1">Message</label>
+            <label for="exampleFormControlTextarea1">Mensaje</label>
             <textarea class="form-control" id="message" name="messages" rows="3"></textarea>
           </div>
           <div class="form-group text-center">

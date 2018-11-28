@@ -14,7 +14,7 @@
               <a class="nav-link js-scroll-trigger" href="#about">Que es WCSearch?</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#">Comentarios y Estadisticas</a>
+              <a class="nav-link js-scroll-trigger" href="#">Opiniones</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#we">Quienes Somos</a>
