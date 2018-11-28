@@ -314,3 +314,7 @@ header.masthead p {
     opacity : 0.2;
     z-index: -1;
 }
+
+#welcome{
+  font-size: 50px;
+}

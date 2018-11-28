@@ -11,21 +11,21 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">About</a>
+              <a class="nav-link js-scroll-trigger" href="#about">Que Ofrecemos</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#services">Services</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#we">Who we are</a>
+              <a class="nav-link js-scroll-trigger" href="#we">Quienes Somos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+              <a class="nav-link js-scroll-trigger" href="#contact">Contacto</a>
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li id="login"><a href="#"><i class="fas fa-pencil-alt" id="logicon"></i>  Sign Up </a></li>
-            <li id="login"><a href="#"><i class="fas fa-sign-in-alt" id="logicon"></i>  Sign In </a> </li>
+            <li id="login"><a href="#"><i class="fas fa-pencil-alt" id="logicon"></i>  Loguear </a></li>
+            <li id="login"><a href="#"><i class="fas fa-sign-in-alt" id="logicon"></i>  Registrarse </a> </li>
           </ul>
         </div>
 
@@ -35,14 +35,13 @@
     <header class="masthead text-center text-white d-flex">
       <div class="container my-auto">
         <div class="row">
-          <div class="col-lg-10 mx-auto">
-              <img class="img-fluid" id="header" src="img/logo.png" alt="WCSearch" >
-            <hr>
-            <h1><strong>"Searching for your needs"</strong></h1>
+          <div class="col-lg-7 mx-auto">
+              <img class="img-fluid" id="header" src="img/iphone2.png" alt="WCSearch" >
           </div>
-          <div class="col-lg-8 mx-auto">
+          <div class="col-lg-5 mx-auto"><hr>
+            <h1 id="welcome"><strong>ENCUENTRA LOS ASEOS PUBLICOS DE MANERA RAPIDA Y SENCILLA</strong></h1>
             <br/>
-            <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
+            <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Registrate!!!</a>
           </div>
         </div>
       </div>
