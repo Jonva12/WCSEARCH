@@ -16,10 +16,10 @@ class CreateTableComentarios extends Migration
         Schema::create('comentarios', function (Blueprint $table) {
             $table->increments('id');
             $table->string('text');
-            $table->unsignedInteger('id_usuario');
-            $table->foreign('id_usuario')->references('id')->on('usuario')->onDelete('cascade');
-            $table->unsignedInteger('id_aseo');
-            $table->foreign('id_aseo')->references('id')->on('aseos')->onDelete('cascade');
+            $table->unsignedInteger('usuario_id');
+            $table->foreign('usuario_id')->references('id')->on('usuario')->onDelete('set null');
+            $table->unsignedInteger('aseo_id');
+            $table->foreign('aseo_id')->references('id')->on('aseos')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateTableComentarios extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_comentarios');
+        Schema::dropIfExists('comentarios');
     }
 }
