@@ -5,7 +5,10 @@
 	<title>@yield('title')</title>
 </head>
 <body id="page-top">
-	
+	<header>
+		@include('includes.header')
+	</header>
+
 	@yield('content')
 
 	<footer>

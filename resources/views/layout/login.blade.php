@@ -3,11 +3,9 @@
 <head>
 	@include('includes.head')
 	<title>@yield('title')</title>
+	<link rel="stylesheet" href="css/login.css">
 </head>
 <body id="page-top">
-	<header>
-		@include('includes.header')
-	</header>
 
 	@yield('content')
 

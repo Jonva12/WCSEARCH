@@ -1,6 +1,6 @@
 
 
-  @extends('layout.layout')
+  @extends('layout.landing')
 
   @section('title', 'WCSearch')
 
