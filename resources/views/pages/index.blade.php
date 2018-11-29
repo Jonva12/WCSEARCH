@@ -6,7 +6,7 @@
 
 
   @section('content')
-    <section class="bg-primary" id="about">
+    <section class="bg-success" id="about">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto text-center">
@@ -155,7 +155,7 @@
         <div class="row">
           <div class="col-lg-12 text-center">
             <h2 class="section-heading">Quienes somos</h2>
-            <hr class="my-4">
+            <hr class="dark my-4">
           </div>
         </div>
       </div>
@@ -191,17 +191,17 @@
       <div class="container">
         <div class="container text-center">
           <h2 class="mb-4">Contactos</h2>
-          <hr class="light my-4" />
+          <hr class="dark my-4" />
         </div>
         <form method="post" action="form" onsubmit=" return alert(' Mensaje enviado!')">
           @csrf
           <div class="form-group">
             <label for="exampleFormControlInput1">Nombre</label>
-            <input type="text" class="form-control" name="name" id="name" placeholder="Yaiza Muñoz">
+            <input type="text" class="form-control" name="name" id="name" placeholder="Nombre">
           </div>
           <div class="form-group">
             <label for="exampleFormControlInput1">Direccion email</label>
-            <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com">
+            <input type="email" class="form-control" name="email" id="email" placeholder="Correo">
           </div>
           <div class="form-group">
             <label for="exampleFormControlTextarea1">Mensaje</label>
