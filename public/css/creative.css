@@ -25,8 +25,8 @@ hr {
   border-color: #44c868;
 }
 
-hr.light {
-  border-color: #fff;
+hr.dark {
+  border-color: #3c3c3b;
 }
 
 a {
@@ -265,6 +265,10 @@ header.masthead p {
   color: #3c3c3b !important;
 }
 
+.text-white{
+  color: #fff !important;
+}
+
 .btn {
   font-weight: 700;
   text-transform: uppercase;
@@ -275,6 +279,7 @@ header.masthead p {
 
 #localizacion{
   color: #fff !important;
+  margin-left: 2.5%;
 }
 
 .btn-xl {
@@ -317,4 +322,23 @@ header.masthead p {
 
 #welcome{
   font-size: 50px;
+}
+
+.home-post{
+  margin-bottom: 15px; 
+}
+
+.home-post .post-meta {
+  background: #44c868;
+  padding: 20px;
+  overflow: hidden;
+  color: #fcfcfc;
+}
+
+.home-post .entry-content {
+  padding: 20px;
+}
+
+.home-post:hover{
+  box-shadow: 5px 5px 10px lightgrey;
 }
