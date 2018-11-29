@@ -17,7 +17,7 @@ class CreateTableUsuarios extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('email');
-            $table->string('contraseña');
+            $table->string('contrasena');
             $table->integer('puntuacion');
             $table->integer('reportes');
             $table->timestamps();

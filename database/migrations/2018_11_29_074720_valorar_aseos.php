@@ -15,13 +15,8 @@ class ValorarAseos extends Migration
     {
         Schema::create('aseos_usuarios', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('aseo_id');
-            $table->unsignedInteger('usuario_id')->nullable();
             $table->integer('puntuacion');
             $table->timestamps();
-
-            $table->foreign('aseo_id')->references('id')->on('aseos')->onDelete('cascade');
-            $tabble->foreign('usuario_id')->refrences('id')->on('usuarios')->onDelete('set null'); 
         });
     }
 

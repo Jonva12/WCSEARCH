@@ -15,14 +15,9 @@ class CreateTableReportesAseos extends Migration
     {
         Schema::create('reportes_aseos', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('aseo_id');
             $table->string('tipo');
             $table->string('comentario')->nullable();
             $table->timestamps();
-
-            $table->foreign('aseo_id')
-              ->references('id')->on('aseos')
-              ->onDelete('cascade');
         });
     }
 

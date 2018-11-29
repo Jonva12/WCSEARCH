@@ -15,13 +15,9 @@ class ValorarComentarios extends Migration
     {
         Schema::create('comentarios_usuarios', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('comentario_id');
-            $table->unsignedInteger('usuario_id')->nullable();
+            
             $table->integer('puntuacion');
             $table->timestamps();
-
-            $table->foreign('comentario_id')->references('id')->on('comentarios')->onDelete('cascade');
-            $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('set null'); 
         });
     }
 
