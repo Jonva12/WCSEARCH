@@ -11,10 +11,11 @@ class ReporteAseoSeeder extends Seeder
      */
     public function run()
     {
-        for($i = 0; $i < 5, $i++){
+        for($i = 0; $i < 5; $i++){
           DB::table('reportes_aseos')->insert([
             'tipo' => 'info',
             'comentario' => 'blablabla',
+            'aseo_id' => random_int(1, 5),
           ]);
         }
     }
