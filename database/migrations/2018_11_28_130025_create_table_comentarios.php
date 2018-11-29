@@ -15,6 +15,11 @@ class CreateTableComentarios extends Migration
     {
         Schema::create('table_comentarios', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('text');
+            $table->unsignedInteger('id_usuario');
+            $table->foreign('id_usuario')->references('id')->on('usuario')->onDelete('cascade');
+            $table->unsignedInteger('id_aseo');
+            $table->foreign('id_aseo')->references('id')->on('aseos')->onDelete('cascade');
             $table->timestamps();
         });
     }
