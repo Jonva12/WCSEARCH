@@ -119,7 +119,7 @@
             <div class="entry-content">
               <h5><strong><a href="#">Miren Amiano</a></strong></h5>
               <p>
-                Una aplicacion sencilla y bonita para utilizar. 
+                Una aplicacion sencilla y bonita para utilizar.
               </p>
 
             </div>
@@ -140,7 +140,7 @@
             <div class="entry-content">
               <h5><strong><a href="#">Marcia Ana</a></strong></h5>
               <p>
-                Gracias por poner los precios, me ha ayudado a encontrar baños gratuitos. 
+                Gracias por poner los precios, me ha ayudado a encontrar baños gratuitos.
               </p>
             </div>
           </div>
@@ -155,7 +155,7 @@
         <div class="row">
           <div class="col-lg-12 text-center">
             <h2 class="section-heading">Quienes somos</h2>
-            <hr class="dark my-4">
+            <hr class="my-4">
           </div>
         </div>
       </div>
@@ -190,18 +190,18 @@
     <section class="bg-success text-white" id="contact">
       <div class="container">
         <div class="container text-center">
-          <h2 class="mb-4">Contactos</h2>
-          <hr class="dark my-4" />
+          <h2 class="mb-4">Contacto</h2>
+          <hr class="light my-4" />
         </div>
         <form method="post" action="form" onsubmit=" return alert(' Mensaje enviado!')">
           @csrf
           <div class="form-group">
             <label for="exampleFormControlInput1">Nombre</label>
-            <input type="text" class="form-control" name="name" id="name" placeholder="Nombre">
+            <input type="text" class="form-control" name="name" id="name" placeholder="Yaiza Muñoz">
           </div>
           <div class="form-group">
             <label for="exampleFormControlInput1">Direccion email</label>
-            <input type="email" class="form-control" name="email" id="email" placeholder="Correo">
+            <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com">
           </div>
           <div class="form-group">
             <label for="exampleFormControlTextarea1">Mensaje</label>
