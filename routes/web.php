@@ -15,4 +15,16 @@ Route::get('/', function(){
 	return view('pages/index');
 });
 
-Route::post('form', 'formController@insert'); 
+Route::post('form', 'formController@insert');
+
+Route::get('/login', function(){
+	return view('pages/login');
+});
+
+Route::get('/register', function(){
+	return view('pages/register');
+});
+
+Route::get('/admin', function(){
+	return view('pages/admin');
+});
