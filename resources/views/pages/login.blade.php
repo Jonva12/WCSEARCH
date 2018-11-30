@@ -16,12 +16,12 @@
                <input type="text" class="form-control" id="inputUsuario" placeholder="Usuario">
            </div>
            <div class="form-group">
-               <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+               <input type="password" class="form-control" id="inputPassword" placeholder="Contraseña">
            </div>
            <div class="forgot">
-              <a href="reset.html">Forgot password?</a>
+              <a href="reset.html">Has olvidado la contraseña?</a>
             </div>
-           <button type="submit" class="btn btn-primary">Login</button>
+           <button type="submit" class="btn btn-primary">Loguearse</button>
        </form>
       </div>
     </div>

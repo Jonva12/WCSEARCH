@@ -10,7 +10,7 @@
 }
 
 .column{
-  background-image: linear-gradient(lightgreen, lightblue);
+  /*background-image: linear-gradient(lightgrey, lightgreen);*/
   border-radius: 10px;
   border-color: 1px solid lightgrey;
   elevation: 3;
