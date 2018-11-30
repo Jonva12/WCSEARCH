@@ -1,20 +1,32 @@
- @extends('layout.login')
+@extends('layout.login')
 
- @section('title', 'Login WCSearch')
+@section('title', 'Registro')
 
-  @section('content')
-    <header class="masthead text-center text-white d-flex">
-      <div class="container my-auto">
-        <div class="row">
-          <div class="col-lg-7 mx-auto">
-              <img class="img-fluid" id="header" src="img/iphone2.png" alt="WCSearch" >
+@section('content')
+
+
+  <div class="masthead text-center text-white d-flex">
+    <div class="container my-auto">
+      <div class="column">
+        <form id="login">
+          <div class="img">
+            <img class="img-fluid" src="img/logo.ico" alt="WCSearch">
           </div>
-          <div class="col-lg-5 mx-auto"><hr>
-            <h1 id="welcome"><strong>ENCUENTRA LOS ASEOS PUBLICOS DE MANERA RAPIDA Y SENCILLA</strong></h1>
-            <br/>
-            <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Registrate!!!</a>
-          </div>
-        </div>
+           <div class="form-group">
+               <input type="text" class="form-control" id="inputUsuario" placeholder="Usuario">
+           </div>
+           <div class="form-group">
+               <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+           </div>
+           <div class="forgot">
+              <a href="reset.html">Forgot password?</a>
+            </div>
+           <button type="submit" class="btn btn-primary">Login</button>
+       </form>
       </div>
-    </header>
+    </div>
+  </div>
+
+
+
   @endsection
