@@ -3,14 +3,14 @@
 <head>
 	@include('includes.head')
 	<title>@yield('title')</title>
-	<link rel="stylesheet" href="css/login.css">
+	<link rel="stylesheet" href="/css/login.css">
 </head>
 <body id="page-top">
 
 	@yield('content')
 
 	<footer>
-		@include('includes.footer')
+		@include('includes.footer2')
 	</footer>
 
 	@include('includes.scripts')
