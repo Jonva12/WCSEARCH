@@ -191,7 +191,7 @@
       <div class="container">
         <div class="container text-center">
           <h2 class="mb-4">Contacto</h2>
-          <hr class="light my-4" />
+          <hr class="dark my-4" />
         </div>
         <form method="post" action="form" onsubmit=" return alert(' Mensaje enviado!')">
           @csrf
