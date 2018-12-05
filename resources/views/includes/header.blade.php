@@ -41,7 +41,7 @@
           <div class="col-lg-5 mx-auto"><hr>
             <h1 id="welcome"><strong>ENCUENTRA LOS ASEOS PUBLICOS DE MANERA RAPIDA Y SENCILLA</strong></h1>
             <br/>
-            <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Registrate!!!</a>
+            <a class="btn btn-primary btn-xl js-scroll-trigger" href="/register">Registrate!!!</a>
           </div>
         </div>
       </div>
