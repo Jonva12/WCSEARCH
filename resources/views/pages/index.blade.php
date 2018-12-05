@@ -77,7 +77,7 @@
               <span class="date">Junio 19, 2013</span>
             </div>
             <div class="entry-content">
-              <h5><strong><a href="#">Aitor Menta</a></strong></h5>
+              <h5><strong>Aitor Menta</strong></h5>
               <p>
                 Muchas gracias, me ayudo mucho cuando estaba en una cita con mi crush.
               </p>
@@ -97,7 +97,7 @@
               <span class="date">Agosto 19, 2013</span>
             </div>
             <div class="entry-content">
-              <h5><strong><a href="#">Iker Tena</a></strong></h5>
+              <h5><strong>Iker Tena</strong></h5>
               <p>
                 Me salvo, menos mal que encontre un servicio rapido #AsomaLaTortuga
               </p>
@@ -117,7 +117,7 @@
               <span class="date">Junio 22, 2013</span>
             </div>
             <div class="entry-content">
-              <h5><strong><a href="#">Miren Amiano</a></strong></h5>
+              <h5><strong>Miren Amiano</strong></h5>
               <p>
                 Una aplicacion sencilla y bonita para utilizar.
               </p>
@@ -138,7 +138,7 @@
 
             </div>
             <div class="entry-content">
-              <h5><strong><a href="#">Marcia Ana</a></strong></h5>
+              <h5><strong>Marcia Ana</strong></h5>
               <p>
                 Gracias por poner los precios, me ha ayudado a encontrar baños gratuitos.
               </p>
