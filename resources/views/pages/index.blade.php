@@ -16,7 +16,7 @@
               <p class="text-white mb-4">WCSearch es un localizador de aseos publicos dependiendo de tu localizacion. Siempre buscamos la manera mas rapida para satisfacer tus necesidades!</p>
               <i class="fas fa-map-marker-alt fa-4x mb-3 sr-icon-1" id="localizacion"></i>
             </div>
-            <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Unete</a>
+            <a class="btn btn-light btn-xl js-scroll-trigger" href="/register">Unete</a>
           </div>
         </div>
       </div>
