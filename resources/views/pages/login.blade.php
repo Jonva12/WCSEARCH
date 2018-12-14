@@ -21,7 +21,7 @@
            <div class="forgot">
               <a href="reset.html">Has olvidado la contraseña?</a>
             </div>
-           <button type="submit" class="btn btn-primary">Loguearse</button>
+           <input type="submit" class="btn btn-primary" placeholder="Iniciar Sesión">
        </form>
       </div>
     </div>

@@ -10,14 +10,38 @@
 }
 
 .column{
-  /*background-image: linear-gradient(lightgrey, lightgreen);*/
   border-radius: 10px;
   border-color: 1px solid lightgrey;
   elevation: 3;
   padding: 5%;
 }
 
-.img-fluid{
-  width: 10%;
-  height: 10%;
+@media (min-width: 300px){
+  .img-fluid{
+    width: 100px;
+    height: 100px;
+    margin-bottom: 50px;
+  }
+}
+@media (min-width: 700px){
+  .img-fluid{
+    width: 150px;
+    height: 150px;
+    margin-bottom: 50px;
+  }
+}
+@media (min-width: 900px){
+  .img-fluid{
+    width: 200px;
+    height: 200px;
+    margin-bottom: 50px;
+  }
+}
+
+.form-control{
+  width: 70%;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
 }
