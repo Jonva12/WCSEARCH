@@ -5,9 +5,7 @@
 	<title>@yield('title')</title>
 </head>
 <body id="page-top">
-	<header>
-		@include('includes.admin.header')
-	</header>
+	@include('includes.admin.header')
 
 	@yield('content')
 
