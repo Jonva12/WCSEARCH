@@ -16,7 +16,7 @@
               <p class="text-white mb-4">WCSearch es un localizador de aseos publicos dependiendo de tu localizacion. Siempre buscamos la manera mas rapida para satisfacer tus necesidades!</p>
               <i class="fas fa-map-marker-alt fa-4x mb-3 sr-icon-1" id="localizacion"></i>
             </div>
-            <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Unete</a>
+            <a class="btn btn-light btn-xl js-scroll-trigger" href="/register">Unete</a>
           </div>
         </div>
       </div>
@@ -77,7 +77,7 @@
               <span class="date">Junio 19, 2013</span>
             </div>
             <div class="entry-content">
-              <h5><strong><a href="#">Aitor Menta</a></strong></h5>
+              <h5><strong>Aitor Menta</strong></h5>
               <p>
                 Muchas gracias, me ayudo mucho cuando estaba en una cita con mi crush.
               </p>
@@ -97,7 +97,7 @@
               <span class="date">Agosto 19, 2013</span>
             </div>
             <div class="entry-content">
-              <h5><strong><a href="#">Iker Tena</a></strong></h5>
+              <h5><strong>Iker Tena</strong></h5>
               <p>
                 Me salvo, menos mal que encontre un servicio rapido #AsomaLaTortuga
               </p>
@@ -117,7 +117,7 @@
               <span class="date">Junio 22, 2013</span>
             </div>
             <div class="entry-content">
-              <h5><strong><a href="#">Miren Amiano</a></strong></h5>
+              <h5><strong>Miren Amiano</strong></h5>
               <p>
                 Una aplicacion sencilla y bonita para utilizar.
               </p>
@@ -138,7 +138,7 @@
 
             </div>
             <div class="entry-content">
-              <h5><strong><a href="#">Marcia Ana</a></strong></h5>
+              <h5><strong>Marcia Ana</strong></h5>
               <p>
                 Gracias por poner los precios, me ha ayudado a encontrar baños gratuitos.
               </p>
@@ -191,7 +191,7 @@
       <div class="container">
         <div class="container text-center">
           <h2 class="mb-4">Contacto</h2>
-          <hr class="light my-4" />
+          <hr class="dark my-4" />
         </div>
         <form method="post" action="form" onsubmit=" return alert(' Mensaje enviado!')">
           @csrf
