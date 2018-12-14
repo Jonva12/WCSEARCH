@@ -17,14 +17,10 @@ Route::get('/', function(){
 
 Route::post('form', 'formController@insert');
 
-Route::get('/login', function(){
-	return view('pages/login');
-});
-
-Route::get('/register', function(){
-	return view('pages/register');
-});
-
 Route::get('/admin', function(){
 	return view('pages/admin');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
