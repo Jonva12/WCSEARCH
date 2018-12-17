@@ -325,7 +325,7 @@ header.masthead p {
 }
 
 .home-post{
-  margin-bottom: 15px; 
+  margin-bottom: 15px;
 }
 
 .home-post .post-meta {
@@ -342,4 +342,3 @@ header.masthead p {
 .home-post:hover{
   box-shadow: 5px 5px 10px lightgrey;
 }
-

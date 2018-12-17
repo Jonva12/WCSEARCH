@@ -7,7 +7,6 @@
 
   <div class="masthead text-center text-white d-flex">
     <div class="container my-auto">
-      <div class="column">
         <form id="login">
           <div class="img">
             <img class="img-fluid" src="img/logo.ico" alt="WCSearch">
@@ -51,8 +50,5 @@
        </form>
       </div>
     </div>
-  </div>
-
-
 
   @endsection

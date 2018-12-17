@@ -38,10 +38,23 @@
   }
 }
 
+.img{
+  margin-top: -100px;
+}
+
 .form-control{
   width: 70%;
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
   align-self: center;
+  border-radius: 30px;
+}
+
+input[type=submit]{
+  margin-top: 50px;
+}
+
+a{
+  color: white;
 }

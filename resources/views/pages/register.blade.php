@@ -8,10 +8,9 @@
 
   <div class="masthead text-center text-white d-flex">
     <div class="container my-auto">
-      <div class="column">
-        <form id="login" method="POST" action="{{ route('register') }}">
-          @csrf
-          <img class="img-fluid rounded float-center" src="img/logo.ico" alt="WCSearch">
+      <form id=register method="POST" action="{{ route('register') }}">
+        @csrf
+        <img class="img-fluid rounded float-center" src="img/logo.ico" alt="WCSearch">
           <div class="form-group">
               <input type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" id="name" placeholder="Nombre" name="name" value="{{ old('name') }}" required autofocus>
               @if ($errors->has('name'))
@@ -43,9 +42,9 @@
               {{ __('Registrarse') }}
             </button>
        </form>
-      </div>
     </div>
   </div>
+
 
 
 
