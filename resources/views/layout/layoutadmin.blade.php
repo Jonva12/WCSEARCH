@@ -3,17 +3,21 @@
 <head>
 	@include('includes.head')
 	<title>@yield('title')</title>
+	<link rel="stylesheet" type="text/css" href="css/admin.css">
 </head>
 <body id="page-top">
-	<header>
-		@include('includes.admin.header')
-	</header>
+	@include('includes.admin.header')
 
-	@yield('content')
-
-	<footer>
-		include('includes.admin.footer')
-	</footer>
+	<div class="row">
+		<aside class="col-md-3 col-lg-2">
+			@include('includes.admin.aside')
+		</aside>
+		<section class="col-md-9 col-lg-10">
+			@yield('content')
+		</section>
+	</div>
+	
+		@include('includes.footer2')
 	
 	@include('includes.scripts')
 
