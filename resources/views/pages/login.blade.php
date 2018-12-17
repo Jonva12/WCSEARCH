@@ -18,7 +18,7 @@
                <input type="password" class="form-control" id="inputPassword" placeholder="Contraseña">
            </div>
            <div class="forgot">
-              <a href="reset.html">Has olvidado la contraseña?</a>
+              <a href="reset.html">¿Has olvidado la contraseña?</a>
             </div>
            <input type="submit" class="btn btn-primary" value="Iniciar Sesión">
        </form>
