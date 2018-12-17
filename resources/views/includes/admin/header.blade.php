@@ -1,18 +1,3 @@
-<style type="text/css">
-	#mainNav{
-		background-color: #28a745;
-	}
-	.navbar-right{
-		display: inline-flex;
-		justify-content: flex-end;
-	}
-	#usuarioMenu{
-		color:white;
-	}
-
-
-</style>
-
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
           <img src="img/logo.png" alt="WCSearch" id="icon" class="rounded float-left">
