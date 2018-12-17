@@ -1,17 +1,16 @@
 @extends('layout.login')
 
-@section('title', 'Registro')
+@section('title', 'Login')
 
 @section('content')
 
 
   <div class="masthead text-center text-white d-flex">
     <div class="container my-auto">
-        <form id="login">
           <div class="img">
             <img class="img-fluid" src="img/logo.ico" alt="WCSearch">
           </div>
-          <form method="POST" action="{{ route('login') }}">
+          <form method="post" action="{{ route('login') }}">
             @csrf
            <div class="form-group">
               <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="Email" required autofocus>
@@ -21,6 +20,7 @@
                 </span>
               @endif
            </div>
+
            <div class="form-group">
               <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="contraseña" required>
                 @if ($errors->has('password'))

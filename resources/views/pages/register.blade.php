@@ -8,7 +8,7 @@
 
   <div class="masthead text-center text-white d-flex">
     <div class="container my-auto">
-      <form id=register method="POST" action="{{ route('register') }}">
+      <form id="register" method="POST" action="{{ route('register') }}">
         @csrf
         <img class="img-fluid rounded float-center" src="img/logo.ico" alt="WCSearch">
           <div class="form-group">
