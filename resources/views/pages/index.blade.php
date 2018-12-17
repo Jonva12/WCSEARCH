@@ -10,10 +10,10 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto text-center">
-            <h2 class="section-heading text-white">Que es WCSearch?</h2>
+            <h2 class="section-heading text-white">¿Que es WCSearch?</h2>
             <hr class="dark my-4">
             <div class="d-flex flex-row justify-content-center">
-              <p class="text-white mb-4">WCSearch es un localizador de aseos publicos dependiendo de tu localizacion. Siempre buscamos la manera mas rapida para satisfacer tus necesidades!</p>
+              <p class="text-white mb-4">!WCSearch es un localizador de aseos publicos dependiendo de tu localizacion. Siempre buscamos la manera mas rapida para satisfacer tus necesidades!</p>
               <i class="fas fa-map-marker-alt fa-4x mb-3 sr-icon-1" id="localizacion"></i>
             </div>
             <a class="btn btn-light btn-xl js-scroll-trigger" href="/register">Unete</a>
@@ -197,11 +197,11 @@
           @csrf
           <div class="form-group">
             <label for="exampleFormControlInput1">Nombre</label>
-            <input type="text" class="form-control" name="name" id="name" placeholder="Yaiza Muñoz">
+            <input type="text" class="form-control" name="name" id="name" placeholder="Nombre">
           </div>
           <div class="form-group">
             <label for="exampleFormControlInput1">Direccion email</label>
-            <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com">
+            <input type="email" class="form-control" name="email" id="email" placeholder="Email">
           </div>
           <div class="form-group">
             <label for="exampleFormControlTextarea1">Mensaje</label>

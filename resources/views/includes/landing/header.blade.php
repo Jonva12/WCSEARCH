@@ -24,7 +24,7 @@
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li id="login"><a href="/register"><i class="fas fa-pencil-alt" id="logicon"></i>  Registrarse </a></li>
+            <li id="register"><a href="/register"><i class="fas fa-pencil-alt" id="logicon"></i>  Registrarse </a></li>
             <li id="login"><a href="/login"><i class="fas fa-sign-in-alt" id="logicon"></i>  Iniciar Sesión </a> </li>
           </ul>
         </div>
