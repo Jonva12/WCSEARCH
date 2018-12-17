@@ -17,9 +17,7 @@ Route::get('/', function(){
 
 Route::post('form', 'formController@insert');
 
-Route::get('/admin', function(){
-	return view('pages/admin');
-});
+Route::get('/admin', 'AdminController@index');
 
 Auth::routes();
 

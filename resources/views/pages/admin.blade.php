@@ -8,7 +8,7 @@
 		<div class="boton">
 			<i class="fas fa-users"></i>
 			<p>
-				<b>1.023</b> Usuarios
+				<b>{{$usuarios}}</b> Usuarios
 			</p>
 		</div>
 	</a>
@@ -16,7 +16,7 @@
 		<div class="boton">
 			<i class="fas fa-map-marker-alt"></i>
 			<p>
-				<b>2.303</b> Aseos
+				<b>{{$aseos}}</b> Aseos
 			</p>
 		</div>
 	</a>
@@ -24,7 +24,7 @@
 		<div class="boton">
 			<i class="far fa-envelope"></i>
 			<p>
-				<b>510</b> Mensajes
+				<b>{{$message}}</b> Mensajes
 			</p>
 		</div>
 	</a>

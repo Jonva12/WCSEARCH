@@ -15,9 +15,9 @@ class AddForeignkeyAseosUsuarios extends Migration
     {
         Schema::table('aseos_usuarios', function (Blueprint $table) {
             $table->unsignedInteger('aseo_id');
-            $table->unsignedInteger('usuario_id')->nullable();
+            $table->unsignedInteger('user_id')->nullable();
 
-            $table->foreign('usuario_id')->references('id')->on('usuarios');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('aseo_id')->references('id')->on('aseos');
         });
     }
@@ -31,9 +31,9 @@ class AddForeignkeyAseosUsuarios extends Migration
     {
         Schema::table('aseos_usuarios', function (Blueprint $table) {
             $table->dropForeign('aseos_usuarios_aseo_id_foreign');
-            $table->dropForeign('aseos_usuarios_usuario_id_foreign');
+            $table->dropForeign('aseos_usuarios_user_id_foreign');
 
-            $table->dropColumn('usuario_id');
+            $table->dropColumn('user_id');
             $table->dropColumn('aseo_id');
         });
     }
