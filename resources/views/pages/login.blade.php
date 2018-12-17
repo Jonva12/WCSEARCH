@@ -19,12 +19,10 @@
            </div>
            <div class="forgot">
               <a href="reset.html">¿Has olvidado la contraseña?</a>
-            </div>
+          </div>
            <input type="submit" class="btn btn-primary" value="Iniciar Sesión">
        </form>
       </div>
     </div>
-
-
 
   @endsection
