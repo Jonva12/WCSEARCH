@@ -8,9 +8,10 @@
 
   <div class="masthead text-center text-white d-flex">
     <div class="container my-auto">
-      <div class="column">
-        <form id="login">
-          <img class="img-fluid rounded float-center" src="img/logo.ico" alt="WCSearch">
+        <form id="register">
+          <div class="img">
+            <img class="img-fluid rounded float-center" src="img/logo.ico" alt="WCSearch">
+          </div>
           <div class="form-group">
               <input type="text" class="form-control" id="inputUsuario" placeholder="Nombre de Usuario">
           </div>
@@ -25,9 +26,9 @@
            </div>
            <input type="submit" class="btn btn-primary" value="Registrarse">
        </form>
-      </div>
     </div>
   </div>
+
 
 
 

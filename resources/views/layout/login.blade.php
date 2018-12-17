@@ -10,7 +10,7 @@
 	@yield('content')
 
 	<footer>
-		@include('includes.footer2')
+		@include('includes.login.footer')
 	</footer>
 
 	@include('includes.scripts')

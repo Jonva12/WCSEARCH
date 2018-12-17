@@ -7,7 +7,6 @@
 
   <div class="masthead text-center text-white d-flex">
     <div class="container my-auto">
-      <div class="column">
         <form id="login">
           <div class="img">
             <img class="img-fluid" src="img/logo.ico" alt="WCSearch">
@@ -21,11 +20,10 @@
            <div class="forgot">
               <a href="reset.html">Has olvidado la contraseña?</a>
             </div>
-           <input type="submit" class="btn btn-primary" placeholder="Iniciar Sesión">
+           <input type="submit" class="btn btn-primary" value="Iniciar Sesión">
        </form>
       </div>
     </div>
-  </div>
 
 
 

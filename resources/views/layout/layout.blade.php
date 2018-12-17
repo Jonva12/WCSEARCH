@@ -6,13 +6,13 @@
 </head>
 <body id="page-top">
 	<header>
-		@include('includes.header')
+		@include('includes.landing.header')
 	</header>
 
 	@yield('content')
 
 	<footer>
-		@include('includes.footer')
+		@include('includes.landing.footer')
 	</footer>
 
 	@include('includes.scripts')
