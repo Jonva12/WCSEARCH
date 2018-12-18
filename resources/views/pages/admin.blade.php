@@ -4,7 +4,7 @@
 
   @section('content')
   <div class="botones">
-	<a href="">
+	<a href="{{ route('admin.usuarios') }}">
 		<div class="boton">
 			<i class="fas fa-users"></i>
 			<p>
@@ -12,7 +12,7 @@
 			</p>
 		</div>
 	</a>
-	<a href="">
+	<a href="{{ route('admin.aseos') }}">
 		<div class="boton">
 			<i class="fas fa-map-marker-alt"></i>
 			<p>
@@ -20,7 +20,7 @@
 			</p>
 		</div>
 	</a>
-	<a href="">
+	<a href="{{ route('admin.mensajes') }}">
 		<div class="boton">
 			<i class="far fa-envelope"></i>
 			<p>
