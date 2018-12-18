@@ -1,4 +1,4 @@
-  @extends('layout.layoutadmin')
+  @extends('layout.admin')
 
   @section('title', 'WCSearch')
 
