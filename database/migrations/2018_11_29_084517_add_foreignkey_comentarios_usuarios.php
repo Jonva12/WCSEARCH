@@ -15,9 +15,9 @@ class AddForeignkeyComentariosUsuarios extends Migration
     {
         Schema::table('comentarios_usuarios', function (Blueprint $table) {
             $table->unsignedInteger('comentario_id');
-            $table->unsignedInteger('usuario_id')->nullable();
+            $table->unsignedInteger('user_id')->nullable();
 
-            $table->foreign('usuario_id')->references('id')->on('usuarios');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('comentario_id')->references('id')->on('comentarios');
         });
         
@@ -32,9 +32,9 @@ class AddForeignkeyComentariosUsuarios extends Migration
     {
         Schema::table('comentarios_usuarios', function (Blueprint $table) {
             $table->dropForeign('comentarios_usuarios_comentario_id_foreign');
-            $table->dropForeign('comentarios_usuarios_usuario_id_foreign');
+            $table->dropForeign('comentarios_usuarios_user_id_foreign');
 
-            $table->dropColumn('usuario_id');
+            $table->dropColumn('user_id');
             $table->dropColumn('comentario_id');
         });
     }

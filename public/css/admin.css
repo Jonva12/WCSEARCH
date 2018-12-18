@@ -1,54 +1,70 @@
-  #mainNav{
-    background-color: #28a745;
-  }
-  .navbar-right{
-    display: inline-flex;
-    justify-content: flex-end;
-  }
-  #usuarioMenu{
-    color:white;
-  }
+#mainNav{
+  background-color: #28a745;
+}
+.navbar-right{
+  display: inline-flex;
+  justify-content: flex-end;
+}
+#usuarioMenu{
+  color:white;
+}
 
 aside{
-    background-color: #7CDF93;
-    padding-right:0px !important;
-    margin-top: 100px;
-    height: 80vh;
-  }
-  aside ul{
-    list-style-type: none;
-    padding: 0;
-  }
-  aside a:link{
-    text-decoration: none;
-  }
-  aside li:hover{
-    background-color: #28a745;
-  }
-  aside li{
-    padding: 5px;
-    padding-left: 20px;
-    border:1px #0C3516 solid;
-    color: black;
-  }
+  background-color: #7CDF93;
+  padding-right:0px !important;
+  margin-top: 100px;
+  height: 80vh;
+}
+aside ul{
+  list-style-type: none;
+  padding: 0;
+}
+aside a:link{
+  text-decoration: none;
+}
+aside li:hover{
+  background-color: #28a745;
+}
+aside li{
+  padding: 5px;
+  padding-left: 20px;
+  border:1px #0C3516 solid;
+  color: black;
+}
   
 .boton{
-  		width: 20%;
-  		height: 100px;
-  		border: 1px solid grey;
-  		border-radius: 10px;
-  		padding: 10px;
-  		margin: 10px;
-  		background-color: #6FB07E;
-  		display: inline-block;
-  	}
-  	.boton:hover{
-  		background-color: #28a745;
-  		color: white;
-  	}
-  	.boton i{
-  		font-size: 50px;
-  	}
-  	.botones{
-  		text-align: center;
-  	}
+	width: 20%;
+	height: 100px;
+	border: 1px solid grey;
+	border-radius: 10px;
+	padding: 10px;
+	margin: 10px;
+	background-color: #6FB07E;
+	display: inline-block;
+}
+.boton:hover{
+	background-color: #28a745;
+	color: white;
+}
+.boton i{
+	font-size: 50px;
+}
+.botones{
+	text-align: center;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}

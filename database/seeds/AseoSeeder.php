@@ -20,7 +20,7 @@ class AseoSeeder extends Seeder
             'foto'=>'404.png',
             'precio'=>random_int(0, 3),
             'accesibilidad'=>random_int(0, 1),
-            'usuario_id'=>random_int(1, 5)
+            'user_id'=>random_int(1, 5)
           ]);
         }
     }
