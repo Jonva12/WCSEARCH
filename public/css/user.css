@@ -1,0 +1,12 @@
+.navbar{
+  background-color: rgb(40, 167, 69);
+}
+
+#icon{
+  width: 6%;
+  height: 6%;
+}
+
+#navbarDropdown{
+  color: white;
+}
