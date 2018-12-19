@@ -19,8 +19,11 @@ Route::post('form', 'formController@insert');
 
 Route::get('/admin/', 'AdminController@index')->name('admin');
 Route::get('/admin/usuarios', 'AdminController@usuarios')->name('admin.usuarios');
+Route::get('/admin/usuario/eliminar/{id}', 'AdminController@eliminarUsuario')->name('admin.usuario.eliminar');
 Route::get('/admin/aseos', 'AdminController@aseos')->name('admin.aseos');
 Route::get('/admin/mensajes', 'AdminController@mensajes')->name('admin.mensajes');
+Route::get('/admin/aseo/{id}', 'AdminController@aseo')->name('admin.aseo');
+Route::get('/admin/aseo/eliminar/{id}', 'AdminController@eliminarAseo')->name('admin.aseo.eliminar');
 
 
 Auth::routes();

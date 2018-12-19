@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use App\Aseo;
-use App\Message;
 use App\ReportesAseos;
+use App\Message;
 
 
 class AdminController extends Controller
@@ -33,16 +33,24 @@ class AdminController extends Controller
 		$usuarios=User::all();
 		return view('pages/admin/usuarios', array('usuarios'=>$usuarios));
 	}
+    public function eliminarUsuario($id){
+        User::where('id',$id)->delete();
+        return $this->usuarios();
+    }
 
 	public function aseos(){
 		$aseos=Aseo::all();
 		return view('pages/admin/aseos', array('aseos'=>$aseos));
 	}
 
-	public function reportesAseos(){
-		$reportes=ReportesAseo::all();
-		return view('pages/admin/reportesAseos', array('reportes'=>$reportes));
+	public function aseo($id){
+		$aseo=Aseo::where('id',$id)->first();
+		return view('pages/admin/aseo', array('aseo'=>$aseo));
 	}
+    public function eliminarAseo($id){
+        Aseo::where('id',$id)->delete();
+        return $this->aseos();
+    }
 
 	public function mensajes(){
 		$mensajes=Message::all();
