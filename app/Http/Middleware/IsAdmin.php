@@ -16,10 +16,10 @@ class IsAdmin
      */
     public function handle($request, Closure $next)
     {
-         if (Auth::user() &&  Auth::user()->admin == 1) {
+         if (Auth::user() &&  Auth::user()->role->nombre == "Admin") {
                 return $next($request);
          }
 
-        return redirect('/home');
+        return redirect('/login');
     }
 }
