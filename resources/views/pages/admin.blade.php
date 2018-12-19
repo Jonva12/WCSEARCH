@@ -1,30 +1,30 @@
-  @extends('layout.layoutadmin')
+  @extends('layout.admin')
 
   @section('title', 'WCSearch')
 
   @section('content')
   <div class="botones">
-	<a href="">
+	<a href="{{ route('admin.usuarios') }}">
 		<div class="boton">
 			<i class="fas fa-users"></i>
 			<p>
-				<b>1.023</b> Usuarios
+				<b>{{$usuarios}}</b> Usuarios
 			</p>
 		</div>
 	</a>
-	<a href="">
+	<a href="{{ route('admin.aseos') }}">
 		<div class="boton">
 			<i class="fas fa-map-marker-alt"></i>
 			<p>
-				<b>2.303</b> Aseos
+				<b>{{$aseos}}</b> Aseos
 			</p>
 		</div>
 	</a>
-	<a href="">
+	<a href="{{ route('admin.mensajes') }}">
 		<div class="boton">
 			<i class="far fa-envelope"></i>
 			<p>
-				<b>510</b> Mensajes
+				<b>{{$message}}</b> Mensajes
 			</p>
 		</div>
 	</a>

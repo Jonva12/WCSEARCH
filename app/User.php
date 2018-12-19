@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Comentario;
+use App\Aseo;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -28,6 +30,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
+<<<<<<< HEAD
     public function newNotification () {
       $this->notify(new Notification);
     }
@@ -35,5 +38,17 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendEmailVerificationNotification()
     {
         $this->notify(new Notifications\Correo);
+=======
+    public function comentario(){
+      return $this->hasMany('App\Comentario');
+    }
+
+    public function valoracion(){
+      return $this->belongsToMany('App\Comentario')->withPivot('puntuacion');
+    }
+
+    public function aseo(){
+      return $this->hasMany('App\Aseo');
+>>>>>>> 77bbb8ba8c1ca6e3f4c92fbd29b3e797c41d3677
     }
 }

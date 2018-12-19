@@ -14,9 +14,9 @@ class AddForeignkeyAseos extends Migration
     public function up()
     {
         Schema::table('aseos', function (Blueprint $table) {
-            $table->unsignedInteger('usuario_id')->nullable();
+            $table->unsignedInteger('user_id')->nullable();
 
-            $table->foreign('usuario_id')->references('id')->on('usuarios');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -28,9 +28,9 @@ class AddForeignkeyAseos extends Migration
     public function down()
     {
         Schema::table('aseos', function (Blueprint $table) {
-            $table->dropForeign('comentarios_usuario_id_foreign');
+            $table->dropForeign('comentarios_user_id_foreign');
 
-            $table->dropColumn('usuario_id');
+            $table->dropColumn('user_id');
         });
     }
 }

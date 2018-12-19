@@ -3,13 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Usuario;
+use App\User;
 use App\Aseo;
 
 class Comentario extends Model
 {
     public function usuario(){
-    	return $this->belongsTo('App\Usuario');
+    	return $this->belongsTo('App\User');
     }
 
     public function aseo(){
@@ -17,6 +17,6 @@ class Comentario extends Model
     }
 
     public function valoracion(){
-    	return $this->belongsToMany('App\Usuario')->withPivot('puntuacion');
+    	return $this->belongsToMany('App\User')->withPivot('puntuacion');
     }
 }
