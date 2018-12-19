@@ -12,10 +12,10 @@ class UsuarioSeeder extends Seeder
     public function run()
     {
         for($i = 0; $i < 5; $i++){
-          DB::table('usuarios')->insert([
-            'nombre' => 'nombrePrueba'.str_random(1),
-            'email' => 'hola'.random_int(1,5).'@gmail.com',
-            'contrasena' => 'passwordprueba',
+          DB::table('users')->insert([
+            'name' => 'nombrePrueba'.str_random(1),
+            'email' => 'hola'.$i.'@gmail.com',
+            'password' => 'passwordprueba',
             'puntuacion' => random_int(1,100),
             'reportes' => 0,
           ]);
