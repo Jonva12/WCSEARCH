@@ -24,6 +24,22 @@ Route::get('/admin/mensajes', 'AdminController@mensajes')->name('admin.mensajes'
 
 
 Auth::routes();
+Auth::routes(['verify' => true]);
+Route::get('profile', function () {
+    // Only verified users may enter...
+})->middleware('verified');
+
+Route::get('notify', function () {
+    $user = \App\User::find(1);
+    $user->notify(new \App\Notifications\NewNotification());
+});
+
+Route::get('notify', function () {
+    (new User)->forceFill([
+        'name' => request('name'),
+        'email' => request('email'),
+    ])->notify(new \App\Notifications\NewNotification());
+});
 
 Route::get('/home', 'HomeController@index')->name('home');
 

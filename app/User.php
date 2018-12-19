@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Comentario;
 use App\Aseo;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
@@ -29,6 +29,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function newNotification () {
+      $this->notify(new Notification);
+    }
+
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new Notifications\Correo);
+    }
 
     public function comentario(){
       return $this->hasMany('App\Comentario');
