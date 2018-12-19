@@ -6,26 +6,25 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Lang;
 
 class Correo extends Notification
 {
-    use Queueable;
-
+    
     /**
-     * Create a new notification instance.
+     * The callback that should be used to build the mail message.
      *
-     * @return void
+     * @var \Closure|null
      */
-    public function __construct()
-    {
-        //
-    }
+    public static $toMailCallback;
 
     /**
-     * Get the notification's delivery channels.
+     * Get the notification's channels.
      *
      * @param  mixed  $notifiable
-     * @return array
+     * @return array|string
      */
     public function via($notifiable)
     {
@@ -33,29 +32,48 @@ class Correo extends Notification
     }
 
     /**
-     * Get the mail representation of the notification.
+     * Build the mail representation of the notification.
      *
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
     {
+        if (static::$toMailCallback) {
+            return call_user_func(static::$toMailCallback, $notifiable);
+        }
+
         return (new MailMessage)
-                    ->line('Bienvenido de WCSEARCH.')
-                    ->action('Tu aplicacion de aseos publicos y cada dia la de mas personas.', url('/home'))
-                    ->line('Gracias por usar nuestra aplicacion!');
+            ->subject(Lang::getFromJson('Verifica tu direccion de correo'))
+            ->line(Lang::getFromJson('Por favor haz click en el siguiente boton para verificar tu direccion email.'))
+            ->action(
+                Lang::getFromJson('Verifica tu direccion de correo'),
+                $this->verificationUrl($notifiable)
+            )
+            ->line(Lang::getFromJson('Si no has creado una cuenta no necesitas hacer nada mas.'));
     }
 
     /**
-     * Get the array representation of the notification.
+     * Get the verification URL for the given notifiable.
      *
      * @param  mixed  $notifiable
-     * @return array
+     * @return string
      */
-    public function toArray($notifiable)
+    protected function verificationUrl($notifiable)
     {
-        return [
-            //
-        ];
+        return URL::temporarySignedRoute(
+            'verification.verify', Carbon::now()->addMinutes(60), ['id' => $notifiable->getKey()]
+        );
+    }
+
+    /**
+     * Set a callback that should be used when building the notification mail message.
+     *
+     * @param  \Closure  $callback
+     * @return void
+     */
+    public static function toMailUsing($callback)
+    {
+        static::$toMailCallback = $callback;
     }
 }
