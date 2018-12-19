@@ -16,9 +16,9 @@
 			@yield('content')
 		</section>
 	</div>
-	
-		@include('includes.footer2')
-	
+
+		@include('includes.login.footer')
+
 	@include('includes.scripts')
 
 </body>
