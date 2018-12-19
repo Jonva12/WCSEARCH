@@ -14,10 +14,10 @@ class AddForeignkey extends Migration
     public function up()
     {
         Schema::table('comentarios', function (Blueprint $table) {
-            $table->unsignedInteger('usuario_id');
+            $table->unsignedInteger('user_id');
             $table->unsignedInteger('aseo_id');
 
-            $table->foreign('usuario_id')->references('id')->on('usuarios');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('aseo_id')->references('id')->on('aseos');
         });
     }
@@ -30,10 +30,10 @@ class AddForeignkey extends Migration
     public function down()
     {
         Schema::table('comentarios', function (Blueprint $table) {
-            $table->dropForeign('comentarios_usuario_id_foreign');
+            $table->dropForeign('comentarios_user_id_foreign');
             $table->dropForeign('comentarios_aseo_id_foreign');
 
-            $table->dropColumn('usuario_id');
+            $table->dropColumn('user_id');
             $table->dropColumn('aseo_id');
         });
 

@@ -15,7 +15,7 @@ class ComentarioSeeder extends Seeder
         for($i = 0; $i < 5; $i++){
           DB::table('comentarios')->insert([
             'text' => str_random(40),
-            'usuario_id' => random_int(1, 5),
+            'user_id' => random_int(1, 5),
             'aseo_id' => random_int(1, 5),
           ]);
         }
