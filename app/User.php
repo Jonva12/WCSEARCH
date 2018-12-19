@@ -30,7 +30,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
-<<<<<<< HEAD
     public function newNotification () {
       $this->notify(new Notification);
     }
@@ -38,7 +37,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendEmailVerificationNotification()
     {
         $this->notify(new Notifications\Correo);
-=======
+
     public function comentario(){
       return $this->hasMany('App\Comentario');
     }
@@ -49,6 +48,5 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function aseo(){
       return $this->hasMany('App\Aseo');
->>>>>>> 77bbb8ba8c1ca6e3f4c92fbd29b3e797c41d3677
     }
 }
