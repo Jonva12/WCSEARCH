@@ -13,7 +13,7 @@ class ValorarComentarios extends Migration
      */
     public function up()
     {
-        Schema::create('comentarios_usuarios', function (Blueprint $table) {
+        Schema::create('comentarios_users', function (Blueprint $table) {
             $table->increments('id');
             
             $table->integer('puntuacion');
@@ -28,6 +28,6 @@ class ValorarComentarios extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comentarios_usuarios');
+        Schema::dropIfExists('comentarios_users');
     }
 }

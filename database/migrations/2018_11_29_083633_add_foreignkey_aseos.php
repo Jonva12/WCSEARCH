@@ -28,7 +28,7 @@ class AddForeignkeyAseos extends Migration
     public function down()
     {
         Schema::table('aseos', function (Blueprint $table) {
-            $table->dropForeign('comentarios_user_id_foreign');
+            $table->dropForeign('aseos_user_id_foreign');
 
             $table->dropColumn('user_id');
         });

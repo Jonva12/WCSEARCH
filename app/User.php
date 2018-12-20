@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Comentario;
 use App\Aseo;
+use App\Role;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -49,5 +50,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function aseo(){
       return $this->hasMany('App\Aseo');
+    }
+
+    public function role(){
+      return $this->belongsTo('App\Role');
     }
 }
