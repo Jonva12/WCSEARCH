@@ -30,16 +30,22 @@ class AdminController extends Controller
     }
 
     public function usuarios(){
-		$usuarios=User::all();
+		$usuarios=User::where('fecha_de_baneo', null)->get();
 		return view('pages/admin/usuarios', array('usuarios'=>$usuarios));
 	}
-    public function eliminarUsuario($id){
-        User::where('id',$id)->delete();
+    public function banearUsuario($id){
+        $usuario=Usuario::where('id',$id)->first();
+		$usuario->baneado=new DateTime();
+		$usuario->save();
         return $this->usuarios();
     }
 
 	public function aseos(){
-		$aseos=Aseo::all();
+		$aseos=Aseo::where('oculto', null)->get();
+		return view('pages/admin/aseos', array('aseos'=>$aseos));
+	}
+	public function aseosOcultos(){
+		$aseos=Aseo::where('oculto', '!=', null)->get();
 		return view('pages/admin/aseos', array('aseos'=>$aseos));
 	}
 
@@ -47,6 +53,14 @@ class AdminController extends Controller
 		$aseo=Aseo::where('id',$id)->first();
 		return view('pages/admin/aseo', array('aseo'=>$aseo));
 	}
+
+	public function ocultarAseo($id){
+		$aseo=Aseo::where('id',$id)->first();
+		$aseo->oculto=new DateTime();
+		$aseo->save();
+		return $this->aseos();
+	}
+
     public function eliminarAseo($id){
         Aseo::where('id',$id)->delete();
         return $this->aseos();
@@ -56,4 +70,8 @@ class AdminController extends Controller
 		$mensajes=Message::all();
 		return view('pages/admin/mensajes', array('mensajes'=>$mensajes));
 	}
+	public function eliminarMensaje($id){
+        Message::where('id',$id)->delete();
+        return $this->mensajes();
+    }
 }

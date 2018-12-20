@@ -19,11 +19,17 @@ Route::post('form', 'formController@insert');
 
 Route::get('/admin/', 'AdminController@index')->name('admin');
 Route::get('/admin/usuarios', 'AdminController@usuarios')->name('admin.usuarios');
-Route::get('/admin/usuario/eliminar/{id}', 'AdminController@eliminarUsuario')->name('admin.usuario.eliminar');
+Route::get('/admin/usuario/banear/{id}', 'AdminController@banearUsuario')->name('admin.usuario.banear');
+
 Route::get('/admin/aseos', 'AdminController@aseos')->name('admin.aseos');
-Route::get('/admin/mensajes', 'AdminController@mensajes')->name('admin.mensajes');
+Route::get('/admin/aseo/ocultos/{id}', 'AdminController@aseosOcultos')->name('admin.aseos.ocultos');
 Route::get('/admin/aseo/{id}', 'AdminController@aseo')->name('admin.aseo');
+Route::get('/admin/aseo/ocultar/{id}', 'AdminController@eliminarAseo')->name('admin.aseo.ocultar');
 Route::get('/admin/aseo/eliminar/{id}', 'AdminController@eliminarAseo')->name('admin.aseo.eliminar');
+
+Route::get('/admin/mensajes', 'AdminController@mensajes')->name('admin.mensajes');
+Route::get('/admin/mensaje/eliminar/{id}', 'AdminController@eliminarMensaje')->name('admin.mensaje.eliminar');
+
 
 
 Auth::routes();

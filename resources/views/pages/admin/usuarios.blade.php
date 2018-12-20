@@ -20,7 +20,9 @@
 			<td>{{$u->email}}</td>
 			<td>{{$u->puntuacion}}</td>
 			<td>{{$u->reportes}}</td>
-			<td><a href="{{route('admin.usuario.eliminar',$u->id)}} class="btn btn-danger">Bloquear</a></td>
+			<td>
+				<a href="{{route('admin.usuario.banear',$u->id)}}" class="btn btn-danger">Banear</a>
+			</td>
 		</tr>
 		@endforeach
 		@if($usuarios->count()==0)

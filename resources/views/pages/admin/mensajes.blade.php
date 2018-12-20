@@ -21,9 +21,8 @@
 			<td>{{$m->created_at}}</td>
 			<td>{{$m->message}}</td>
 			<td>
-				<a href="#" class="btn btn-primary">Responder</a>
-				<a href="#" class="btn btn-info">Ver</a>
-				<a href="#" class="btn btn-danger">Eliminar</a>
+				<a href="mailto:{{$m->email}}?Subject=Respuesta%20de%20WCSearch" class="btn btn-primary">Responder</a>
+				<a href="{{route('admin.mensaje.eliminar',$m->id)}}" class="btn btn-danger">Eliminar</a>
 			</td>
 		</tr>
 		@endforeach
