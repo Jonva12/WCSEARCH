@@ -57,3 +57,6 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/ficha', function () {
+    return view('pages/fichaWC');
+});
