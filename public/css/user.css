@@ -1,5 +1,6 @@
 .navbar{
   background-color: rgb(40, 167, 69);
+  font-family: sans-serif;
 }
 
 #icon{
@@ -9,4 +10,22 @@
 
 #navbarDropdown{
   color: white;
+}
+
+.title{
+  color: rgb(40, 167, 69);
+  font-size: 24pt;
+  font-weight: bold;
+  font-family: Sans-serif;
+  text-shadow: 1px 1px grey;
+}
+
+form{
+  font-family: sans-serif;
+}
+
+.col-md-8{
+  display: inline-flex;
+  align-items: center;
+  flex-direction: column;
 }
