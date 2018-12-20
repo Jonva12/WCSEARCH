@@ -1,9 +1,11 @@
-@extends('layout.app')
+@extends('layout.login')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+          <div class="masthead text-center d-flex">
+            <div class="container my-auto">
+                  <div class="img">
+                    <img class="img-fluid" src="{{ asset('img/logo.ico')}}" alt="WCSearch">
+                  </div>
             <div class="card">
                 <div class="card-header">{{ __('Verifica tu correo') }}</div>
 
@@ -15,10 +17,9 @@
                     @endif
 
                     {{ __('Antes de continuar, por favor comprueba en tu email el link de verificacion.') }}
-                    {{ __('Si no has recibido nada') }}, <a href="{{ route('verification.resend') }}">{{ __('pulsa aqui para que se reenvie.') }}</a>.
+                    {{ __('Si no has recibido nada') }}, <a id="verify" href="{{ route('verification.resend') }}">{{ __('pulsa aqui para que se reenvie.') }}</a>.
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

@@ -3,7 +3,7 @@
 <head>
 	@include('includes.head')
 	<title>@yield('title')</title>
-	<link rel="stylesheet" href="/css/login.css">
+	<link rel="stylesheet" href="{{ asset('css/login.css')}}">
 </head>
 <body id="page-top">
 

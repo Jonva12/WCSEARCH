@@ -35,6 +35,7 @@ Route::get('/admin/mensaje/eliminar/{id}', 'AdminController@eliminarMensaje')->n
 
 Auth::routes();
 Auth::routes(['verify' => true]);
+
 Route::get('profile', function () {
     // Only verified users may enter...
 })->middleware('verified');
@@ -50,6 +51,9 @@ Route::get('notify', function () {
         'email' => request('email'),
     ])->notify(new \App\Notifications\NewNotification());
 });
+//Rutas resetear contraseña
+Route::get('register', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
