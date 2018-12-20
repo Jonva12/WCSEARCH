@@ -18,13 +18,14 @@ Route::get('/', function(){
 Route::post('form', 'formController@insert');
 
 Route::get('/admin/', 'AdminController@index')->name('admin');
-Route::get('/admin/usuarios', 'AdminController@usuarios')->name('admin.usuarios');
+Route::get('/admin/usuarios/{baneados?}', 'AdminController@usuarios')->name('admin.usuarios');
 Route::get('/admin/usuario/banear/{id}', 'AdminController@banearUsuario')->name('admin.usuario.banear');
+Route::get('/admin/usuario/desbanear/{id}', 'AdminController@desbanearUsuario')->name('admin.usuario.desbanear');
 
-Route::get('/admin/aseos', 'AdminController@aseos')->name('admin.aseos');
-Route::get('/admin/aseo/ocultos/{id}', 'AdminController@aseosOcultos')->name('admin.aseos.ocultos');
+Route::get('/admin/aseos/{ocultos?}', 'AdminController@aseos')->name('admin.aseos');
 Route::get('/admin/aseo/{id}', 'AdminController@aseo')->name('admin.aseo');
-Route::get('/admin/aseo/ocultar/{id}', 'AdminController@eliminarAseo')->name('admin.aseo.ocultar');
+Route::get('/admin/aseo/ocultar/{id}', 'AdminController@ocultarAseo')->name('admin.aseo.ocultar');
+Route::get('/admin/aseo/mostrar/{id}', 'AdminController@mostrarAseo')->name('admin.aseo.mostrar');
 Route::get('/admin/aseo/eliminar/{id}', 'AdminController@eliminarAseo')->name('admin.aseo.eliminar');
 
 Route::get('/admin/mensajes', 'AdminController@mensajes')->name('admin.mensajes');
