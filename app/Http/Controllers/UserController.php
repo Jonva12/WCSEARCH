@@ -13,7 +13,7 @@ class UserController extends Controller
     }
 
     public function index(){
-    	$usuario=Auth::
+    	$usuario=Auth::user();
     	return view('pages/user', array('usuario'=>$usuario));
     }
 

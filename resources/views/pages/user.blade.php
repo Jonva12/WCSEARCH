@@ -4,11 +4,11 @@
 
   @section('content')
   <div class="botones">
-	<a href="{{ route('usuario.perfil',$usuario) }}">
+	<a href="{{ route('usuario.perfil',$usuario->id) }}">
 		<div class="boton">
 			<i class="fas fa-users"></i>
 			<p>
-				<b>{{$usuario}}</b> Perfil
+				<b>{{$usuario->nombre}}</b> Perfil
 			</p>
 		</div>
 	</a>
