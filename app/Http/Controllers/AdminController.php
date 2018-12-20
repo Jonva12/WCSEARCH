@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use App\User;
 use App\Aseo;
 use App\Message;
 use App\ReportesAseos;
+
 
 class AdminController extends Controller
 {
@@ -17,7 +19,7 @@ class AdminController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(array('auth','verified'));
+        $this->middleware('admin');
     }
 
     public function index(){
