@@ -42,7 +42,7 @@ Route::get('notify', function () {
     ])->notify(new \App\Notifications\NewNotification());
 });
 //Rutas resetear contraseña
-Route::get('register', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::get('request', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 
 Route::get('/home', 'HomeController@index')->name('home');
