@@ -58,3 +58,8 @@ input[type=submit]{
 a{
   color: white;
 }
+
+#verify{
+  color: #3366BB;
+  text-decoration: underline;
+}
