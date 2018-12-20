@@ -13,11 +13,12 @@ class UserController extends Controller
     }
 
     public function index(){
-    	return view('pages/user');
+    	$usuario=Auth::
+    	return view('pages/user', array('usuario'=>$usuario));
     }
 
     public function perfil($id){
     	$usuario=User::where('id',$id)->first();
-		return view('pages/user/perfil');
+		return view('pages/user/perfil', array('usuario'=>$usuario));
 	}
 }
