@@ -108,6 +108,10 @@ img::-moz-selection {
   background: transparent;
 }
 
+.navbar-right{
+  margin-right: 20px; 
+}
+
 #mainNav {
   border-bottom: 1px solid rgba(33, 37, 41, 0.1);
   background-color: #fff;

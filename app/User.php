@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\CorreoResetPass;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Comentario;
@@ -38,6 +39,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendEmailVerificationNotification()
     {
         $this->notify(new Notifications\Correo);
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new Notifications\CorreoResetPass($token));
     }
 
     public function comentario(){
