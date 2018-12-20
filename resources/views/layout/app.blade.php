@@ -9,16 +9,14 @@
 
     <title>{{ __('WCSEARCH') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-
-    <!-- Styles -->
+    <script src="{{ asset('js/app.js') }}"></script> <!-- quitar defer del link del script -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/user.css')}}">
+    <link rel="stylesheet" href="{{ asset('/assets/vendor/leaflet/leaflet.css')}}">
+    <script src="{{ asset('/assets/vendor/leaflet/leaflet.js')}}"></script>
+
+    @yield('script')
 </head>
 <body>
     <div id="app">
@@ -28,5 +26,6 @@
             @yield('content')
         </main>
     </div>
+
 </body>
 </html>
