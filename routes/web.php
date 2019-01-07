@@ -62,3 +62,8 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/tieneNotificaciones/{id}', 'NotificationController@tieneNotificaciones')->name('notifi');
+Route::get('/getNotificaciones/{id}', 'NotificationController@getNotificaciones');
+
+
+

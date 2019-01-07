@@ -193,8 +193,17 @@
           <h2 class="mb-4">Contacto</h2>
           <hr class="dark my-4" />
         </div>
-        <form method="post" action="form" onsubmit=" return alert(' Mensaje enviado!')">
+        <form method="post" action="form">
           @csrf
+          @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+          @endif
           <div class="form-group">
             <label for="exampleFormControlInput1">Nombre</label>
             <input type="text" class="form-control" name="name" id="name" placeholder="Nombre">

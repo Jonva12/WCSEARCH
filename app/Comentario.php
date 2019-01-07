@@ -19,4 +19,8 @@ class Comentario extends Model
     public function valoracion(){
     	return $this->belongsToMany('App\User')->withPivot('puntuacion');
     }
+
+    public function notificaciones(){
+        return $this->hasMany('App\Notification');
+    }
 }

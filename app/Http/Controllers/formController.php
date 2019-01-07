@@ -9,6 +9,12 @@ use App\Http\Controllers\Controller;
 class formController extends Controller
 {
     public function insert(Request $request){
+		$request->validate([
+			'name'=>'string|required|min:2|max:40',
+			'email'=>'email|required',
+			'message'=>'required']
+		);
+
     	$data = new Message; 
 
     	//pillar los daos del input
