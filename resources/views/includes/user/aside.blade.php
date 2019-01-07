@@ -1,6 +1,6 @@
 <ul>
 	<a href="{{ route('home') }}">
-		<li><i class="fas fa-home"></i> Inicio</li>
+		<li><i class="fas fa-home"></i>@lang('aside.home')</li>
 	</a>
 	<a href="{{ route('usuario.perfil',$usuario->id) }}">
 		<li><i class="fas fa-users"></i> Perfil</li>

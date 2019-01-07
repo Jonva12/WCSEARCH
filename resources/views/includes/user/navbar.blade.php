@@ -52,6 +52,12 @@
                         </div>
                     </li>
                 @endguest
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('change_lang', ['lang' => 'es']) }}">ES</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('change_lang', ['lang' => 'en']) }}">EN</a>
+                </li>
             </ul>
         </div>
     </div>
