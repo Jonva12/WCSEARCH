@@ -214,7 +214,7 @@
           </div>
           <div class="form-group">
             <label for="exampleFormControlTextarea1">Mensaje</label>
-            <textarea class="form-control" id="message" name="messages" rows="3"></textarea>
+            <textarea class="form-control" id="message" name="message" rows="3"></textarea>
           </div>
           <div class="form-group text-center">
             <input class="btn btn-light btn-xl js-scroll-trigger" type="submit" name="submit" value="Enviar">

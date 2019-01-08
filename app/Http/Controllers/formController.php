@@ -21,7 +21,7 @@ class formController extends Controller
 
     	$data->name=$request->input('name');
     	$data->email=$request->input('email');
-    	$data->messages=$request->input('messages');
+    	$data->message=$request->input('message');
 
     	$data->save(); 
 

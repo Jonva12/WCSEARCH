@@ -7,8 +7,8 @@ use App\Notification;
 
 class NotificationController extends Controller
 {
-    public function tieneNotificaciones($id){
-    	$notificaciones=Notification::where('para', $id)->whereNull('read_at')->get();
+    public function tieneNotificaciones($idUsuario){
+    	$notificaciones=Notification::where('para', $id)->whereNull('leido_fecha')->get();
     	if($notificaciones->count()==0){
     		return 0;
     	}else{
@@ -16,18 +16,24 @@ class NotificationController extends Controller
     	}
     }
 
-    public function getNotificaciones($id){
+    public function getNotificaciones($idUsuario){
     	$notificaciones=Notification::where('para', $id)->get();
     	$array = array();
     	if($notificaciones->count()!=0){
     		foreach($notificaciones as $n){
-    			switch ($n->type) {
+    			switch ($n->tipo) {
     				case 'comentar':
     					$texto=$n->deUsuario->name." ha puesto un comentario en tu aseo(".$n->aseo->nombre.")";
     					break;
+                    case 'ocultarAseo':
+                        $texto='Tu aseo ('.$n->aseo->nombre.') ha sido eliminado';
+                        break;
+                    case 'mostrarAseo':
+                        $texto='Tu aseo ('.$n->aseo->nombre.') vuelve a estar visible';
+                        break;
 
     			}
-    			$paraEnviar=["texto"=>$texto, "leido"=>$n->read_at!=null];
+    			$paraEnviar=["id"=>$n->id,"texto"=>$texto, "leido"=>$n->leido!=null];
 
     			array_push($array, $paraEnviar);
     		}
@@ -36,13 +42,18 @@ class NotificationController extends Controller
     	return null;
     }
 
-    public function createNotificacion($notifi){
-    	$n=new Notification;
-    	$n->de=$notifi->de;
-    	$n->para=$notifi->para;
-    	$n->type=$notifi->type;
-    	$n->aseo_id=$notifi->aseo_id;
-    	$n->comentario_id=$notifi->comentario_id;
-    	$n->save();
+    public function leerNotificacion($id){
+        $n=Notification::where('id', $id)->first();
+        $n->leido_fecha= new \Datetime;
+        $n->save();
     }
+    public function leerTodas($idUsuario){
+        $notificaciones=Notification::where('para', $id)->get();
+        foreach($notificaciones as $n){
+            $n->leido_fecha= new \Datetime;
+        }
+        $notificaciones->save();
+    }
+
+
 }
