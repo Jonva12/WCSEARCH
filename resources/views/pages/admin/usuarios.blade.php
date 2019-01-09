@@ -39,7 +39,7 @@
 		@endforeach
 		@if($usuarios->count()==0)
 			<tr>
-				<td colspan="{{$ocultos?7:6}}"> No hay usuarios </td>
+				<td colspan="{{$baneados?7:6}}"> No hay usuarios </td>
 			</tr>
 		@endif
 	</table>
