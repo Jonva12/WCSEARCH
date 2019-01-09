@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Notification;
+use App\User;
+use Auth;
 
 class NotificationController extends Controller
 {
-    public function tieneNotificaciones($idUsuario){
-    	$notificaciones=Notification::where('para', $id)->whereNull('leido_fecha')->get();
+    public function tieneNotificaciones(){
+    	$notificaciones=Notification::where('para', Auth::user()->id)->whereNull('leido_fecha')->get();
     	if($notificaciones->count()==0){
     		return 0;
     	}else{
@@ -16,8 +18,8 @@ class NotificationController extends Controller
     	}
     }
 
-    public function getNotificaciones($idUsuario){
-    	$notificaciones=Notification::where('para', $id)->get();
+    public function getNotificaciones(){
+    	$notificaciones=Notification::where('para', Auth::user()->id)->get();
     	$array = array();
     	if($notificaciones->count()!=0){
     		foreach($notificaciones as $n){
@@ -31,6 +33,9 @@ class NotificationController extends Controller
                     case 'mostrarAseo':
                         $texto='Tu aseo ('.$n->aseo->nombre.') vuelve a estar visible';
                         break;
+                    case 'mensajeRecibido':
+                        $texto='Has recivido un nuevo mensaje';
+                        break;
 
     			}
     			$paraEnviar=["id"=>$n->id,"texto"=>$texto, "leido"=>$n->leido!=null];
@@ -43,16 +48,29 @@ class NotificationController extends Controller
     }
 
     public function leerNotificacion($id){
-        $n=Notification::where('id', $id)->first();
+        $n=Notification::where([
+                ['id', $id],
+                ['para', Auth::user()->id],
+            ])->first();
         $n->leido_fecha= new \Datetime;
         $n->save();
     }
-    public function leerTodas($idUsuario){
-        $notificaciones=Notification::where('para', $id)->get();
+    public function leerTodas(){
+        $notificaciones=Notification::where('para', Auth::user()->id)->get();
         foreach($notificaciones as $n){
             $n->leido_fecha= new \Datetime;
         }
         $notificaciones->save();
+    }
+
+    public function notificarAdmins($tipo){
+        $admins=User::join('roles','users.role_id','roles.id')->where('roles.nombre','admin')->get();
+        foreach ($admins as $admin) {
+            $n=new Notification;
+            $n->tipo=$tipo;
+            $n->para=$admin->id;
+            $n->save();
+        }
     }
 
 

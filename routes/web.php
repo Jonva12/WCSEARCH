@@ -62,10 +62,10 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/api/notificaciones/tiene/{idUsuario}', 'NotificationController@tieneNotificaciones');
-Route::get('/api/notificaciones/get/{idUsuario}', 'NotificationController@getNotificaciones');
+Route::get('/api/notificaciones/tiene', 'NotificationController@tieneNotificaciones');
+Route::get('/api/notificaciones/get', 'NotificationController@getNotificaciones');
 Route::get('/api/notificaciones/leer/{id}', 'NotificationController@leerNotificacion');
-Route::get('/api/notificaciones/leerTodas/{idUsuario}', 'NotificationController@leerTodas');
+Route::get('/api/notificaciones/leerTodas', 'NotificationController@leerTodas');
 
 
 

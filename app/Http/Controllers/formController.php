@@ -5,14 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Message;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\NotificationController;
+
 
 class formController extends Controller
 {
     public function insert(Request $request){
 		$request->validate([
 			'name'=>'string|required|min:2|max:40',
-			'email'=>'email|required',
-			'message'=>'required']
+			'email'=>'email|required|min:6|max:255',
+			'message'=>'required|min:1|max:255']
 		);
 
     	$data = new Message; 
@@ -25,6 +27,8 @@ class formController extends Controller
 
     	$data->save(); 
 
+        $n=new NotificationController;
+        $n->notificarAdmins('mensajeRecibido');
 
     	return view('pages/index'); 
 
