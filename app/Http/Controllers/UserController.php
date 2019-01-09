@@ -13,12 +13,10 @@ class UserController extends Controller
         $this->middleware(array('auth', 'verified'));
     }
 
-    public function index(){
-    	$usuario=Auth::user();
-    	return view('pages/user', array('usuario'=>$usuario));
-    }
-
-    public function perfil($id){
+    public function perfil($id=-1){
+        if($id==-1){
+            $id=Auth::user()->id;
+        }
     	$usuario=User::where('id',$id)->first();
 		return view('pages/user/perfil', array('usuario'=>$usuario));
 	}

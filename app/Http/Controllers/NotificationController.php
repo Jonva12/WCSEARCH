@@ -38,7 +38,7 @@ class NotificationController extends Controller
                         break;
 
     			}
-    			$paraEnviar=["id"=>$n->id,"texto"=>$texto, "leido"=>$n->leido!=null];
+    			$paraEnviar=["id"=>$n->id,"texto"=>$texto, "leido"=>$n->leido_fecha!=null];
 
     			array_push($array, $paraEnviar);
     		}
