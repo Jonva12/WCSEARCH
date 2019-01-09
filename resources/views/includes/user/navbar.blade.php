@@ -17,12 +17,8 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
-                <li class="nav-item">
-                    @if(Route::has('notificacion'))
-                        <a class="nav-link" href="#"><i class="fa fa-exclamation"></i></a>
-                    @else
+                <li class="nav-item" id="notificaciones_nav">
                         <a class="nav-link" href="#"><i class="fa fa-bell"></i></a>
-                    @endif
                 </li>
                 @guest
                     <li class="nav-item">
