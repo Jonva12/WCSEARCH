@@ -17,6 +17,7 @@ Route::get('/', function(){
 
 Route::post('form', 'formController@insert');
 
+//rutas administrador
 Route::get('/admin/', 'AdminController@index')->name('admin');
 Route::get('/admin/usuarios/{baneados?}', 'AdminController@usuarios')->name('admin.usuarios');
 Route::get('/admin/usuario/banear/{id}', 'AdminController@banearUsuario')->name('admin.usuario.banear');
@@ -30,6 +31,10 @@ Route::get('/admin/aseo/eliminar/{id}', 'AdminController@eliminarAseo')->name('a
 
 Route::get('/admin/mensajes', 'AdminController@mensajes')->name('admin.mensajes');
 Route::get('/admin/mensaje/eliminar/{id}', 'AdminController@eliminarMensaje')->name('admin.mensaje.eliminar');
+
+//rutas usuarios
+Route::get('/usuario', 'UserController@index')->name('usuario');
+Route::get('/usuario/perfil/{id}', 'UserController@perfil')->name('usuario.perfil');
 
 
 
@@ -52,7 +57,7 @@ Route::get('notify', function () {
     ])->notify(new \App\Notifications\NewNotification());
 });
 //Rutas resetear contraseña
-Route::get('register', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::get('request', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 
 Route::get('/home', 'HomeController@index')->name('home');
