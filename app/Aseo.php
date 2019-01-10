@@ -23,4 +23,8 @@ class Aseo extends Model
     public function reportes(){
     	return $this->hasMany('App\ReportesAseos');
     }
+
+    public function notificaciones(){
+        return $this->hasMany('App\Notification');
+    }
 }

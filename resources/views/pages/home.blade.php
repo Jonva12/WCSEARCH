@@ -4,8 +4,7 @@
 
 @section('content')
 
-  <div id="mapid" onload="geoFindMe()"></div>
-  <p><button>Show my location</button></p>
-  <div id="out"></div>
+  <div id="mapid"></div>
+  <button id="geolocate">Geo</button>
   <script src="js/map.js"></script>
 @endsection

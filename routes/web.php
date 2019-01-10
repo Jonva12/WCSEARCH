@@ -33,8 +33,8 @@ Route::get('/admin/mensajes', 'AdminController@mensajes')->name('admin.mensajes'
 Route::get('/admin/mensaje/eliminar/{id}', 'AdminController@eliminarMensaje')->name('admin.mensaje.eliminar');
 
 //rutas usuarios
-Route::get('/usuario', 'UserController@index')->name('usuario');
-Route::get('/usuario/perfil/{id}', 'UserController@perfil')->name('usuario.perfil');
+Route::get('/usuario', 'UserController@perfil')->name('usuario');
+Route::get('/usuario/{id}', 'UserController@perfil')->name('usuario.perfil');
 
 
 
@@ -67,3 +67,7 @@ Route::get('lang/{lang}', function($lang) {
   return \Redirect::back();
 })->middleware('web')->name('change_lang');
 
+Route::get('/api/notificaciones/tiene', 'NotificationController@tieneNotificaciones');
+Route::get('/api/notificaciones/get', 'NotificationController@getNotificaciones');
+Route::get('/api/notificaciones/leer/{id}', 'NotificationController@leerNotificacion');
+Route::get('/api/notificaciones/leerTodas', 'NotificationController@leerTodas');
