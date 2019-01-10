@@ -17,13 +17,14 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
-                <li class="nav-item">
-                    @if(Route::has('notificacion'))
-                        <a class="nav-link" href="#"><i class="fa fa-exclamation"></i></a>
-                    @else
-                        <a class="nav-link" href="#"><i class="fa fa-bell"></i></a>
-                    @endif
-                </li>
+                <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre id="notificaciones_nav" onclick="getNotificaciones()"><i class="fa fa-bell"></i></a>
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" id="notificaciones">
+                            
+                        </div>
+                    </li>
+
                 @guest
                     <li class="nav-item">
                         <a class="nav-link" class="link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
