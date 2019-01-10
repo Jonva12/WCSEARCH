@@ -49,7 +49,7 @@ class UserController extends Controller
 
     public function cambiarPassword(Request $request){
         $request->validate([
-            'passwordActual'=>'required|min:6|max:255',
+            'passwordActual'=>'required',
             'passwordNueva'=>'required|min:6|max:255',
             'passwordNueva2'=>'required|min:6|max:255',]);
         
@@ -64,17 +64,22 @@ class UserController extends Controller
             }
         }
         
-        return view('pages/user/ajustes',array('errors'=>["Informacion incorrecta"]));
+        //return view('pages/user/ajustes',array('errores'=>));
+        return redirect()->route('usuario.ajustes')
+                        ->withErrors(["Informacion incorrecta"]);
     }
 
-    public function borrarCuenta($id){
+    public function borrarCuenta(Request $request){
         $request->validate([
-            'password'=>'required|min:6|max:255']);
+            'password'=>'required',]);
         $usuario=User::where('id',Auth::user()->id)->first();
         if (password_verify ( $request->input('password'), $usuario->password )){
-            $usuario->remove();
+            $usuario->delete();
+            Auth::logout();
+            return redirect('/');
         }
-
-        return redirect('/');
+        return redirect()->route('usuario.ajustes')
+                        ->withErrors(["Informacion incorrecta"]);
+        
     }
 }

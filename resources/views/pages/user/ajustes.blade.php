@@ -23,9 +23,23 @@
 		<h2>Cambiar contraseña</h2>
 		<form action="{{route('usuario.cambiarPassword')}}" >
 			<p><strong>Contraseña actual:</strong> <input type="password" name="passwordActual"></p>
-			<p><strong>Nueva contraseña:</strong> <input type="password" name="passwordNueva"></p>
-			<p><strong>Repite la nueva contraseña:</strong> <input type="password" name="passwordNueva2"></p>
-			<input type="submit" value="Cambiar">
+			<p><strong>Nueva contraseña:</strong> <input type="password" name="passwordNueva" id="passwordNueva"></p>
+			<p><strong>Repite la nueva contraseña:</strong> <input type="password" name="passwordNueva2" id="passwordNueva2" oninput="comporbarPassword()"></p>
+			<script type="text/javascript">
+			function comporbarPassword(){
+                  var pass= document.getElementById('passwordNueva').value;
+                  var pass2= document.getElementById('passwordNueva2');
+                  var submit= document.getElementById('passwordSubmit');
+                  if (pass==pass2.value){
+                    pass2.classList.remove("is-invalid");
+                    submit.disabled = false;
+                  }else{
+                    pass2.classList.add("is-invalid");
+                    submit.disabled = true;
+                  }
+                }
+                </script>
+			<input type="submit" value="Cambiar" id="passwordSubmit">
 		</form>
 		<h1>Borrar Cuenta</h1>
 		<form action="{{route('usuario.borrarCuenta')}}" >
