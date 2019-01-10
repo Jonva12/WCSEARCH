@@ -24,11 +24,17 @@ function getNotificaciones(){
 		var texto="";
 	  for (var i = 0; i < data.length; i++) {
 	  	if(!data[i].leido){
-	  		texto+='<a class="dropdown-item" href="#"><b>'+data[i].texto+'</b></a><br>';
+	  		texto+='<div class="dropdown-item" onclick="leer('+data[i].id+')"><b>'+data[i].texto+'</b></div>';
 	  	}else{
-	  		texto+='<a class="dropdown-item"  href="#">'+data[i].texto+'</a><br>';
+	  		texto+='<div class="dropdown-item">'+data[i].texto+'</div>';
 	  	}
 	  }
 	  $('#notificaciones').html(texto);
+	});
+}
+
+function leer(id){
+	$.get( "http://localhost:8000/api/notificaciones/leer/"+id, function( data ) {
+		getNotificaciones();
 	});
 }
