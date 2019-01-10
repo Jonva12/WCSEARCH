@@ -8,17 +8,14 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ __('WCSEARCH') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-
-    <!-- Styles -->
+    
+    <script src="{{ asset('js/app.js') }}"></script> <!-- quitar defer del link del script -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/user.css')}}">
+    <link rel="stylesheet" href="{{ asset('/assets/vendor/leaflet/leaflet.css')}}">
+    <script src="{{ asset('/assets/vendor/leaflet/leaflet.js')}}"></script>
+
+    @yield('script')
 </head>
 <body>
     <div id="app">
@@ -28,5 +25,10 @@
             @yield('content')
         </main>
     </div>
+    <script src="/js/ajax.js"></script>
+    <link href="/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
 </body>
 </html>

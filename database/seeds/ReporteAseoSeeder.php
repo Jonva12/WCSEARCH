@@ -13,8 +13,8 @@ class ReporteAseoSeeder extends Seeder
     {
         for($i = 0; $i < 5; $i++){
           DB::table('reportes_aseos')->insert([
-            'tipo' => 'info',
-            'comentario' => 'blablabla',
+            'tipo' => ['Informacion incorrecta','Existencia'][random_int(0, 1)],
+            'comentario' => 'blablabla esta mal',
             'aseo_id' => random_int(1, 5),
           ]);
         }

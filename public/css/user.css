@@ -29,3 +29,18 @@ form{
   align-items: center;
   flex-direction: column;
 }
+
+#mapid{
+  min-height: 700px;
+  max-height: 100%;
+  width: 100%;
+}
+
+#geolocate{
+  position:absolute;
+  top:180px;
+  left:10px;
+  border-radius: 5px;
+  z-index: 4000;
+
+}

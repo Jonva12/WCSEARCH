@@ -11,6 +11,9 @@
 			<th>Email</th>
 			<th>Puntuacion</th>
 			<th>Reportes</th>
+			@if($baneados==true)
+				<th>Fecha de baneo</th>
+			@endif
 			<th>Opciones</th>
 		</tr>
 		@foreach($usuarios as $u)
@@ -20,14 +23,32 @@
 			<td>{{$u->email}}</td>
 			<td>{{$u->puntuacion}}</td>
 			<td>{{$u->reportes}}</td>
-			<td><a href="#" class="btn btn-danger">Bloquear</a></td>
+			@if($baneados==true)
+			<td>
+				{{$u->fecha_de_baneo}}
+			</td>
+			<td>
+				<a href="{{route('admin.usuario.desbanear',$u->id)}}" class="btn btn-danger">Desbanear</a>
+			</td>
+			@else
+			<td>
+				<a href="{{route('admin.usuario.banear',$u->id)}}" class="btn btn-danger">Banear</a>
+			</td>
+			@endif
 		</tr>
 		@endforeach
 		@if($usuarios->count()==0)
 			<tr>
-				<td colspan="6"> No hay usuarios </td>
+				<td colspan="{{$baneados?7:6}}"> No hay usuarios </td>
 			</tr>
 		@endif
 	</table>
+	@if($baneados==true)
+		<a href="{{route('admin.usuarios')}}" class="btn btn-danger">Listar usuarios</a>
+	@else
+		<a href="{{route('admin.usuarios',true)}}" class="btn btn-danger">Listar baneados</a>
+	@endif
+
+	
 </div>
 @endsection

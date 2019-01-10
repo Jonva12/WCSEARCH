@@ -4,6 +4,7 @@
 
 @section('content')
 
-<p>Estas dentro!</p>
-
+  <div id="mapid"></div>
+  <button id="geolocate">Geo</button>
+  <script src="js/map.js"></script>
 @endsection
