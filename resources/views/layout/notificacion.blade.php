@@ -7,11 +7,11 @@
 	<link rel="stylesheet" type="text/css" href="/css/admin.css">
 </head>
 <body id="page-top">
-	@include('includes.user.navbar')
+	@include('includes.app.navbar')
 
 	<div class="row">
 		<aside class="col-md-3 col-lg-2">
-			@include('includes.user.aside')
+			@include('includes.admin.aside')
 		</aside>
 		<section class="col-md-9 col-lg-10">
 			@yield('content')
