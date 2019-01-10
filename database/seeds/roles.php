@@ -13,13 +13,13 @@ class roles extends Seeder
     {
         
         DB::table('roles')->insert([
-          'nombre' => 'normal';
+          'nombre' => 'normal',
         ]);
        	DB::table('roles')->insert([
-          'nombre' => 'golden';
+          'nombre' => 'golden',
         ]);
         DB::table('roles')->insert([
-            'nombre' => 'admin';
+            'nombre' => 'admin',
           ]);
     }
 }
