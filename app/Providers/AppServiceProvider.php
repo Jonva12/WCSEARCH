@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\URL;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Foundation\Application::enviroment();
+use Illuminate\Foundation\Application;
 
 class AppServiceProvider extends ServiceProvider
 {
