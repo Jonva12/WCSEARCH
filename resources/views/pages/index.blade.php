@@ -193,19 +193,28 @@
           <h2 class="mb-4">Contacto</h2>
           <hr class="dark my-4" />
         </div>
-        <form method="post" action="form" onsubmit=" return alert(' Mensaje enviado!')">
+        <form method="post" action="form">
           @csrf
+          @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+          @endif
           <div class="form-group">
             <label for="exampleFormControlInput1">Nombre</label>
-            <input type="text" class="form-control" name="name" id="name" placeholder="Nombre">
+            <input type="text" class="form-control" name="nombre" id="name" placeholder="Nombre" min="2" max="255" required>
           </div>
           <div class="form-group">
             <label for="exampleFormControlInput1">Direccion email</label>
-            <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+            <input type="email" class="form-control" name="email" id="email" placeholder="Email" min="6" max="255" required>
           </div>
           <div class="form-group">
             <label for="exampleFormControlTextarea1">Mensaje</label>
-            <textarea class="form-control" id="message" name="messages" rows="3"></textarea>
+            <textarea class="form-control" id="message" name="mensaje" rows="3" max="255" required></textarea>
           </div>
           <div class="form-group text-center">
             <input class="btn btn-light btn-xl js-scroll-trigger" type="submit" name="submit" value="Enviar">

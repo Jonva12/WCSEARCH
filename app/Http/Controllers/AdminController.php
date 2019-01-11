@@ -8,6 +8,7 @@ use App\User;
 use App\Aseo;
 use App\ReportesAseos;
 use App\Message;
+use App\Notification;
 
 
 class AdminController extends Controller
@@ -74,6 +75,12 @@ class AdminController extends Controller
 		$aseo=Aseo::where('id',$id)->first();
 		$aseo->oculto=new \DateTime();
 		$aseo->save();
+		
+		$n=new Notification;
+		$n->tipo="ocultarAseo";
+		$n->para=$aseo->user_id;
+		$n->aseo_id=$aseo->id;
+		$n->save();
 		return redirect()->route('admin.aseos');
 	}
 
@@ -81,6 +88,12 @@ class AdminController extends Controller
         $aseo=Aseo::where('id',$id)->first();
         $aseo->oculto=null;
         $aseo->save();
+
+        $n=new Notification;
+		$n->tipo="mostrarAseo";
+		$n->para=$aseo->user_id;
+		$n->aseo_id=$aseo->id;
+		$n->save();
         return redirect()->route('admin.aseos');
     }
 

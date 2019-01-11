@@ -12,6 +12,9 @@
 */
 
 Route::get('/', function(){
+  if(isset(Auth::user()->id)){
+    return redirect()->route('home');
+  }
 	return view('pages/index');
 });
 
@@ -33,9 +36,12 @@ Route::get('/admin/mensajes', 'AdminController@mensajes')->name('admin.mensajes'
 Route::get('/admin/mensaje/eliminar/{id}', 'AdminController@eliminarMensaje')->name('admin.mensaje.eliminar');
 
 //rutas usuarios
-Route::get('/usuario', 'UserController@index')->name('usuario');
-Route::get('/usuario/perfil/{id}', 'UserController@perfil')->name('usuario.perfil');
-
+Route::get('/usuario', 'UserController@perfil')->name('usuario');
+Route::get('/usuario/p/{id}', 'UserController@perfil')->name('usuario.perfil');
+Route::get('/usuario/ajustes', 'UserController@ajustes')->name('usuario.ajustes');
+Route::get('/usuario/cambiarDatos', 'UserController@cambiarDatos')->name('usuario.cambiarDatos');
+Route::get('/usuario/cambiarPassword', 'UserController@cambiarPassword')->name('usuario.cambiarPassword');
+Route::get('/usuario/borrarCuenta', 'UserController@borrarCuenta')->name('usuario.borrarCuenta');
 
 
 Auth::routes();
@@ -73,4 +79,16 @@ Route::get('/ficha', function () {
     return view('pages/fichaWC');
 });
 
-Route::post('/ficha','BathController@create')->name('wc.create'); 
+Route::post('/ficha','BathController@create')->name('wc.create');
+
+//routas lenguaje
+Route::get('lang/{lang}', function($lang) {
+  \Session::put('lang', $lang);
+  return \Redirect::back();
+})->middleware('web')->name('change_lang');
+
+//Routas notificaciones
+Route::get('/api/notificaciones/tiene', 'NotificationController@tieneNotificaciones');
+Route::get('/api/notificaciones/get', 'NotificationController@getNotificaciones');
+Route::get('/api/notificaciones/leer/{id}', 'NotificationController@leerNotificacion');
+Route::get('/api/notificaciones/leerTodas', 'NotificationController@leerTodas');

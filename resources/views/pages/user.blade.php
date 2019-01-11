@@ -22,9 +22,9 @@
 	</a>
 	<a href="">
 		<div class="boton">
-			<i class="far fa-envelope"></i>
+			<i class="fa fa-bell"></i>
 			<p>
-				<b></b> Mensajes
+				<b></b> Notificaciones
 			</p>
 		</div>
 	</a>

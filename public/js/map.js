@@ -27,7 +27,7 @@ var toplayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png
 });
 
 function onLocationFound(e) {
-    var radius = e.accuracy / 3;
+    var radius = e.accuracy / 5;
     L.marker(e.latlng).addTo(mapa)
         .on('click', function(){
           confirm("are you sure?");
