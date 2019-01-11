@@ -4,23 +4,13 @@
 
   @section('content')
 	<div class="container">
-		<table>
-			<tr>
-				<th>Id</th>
-				<th>Nombre</th>
-				<th>Email</th>
-				<th>Puntuacion</th>
-				<th>Reportes</th>
-			</tr>
-			@if(isset($usuario))
-			<tr>
-				<th>{{$usuario->id}}</th>
-				<th>{{$usuario->nombre}}</th>
-				<th>{{$usuario->email}}</th>
-				<th>{{$usuario->puntuacion}}</th>
-				<th>{{$usuario->reportes}}</th>
-			</tr>
-			@endif
-		</table>
+		<h1>{{$usuario->name}}</h1>
+		<p><strong>Email:</strong> {{$usuario->email}}</p>
+		<p><strong>Nivel:</strong> {{$usuario->role->nombre}}</p>
+		<p><strong>Puntuacion:</strong> {{$usuario->puntuacion}}</p>
+		@if($usuario->id==Auth::user()->id)
+			<a href="{{route('usuario.ajustes')}}"><button >Ajustes</button></a>
+		@endif
+
 	</div>
 	@endsection

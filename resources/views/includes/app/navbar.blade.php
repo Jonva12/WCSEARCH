@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
+        <a class="navbar-brand" href="{{ url('/home') }}">
           <img src="/img/logo.png" alt="WCSearch" id="icon" class="rounded float-left">
             {{__('WCSEARCH')}}
         </a>

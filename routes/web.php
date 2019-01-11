@@ -12,6 +12,9 @@
 */
 
 Route::get('/', function(){
+  if(isset(Auth::user()->id)){
+    return redirect()->route('home');
+  }
 	return view('pages/index');
 });
 
@@ -34,8 +37,11 @@ Route::get('/admin/mensaje/eliminar/{id}', 'AdminController@eliminarMensaje')->n
 
 //rutas usuarios
 Route::get('/usuario', 'UserController@perfil')->name('usuario');
-Route::get('/usuario/{id}', 'UserController@perfil')->name('usuario.perfil');
-
+Route::get('/usuario/p/{id}', 'UserController@perfil')->name('usuario.perfil');
+Route::get('/usuario/ajustes', 'UserController@ajustes')->name('usuario.ajustes');
+Route::get('/usuario/cambiarDatos', 'UserController@cambiarDatos')->name('usuario.cambiarDatos');
+Route::get('/usuario/cambiarPassword', 'UserController@cambiarPassword')->name('usuario.cambiarPassword');
+Route::get('/usuario/borrarCuenta', 'UserController@borrarCuenta')->name('usuario.borrarCuenta');
 
 
 Auth::routes();

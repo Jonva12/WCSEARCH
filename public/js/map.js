@@ -12,7 +12,7 @@ var mapa = L.map('mapid').setView([43.3073225, -1.9914354], 13);
 });
 
 function onLocationFound(e) {
-    var radius = e.accuracy / 3;
+    var radius = e.accuracy / 5;
     L.marker(e.latlng).addTo(mapa)
         .on('click', function(){
           confirm("are you sure?");

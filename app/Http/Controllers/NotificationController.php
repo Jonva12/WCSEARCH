@@ -9,6 +9,10 @@ use Auth;
 
 class NotificationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(array('auth', 'verified'));
+    }
     public function tieneNotificaciones(){
     	$notificaciones=Notification::where('para', Auth::user()->id)->whereNull('leido_fecha')->get();
     	if($notificaciones->count()==0){
@@ -62,16 +66,4 @@ class NotificationController extends Controller
         }
         $notificaciones->save();
     }
-
-    public function notificarAdmins($tipo){
-        $admins=User::join('roles','users.role_id','roles.id')->where('roles.nombre','admin')->get();
-        foreach ($admins as $admin) {
-            $n=new Notification;
-            $n->tipo=$tipo;
-            $n->para=$admin->id;
-            $n->save();
-        }
-    }
-
-
 }

@@ -12,22 +12,19 @@
           </div>
           <form method="post" action="{{ route('login') }}">
             @csrf
+            
            <div class="form-group">
-              <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="Email" required autofocus>
-              @if ($errors->has('email'))
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $errors->first('email') }}</strong>
-                </span>
+            @if ($errors->any())
+                <div class=" alert alert-danger" role="alert">
+                  <strong>El correo electrónico y la contraseña que ingresaste no coinciden con nuestros registros.</strong> Por favor, revisa e inténtalo de nuevo.
+                </div>
               @endif
+              <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="Email" required autofocus>
+              
            </div>
 
            <div class="form-group">
               <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="contraseña" required>
-                @if ($errors->has('password'))
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('password') }}</strong>
-                  </span>
-                @endif
            </div>
            <div class="forgot">
               <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
