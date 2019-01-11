@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-	@include('includes.head')
-	<title></title>
+	@extends('layout.app')
+	@section('title','WCSEARCH')
+	@section('content')
 	<style type="text/css">
 		aside {
 			box-shadow: 10px 0px 10px 1px #aaaaaa;
@@ -30,17 +28,18 @@
 				<h1>{{$aseo->nombre}}</h1>
 				<p>Puntuacion: <b>4,2</b></p>
 				<p>{{$aseo->dir}}</p>
-				<form method="post" action="ficha" enctype="multipart/form-data">
+				<!-- <form method="post" action="ficha" enctype="multipart/form-data">
 					@csrf
 					<div class="form-group">
 						<input type="file" class="form-control" name="foto">
 					</div>
-				</form>
+				</form> -->
 			</div>
 			<div class="info">
 				<div class="detalles">
 					<h2>Detalles</h2>
 					<p>Horario: {{$aseo->horarioApertura}}-{{$aseo->horarioCierre}}</p>
+					<p>24horas: {{$aseo->horas24 == 1 ? ' Si' : ' No'}}</p>
 					<p>Precio: {{$aseo->precio}} €</p>
 					<p><i class="fas fa-wheelchair"></i>{{ $aseo->accesibilidad == 1 ? ' Accesible' : ' No Accesible' }}</p>
 				</div>
@@ -83,6 +82,11 @@
 				</div>
 			</div>
 		</aside>
+		<section class="col-md-9">
+			<div id="mapid">
+
+			</div>
+		</section>
 	</div>
 	</div>
 	<script type="text/javascript">
@@ -98,6 +102,6 @@
 								}
 							}
 						}
-					</script>
-</body>
-</html>
+	</script>
+	<script src="js/map.js"></script>
+	@endsection
