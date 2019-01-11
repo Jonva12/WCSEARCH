@@ -60,8 +60,17 @@ Route::get('notify', function () {
 Route::get('request', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 
+
+
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+//Routas aseos
+Route::get('/createWC', function(){
+	return view('pages/createWC');
+});
 Route::get('/ficha', function () {
     return view('pages/fichaWC');
 });
+
+Route::post('/ficha','BathController@create')->name('wc.create'); 

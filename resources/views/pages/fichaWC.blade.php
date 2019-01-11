@@ -25,18 +25,24 @@
 	<div class="container-fluid">
 	<div class="row">
 		<aside class="col-md-3">
-			<img src="img/aseoPublico.jpg">
+			<img src="{{url('storage/fotos/'.$aseo->foto)}}" alt="{{$aseo->foto}}">
 			<div class="general">
-				<h1>Baños de la estacion</h1>
+				<h1>{{$aseo->nombre}}</h1>
 				<p>Puntuacion: <b>4,2</b></p>
-				<p>Donostia, alguna calle, 12</p>
+				<p>{{$aseo->dir}}</p>
+				<form method="post" action="ficha" enctype="multipart/form-data">
+					@csrf
+					<div class="form-group">
+						<input type="file" class="form-control" name="foto">
+					</div>
+				</form>
 			</div>
 			<div class="info">
 				<div class="detalles">
 					<h2>Detalles</h2>
-					<p>Horario: 8:00-20:00</p>
-					<p>Precio: Gratis</p>
-					<p><i class="fas fa-wheelchair"></i> Accesible </p>
+					<p>Horario: {{$aseo->horarioApertura}}-{{$aseo->horarioCierre}}</p>
+					<p>Precio: {{$aseo->precio}} €</p>
+					<p><i class="fas fa-wheelchair"></i>{{ $aseo->accesibilidad == 1 ? ' Accesible' : ' No Accesible' }}</p>
 				</div>
 				<hr>
 				<div class="valorar">
