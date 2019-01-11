@@ -26,18 +26,33 @@ var toplayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png
   mapa.locate({setView: true, maxZoom: 15});
 });
 
-function onLocationFound(e) {
-    var radius = e.accuracy / 5;
-    L.marker(e.latlng).addTo(mapa)
-        .on('click', function(){
-          confirm("are you sure?");
-        });
-    L.circle(e.latlng, radius).addTo(mapa);
-}
+// create the geocoding control and add it to the map
+	 var searchControl = L.esri.Geocoding.geosearch().addTo(mapa);
 
-mapa.on('locationfound', onLocationFound);
+	 // create an empty layer group to store the results and add it to the map
+	 var results = L.layerGroup().addTo(mapa);
 
-function onLocationError(e) {
-    alert(e.message);
-}
-mapa.on('locationerror', onLocationError);
+	 // listen for the results event and add every result to the map
+	 searchControl.on("results", function(data) {
+			 results.clearLayers();
+			 for (var i = data.results.length - 1; i >= 0; i--) {
+					 results.addLayer(L.marker(data.results[i].latlng));
+					 console.log(data.results[i].latlng);
+					 console.log(data); 
+			 }
+	 });
+// function onLocationFound(e) {
+//     var radius = e.accuracy / 5;
+//     L.marker(e.latlng).addTo(mapa)
+//         .on('click', function(){
+//           confirm("are you sure?");
+//         });
+//     L.circle(e.latlng, radius).addTo(mapa);
+// }
+//
+// mapa.on('locationfound', onLocationFound);
+//
+// function onLocationError(e) {
+//     alert(e.message);
+// }
+// mapa.on('locationerror', onLocationError);

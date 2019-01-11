@@ -103,5 +103,6 @@
 							}
 						}
 	</script>
+	@include('includes.geoscripts')
 	<script src="js/map.js"></script>
 	@endsection

@@ -15,7 +15,7 @@ $( document ).ready(function() {
 		  }
 		});
 	});
-	
+
 });
 
 
@@ -37,4 +37,8 @@ function leer(id){
 	$.get( "http://localhost:8000/api/notificaciones/leer/"+id, function( data ) {
 		getNotificaciones();
 	});
+}
+
+function buscarCiudad(i){
+	alert('Holaa');
 }

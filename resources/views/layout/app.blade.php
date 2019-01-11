@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ __('WCSEARCH') }}</title>
-    
+
     <script src="{{ asset('js/app.js') }}"></script> <!-- quitar defer del link del script -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/user.css')}}">
