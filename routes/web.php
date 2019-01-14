@@ -66,13 +66,28 @@ Route::get('notify', function () {
 Route::get('request', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 
+
+
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+//Routas aseos
+Route::get('/createWC', function(){
+	return view('pages/createWC');
+});
+Route::get('/ficha', function () {
+    return view('pages/fichaWC');
+});
+
+Route::post('/ficha','BathController@create')->name('wc.create');
+
+//routas lenguaje
 Route::get('lang/{lang}', function($lang) {
   \Session::put('lang', $lang);
   return \Redirect::back();
 })->middleware('web')->name('change_lang');
 
+//Routas notificaciones
 Route::get('/api/notificaciones/tiene', 'NotificationController@tieneNotificaciones');
 Route::get('/api/notificaciones/get', 'NotificationController@getNotificaciones');
 Route::get('/api/notificaciones/leer/{id}', 'NotificationController@leerNotificacion');
