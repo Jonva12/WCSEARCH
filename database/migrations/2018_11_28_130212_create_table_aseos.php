@@ -16,7 +16,8 @@ class CreateTableAseos extends Migration
         Schema::create('aseos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
-            $table->string('localizacion')->nullable();
+            $table->double('latitud',8,8)->nullable();
+            $table->double('longitud',8,8)->nullable();
             $table->string('dir');
             $table->time('horarioApertura')->nullable();
             $table->time('horarioCierre')->nullable();
