@@ -39,11 +39,14 @@ form{
   margin-top: -20px;
 }
 
-#geolocate{
+/* #geolocate{
   position:absolute;
   top:180px;
   left:10px;
   border-radius: 5px;
   z-index: 4000;
+} */
 
+#createWC{
+  color: white;
 }
