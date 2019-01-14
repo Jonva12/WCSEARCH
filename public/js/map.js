@@ -22,12 +22,15 @@ var toplayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png
 	L.control.layers(layers).addTo(mapa);
 
 
-	$('#geolocate').on('click', function(){
-  mapa.locate({setView: true, maxZoom: 15});
-});
+// 	$('#geolocate').on('click', function(){
+//   mapa.locate({setView: true, maxZoom: 15});
+// });
 
-// create the geocoding control and add it to the map
-	 var searchControl = L.esri.Geocoding.geosearch().addTo(mapa);
+	// create the geocoding control and add it to the map
+	 var searchControl = L.esri.Geocoding.geosearch({
+  	useMapBounds:false,																			//quitar filtración de mapa
+  	providers: [ L.esri.Geocoding.arcgisOnlineProvider() ] //de donde pilla la data
+	}).addTo(mapa);
 
 	 // create an empty layer group to store the results and add it to the map
 	 var results = L.layerGroup().addTo(mapa);
@@ -38,7 +41,7 @@ var toplayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png
 			 for (var i = data.results.length - 1; i >= 0; i--) {
 					 results.addLayer(L.marker(data.results[i].latlng));
 					 console.log(data.results[i].latlng);
-					 console.log(data); 
+					 console.log(data);
 			 }
 	 });
 // function onLocationFound(e) {
