@@ -23,8 +23,10 @@ Route::post('form', 'formController@insert');
 //rutas administrador
 Route::get('/admin/', 'AdminController@index')->name('admin');
 Route::get('/admin/usuarios/{baneados?}', 'AdminController@usuarios')->name('admin.usuarios');
+Route::get('/admin/usuario/editar/{id}', 'AdminController@editarUsuario')->name('admin.usuario.editar');
 Route::get('/admin/usuario/banear/{id}', 'AdminController@banearUsuario')->name('admin.usuario.banear');
 Route::get('/admin/usuario/desbanear/{id}', 'AdminController@desbanearUsuario')->name('admin.usuario.desbanear');
+Route::get('/admin/usuario/guardar/', 'AdminController@guardarUsuario')->name('admin.guardarUsuario');
 
 Route::get('/admin/aseos/{ocultos?}', 'AdminController@aseos')->name('admin.aseos');
 Route::get('/admin/aseo/{id}', 'AdminController@aseo')->name('admin.aseo');
