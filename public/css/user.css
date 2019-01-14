@@ -39,11 +39,28 @@ form{
   margin-top: -20px;
 }
 
-#geolocate{
+/* #geolocate{
   position:absolute;
   top:180px;
   left:10px;
   border-radius: 5px;
   z-index: 4000;
+} */
 
+#createWC{
+  color: white;
+}
+
+#formWC{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid green;
+  margin: 5px;
+  margin-left: 20%;
+  margin-right: 20%;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 2px 3px 3px 2px #3c3c3b;
 }
