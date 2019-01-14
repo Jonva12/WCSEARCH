@@ -42,7 +42,7 @@
 		@endforeach
 		@if($usuarios->count()==0)
 			<tr>
-				<td colspan="{{$baneados?7:6}}"> No hay usuarios </td>
+				<td colspan="{{$baneados?8:7}}"> No hay usuarios </td>
 			</tr>
 		@endif
 	</table>

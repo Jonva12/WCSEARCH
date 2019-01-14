@@ -114,16 +114,19 @@ class AdminController extends Controller
 
     public function editarUsuario($id){
         $usuario=User::where('id',$id)->first();
-        return view('pages/user/perfil', array('usuario'=>$usuario));
+        return view('pages/admin/editarUsuario', array('usuario'=>$usuario));
     }
 
-    /*public function editarUsuario(Request $request){
+    public function guardarUsuario(Request $request){
+        $request->validate([
+            'name'=>'string|required|min:2|max:255',
+            'email'=>'email|required|min:6|max:255']);
         $user=User::find($request->input('id'));
         $user->name=$request->input('name');
         $user->email=$request->input('email');
-        $user->password=$request->input('pass');
         $user->role_id=$request->input('rol');
+        $user->puntuacion=$request->input('puntuacion');
         $user->save();
-        return redirect('admin.usuarios');
-    }*/
+        return redirect()->route('admin.usuarios');
+    }
 }
