@@ -10,35 +10,18 @@ use Auth;
 
 class BathController extends Controller
 {
-    // public function store(Request $request){
-    //
-    //   request()->validate([
-    //     'nombre'->'required',
-    //     'dir'->'required'
-    //   ]);
-    //
-    //   $foto = $request->file('foto');
-    //   $extension = $foto->getClientOriginalExtension();
-    //   Storage::disk('public')->put($foto->getFileName().'.'.$extension, File::get($foto));
-    //
-    //   $aseo = new Aseo([
-    //     $aseo->nombre = $request->input('nombre'),
-    //     $aseo->localizacion = $request->input('localizacion'),
-    //     $aseo->dir = $request->input('dir'),
-    //     $aseo->horarioApertura = $request->input('horarioApertura'),
-    //     $aseo->horarioCierre = $request->input('horarioCierre'),
-    //     $aseo->horas24 = $request->input('horas24'),
-    //     $aseo->mime = $foto->getClientMimeType(),
-    //     $aseo->original_foto = $foto->getClientOriginalName(),
-    //     $aseo->foto = $foto->getFileName(). '.' .$extension,
-    //     $aseo->precio = $request->input('precio'),
-    //     $aseo->accesibilidad = $request->input('accesibilidad'),
-    //   ]);
-    //
-    //   $aseo->save();
-    //
-    //   return redirect()->route('/fichaWC')->with('aseo');
-    // }
+    public function __construct()
+    {
+        $this->middleware(array('auth', 'verified'));
+    }
+
+    public function form(){
+      if(Auth::user()->role->nombre == 'normal'){
+        return view('pages.home');
+      }else{
+        return view('pages.createWC');
+      }
+    }
 
     public function create(Request $request){
 
@@ -68,5 +51,8 @@ class BathController extends Controller
       return view('pages.fichaWC', ['aseo' => $aseo]);
     }
 
-
+    public function ficha($id){
+      $aseo = Aseo::find($id);
+      return view('pages.fichaWC', ['aseo' => $aseo]);
+    }
 }

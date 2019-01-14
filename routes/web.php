@@ -74,14 +74,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 //Routas aseos
-Route::get('/createWC', function(){
-	return view('pages/createWC');
-});
-Route::get('/ficha', function () {
-    return view('pages/fichaWC');
-});
-
+// Route::get('/ficha', function () {
+//     return view('pages/fichaWC');
+// });
+Route::get('/createWC', 'BathController@form')->name('wc.form');
 Route::post('/ficha','BathController@create')->name('wc.create');
+Route::get('/ficha/{id}', 'BathController@ficha')->name('wc.ficha'); 
 
 //routas lenguaje
 Route::get('lang/{lang}', function($lang) {
