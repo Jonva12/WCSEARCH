@@ -12,13 +12,10 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(array('auth', 'verified'));
+        $this->middleware(array('auth', 'verified','baneado'));
     }
     public function index()
     {
-        /*if (Auth::user()->name=="usuario"){
-            return redirect()->route('usuario');
-        }*/
         return view('pages.home');
     }
 
@@ -31,6 +28,12 @@ class UserController extends Controller
             $id=Auth::user()->id;
         }
     	$usuario=User::where('id',$id)->first();
+        if (Auth::user()->role->nombre!="admin"){
+            if($usuario->role->nombre=="admin" || $usuario->fecha_de_baneo!=null){
+                return redirect()->route('sinPermisos');
+            } 
+        }
+        
 		return view('pages/user/perfil', array('usuario'=>$usuario));
 	}
     
@@ -63,8 +66,6 @@ class UserController extends Controller
                 return redirect()->route('usuario');
             }
         }
-        
-        //return view('pages/user/ajustes',array('errores'=>));
         return redirect()->route('usuario.ajustes')
                         ->withErrors(["Informacion incorrecta"]);
     }

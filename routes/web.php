@@ -46,6 +46,12 @@ Route::get('/usuario/cambiarPassword', 'UserController@cambiarPassword')->name('
 Route::get('/usuario/borrarCuenta', 'UserController@borrarCuenta')->name('usuario.borrarCuenta');
 
 
+Route::get('/baneado', 'BaneoController@index')->name('baneado');
+Route::get('/sinPermisos', function(){
+  return view('pages/sinPermisos');
+})->name('sinPermisos');
+
+
 Auth::routes();
 Auth::routes(['verify' => true]);
 

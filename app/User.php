@@ -54,7 +54,7 @@ class User extends Authenticatable implements MustVerifyEmail
       return $this->belongsToMany('App\Comentario')->withPivot('puntuacion');
     }
 
-    public function aseo(){
+    public function aseos(){
       return $this->hasMany('App\Aseo');
     }
 
