@@ -54,10 +54,5 @@
                 <input type="submit" value="Cambiar">
             </div>  
         </form>
-        <form>
-        	<div>
-        	    Contraseña Nueva: <input type="password" name="pass" value="">
-            </div> 
-        </form>
 	</div>
 @endsection
