@@ -79,7 +79,6 @@ Route::get('/ficha', function () {
     return view('pages/fichaWC');
 });
 
-Route::get('/createWC', 'BathController@index')->name('wc.form');
 Route::post('/ficha','BathController@create')->name('wc.create');
 
 //routas lenguaje
