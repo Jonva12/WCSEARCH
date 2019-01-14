@@ -9,6 +9,7 @@
 			<th>Id</th>
 			<th>Nombre</th>
 			<th>Email</th>
+			<th>Rol</th>
 			<th>Puntuacion</th>
 			<th>Reportes</th>
 			@if($baneados==true)
@@ -21,25 +22,27 @@
 			<td>{{$u->id}}</td>
 			<td>{{$u->name}}</td>
 			<td>{{$u->email}}</td>
+			<td>{{$u->role->nombre}}</td>
 			<td>{{$u->puntuacion}}</td>
 			<td>{{$u->reportes}}</td>
-			@if($baneados==true)
 			<td>
+			@if($baneados==true)
+			
 				{{$u->fecha_de_baneo}}
 			</td>
 			<td>
 				<a href="{{route('admin.usuario.desbanear',$u->id)}}" class="btn btn-danger">Desbanear</a>
-			</td>
 			@else
-			<td>
 				<a href="{{route('admin.usuario.banear',$u->id)}}" class="btn btn-danger">Banear</a>
-			</td>
+			
 			@endif
+				<a href="{{route('admin.usuario.editar',$u->id)}}" class="btn btn-primary">Editar</a>
+			</td>
 		</tr>
 		@endforeach
 		@if($usuarios->count()==0)
 			<tr>
-				<td colspan="{{$baneados?7:6}}"> No hay usuarios </td>
+				<td colspan="{{$baneados?8:7}}"> No hay usuarios </td>
 			</tr>
 		@endif
 	</table>

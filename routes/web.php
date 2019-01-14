@@ -23,8 +23,10 @@ Route::post('form', 'formController@insert');
 //rutas administrador
 Route::get('/admin/', 'AdminController@index')->name('admin');
 Route::get('/admin/usuarios/{baneados?}', 'AdminController@usuarios')->name('admin.usuarios');
+Route::get('/admin/usuario/editar/{id}', 'AdminController@editarUsuario')->name('admin.usuario.editar');
 Route::get('/admin/usuario/banear/{id}', 'AdminController@banearUsuario')->name('admin.usuario.banear');
 Route::get('/admin/usuario/desbanear/{id}', 'AdminController@desbanearUsuario')->name('admin.usuario.desbanear');
+Route::get('/admin/usuario/guardar/', 'AdminController@guardarUsuario')->name('admin.guardarUsuario');
 
 Route::get('/admin/aseos/{ocultos?}', 'AdminController@aseos')->name('admin.aseos');
 Route::get('/admin/aseo/{id}', 'AdminController@aseo')->name('admin.aseo');
@@ -72,13 +74,28 @@ Route::get('notify', function () {
 Route::get('request', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 
+
+
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+//Routas aseos
+Route::get('/createWC', function(){
+	return view('pages/createWC');
+});
+Route::get('/ficha', function () {
+    return view('pages/fichaWC');
+});
+
+Route::post('/ficha','BathController@create')->name('wc.create');
+
+//routas lenguaje
 Route::get('lang/{lang}', function($lang) {
   \Session::put('lang', $lang);
   return \Redirect::back();
 })->middleware('web')->name('change_lang');
 
+//Routas notificaciones
 Route::get('/api/notificaciones/tiene', 'NotificationController@tieneNotificaciones');
 Route::get('/api/notificaciones/get', 'NotificationController@getNotificaciones');
 Route::get('/api/notificaciones/leer/{id}', 'NotificationController@leerNotificacion');

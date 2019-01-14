@@ -28,10 +28,10 @@
                     </li>
                 @else
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre id="notificaciones_nav" onclick="getNotificaciones()"><i class="fa fa-bell"></i></a>
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre id="notificaciones_nav" onclick="getNotificaciones()"><i id="navbarDropdown" class="fa fa-bell"></i></a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" id="notificaciones">
-                            
+
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -56,10 +56,10 @@
                     </li>
                 @endguest
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('change_lang', ['lang' => 'es']) }}">ES </a>
+                    <a id="navbarDropdown" class="nav-link" href="{{ route('change_lang', ['lang' => 'es']) }}">ES </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('change_lang', ['lang' => 'en']) }}">EN</a>
+                    <a id="navbarDropdown" class="nav-link" href="{{ route('change_lang', ['lang' => 'en']) }}">EN</a>
                 </li>
             </ul>
         </div>

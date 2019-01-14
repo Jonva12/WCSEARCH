@@ -16,11 +16,13 @@ class CreateTableAseos extends Migration
         Schema::create('aseos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
-            $table->string('localizacion');
+            $table->string('localizacion')->nullable();
             $table->string('dir');
-            $table->string('horario');
-            $table->string('foto');
-            $table->double('precio', 8, 2);
+            $table->time('horarioApertura')->nullable();
+            $table->time('horarioCierre')->nullable();
+            $table->boolean('horas24');
+            $table->string('foto')->default('wc'); 
+            $table->double('precio', 8, 2)->nullable();
             $table->boolean('accesibilidad');
             $table->timestamps();
         });

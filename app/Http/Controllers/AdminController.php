@@ -111,4 +111,22 @@ class AdminController extends Controller
         Message::where('id',$id)->delete();
         return redirect()->route('admin.mensajes');
     }
+
+    public function editarUsuario($id){
+        $usuario=User::where('id',$id)->first();
+        return view('pages/admin/editarUsuario', array('usuario'=>$usuario));
+    }
+
+    public function guardarUsuario(Request $request){
+        $request->validate([
+            'name'=>'string|required|min:2|max:255',
+            'email'=>'email|required|min:6|max:255']);
+        $user=User::find($request->input('id'));
+        $user->name=$request->input('name');
+        $user->email=$request->input('email');
+        $user->role_id=$request->input('rol');
+        $user->puntuacion=$request->input('puntuacion');
+        $user->save();
+        return redirect()->route('admin.usuarios');
+    }
 }
