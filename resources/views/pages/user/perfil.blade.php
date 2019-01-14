@@ -11,7 +11,7 @@
 				<p><strong>Nivel:</strong> {{$usuario->role->nombre}}</p>
 				<p><strong>Puntuacion:</strong> {{$usuario->puntuacion}}</p>
 				@if($usuario->id==Auth::user()->id)
-					<a href="{{route('usuario.ajustes')}}"><button >Ajustes</button></a>
+					<a href="{{route('usuario.ajustes')}}"><button class="btn btn-info">Ajustes</button></a>
 				@endif
 			</div>
 			<div class="col-md-8">
@@ -20,9 +20,6 @@
 				@else
 					<h2>Sus aseos</h2>
 				@endif
-				
-				
-
 					<table class="table table-hover">
 						<thead>
 							<tr>
@@ -34,7 +31,6 @@
 							</tr>
 						</thead>
 						<tbody>
-							
 								@if($usuario->aseos->count()==0)
 								<tr>
 									<td colspan="5">
@@ -55,8 +51,8 @@
 											<td>{{$a->comentarios->count()}}</td>
 											<td>{{$a->reportes->count()}}</td>
 											<td>
-												<button>Ver</button>
-												<button>Eliminar</button>
+												<button class="btn btn-primary">Ver</button>
+												<button class="btn btn-danger">Eliminar</button>
 											</td>
 										</tr>
 									@endforeach
