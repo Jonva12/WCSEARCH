@@ -39,6 +39,9 @@ function leer(id){
 	});
 }
 
-function buscarCiudad(i){
-	alert('Holaa');
+function getAseos(x,y){
+	var loc={latitud: x, longitud: y};
+	$.get( "http://localhost:8000/api/notificaciones/leer/"+id, function( data ) {
+		getNotificaciones();
+	});
 }

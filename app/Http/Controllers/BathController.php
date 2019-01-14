@@ -68,5 +68,8 @@ class BathController extends Controller
       return view('pages.fichaWC', ['aseo' => $aseo]);
     }
 
-
+    public function getAseos($localizacion){
+      $aseos=Aseo::whereBetween('latitud',$localizacion->latitud-0.05,$localizacion->latitud+0.05)->whereBetween('longitud',$localizacion->longitud-0.05,$localizacion->longitud+0.05)->get();
+      return $aseos;
+    }
 }
