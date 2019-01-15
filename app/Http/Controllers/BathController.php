@@ -30,7 +30,8 @@ class BathController extends Controller
 
       $aseo = new Aseo();
       $aseo->nombre = $request->input('nombre');
-      $aseo->localizacion = $request->input('localizacion');
+      $aseo->latitud = $request->input('latitud');
+      $aseo->longitud = $request->input('longitud');
       $aseo->dir = $request->input('dir');
       $aseo->horarioApertura = $request->input('horarioApertura');
       $aseo->horarioCierre = $request->input('horarioCierre');
@@ -54,5 +55,14 @@ class BathController extends Controller
     public function ficha($id){
       $aseo = Aseo::find($id);
       return view('pages.fichaWC', ['aseo' => $aseo]);
+    }
+
+    public function ocultarAseo($id){
+      $aseo = Aseo::find($id);
+      $aseo->oculto = new \DateTime();
+      $aseo->save();
+
+      return redirect()->route('usuario');
+
     }
 }

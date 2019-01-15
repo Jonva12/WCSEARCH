@@ -1,0 +1,24 @@
+p{
+  display: flex;
+  justify-content: space-between;
+}
+label{
+  width: 120px;
+  margin-left: 10px;
+}
+input{
+  display: flex;
+  justify-content: flex-start;
+  margin-right: 10px;
+}
+#mapid{
+  height: 400px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+form{
+  margin-bottom: 30px;
+}
+.btn{
+  width: 100%; 
+}

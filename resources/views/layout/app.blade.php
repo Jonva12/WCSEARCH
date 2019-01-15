@@ -9,7 +9,6 @@
 
     <title>{{ __('WCSEARCH') }}</title>
 
-    <script src="/js/alert.js"></script>
     <script src="{{ asset('js/app.js') }}"></script> <!-- quitar defer del link del script -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/user.css')}}">
