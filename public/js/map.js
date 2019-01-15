@@ -42,6 +42,7 @@ var toplayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png
 					 results.addLayer(L.marker(data.results[i].latlng));
 					 console.log(data.results[i].latlng);
 					 console.log(data);
+					 getAseos(data.results[i].latlng.lat,data.results[i].latlng.lng);
 			 }
 	 });
 // function onLocationFound(e) {
@@ -59,3 +60,23 @@ var toplayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png
 //     alert(e.message);
 // }
 // mapa.on('locationerror', onLocationError);
+var aseos=[];
+
+function getAseos(x,y){
+	limpiarMapa();
+	var loc={latitud: x, longitud: y}
+	$.get( "http://localhost:8000/api/mapa/getAseos/", loc, function( data ) {
+		for (var i=0;i<data.length;i++){
+			aseos.push(L.marker([data[i].latitud, data[i].longitud]).on('click',markerOnClick).addTo(mapa));
+		}
+	});
+}
+
+function limpiarMapa(){
+	for (var i=0;i<aseos.length;i++){
+		mapa.removeLayer(aseos[i]);
+	}
+}
+function markerOnClick(e){
+  location.href = 'http://localhost:8000/ficha';
+}

@@ -22,6 +22,8 @@
   <form method="post" action="{{route('wc.create')}}" enctype="multipart/form-data">
     @csrf
       <p><label>Nombre:</label><input type="text"name="nombre" class="form-control" value=""></p>
+      <p><label>longitud:</label><input type="text"name="longitud" class="form-control" value=""></p>
+      <p><label>latitud:</label><input type="text"name="latitud" class="form-control" value=""></p>
       <p><label>Dirección:</label><input type="text" name="dir" class="form-control" value=""></p>
       <p><label>Horario Apertura:</label> <input type="time" class="form-control" name="horarioApertura" value=""></p>
       <p><label>Horario Cierre: </label><input type="time" class="form-control" name="horarioCierre" value=""></p>

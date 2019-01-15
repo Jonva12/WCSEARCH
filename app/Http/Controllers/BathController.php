@@ -47,7 +47,8 @@ class BathController extends Controller
 
       $aseo = new Aseo();
       $aseo->nombre = $request->input('nombre');
-      $aseo->localizacion = $request->input('localizacion');
+      $aseo->longitud = $request->input('longitud');
+      $aseo->latitud = $request->input('latitud');
       $aseo->dir = $request->input('dir');
       $aseo->horarioApertura = $request->input('horarioApertura');
       $aseo->horarioCierre = $request->input('horarioCierre');
@@ -68,8 +69,8 @@ class BathController extends Controller
       return view('pages.fichaWC', ['aseo' => $aseo]);
     }
 
-    public function getAseos($localizacion){
-      $aseos=Aseo::whereBetween('latitud',$localizacion->latitud-0.05,$localizacion->latitud+0.05)->whereBetween('longitud',$localizacion->longitud-0.05,$localizacion->longitud+0.05)->get();
+    public function getAseos(Request $request){
+      $aseos=Aseo::whereBetween('latitud',[$request->latitud-0.05,$request->latitud+0.05])->whereBetween('longitud',[$request->longitud-0.05,$request->longitud+0.05])->get();
       return $aseos;
     }
 }
