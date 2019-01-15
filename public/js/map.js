@@ -67,7 +67,9 @@ function getAseos(x,y){
 	var loc={latitud: x, longitud: y}
 	$.get( "http://localhost:8000/api/mapa/getAseos/", loc, function( data ) {
 		for (var i=0;i<data.length;i++){
-			aseos.push(L.marker([data[i].latitud, data[i].longitud]).on('click',markerOnClick).addTo(mapa));
+			var marker=L.marker([data[i].latitud, data[i].longitud]).on('click',markerOnClick).addTo(mapa);
+			marker.aseo=data[i].id;
+			aseos.push(marker);
 		}
 	});
 }
@@ -78,5 +80,6 @@ function limpiarMapa(){
 	}
 }
 function markerOnClick(e){
-  location.href = 'http://localhost:8000/ficha';
+	console.log(e.target.id);
+ 	location.href = 'http://localhost:8000/ficha/'+e.target.aseo;
 }
