@@ -52,6 +52,12 @@ class BathController extends Controller
       return view('pages.fichaWC', ['aseo' => $aseo]);
     }
 
+
+    public function getAseos(Request $request){
+      $aseos=Aseo::whereBetween('latitud',[$request->latitud-0.05,$request->latitud+0.05])->whereBetween('longitud',[$request->longitud-0.05,$request->longitud+0.05])->get();
+      return $aseos;
+    }
+
     public function ficha($id){
       $aseo = Aseo::find($id);
       return view('pages.fichaWC', ['aseo' => $aseo]);
@@ -62,7 +68,6 @@ class BathController extends Controller
       $aseo->oculto = new \DateTime();
       $aseo->save();
 
-      return redirect()->route('usuario');
-
+      return redirect()->route('usuario'); 
     }
 }

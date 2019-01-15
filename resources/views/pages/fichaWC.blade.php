@@ -24,7 +24,7 @@
 		}
 	</style>
 </head>
-<body>
+<body onload="setVista({{$aseo->latitud}},{{$aseo->longitud}});getAseos({{$aseo->latitud}},{{$aseo->longitud}})">
 	<div class="container-fluid">
 	<div class="row">
 		<aside class="col-md-3">

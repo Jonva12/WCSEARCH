@@ -96,8 +96,13 @@ Route::get('lang/{lang}', function($lang) {
   return \Redirect::back();
 })->middleware('web')->name('change_lang');
 
+
 //Routas notificaciones
 Route::get('/api/notificaciones/tiene', 'NotificationController@tieneNotificaciones');
 Route::get('/api/notificaciones/get', 'NotificationController@getNotificaciones');
 Route::get('/api/notificaciones/leer/{id}', 'NotificationController@leerNotificacion');
 Route::get('/api/notificaciones/leerTodas', 'NotificationController@leerTodas');
+
+
+//rutas para mapa api
+Route::get('/api/mapa/getAseos/', 'BathController@getAseos');
