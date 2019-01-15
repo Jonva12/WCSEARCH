@@ -8,7 +8,7 @@
 		<div class="boton">
 			<i class="fas fa-users"></i>
 			<p>
-				<b>{{$usuarios}}</b> Usuarios
+				<b>{{$usuarios}}</b> @lang('adminContent.users')
 			</p>
 		</div>
 	</a>
@@ -16,7 +16,7 @@
 		<div class="boton">
 			<i class="fas fa-map-marker-alt"></i>
 			<p>
-				<b>{{$aseos}}</b> Aseos
+				<b>{{$aseos}}</b> @lang('adminContent.wc')
 			</p>
 		</div>
 	</a>
@@ -24,7 +24,7 @@
 		<div class="boton">
 			<i class="far fa-envelope"></i>
 			<p>
-				<b>{{$message}}</b> Mensajes
+				<b>{{$message}}</b> @lang('adminContent.comments')
 			</p>
 		</div>
 	</a>

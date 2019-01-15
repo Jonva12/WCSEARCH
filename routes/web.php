@@ -37,6 +37,8 @@ Route::get('/admin/aseo/eliminar/{id}', 'AdminController@eliminarAseo')->name('a
 Route::get('/admin/mensajes', 'AdminController@mensajes')->name('admin.mensajes');
 Route::get('/admin/mensaje/eliminar/{id}', 'AdminController@eliminarMensaje')->name('admin.mensaje.eliminar');
 
+Route::get('/admin/estadistica/{year}', 'chartController@year')->name('admin.estadistica');
+
 //rutas usuarios
 Route::get('/usuario', 'UserController@perfil')->name('usuario');
 Route::get('/usuario/p/{id}', 'UserController@perfil')->name('usuario.perfil');
