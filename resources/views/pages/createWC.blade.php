@@ -4,29 +4,7 @@
 
 
 @section('content')
-<style media="screen">
-  p{
-    display: flex;
-    justify-content: space-between;
-  }
-  label{
-    width: 120px;
-    margin-left: 10px;
-  }
-  input{
-    display: flex;
-    justify-content: flex-start;
-    margin-right: 10px;
-  }
-  #mapid{
-    height: 400px;
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  form{
-    margin-bottom: 30px;
-  }
-</style>
+<link rel="stylesheet" href="/css/createWC.css">
 <div id="formWC">
   <h1>Crear WC</h1>
   <form method="post" action="{{route('wc.create')}}" enctype="multipart/form-data">
@@ -34,9 +12,12 @@
       <p><label>Nombre:</label><input type="text"name="nombre" class="form-control" value=""></p>
       <p>Dirección: (Busca la dirección mediante el buscador)</p>
       <div id="mapid"></div>
-      <p><label>Horario Apertura:</label> <input type="time" class="form-control" name="horarioApertura" value=""></p>
-      <p><label>Horario Cierre: </label><input type="time" class="form-control" name="horarioCierre" value=""></p>
-      <p><label>24Horas: </label><select name="horas24" class="form-control" >
+      <input type="text" id="latitud" name="latitud" value="" hidden>
+      <input type="text" id="longitud" name="longitud" value="" hidden>
+      <input type="text" id="dir" name="dir" value="" hidden>
+      <p><label>Horario Apertura:</label> <input type="time" class="form-control" class="horario" name="horarioApertura" value=""></p>
+      <p><label>Horario Cierre: </label><input type="time" class="form-control" class="horario" name="horarioCierre" value=""></p>
+      <p><label>24Horas: </label><select name="horas24" id="horas24" class="form-control" >
                   <option value="1">Si</option>
                   <option value="0">No</option>
                 </select></p>
@@ -51,5 +32,6 @@
 </div>
 @include('includes.geoscripts')
 <script src="/js/map.js"></script>
+<script src="/js/createWC.js"></script>
 
   @endsection

@@ -1,16 +1,16 @@
-<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+<nav class="navbar navbar-expand-lg navbar-light ">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/home') }}">
           <img src="/img/logo.png" alt="WCSearch" id="icon" class="rounded float-left">
             {{__('WCSEARCH')}}
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav ml-auto">
 
             </ul>
 
@@ -29,7 +29,7 @@
                 @else
                     <li class="nav-item">
                       @if(Auth::user()->role->nombre == 'normal')
-                        <a id="createWC" class="nav-link" class="link" href="{{route('wc.form')}}" onclick="alert('No eres golden. Necesitas 100 puntos para poder crear baños.')" href="#">Crear WC</a>
+                        <a id="createWC" class="nav-link" class="link" href="{{route('wc.create')}}" onclick="alert('No eres golden. Necesitas 100 puntos para poder crear baños.')" href="#">Crear WC</a>
                       @else
                         <a id="createWC" class="nav-link" class="link" href="{{route('wc.form')}}">Crear WC</a>
                       @endif

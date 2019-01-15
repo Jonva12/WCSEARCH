@@ -2,12 +2,15 @@
   background-color: rgb(40, 167, 69);
   font-family: sans-serif;
 }
+.navbar-brand{
+  width: 50%;
+}
 .nav-link{
   color: white
 }
 #icon{
-  width: 6%;
-  height: 6%;
+  width: 30px;
+  height: 30px;
 }
 
 #navbarDropdown{

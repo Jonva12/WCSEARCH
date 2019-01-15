@@ -30,7 +30,8 @@ class BathController extends Controller
 
       $aseo = new Aseo();
       $aseo->nombre = $request->input('nombre');
-      $aseo->localizacion = $request->input('localizacion');
+      $aseo->latitud = $request->input('latitud');
+      $aseo->longitud = $request->input('longitud');
       $aseo->dir = $request->input('dir');
       $aseo->horarioApertura = $request->input('horarioApertura');
       $aseo->horarioCierre = $request->input('horarioCierre');
@@ -61,7 +62,7 @@ class BathController extends Controller
       $aseo->oculto = new \DateTime();
       $aseo->save();
 
-      return redirect()->route('usuario'); 
+      return redirect()->route('usuario');
 
     }
 }
