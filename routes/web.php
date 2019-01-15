@@ -85,7 +85,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 // });
 Route::get('/createWC', 'BathController@form')->name('wc.form');
 Route::post('/ficha','BathController@create')->name('wc.create');
-Route::get('/ficha/{id}', 'BathController@ficha')->name('wc.ficha'); 
+Route::get('/ficha/{id}', 'BathController@ficha')->name('wc.ficha');
+Route::get('/eliminar/{id}', 'BathController@ocultarAseo')->name('wc.ocultar'); 
 
 //routas lenguaje
 Route::get('lang/{lang}', function($lang) {

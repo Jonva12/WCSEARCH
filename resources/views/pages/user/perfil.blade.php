@@ -45,23 +45,23 @@
 								</tr>
 								@else
 									@foreach($usuario->aseos as $a)
+                    @if($a->oculto == null)
 										<tr>
 											<td>{{$a->nombre}}</td>
 											<td>{{$a->dir}}</td>
 											<td>{{$a->comentarios->count()}}</td>
 											<td>{{$a->reportes->count()}}</td>
 											<td>
-												<button class="btn btn-primary">Ver</button>
-												<button class="btn btn-danger">Eliminar</button>
+												<a class="btn btn-primary" href="{{route('wc.ficha', $a->id)}}">Ver</a>
+												<a class="btn btn-danger" onclick="return confirm('¿Estas seguro?')" href="{{route('wc.ocultar', $a->id)}}">Eliminar</a>
 											</td>
 										</tr>
+                    @endif
 									@endforeach
 								@endif
 						</tbody>
 					</table>
 			</div>
 		</div>
-		
-
-	</div>
+</div>
 	@endsection

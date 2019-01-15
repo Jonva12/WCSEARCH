@@ -17,6 +17,11 @@
 		aside .info{
 			padding-left: 15px;
 		}
+		#mapid{
+			height: 100%;
+			width: 100%;
+			margin-top: -20px;
+		}
 	</style>
 </head>
 <body>
@@ -104,5 +109,5 @@
 						}
 	</script>
 	@include('includes.geoscripts')
-	<script src="js/map.js"></script>
+	<script src="/js/map.js"></script>
 	@endsection
