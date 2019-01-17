@@ -49,7 +49,7 @@ class BathController extends Controller
       $aseo->user_id = Auth::user()->id;
 
       $aseo->save();
-      return view('pages.fichaWC', ['aseo' => $aseo]);
+      return redirect()->route('home', ['latitud' => $request->input('latitud'), 'longitud' => $request->input('longitud')]);
     }
 
 
@@ -70,7 +70,7 @@ class BathController extends Controller
       $aseo->oculto = new \DateTime();
       $aseo->save();
 
-      return redirect()->route('usuario'); 
+      return redirect()->route('usuario');
     }
 
     public function getAseo($id){

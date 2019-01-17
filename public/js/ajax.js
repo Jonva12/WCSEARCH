@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-	$.get( "http://wcsearch.herokuapp.com/api/notificaciones/tiene", function( data ) {
+	$.get( "http://localhost:8000/api/notificaciones/tiene", function( data ) {
 	  if(data=="1"){
 	  	$('#notificaciones_nav').html('<i class="fa fa-exclamation fa-inverse"></i>');
 	  }else{
@@ -7,7 +7,7 @@ $( document ).ready(function() {
 	  }
 	});
 	$('body').click(function(){
-		$.get( "http://wcsearch.herokuapp.com/api/notificaciones/tiene", function( data ) {
+		$.get( "http://localhost:8000/api/notificaciones/tiene", function( data ) {
 		  if(data=="1"){
 		  	$('#notificaciones_nav').html('<i class="fa fa-exclamation fa-inverse"></i>');
 		  }else{
@@ -20,7 +20,7 @@ $( document ).ready(function() {
 
 
 function getNotificaciones(){
-	$.get( "http://wcsearch.herokuapp.com/api/notificaciones/get", function( data ) {
+	$.get( "http://localhost:8000/api/notificaciones/get", function( data ) {
 		var texto="";
 	  for (var i = 0; i < data.length; i++) {
 	  	if(!data[i].leido){
@@ -34,8 +34,7 @@ function getNotificaciones(){
 }
 
 function leer(id){
-	$.get( "http://wcsearch.herokuapp.com/api/notificaciones/leer/"+id, function( data ) {
+	$.get( "http://localhost:8000/api/notificaciones/leer/"+id, function( data ) {
 		getNotificaciones();
 	});
 }
-
