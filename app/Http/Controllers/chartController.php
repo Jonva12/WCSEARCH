@@ -11,7 +11,7 @@ use App\Aseo;
 class chartController extends Controller
 {
     public function year($year){
-    	$grafico1=DB::table('proyecto.users')
+    	/*$grafico1=DB::table('proyecto.users')
     		->whereYear('created_at', $year)
     		->orderBy('created_at')
     		->get();
@@ -41,6 +41,6 @@ class chartController extends Controller
                 }
             }*/
 
-    	return view('pages/admin/estadistica', ['lineas'=>$lineas]);
+    	return view('pages/admin/estadistica', ['lineas'=>["a"=>123]]);
     }
 }
