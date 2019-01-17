@@ -133,19 +133,18 @@ class AdminController extends Controller
     }
 
     public function year($year){
-        $grafico1=DB::table('users')
-            ->whereYear('created_at', $year)
-            ->orderBy('created_at')
-            ->get();
             $lineas=array();
+            $usuarios=array();
+            $aseos=array();
             for ($i=1;$i<13;$i++){
-                $numUsuarios=$grafico1->where($year+-+$i);
                 $linea=DB::table('users')
-            ->whereYear('created_at', $year)->whereMonth('created_at',$i)->count();
+                    ->whereYear('created_at', $year)->whereMonth('created_at',$i)->count();
+                $linea2=DB::table('aseos')
+                    ->whereYear('created_at', $year)->whereMonth('created_at',$i)->count();
+                array_push($lineas,['mes'=>$i,'usuarios'=>$linea,'aseos'=>$linea2]);
+            }
 
-                    array_push($lineas,['mes'=>$i,'usuarios'=>$linea]);
-                
-            }       
+        return view('pages/admin/estadistica', ['lineas'=>$lineas]);
         /*$grafico1 = DB::table('proyecto.users')
             ->select(DB::raw('COUNT(id) as usuarios, year(created_at) as year, month(created_at) as mes'))
             ->whereYear('created_at', $year)
@@ -160,7 +159,5 @@ class AdminController extends Controller
                     array_push($lineas,['mes'=>$i,'usuarios'=>0]);
                 }
             }*/
-
-        return view('pages/admin/estadistica', ['lineas'=>$lineas]);
     }
 }
