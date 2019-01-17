@@ -128,3 +128,5 @@ function cambiarInfoFicha(data){
 	document.getElementById("precio").innerHTML=data.precio==null?"GRATIS": data.precio+" €";
 	document.getElementById("accesible").innerHTML=data.accesibilidad==1?"Accesible":"No accesible";
 }
+
+
