@@ -93,11 +93,18 @@ function limpiarMapa(){
 	}
 }
 function markerOnClick(e){
+	var mapaSection = document.getElementById('section'); 
+    var aside = document.getElementById('aside'); 
+    mapaSection.classList.remove('col-md-12');
+    mapaSection.classList.add('col-md-9'); 
+    aside.hidden = false; 
 	setVista(e.latlng.lat,e.latlng.lng);
 	var aseo={id: e.target.aseo};
  	$.get( "http://localhost:8000/api/mapa/getAseo/"+ e.target.aseo, function( data ) {
 		cambiarInfoFicha(data);
 	});
+	
+
 }
 function setVista(x,y){
 	mapa.setView([x, y], 13);
