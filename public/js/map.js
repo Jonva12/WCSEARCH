@@ -42,6 +42,7 @@ var toplayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png
 					 results.addLayer(L.marker(data.results[i].latlng));
 					 console.log(data.results[i].latlng);
 					 console.log(data);
+					 getAseos(data.results[i].latlng.lat,data.results[i].latlng.lng);
 			 }
 	 });
 
@@ -62,3 +63,43 @@ var toplayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png
 //     alert(e.message);
 // }
 // mapa.on('locationerror', onLocationError);
+var aseos=[];
+
+var aseoIcon = L.icon({
+    iconUrl: '/img/marker.png',
+
+    iconSize:     [25, 35], // size of the icon
+    shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [22, 35], // point of the icon which will correspond to marker's location
+    shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+
+function getAseos(x,y){
+	limpiarMapa();
+	var loc={latitud: x, longitud: y}
+	$.get( "http://localhost:8000/api/mapa/getAseos/", loc, function( data ) {
+		for (var i=0;i<data.length;i++){
+			var marker=L.marker([data[i].latitud, data[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
+			marker.aseo=data[i].id;
+			aseos.push(marker);
+		}
+	});
+}
+
+function limpiarMapa(){
+	for (var i=0;i<aseos.length;i++){
+		mapa.removeLayer(aseos[i]);
+	}
+}
+function markerOnClick(e){
+	var mapaSection = document.getElementById('section'); 
+    var aside = document.getElementById('aside'); 
+    mapaSection.classList.remove('col-md-12');
+    mapaSection.classList.add('col-md-9'); 
+    aside.hidden = false; 
+ 	//location.href = 'http://localhost:8000/ficha/'+e.target.aseo;
+}
+function setVista(x,y){
+	mapa.setView([x, y], 13);
+}

@@ -39,6 +39,3 @@ function leer(id){
 	});
 }
 
-function buscarCiudad(i){
-	alert('Holaa');
-}

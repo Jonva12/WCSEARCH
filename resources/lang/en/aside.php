@@ -3,8 +3,7 @@
 return [
   'home' => 'Home',
   'login' => 'Login',
-  'register' => 'Register',
-  'administration' => 'Administration',
-  'notifications' => 'Notifications',
-  'hascommented' => '<i>:user</i> has commented in <b>:post</b>',
+  'users' => 'User List',
+  'wc' => 'WC List',
+  'comments' => 'Comments',
 ];
