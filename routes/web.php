@@ -106,3 +106,4 @@ Route::get('/api/notificaciones/leerTodas', 'NotificationController@leerTodas');
 
 //rutas para mapa api
 Route::get('/api/mapa/getAseos/', 'BathController@getAseos');
+Route::get('/api/mapa/getAseo/{id}', 'BathController@getAseo');

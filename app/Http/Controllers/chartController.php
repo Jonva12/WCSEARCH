@@ -17,7 +17,12 @@ class chartController extends Controller
     		->get();
     		for ($i=1;$i<13;$i++){
     			$numUsuarios=$grafico1->where();$year+-+$i
-
+                $linea=$grafico1->where('mes',$i)->first();
+                if (isset($linea)){
+                    array_push($lineas,['mes'=>$i,'usuarios'=>$linea->usuarios]);
+                }else{
+                    array_push($lineas,['mes'=>$i,'usuarios'=>0]);
+                }
     		}
     		
 
@@ -25,7 +30,7 @@ class chartController extends Controller
     		->select(DB::raw('COUNT(id) as usuarios, year(created_at) as year, month(created_at) as mes'))
     		->whereYear('created_at', $year)
     		->groupBy(DB::raw('year(created_at), month(created_at)'))
-    		->get();*/
+    		->get();
     		$lineas=array();
     		for($i=1; $i<=12;$i++){
                 $linea=$grafico1->where('mes',$i)->first();
@@ -34,8 +39,8 @@ class chartController extends Controller
                 }else{
                     array_push($lineas,['mes'=>$i,'usuarios'=>0]);
                 }
-            }
+            }*/
 
-    	return view('pages/admin/estadistica', ['lineas'=>$lineas]);
+    	return view('pages/admin/estadistica/{year}', ['lineas'=>$lineas]);
     }
 }

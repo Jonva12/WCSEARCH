@@ -3,16 +3,22 @@
 	@section('content')
 	<style type="text/css">
 		aside {
-			box-shadow: 10px 0px 10px 1px #aaaaaa;
 			padding: 0px !important;
+			overflow-y: auto;
+			height: 100%;
+		}
+		section {
+			padding: 0px !important;
+
 		}
 		aside img{
 			width: 100%;
+			height: 150px;
 		}
 		aside .general{
 			color: white;
 			background-color: #28a745;
-			padding: 5px;
+			padding-left: 5px;
 		}
 		aside .info{
 			padding-left: 15px;
@@ -28,11 +34,11 @@
 	<div class="container-fluid">
 	<div class="row">
 		<aside class="col-md-3">
-			<img src="{{url('storage/fotos/'.$aseo->foto)}}" alt="{{$aseo->foto}}">
+			<img src="/img/wc.jpg" alt="Imagen no disponible" id="imgWC">
 			<div class="general">
-				<h1>{{$aseo->nombre}}</h1>
-				<p>Puntuacion: <b>4,2</b></p>
-				<p>{{$aseo->dir}}</p>
+				<h1 id="nombre"></h1>
+				<p>Puntuacion: <b id="puntuacion"></b></p>
+				<p id="dir"></p>
 				<!-- <form method="post" action="ficha" enctype="multipart/form-data">
 					@csrf
 					<div class="form-group">
@@ -43,10 +49,9 @@
 			<div class="info">
 				<div class="detalles">
 					<h2>Detalles</h2>
-					<p>Horario: {{$aseo->horarioApertura}}-{{$aseo->horarioCierre}}</p>
-					<p>24horas: {{$aseo->horas24 == 1 ? ' Si' : ' No'}}</p>
-					<p>Precio: {{$aseo->precio}} €</p>
-					<p><i class="fas fa-wheelchair"></i>{{ $aseo->accesibilidad == 1 ? ' Accesible' : ' No Accesible' }}</p>
+					<p>Horario: <span id="horario"></span></p>
+					<p>Precio: <span id="precio"></span></p>
+					<p><i class="fas fa-wheelchair"></i> <span id="accesible"></span></p>
 				</div>
 				<hr>
 				<div class="valorar">
