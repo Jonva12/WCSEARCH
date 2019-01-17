@@ -93,7 +93,12 @@ function limpiarMapa(){
 	}
 }
 function markerOnClick(e){
- 	location.href = 'http://localhost:8000/ficha/'+e.target.aseo;
+	var mapaSection = document.getElementById('section'); 
+    var aside = document.getElementById('aside'); 
+    mapaSection.classList.remove('col-md-12');
+    mapaSection.classList.add('col-md-9'); 
+    aside.hidden = false; 
+ 	//location.href = 'http://localhost:8000/ficha/'+e.target.aseo;
 }
 function setVista(x,y){
 	mapa.setView([x, y], 13);
