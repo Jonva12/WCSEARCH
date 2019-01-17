@@ -19,7 +19,7 @@
       <p><label>Horario Cierre: </label><input type="time" class="form-control" class="horario" name="horarioCierre" value=""></p>
       <p><label>24Horas: </label><select name="horas24" id="horas24" class="form-control" >
                   <option value="1">Si</option>
-                  <option value="0">No</option>
+                  <option value="0" selected>No</option>
                 </select></p>
       <p><label>Foto: </label><input type="file" name="foto" class="form-control-file" ></p>
       <p><label>Precio: </label><input type="number" min="0" step="0.05" class="form-control" name="precio" value=""></p>

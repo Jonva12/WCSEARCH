@@ -20,7 +20,13 @@ $("input[name*=horarioCierre]").on('keydown', function(){
   $('#horas24').prop('disabled', true);
 });
 
-$('#horas24').on('click', function(){
-  $("input[name*=horarioApertura]").prop('disabled', true);
-  $("input[name*=horarioCierre]").prop('disabled', true); 
+$('#horas24').change(function(){
+  if($(this).val()=="1"){
+    $("input[name*=horarioApertura]").prop('disabled', true);
+    $("input[name*=horarioCierre]").prop('disabled', true); 
+  }else{
+    $("input[name*=horarioApertura]").prop('disabled', false);
+  $("input[name*=horarioCierre]").prop('disabled', false); 
+  }
+  
 });
