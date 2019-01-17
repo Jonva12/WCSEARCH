@@ -46,7 +46,7 @@ var toplayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png
 			 }
 	 });
 
-	 
+
 
 // function onLocationFound(e) {
 //     var radius = e.accuracy / 5;
@@ -76,7 +76,7 @@ var aseoIcon = L.icon({
 });
 
 function getAseos(x,y){
-	limpiarMapa();
+	limpiarMapaAseos();
 	var loc={latitud: x, longitud: y}
 	$.get( enlace+"/api/mapa/getAseos/", loc, function( data ) {
 		for (var i=0;i<data.length;i++){
@@ -87,23 +87,31 @@ function getAseos(x,y){
 	});
 }
 
-function limpiarMapa(){
+function limpiarMapaAseos(){
 	for (var i=0;i<aseos.length;i++){
 		mapa.removeLayer(aseos[i]);
 	}
 }
+
+function limpiarMapa(){
+	for (var i=0;i<aseos.length;i++){
+		mapa.removeLayer(aseos[i]);
+	}
+	results.clearLayers();
+}
+
 function markerOnClick(e){
-	var mapaSection = document.getElementById('section'); 
-    var aside = document.getElementById('aside'); 
+		var mapaSection = document.getElementById('section');
+    var aside = document.getElementById('aside');
     mapaSection.classList.remove('col-md-12');
-    mapaSection.classList.add('col-md-9'); 
-    aside.hidden = false; 
+    mapaSection.classList.add('col-md-9');
+    aside.hidden = false;
 	setVista(e.latlng.lat,e.latlng.lng);
 	var aseo={id: e.target.aseo};
  	$.get( enlace+"/api/mapa/getAseo/"+ e.target.aseo, function( data ) {
 		cambiarInfoFicha(data);
 	});
-	
+
 
 }
 function setVista(x,y){

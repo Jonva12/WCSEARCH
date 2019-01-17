@@ -22,13 +22,24 @@
       width: 100%;
       margin-top: -20px;
     }
+    .fa-arrow-left{
+      color: green;
+      padding: 10px;
+    }
   </style>
 
 </head>
-<body>
+@if(isset($latitud)&&isset($longitud))
+  <body  onload="getAseos({{$latitud}}, {{$longitud}})">
+@else
+  <body>
+@endif
   <div class="container-fluid">
   <div class="row">
     <aside id="aside" class="col-md-3" hidden>
+      <div class="atras" onclick="volver()">
+        <i class="fas fa-arrow-left fa-2x"></i>
+      </div>
       <img src="/img/wc.jpg" alt="Imagen no disponible" id="imgWC">
       <div class="general">
         <h1 id="nombre"></h1>
@@ -108,6 +119,15 @@
                   estrella.classList.add("fas");
                 }
               }
+            }
+
+            function volver(){
+                var mapaSection = document.getElementById('section');
+                var aside = document.getElementById('aside');
+                mapaSection.classList.remove('col-md-9');
+                mapaSection.classList.add('col-md-12');
+                aside.hidden = true;
+                limpiarMapa();
             }
   </script>
   @endsection

@@ -39,4 +39,3 @@ function leer(id){
 		getNotificaciones();
 	});
 }
-
