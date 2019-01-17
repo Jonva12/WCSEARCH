@@ -22,5 +22,5 @@ $("input[name*=horarioCierre]").on('keydown', function(){
 
 $('#horas24').on('click', function(){
   $("input[name*=horarioApertura]").prop('disabled', true);
-  $("input[name*=horarioCierre]").prop('disabled', true); 
+  $("input[name*=horarioCierre]").prop('disabled', true);
 });
