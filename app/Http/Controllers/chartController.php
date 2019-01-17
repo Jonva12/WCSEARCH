@@ -23,9 +23,7 @@ class chartController extends Controller
 
                     array_push($lineas,['mes'=>$i,'usuarios'=>$linea]);
                 
-    		}
-    		
-
+    		}		
     	/*$grafico1 = DB::table('proyecto.users')
     		->select(DB::raw('COUNT(id) as usuarios, year(created_at) as year, month(created_at) as mes'))
     		->whereYear('created_at', $year)
