@@ -29,11 +29,24 @@
   <div class="container-fluid">
   <div class="row">
     <aside id="aside" class="col-md-3" hidden>
+      <img src="/img/wc.jpg" alt="Imagen no disponible" id="imgWC">
       <div class="general">
+        <h1 id="nombre"></h1>
+        <p>Puntuacion: <b id="puntuacion"></b></p>
+        <p id="dir"></p>
+        <!-- <form method="post" action="ficha" enctype="multipart/form-data">
+          @csrf
+          <div class="form-group">
+            <input type="file" class="form-control" name="foto">
+          </div>
+        </form> -->
       </div>
       <div class="info">
         <div class="detalles">
           <h2>Detalles</h2>
+          <p>Horario: <span id="horario"></span></p>
+          <p>Precio: <span id="precio"></span></p>
+          <p><i class="fas fa-wheelchair"></i> <span id="accesible"></span></p>
         </div>
         <hr>
         <div class="valorar">

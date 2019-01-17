@@ -98,8 +98,23 @@ function markerOnClick(e){
     mapaSection.classList.remove('col-md-12');
     mapaSection.classList.add('col-md-9'); 
     aside.hidden = false; 
- 	//location.href = 'http://localhost:8000/ficha/'+e.target.aseo;
+	setVista(e.latlng.lat,e.latlng.lng);
+	var aseo={id: e.target.aseo};
+ 	$.get( "http://localhost:8000/api/mapa/getAseo/"+ e.target.aseo, function( data ) {
+		cambiarInfoFicha(data);
+	});
+	
+
 }
 function setVista(x,y){
 	mapa.setView([x, y], 13);
+}
+
+function cambiarInfoFicha(data){
+	document.getElementById("imgWC").src="/storage/fotos/"+data.foto;
+	document.getElementById("nombre").innerHTML=data.nombre;
+	document.getElementById("dir").innerHTML=data.dir;
+	document.getElementById("horario").innerHTML=data.horas24 == 1?"24 horas":data.horarioApertura+"-"+data.horarioCierre;
+	document.getElementById("precio").innerHTML=data.precio==null?"GRATIS": data.precio+" €";
+	document.getElementById("accesible").innerHTML=data.accesibilidad==1?"Accesible":"No accesible";
 }
