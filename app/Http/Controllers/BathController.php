@@ -60,11 +60,6 @@ class BathController extends Controller
       return $aseos;
     }
 
-    public function ficha($id){
-      $aseo = Aseo::find($id);
-      return view('pages.fichaWC', ['aseo' => $aseo]);
-    }
-
     public function ocultarAseo($id){
       $aseo = Aseo::find($id);
       $aseo->oculto = new \DateTime();

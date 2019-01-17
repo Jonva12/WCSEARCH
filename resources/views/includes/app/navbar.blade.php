@@ -29,7 +29,7 @@
                 @else
                     <li class="nav-item">
                       @if(Auth::user()->role->nombre == 'normal')
-                        <a id="createWC" class="nav-link" class="link" href="{{route('wc.create')}}" onclick="alert('No eres golden. Necesitas 100 puntos para poder crear baños.')" href="#">Crear WC</a>
+                        <a id="createWC" class="nav-link" class="link" onclick="alert('No eres golden. Necesitas 100 puntos para poder crear baños.')" href="#">Crear WC</a>
                       @else
                         <a id="createWC" class="nav-link" class="link" href="{{route('wc.form')}}">Crear WC</a>
                       @endif
