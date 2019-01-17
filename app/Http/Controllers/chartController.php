@@ -11,18 +11,18 @@ use App\Aseo;
 class chartController extends Controller
 {
     public function year($year){
-    	$grafico1=DB::table('proyecto.users')
+    	$grafico1=DB::table('users')
     		->whereYear('created_at', $year)
     		->orderBy('created_at')
     		->get();
+            $lineas=array();
     		for ($i=1;$i<13;$i++){
-    			$numUsuarios=$grafico1->where();$year+-+$i
-                $linea=$grafico1->where('mes',$i)->first();
-                if (isset($linea)){
-                    array_push($lineas,['mes'=>$i,'usuarios'=>$linea->usuarios]);
-                }else{
-                    array_push($lineas,['mes'=>$i,'usuarios'=>0]);
-                }
+    			$numUsuarios=$grafico1->where($year+-+$i);
+                $linea=DB::table('users')
+            ->whereYear('created_at', $year)->whereMonth('created_at',$i)->count();
+
+                    array_push($lineas,['mes'=>$i,'usuarios'=>$linea]);
+                
     		}
     		
 
@@ -41,6 +41,6 @@ class chartController extends Controller
                 }
             }*/
 
-    	return view('pages/admin/estadistica/{year}', ['lineas'=>$lineas]);
+    	return view('pages/admin/estadistica', ['lineas'=>$lineas]);
     }
 }
