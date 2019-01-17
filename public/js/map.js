@@ -78,7 +78,7 @@ var aseoIcon = L.icon({
 function getAseos(x,y){
 	limpiarMapa();
 	var loc={latitud: x, longitud: y}
-	$.get( "http://wcsearch.herokuapp.com/api/mapa/getAseos/", loc, function( data ) {
+	$.get( enlace+"/api/mapa/getAseos/", loc, function( data ) {
 		for (var i=0;i<data.length;i++){
 			var marker=L.marker([data[i].latitud, data[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
 			marker.aseo=data[i].id;
@@ -100,14 +100,14 @@ function markerOnClick(e){
     aside.hidden = false; 
 	setVista(e.latlng.lat,e.latlng.lng);
 	var aseo={id: e.target.aseo};
- 	$.get( "http://wcsearch.herokuapp.com/api/mapa/getAseo/"+ e.target.aseo, function( data ) {
+ 	$.get( enlace+"/api/mapa/getAseo/"+ e.target.aseo, function( data ) {
 		cambiarInfoFicha(data);
 	});
 	
 
 }
 function setVista(x,y){
-	mapa.setView([x, y], 13);
+	mapa.setView([x, y],16);
 }
 
 function cambiarInfoFicha(data){
