@@ -41,6 +41,6 @@ class chartController extends Controller
                 }
             }*/
 
-    	return view('pages/admin/estadistica', ['lineas'=>$lineas]);
+    	return view('pages/admin/estadistica/{year}', ['lineas'=>$lineas]);
     }
 }
