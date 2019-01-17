@@ -1,6 +1,6 @@
 
 $( document ).ready(function() {
-	$.get( enlace+"/api/notificaciones/tiene", function( data ) {
+	$.get("/api/notificaciones/tiene", function( data ) {
 	  if(data=="1"){
 	  	$('#notificaciones_nav').html('<i class="fa fa-exclamation fa-inverse"></i>');
 	  }else{
@@ -8,7 +8,7 @@ $( document ).ready(function() {
 	  }
 	});
 	$('body').click(function(){
-		$.get( enlace+"/api/notificaciones/tiene", function( data ) {
+		$.get( "/api/notificaciones/tiene", function( data ) {
 		  if(data=="1"){
 		  	$('#notificaciones_nav').html('<i class="fa fa-exclamation fa-inverse"></i>');
 		  }else{
@@ -21,7 +21,7 @@ $( document ).ready(function() {
 
 
 function getNotificaciones(){
-	$.get(enlace+"/api/notificaciones/get", function( data ) {
+	$.get("/api/notificaciones/get", function( data ) {
 		var texto="";
 	  for (var i = 0; i < data.length; i++) {
 	  	if(!data[i].leido){
@@ -35,7 +35,7 @@ function getNotificaciones(){
 }
 
 function leer(id){
-	$.get( enlace+"/api/notificaciones/leer/"+id, function( data ) {
+	$.get( "/api/notificaciones/leer/"+id, function( data ) {
 		getNotificaciones();
 	});
 }

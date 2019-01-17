@@ -78,7 +78,7 @@ var aseoIcon = L.icon({
 function getAseos(x,y){
 	limpiarMapaAseos();
 	var loc={latitud: x, longitud: y}
-	$.get( enlace+"/api/mapa/getAseos/", loc, function( data ) {
+	$.get( "/api/mapa/getAseos/", loc, function( data ) {
 		for (var i=0;i<data.length;i++){
 			var marker=L.marker([data[i].latitud, data[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
 			marker.aseo=data[i].id;
@@ -108,7 +108,9 @@ function markerOnClick(e){
     aside.hidden = false;
 	setVista(e.latlng.lat,e.latlng.lng);
 	var aseo={id: e.target.aseo};
- 	$.get( enlace+"/api/mapa/getAseo/"+ e.target.aseo, function( data ) {
+
+
+ 	$.get( "/api/mapa/getAseo/"+ e.target.aseo, function( data ) {
 		cambiarInfoFicha(data);
 	});
 
