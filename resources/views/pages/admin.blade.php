@@ -19,7 +19,7 @@
     var options = {
         title: '@lang("adminContent.monthly")',
         hAxis: {title: '@lang("adminContent.months")',  titleTextStyle: {color: '#333'}},
-        vAxis: {title: '@lang("adminContent.users")', titleTextStyle: {color: '#333'}, minValue: 0, maxValue: 10}
+        vAxis: {title: '@lang("adminContent.users")', titleTextStyle: {color: '#333'}, minValue: 0, maxValue: 20}
     };
 
     var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
