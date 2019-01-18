@@ -22,11 +22,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        /*if (Auth::user()->name=="Admin"){
-            return redirect()->route('admin');
-        }*/
+        if ($request->input('latitud')!=null && $request->input('longitud')!=null){
+            return view('pages.home',['latitud'=>$request->input('latitud'),'longitud' => $request->input('longitud')]); 
+        }
         return view('pages.home');
     }
 }

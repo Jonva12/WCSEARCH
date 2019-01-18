@@ -128,7 +128,6 @@
                 mapaSection.classList.remove('col-md-9');
                 mapaSection.classList.add('col-md-12');
                 aside.hidden = true;
-                limpiarMapa();
             }
   </script>
   @endsection

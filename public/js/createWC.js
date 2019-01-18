@@ -47,7 +47,7 @@ function onMapClick(e) {
     document.getElementById('latitud').value = e.latlng.lat;
     document.getElementById('longitud').value = e.latlng.lng;
     $.get('https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat='+e.latlng.lat+'&lon='+e.latlng.lng, function(data){
-      var dir=data.address.house_number+', '+data.address.road+', '+data.address.postcode+', '+data.address.suburb+', '+data.address.city+', '+data.address.suburb+', '+data.address.county+', '+data.address.state+', '+data.address.country_code;
+      var dir=data.address.house_number+', '+data.address.road+', '+data.address.postcode+', '+data.address.suburb+', '+data.address.city+', '+data.address.county+', '+data.address.state+', '+data.address.country_code;
       
       document.getElementById('dir').value =dir.replace(/undefined, /g,'');
     });

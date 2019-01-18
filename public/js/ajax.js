@@ -23,13 +23,18 @@ $( document ).ready(function() {
 function getNotificaciones(){
 	$.get("/api/notificaciones/get", function( data ) {
 		var texto="";
-	  for (var i = 0; i < data.length; i++) {
-	  	if(!data[i].leido){
-	  		texto+='<div class="dropdown-item" onclick="leer('+data[i].id+')"><b>'+data[i].texto+'</b></div>';
-	  	}else{
-	  		texto+='<div class="dropdown-item">'+data[i].texto+'</div>';
+		if (data.length==0){
+			texto+='<div class="dropdown-item">No tienes notificaciones</div>';
+		}else{
+			for (var i = 0; i < data.length; i++) {
+			  	if(!data[i].leido){
+			  		texto+='<div class="dropdown-item" onclick="leer('+data[i].id+')"><b>'+data[i].texto+'</b></div>';
+			  	}else{
+			  		texto+='<div class="dropdown-item">'+data[i].texto+'</div>';
+			  	}
+	  		}
 	  	}
-	  }
+
 	  $('#notificaciones').html(texto);
 	});
 }

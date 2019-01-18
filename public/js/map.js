@@ -40,8 +40,6 @@ var toplayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png
 			 results.clearLayers();
 			 for (var i = data.results.length - 1; i >= 0; i--) {
 					 results.addLayer(L.marker(data.results[i].latlng));
-					 console.log(data.results[i].latlng);
-					 console.log(data);
 					 getAseos(data.results[i].latlng.lat,data.results[i].latlng.lng);
 			 }
 	 });
@@ -77,6 +75,7 @@ var aseoIcon = L.icon({
 
 function getAseos(x,y){
 	limpiarMapaAseos();
+	setVista(x,y);
 	var loc={latitud: x, longitud: y}
 	$.get( "/api/mapa/getAseos/", loc, function( data ) {
 		for (var i=0;i<data.length;i++){
