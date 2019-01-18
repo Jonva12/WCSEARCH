@@ -30,7 +30,7 @@
 
 </head>
 @if(isset($latitud)&&isset($longitud))
-  <body  onload="getAseos({{$latitud}}, {{$longitud}})">
+  <body  onload="getAseos2({{$latitud}}, {{$longitud}})">
 @else
   <body>
 @endif
