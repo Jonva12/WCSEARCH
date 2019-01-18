@@ -119,12 +119,15 @@ function setVista(x,y){
 }
 
 function cambiarInfoFicha(data){
-	document.getElementById("imgWC").src="/storage/fotos/"+data.foto;
+	console.log(data.foto);
+	if(data.foto == 'wc.jpg'){
+		document.getElementById("imgWC").src = "/img/"+data.foto;
+	}else{
+		document.getElementById("imgWC").src="/storage/fotos/"+data.foto;
+	}
 	document.getElementById("nombre").innerHTML=data.nombre;
 	document.getElementById("dir").innerHTML=data.dir;
 	document.getElementById("horario").innerHTML=data.horas24 == 1?"24 horas":data.horarioApertura+"-"+data.horarioCierre;
 	document.getElementById("precio").innerHTML=data.precio==null?"GRATIS": data.precio+" €";
 	document.getElementById("accesible").innerHTML=data.accesibilidad==1?"Accesible":"No accesible";
 }
-
-
