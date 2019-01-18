@@ -68,3 +68,10 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+
+#form-year{
+  width: 400px;
+  height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
