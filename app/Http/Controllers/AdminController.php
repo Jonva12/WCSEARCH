@@ -25,11 +25,28 @@ class AdminController extends Controller
         $this->middleware(array('admin','auth', 'verified','baneado'));
     }
 
-    public function index(){
+    public function index(Request $request){
     	$usuarios=User::all()->count();
     	$aseos=Aseo::all()->count();
     	$message=Message::all()->count();
-    	return view('pages/admin', array('usuarios' => $usuarios, 'aseos' => $aseos, 'message' => $message));
+        $lineas=array();
+
+        if($request->input('year')!=null){
+            for ($i=1;$i<13;$i++){
+                $linea=DB::table('users')->whereYear('created_at', $request->input('year'))->whereMonth('created_at',$i)->count();
+                $linea2=DB::table('aseos')->whereYear('created_at', $request->input('year'))->whereMonth('created_at',$i)->count();
+                array_push($lineas,['mes'=>$i,'usuarios'=>$linea,'aseos'=>$linea2]);
+            }
+        }else{
+            for ($i=1;$i<13;$i++){
+                $linea=DB::table('users')->whereYear('created_at', 2019)->whereMonth('created_at',$i)->count();
+                $linea2=DB::table('aseos')->whereYear('created_at', 2019)->whereMonth('created_at',$i)->count();
+                array_push($lineas,['mes'=>$i,'usuarios'=>$linea,'aseos'=>$linea2]);
+            }
+        }
+        
+            
+    	return view('pages/admin', array('usuarios' => $usuarios, 'aseos' => $aseos, 'message' => $message, 'lineas'=>$lineas));
     }
 
     //USUARIOS
@@ -137,14 +154,12 @@ class AdminController extends Controller
             $usuarios=array();
             $aseos=array();
             for ($i=1;$i<13;$i++){
-                $linea=DB::table('users')
-                    ->whereYear('created_at', $year)->whereMonth('created_at',$i)->count();
-                $linea2=DB::table('aseos')
-                    ->whereYear('created_at', $year)->whereMonth('created_at',$i)->count();
+                $linea=DB::table('users')->whereYear('created_at', $year)->whereMonth('created_at',$i)->count();
+                $linea2=DB::table('aseos')->whereYear('created_at', $year)->whereMonth('created_at',$i)->count();
                 array_push($lineas,['mes'=>$i,'usuarios'=>$linea,'aseos'=>$linea2]);
             }
 
-        return view('pages/admin/estadistica', ['lineas'=>$lineas]);
+        return view('pages/admin', ['lineas'=>$lineas]);
         /*$grafico1 = DB::table('proyecto.users')
             ->select(DB::raw('COUNT(id) as usuarios, year(created_at) as year, month(created_at) as mes'))
             ->whereYear('created_at', $year)

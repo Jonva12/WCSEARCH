@@ -40,8 +40,6 @@ var toplayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png
 			 results.clearLayers();
 			 for (var i = data.results.length - 1; i >= 0; i--) {
 					 results.addLayer(L.marker(data.results[i].latlng));
-					 console.log(data.results[i].latlng);
-					 console.log(data);
 					 getAseos(data.results[i].latlng.lat,data.results[i].latlng.lng);
 			 }
 	 });
@@ -122,12 +120,15 @@ function setVista(x,y){
 }
 
 function cambiarInfoFicha(data){
-	document.getElementById("imgWC").src="/storage/fotos/"+data.foto;
+	console.log(data.foto);
+	if(data.foto == 'wc.jpg'){
+		document.getElementById("imgWC").src = "/img/"+data.foto;
+	}else{
+		document.getElementById("imgWC").src="/storage/fotos/"+data.foto;
+	}
 	document.getElementById("nombre").innerHTML=data.nombre;
 	document.getElementById("dir").innerHTML=data.dir;
 	document.getElementById("horario").innerHTML=data.horas24 == 1?"24 horas":data.horarioApertura+"-"+data.horarioCierre;
 	document.getElementById("precio").innerHTML=data.precio==null?"GRATIS": data.precio+" €";
 	document.getElementById("accesible").innerHTML=data.accesibilidad==1?"Accesible":"No accesible";
 }
-
-
