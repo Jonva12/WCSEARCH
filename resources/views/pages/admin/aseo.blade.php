@@ -5,7 +5,13 @@
   @section('content')
 <div class="container">
 	<h1>Aseo numero: {{$aseo->id}} ({{$aseo->nombre}})</h1>
-	<a href="#" class="btn btn-info">Comprobar aseo</a> <a href="#" class="btn btn-danger">Borrar aseo</a> 
+	<a href="{{route('home',['latitud'=>$aseo->latitud, 'longitud'=>$aseo->longitud])}}" class="btn btn-info">Comprobar aseo</a> 
+	@if($aseo->oculto==null)
+	<a href="{{route('admin.aseo.ocultar',$aseo->id)}}" class="btn btn-danger">Ocultar</a>
+	@else
+	<a href="{{route('admin.aseo.mostrar',$aseo->id)}}" class="btn btn-danger">Mostrar</a>
+	@endif
+
 	<table>
 		<tr>
 			<th>Id</th>

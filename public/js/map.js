@@ -77,6 +77,7 @@ var aseoIcon = L.icon({
 
 function getAseos(x,y){
 	limpiarMapaAseos();
+	setVista(x,y);
 	var loc={latitud: x, longitud: y}
 	$.get( "/api/mapa/getAseos/", loc, function( data ) {
 		for (var i=0;i<data.length;i++){
