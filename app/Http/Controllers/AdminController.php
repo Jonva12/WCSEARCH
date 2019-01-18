@@ -137,10 +137,8 @@ class AdminController extends Controller
             $usuarios=array();
             $aseos=array();
             for ($i=1;$i<13;$i++){
-                $linea=DB::table('users')
-                    ->whereYear('created_at', $year)->whereMonth('created_at',$i)->count();
-                $linea2=DB::table('aseos')
-                    ->whereYear('created_at', $year)->whereMonth('created_at',$i)->count();
+                $linea=DB::table('users')->whereYear('created_at', $year)->whereMonth('created_at',$i)->count();
+                $linea2=DB::table('aseos')->whereYear('created_at', $year)->whereMonth('created_at',$i)->count();
                 array_push($lineas,['mes'=>$i,'usuarios'=>$linea,'aseos'=>$linea2]);
             }
 
