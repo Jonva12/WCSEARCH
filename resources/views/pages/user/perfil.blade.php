@@ -52,7 +52,7 @@
 											<td>{{$a->comentarios->count()}}</td>
 											<td>{{$a->reportes->count()}}</td>
 											<td>
-												<a class="btn btn-primary" href="{{route('wc.ficha', $a->id)}}">Ver</a>
+												<a class="btn btn-primary" href="">Ver</a>
 												<a class="btn btn-danger" onclick="return confirm('¿Estas seguro?')" href="{{route('wc.ocultar', $a->id)}}">Eliminar</a>
 											</td>
 										</tr>

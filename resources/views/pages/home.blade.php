@@ -40,7 +40,7 @@
       <div class="atras" onclick="volver()">
         <i class="fas fa-arrow-left fa-2x"></i>
       </div>
-      <img src="/storage/fotos/wc.jpg" alt="Imagen no disponible" id="imgWC">
+      <img alt="Imagen no disponible" id="imgWC">
       <div class="general">
         <h1 id="nombre"></h1>
         <p>Puntuacion: <b id="puntuacion"></b></p>
