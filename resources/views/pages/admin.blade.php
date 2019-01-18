@@ -10,16 +10,16 @@
 
     function drawChart() {
        	var data = google.visualization.arrayToDataTable([
-        ['mes', 'usuarios', 'aseos'],
+        ['@lang("adminContent.months")', '@lang("adminContent.users")', '@lang("adminContent.wc")'],
         @foreach($lineas as $grafico1)
             [{{$grafico1['mes']}},{{$grafico1['usuarios']}}, {{$grafico1['aseos']}}],
         @endforeach
     ]);
 
     var options = {
-        title: 'Usuarios Mensuales',
-        hAxis: {title: 'Meses',  titleTextStyle: {color: '#333'}},
-        vAxis: {title: 'Usuarios', titleTextStyle: {color: '#333'}, minValue: 0, maxValue: 10}
+        title: '@lang("adminContent.monthly")',
+        hAxis: {title: '@lang("adminContent.months")',  titleTextStyle: {color: '#333'}},
+        vAxis: {title: '@lang("adminContent.users")', titleTextStyle: {color: '#333'}, minValue: 0, maxValue: 10}
     };
 
     var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
@@ -54,7 +54,7 @@
 	</div>
 	<form id="form-year">
 		<input type="number" name="year">
-		<input type="submit" name="enviar" value="Cambiar año">
+		<input type="submit" name="enviar" value='@lang("adminContent.yearChange")'>
 	</form>
 	<div id="chart_div" style="width: 100%; height: 500px;"></div>
 @endsection
