@@ -8,6 +8,7 @@
     }
     aside img{
       width: 100%;
+      height: 300px;
     }
     aside .general{
       color: white;
