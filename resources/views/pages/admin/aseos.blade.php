@@ -4,6 +4,15 @@
 
   @section('content')
 <div class="container">
+  <div>
+    <form action="{{route('admin.aseos')}}" method="get">
+      <input type="text" name="nombre" placeholder="Nombre de aseo">
+      <input type="text" name="direccion" placeholder="Direccion">
+      <input type="checkbox" id="ocultos" name="ocultos">
+      <label for="ocultos">Mostrar ocultos</label>
+      <input type="submit" value="Filtrar">
+    </form>
+  </div>
 	<table>
 		<tr>
 			<th>Id</th>
@@ -45,10 +54,5 @@
 			</tr>
 		@endif
 	</table>
-	@if($ocultos==true)
-		<a href="{{route('admin.aseos')}}" class="btn btn-danger">Listar aseos</a>
-	@else
-		<a href="{{route('admin.aseos',true)}}" class="btn btn-danger">Listar ocultos</a>
-	@endif
 </div>
 @endsection

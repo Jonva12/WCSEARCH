@@ -4,6 +4,22 @@
 
   @section('content')
 <div class="container">
+  <div>
+    <form action="{{route('admin.usuarios')}}" method="get">
+      <input type="text" name="nombre" placeholder="Nombre de usuario">
+      <input type="text" name="email" placeholder="Email">
+      Rol:
+      <select name="rol">
+        <option value="0">Todos</option>
+        <option value="1">Normal</option>
+        <option value="2">Golden</option>
+        <option value="3">Admin</option>
+      </select>
+      <input type="checkbox" id="baneados" name="baneados">
+      <label for="baneados">Mostrar baneados</label>
+      <input type="submit" value="Filtrar">
+    </form>
+  </div>
 	<table>
 		<tr>
 			<th>Id</th>
@@ -27,14 +43,14 @@
 			<td>{{$u->reportes}}</td>
 			<td>
 			@if($baneados==true)
-			
+
 				{{$u->fecha_de_baneo}}
 			</td>
 			<td>
 				<a href="{{route('admin.usuario.desbanear',$u->id)}}" class="btn btn-danger">Desbanear</a>
 			@else
 				<a href="{{route('admin.usuario.banear',$u->id)}}" class="btn btn-danger">Banear</a>
-			
+
 			@endif
 				<a href="{{route('admin.usuario.editar',$u->id)}}" class="btn btn-primary">Editar</a>
 			</td>
@@ -46,12 +62,8 @@
 			</tr>
 		@endif
 	</table>
-	@if($baneados==true)
-		<a href="{{route('admin.usuarios')}}" class="btn btn-danger">Listar usuarios</a>
-	@else
-		<a href="{{route('admin.usuarios',true)}}" class="btn btn-danger">Listar baneados</a>
-	@endif
 
-	
+
+
 </div>
 @endsection
