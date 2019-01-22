@@ -40,9 +40,12 @@ class BathController extends Controller
       if($foto == ''){
         $aseo->foto = 'wc.jpg';
       }else{
-        $extension = $foto->getClientOriginalExtension();
-        Storage::disk('public')->put($foto->getFileName().'.'.$extension, File::get($foto));
-        $aseo->foto = $foto->getFileName(). '.' .$extension;
+        // $extension = $foto->getClientOriginalExtension();
+        // Storage::disk('public')->put($foto->getFileName().'.'.$extension, File::get($foto));
+        $image64 = base64_encode(file_get_contents($foto));
+        $aseo->foto = $image64;
+        return $image64; 
+        //$aseo->foto = $foto->getFileName(). '.' .$extension;
         // $request->foto->storeAs($pathToFile);
       }
       $aseo->precio = $request->input('precio');
