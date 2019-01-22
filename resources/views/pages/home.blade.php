@@ -100,7 +100,7 @@
       </div>
     </aside>
     <section id="section" class="col-md-12">
-      <div id="mapid">
+      <div id="mapid" onload="actualizarAseos()">
 
       </div>
     </section>
