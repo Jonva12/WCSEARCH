@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="{{ asset('css/user.css')}}">
     <link rel="stylesheet" href="{{ asset('/assets/vendor/leaflet/leaflet.css')}}">
     <script src="{{ asset('/assets/vendor/leaflet/leaflet.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('js/enlace.js')}}"></script>
 
     @yield('script')
 </head>

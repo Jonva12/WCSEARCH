@@ -27,6 +27,17 @@
       color: green;
       padding: 10px;
     }
+    #error_zoom{
+      color: white;
+      width: 100%;
+      height: 50px;
+      text-align: center;
+      background-color: #778899;
+      margin-top: 0px;
+      margin-left: auto;
+      margin-right: auto;
+      display: hidden;
+    }
   </style>
 
 </head>
@@ -100,7 +111,10 @@
       </div>
     </aside>
     <section id="section" class="col-md-12">
-      <div id="mapid" onload="actualizarAseos()">
+      <div id="error_zoom">
+        <p><h3>Haz zoom o realiza una busqueda para visualizar los aseos</h3></p>
+      </div>
+      <div id="mapid">
 
       </div>
     </section>
