@@ -42,9 +42,41 @@ class BathController extends Controller
       }else{
         // $extension = $foto->getClientOriginalExtension();
         // Storage::disk('public')->put($foto->getFileName().'.'.$extension, File::get($foto));
-        $image64 = base64_encode(file_get_contents($foto));
-        $aseo->foto = $image64;
-        return $image64; 
+        $image64 = base64_encode(file_get_contents($foto)); //pasar la foto a base64
+
+          //llamar a la api y subir la imagen
+          $curl = curl_init();
+
+          $client_id = "1cb45b7462006f";
+
+          $token = "968ce1bbb9d5c880ba1974cfe4463f951645f7c7";
+
+          curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.imgur.com/3/image",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => false,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => array('image' => $image64),
+            CURLOPT_HTTPHEADER => array(
+              // "Authorization: Client-ID {{1cb45b7462006f}}",
+              "Authorization: Bearer ".$token //nuestro token para acceder a ala api
+            ),
+          ));
+          $response = curl_exec($curl);
+          $err = curl_error($curl);
+
+          curl_close($curl);
+
+          if ($err) {
+            echo "cURL Error #:" . $err;
+          } else {
+            $json = json_decode($response);
+            $aseo->foto = $json->data->link; //pilla link de la api
+          }
         //$aseo->foto = $foto->getFileName(). '.' .$extension;
         // $request->foto->storeAs($pathToFile);
       }
