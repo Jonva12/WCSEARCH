@@ -20,6 +20,13 @@
 				@else
 					<h2>Sus aseos</h2>
 				@endif
+				<div>
+				    <form action="{{route('usuario.perfil', $usuario->id)}}" method="get">
+				    	<input type="text" name="nombre" placeholder="Nombre de aseo">
+				    	<input type="text" name="direccion" placeholder="Direccion">
+				    	<input type="submit" value="Filtrar">
+				    </form>
+				</div>
 					<table class="table table-hover">
 						<thead>
 							<tr>
@@ -31,7 +38,7 @@
 							</tr>
 						</thead>
 						<tbody>
-								@if($usuario->aseos->count()==0)
+								@if($aseos->count()==0)
 								<tr>
 									<td colspan="5">
 										@if($usuario->id==Auth::user()->id && $usuario->role->nombre=="normal")
@@ -44,19 +51,18 @@
 									</td>
 								</tr>
 								@else
-									@foreach($usuario->aseos as $a)
-                    @if($a->oculto == null)
+									@foreach($aseos as $a)
+                    	
 										<tr>
 											<td>{{$a->nombre}}</td>
 											<td>{{$a->dir}}</td>
 											<td>{{$a->comentarios->count()}}</td>
 											<td>{{$a->reportes->count()}}</td>
 											<td>
-												<a class="btn btn-primary" href="">Ver</a>
+												<a class="btn btn-primary" href="{{route('home',['latitud'=>$a->latitud, 'longitud'=>$a->longitud])}}">Ver</a>
 												<a class="btn btn-danger" onclick="return confirm('¿Estas seguro?')" href="{{route('wc.ocultar', $a->id)}}">Eliminar</a>
 											</td>
 										</tr>
-                    @endif
 									@endforeach
 								@endif
 						</tbody>

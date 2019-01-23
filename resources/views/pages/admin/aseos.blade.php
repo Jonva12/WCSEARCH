@@ -18,6 +18,7 @@
 			<th>Id</th>
 			<th>Nombre</th>
 			<th>Direccion</th>
+			<th>Autor</th>
 			<th>Reportes</th>
 			@if($ocultos==true)
 				<th>Fecha de ocultacion
@@ -29,6 +30,7 @@
 				<td>{{$a->id}}</td>
 				<td>{{$a->nombre}}</td>
 				<td>{{$a->dir}}</td>
+				<td>{{$a->usuario->name}}</td>
 				<td>{{$a->reportes->count()}}</td>
 				@if($ocultos==true)
 					<td>

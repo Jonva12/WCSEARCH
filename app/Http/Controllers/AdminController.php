@@ -145,14 +145,14 @@ class AdminController extends Controller
     //MENSAJES
 	public function mensajes(Request $request){
 		$mensajes=Message::where('respondido',null);
-    $n=$request->input('nombre');
-    if($n!=null && $n!=""){
-      $mensajes=$mensajes->where('name', 'like', '%'.$n.'%');
-    }
-    $n=$request->input('email');
-    if($n!=null && $n!=""){
-      $mensajes=$mensajes->where('email', 'like', '%'.$n.'%');
-    }
+        $n=$request->input('nombre');
+        if($n!=null && $n!=""){
+          $mensajes=$mensajes->where('name', 'like', '%'.$n.'%');
+        }
+        $n=$request->input('email');
+        if($n!=null && $n!=""){
+          $mensajes=$mensajes->where('email', 'like', '%'.$n.'%');
+        }
 		return view('pages/admin/mensajes', array('mensajes'=>$mensajes->get()));
 	}
 	public function eliminarMensaje($id){

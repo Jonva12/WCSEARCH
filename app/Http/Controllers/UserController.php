@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use Hash;
+use App\Aseo;
 
 class UserController extends Controller
 {
@@ -23,7 +24,7 @@ class UserController extends Controller
         return view('pages/user/ajustes');
     }
 
-    public function perfil($id=-1){
+    public function perfil(Request $request, $id=-1){
         if($id==-1){
             $id=Auth::user()->id;
         }
@@ -33,8 +34,19 @@ class UserController extends Controller
                 return redirect()->route('sinPermisos');
             } 
         }
+
+        $aseos=Aseo::where('user_id', $id);
+        $n=$request->input('nombre');
+        if($n!=null && $n!=""){
+          $aseos=$aseos->where('nombre', 'like', '%'.$n.'%');
+        }
+        $n=$request->input('direccion');
+        if($n!=null && $n!=""){
+          $aseos=$aseos->where('dir', 'like', '%'.$n.'%');
+        }
+
         
-		return view('pages/user/perfil', array('usuario'=>$usuario));
+		return view('pages/user/perfil', array('usuario'=>$usuario, 'aseos'=>$aseos->get()));
 	}
     
     public function cambiarDatos(Request $request){
