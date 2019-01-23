@@ -150,7 +150,7 @@ function cambiarInfoFicha(data){
 	if(data.foto == 'wc.jpg'){
 		document.getElementById("imgWC").src = "/img/"+data.foto;
 	}else{
-		document.getElementById("imgWC").src="/uploads/"+data.foto;
+		document.getElementById("imgWC").src=data.foto; //link de la foto
 	}
 	document.getElementById("nombre").innerHTML=data.nombre;
 	document.getElementById("dir").innerHTML=data.dir;

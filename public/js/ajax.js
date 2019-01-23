@@ -44,3 +44,24 @@ function leer(id){
 		getNotificaciones();
 	});
 }
+
+function uploadImage(image64){
+	var form = new FormData();
+form.append("image", "imagen en base 64");
+
+var settings = {
+  "url": "https://api.imgur.com/3/image",
+  "method": "POST",
+  "timeout": 0,
+  "headers": {
+    "Authorization": "Client-ID {{clientId}}"
+  },
+  "processData": false,
+  "mimeType": "multipart/form-data",
+  "contentType": false,
+  "data": form
+};
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+}
