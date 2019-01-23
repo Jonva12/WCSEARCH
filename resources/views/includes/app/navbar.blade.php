@@ -30,8 +30,9 @@
                     <li class="nav-item">
                       @if(Auth::user()->role->nombre == 'normal')
                         <a id="createWC" class="nav-link" class="link" onclick="alert('No eres golden. Necesitas 100 puntos para poder crear baños.')" href="#">Crear WC</a>
-                      @else
-                        <a id="createWC" class="nav-link" class="link" href="{{route('wc.form')}}">Crear WC</a>
+                        @elseif(Auth::user()->role->nombre == 'admin') 
+                        @else
+                            <a id="createWC" class="nav-link" class="link" href="{{route('wc.form')}}">Crear WC</a>
                       @endif
                     </li>
                     <li class="nav-item dropdown">
