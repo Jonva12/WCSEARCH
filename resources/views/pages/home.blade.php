@@ -87,10 +87,13 @@
         <hr>
         <div>
           <h2>Comentarios</h2>
-          <form>
-            <input type="text" placeholder="Escribe tu comentario"><input type="submit" value="Comentar">
+          <form action="#" onsubmit="return enviarComentario(event)">
+            <input id="aseoComentario" type="text"/>
+            <input id="userComentario" type="text" value="{{Auth::user()->id}}" />
+            <input id="textComentario" type="text" placeholder="Escribe tu comentario"/>
+            <input type="submit" value="Comentar">
           </form>
-          <div class="comentarios">
+          <div id="comentarios">
             <div class="comentario">
               <p class="usuario">Juan</p>
               <p class="fecha">2018-12-10</p>

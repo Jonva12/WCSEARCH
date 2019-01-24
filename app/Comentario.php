@@ -9,7 +9,7 @@ use App\Aseo;
 class Comentario extends Model
 {
     public function usuario(){
-    	return $this->belongsTo('App\User');
+    	return $this->belongsTo('App\User', 'user_id');
     }
 
     public function aseo(){
