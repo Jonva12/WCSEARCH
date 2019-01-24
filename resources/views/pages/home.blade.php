@@ -38,6 +38,18 @@
       margin-right: auto;
       display: hidden;
     }
+    .alert{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-left: 5%;
+      margin-right: 5%;
+      border: 0.5px solid #857B26;
+      box-shadow: 1px 1.5px 2px 1px #857B26; 
+    }
+    .fa-times{
+      font-size: 2em;
+    }
   </style>
 
 </head>
@@ -46,6 +58,9 @@
 @else
   <body>
 @endif
+  @if(Session::has('status'))
+  <div id="alert" class="alert {{ Session::get('alert-class', 'alert-warning') }}"><div>{{ Session::get('status') }}</div><i class="fas fa-times" onclick="cerrar()"></i></div>
+  @endif
   <div class="container-fluid">
   <div class="row">
     <aside id="aside" class="col-md-3" hidden>
@@ -142,6 +157,10 @@
                 mapaSection.classList.remove('col-md-9');
                 mapaSection.classList.add('col-md-12');
                 aside.hidden = true;
+            }
+
+            function cerrar(){
+              document.getElementById("alert").remove();
             }
   </script>
   @endsection

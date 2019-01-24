@@ -28,11 +28,7 @@
                     </li>
                 @else
                     <li class="nav-item">
-                      @if(Auth::user()->role->nombre == 'normal')
-                        <a id="createWC" class="nav-link" class="link" onclick="alert('No eres golden. Necesitas 100 puntos para poder crear baños.')" href="#">Crear WC</a>
-                      @else
-                        <a id="createWC" class="nav-link" class="link" href="{{route('wc.form')}}">Crear WC</a>
-                      @endif
+                      <a id="createWC" class="nav-link" class="link" href="{{route('wc.form')}}">Crear WC</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre id="notificaciones_nav" onclick="getNotificaciones()"><i id="navbarDropdown" class="fa fa-bell"></i></a>

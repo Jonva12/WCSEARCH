@@ -37,9 +37,9 @@
 										@if($usuario->id==Auth::user()->id && $usuario->role->nombre=="normal")
 											Necesitas mas nivel para poder crear tus propios baños
 										@elseif($usuario->id==Auth::user()->id )
-											Todavia no has creado ningun aseo
+											Todavia no has creado ningun aseo, tienes opcion de crear un 1 aseo. Con 100 puntos aseos ilimitados.
 										@else
-											No ha creado ningun aseo
+											No has creado ningun aseo, tienes opcion de crear un 1 aseo sin tener 100 puntos.
 										@endif
 									</td>
 								</tr>

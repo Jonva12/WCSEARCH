@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
 use App\Aseo;
 use Auth;
+
 
 class BathController extends Controller
 {
@@ -15,8 +17,11 @@ class BathController extends Controller
         $this->middleware(array('auth', 'verified'));
     }
 
-    public function form(){
-      if(Auth::user()->role->nombre == 'normal'){
+    public function form(Request $request){
+      $aseos = DB::table('aseos')->where('user_id', Auth::user()->id)->get()->count();
+      if(Auth::user()->role->nombre == 'normal' && $aseos == 1){
+        return back()->with('status', 'Ya has creado 1 Baño. Necesitas 100 puntos para poder crear baños ilimitados.');
+        // $request->session()->flash('status', 'No eres golden. Necesitas 100 puntos para poder crear baños.');
         return view('pages.home');
       }else{
         return view('pages.createWC');
