@@ -346,7 +346,3 @@ header.masthead p {
 .home-post:hover{
   box-shadow: 5px 5px 10px lightgrey;
 }
-
-#imgWC{
-  object-fit: contain;
-}
