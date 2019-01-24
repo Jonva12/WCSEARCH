@@ -4,11 +4,21 @@
 
   @section('content')
 <div class="container">
+  <div>
+    <form action="{{route('admin.aseos')}}" method="get">
+      <input type="text" name="nombre" placeholder="Nombre de aseo">
+      <input type="text" name="direccion" placeholder="Direccion">
+      <input type="checkbox" id="ocultos" name="ocultos">
+      <label for="ocultos">Mostrar ocultos</label>
+      <input type="submit" value="Filtrar">
+    </form>
+  </div>
 	<table>
 		<tr>
 			<th>Id</th>
 			<th>Nombre</th>
 			<th>Direccion</th>
+			<th>Autor</th>
 			<th>Reportes</th>
 			@if($ocultos==true)
 				<th>Fecha de ocultacion
@@ -20,6 +30,7 @@
 				<td>{{$a->id}}</td>
 				<td>{{$a->nombre}}</td>
 				<td>{{$a->dir}}</td>
+				<td>{{$a->usuario->name}}</td>
 				<td>{{$a->reportes->count()}}</td>
 				@if($ocultos==true)
 					<td>
@@ -45,10 +56,5 @@
 			</tr>
 		@endif
 	</table>
-	@if($ocultos==true)
-		<a href="{{route('admin.aseos')}}" class="btn btn-danger">Listar aseos</a>
-	@else
-		<a href="{{route('admin.aseos',true)}}" class="btn btn-danger">Listar ocultos</a>
-	@endif
 </div>
 @endsection

@@ -4,6 +4,13 @@
 
   @section('content')
 <div class="container">
+  <div>
+    <form action="{{route('admin.mensajes')}}" method="get">
+      <input type="text" name="nombre" placeholder="Nombre de usuario">
+      <input type="text" name="email" placeholder="Email">
+      <input type="submit" value="Filtrar">
+    </form>
+  </div>
 	<table>
 		<tr>
 			<th>Id</th>

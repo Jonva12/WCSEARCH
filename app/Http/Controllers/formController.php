@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Message;
 use App\Http\Controllers\Controller;
 use App\Notification;
-
+use App\User;
 
 class formController extends Controller
 {
@@ -17,7 +17,7 @@ class formController extends Controller
 			'mensaje'=>'required|min:1|max:255']
 		);
 
-    	$data = new Message; 
+    	$data = new Message;
 
     	//pillar los daos del input
 
@@ -25,7 +25,7 @@ class formController extends Controller
     	$data->email=$request->input('email');
     	$data->message=$request->input('mensaje');
 
-    	$data->save(); 
+    	$data->save();
 
         $admins=User::join('roles','users.role_id','roles.id')->where('roles.nombre','admin')->get();
         foreach ($admins as $admin) {
@@ -35,6 +35,6 @@ class formController extends Controller
             $n->save();
         }
 
-    	return view('pages/index'); 
+    	return view('pages/index');
     }
 }
