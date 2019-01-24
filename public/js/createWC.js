@@ -36,6 +36,7 @@ $('#horas24').change(function(){
   }
   
 });
+
 var marker1 = null;
 function onMapClick(e) {
   if (marker1 !== null) {

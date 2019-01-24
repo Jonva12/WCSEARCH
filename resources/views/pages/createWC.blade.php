@@ -10,7 +10,7 @@
   <form method="post" action="{{route('wc.create')}}" enctype="multipart/form-data">
     @csrf
       <p><label>Nombre:</label><input type="text"name="nombre" class="form-control" value=""></p>
-      <p>Dirección: (Busca la dirección mediante el buscador)</p>
+      <p>Dirección: (Haz click para colocar el marcador)</p>
       <div id="mapid"></div>
       <input type="text" id="latitud" name="latitud" value="" hidden>
       <input type="text" id="longitud" name="longitud" value="" hidden>

@@ -1,17 +1,19 @@
 var mapa = L.map('mapid').setView([43.3073225, -1.9914354], 13);
 mapa.addEventListener('moveend', function(ev) {
-   var centro=mapa.getCenter();
-   var zoom=mapa.getZoom();
-   if(zoom<12){
-   		limpiarMapaAseos();
-   		document.getElementById('error_zoom').style.display='block';
-   }else{
-   		getAseos(centro.lat,centro.lng);
-   		document.getElementById('error_zoom').style.display='none';
-   }
-   //lat = ev.latlng.lat;
-   //lng = ev.latlng.lng;
-   console.log(centro, zoom);
+	if (document.getElementById("error_zoom")) {
+	   var centro=mapa.getCenter();
+	   var zoom=mapa.getZoom();
+	   if(zoom<12){
+	   		limpiarMapaAseos();
+	   		document.getElementById('error_zoom').style.display='block';
+	   }else{
+	   		getAseos(centro.lat,centro.lng);
+	   		document.getElementById('error_zoom').style.display='none';
+	   }
+	   //lat = ev.latlng.lat;
+	   //lng = ev.latlng.lng;
+	   console.log(centro, zoom);
+	}
 });
 
 var baselayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
