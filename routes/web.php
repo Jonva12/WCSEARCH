@@ -86,6 +86,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 //     return view('pages/fichaWC');
 // });
 Route::get('/createWC', 'BathController@form')->name('wc.form');
+Route::get('/editWC/{id}', 'BathController@edit')->name('wc.edit');
 Route::post('/fichaCreated','BathController@create')->name('wc.create');
 Route::get('/eliminar/{id}', 'BathController@ocultarAseo')->name('wc.ocultar');
 

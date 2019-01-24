@@ -122,7 +122,7 @@
               <p>Vendo opel corsa</p>
             </div>
             <div>
-              <input type="button" name="editar" value="Editar">
+              <a href="#"><input type="button" name="editar" value="Editar"></a>
             </div>
           </div>
         </div>
