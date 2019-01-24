@@ -80,7 +80,7 @@ form{
   }
 }
 #imgWC{
-  object-fit: contain;
+  object-fit: cover;
 }
 
 #atrasServicio{
