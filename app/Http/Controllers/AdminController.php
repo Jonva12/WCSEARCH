@@ -44,28 +44,49 @@ class AdminController extends Controller
                 array_push($lineas,['mes'=>$i,'usuarios'=>$linea,'aseos'=>$linea2]);
             }
         }
-        
-            
+
+
     	return view('pages/admin', array('usuarios' => $usuarios, 'aseos' => $aseos, 'message' => $message, 'lineas'=>$lineas));
     }
 
     //USUARIOS
-    public function usuarios($baneados = false){
-        if ($baneados){
-            $usuarios=User::where('fecha_de_baneo', '!=', null)->get();
+    public function usuarios(Request $request){
+        if ($request->input('baneados')=="on"){
+            $usuarios=User::where('fecha_de_baneo', '!=', null);
         }else{
-            $usuarios=User::where('fecha_de_baneo', null)->get();
+            $usuarios=User::where('fecha_de_baneo', null);
         }
-		
-		return view('pages/admin/usuarios', array('usuarios'=>$usuarios, 'baneados'=>$baneados));
+        $n=$request->input('nombre');
+        if($n!=null && $n!=""){
+          $usuarios=$usuarios->where('name', 'like', '%'.$n.'%');
+        }
+        $n=$request->input('email');
+        if($n!=null && $n!=""){
+          $usuarios=$usuarios->where('email', 'like', '%'.$n.'%');
+        }
+        $n=$request->input('rol');
+        if($n!=null && $n!="" && $n!=0 && $n!="0"){
+          $usuarios=$usuarios->where('role_id', $n);
+        }
+
+
+		return view('pages/admin/usuarios', array('usuarios'=>$usuarios->get(), 'baneados'=>$request->input('baneados')=="on"));
 	}
-    
+
     public function banearUsuario($id){
         $usuario=User::where('id',$id)->first();
         $usuario->fecha_de_baneo=new \DateTime();
         $usuario->save();
         return redirect()->route('admin.usuarios');
     }
+
+    public function validarUsuario($id){
+        $usuario=User::where('id',$id)->first();
+        $usuario->email_verified_at = new \DateTime();
+        $usuario->save();
+        return redirect()->route('admin.usuarios');
+    }
+
 
     public function desbanearUsuario($id){
         $usuario=User::where('id',$id)->first();
@@ -75,14 +96,22 @@ class AdminController extends Controller
     }
 
     //ASEOS
-	public function aseos($ocultos = false){
-        if ($ocultos){
-            $aseos=Aseo::where('oculto', '!=', null)->get();
+	public function aseos(Request $request){
+        if ($request->input('ocultos')=="on"){
+            $aseos=Aseo::where('oculto', '!=', null);
         }else{
-            $aseos=Aseo::where('oculto', null)->get();
+            $aseos=Aseo::where('oculto', null);
         }
-		
-		return view('pages/admin/aseos', array('aseos'=>$aseos, 'ocultos' => $ocultos));
+        $n=$request->input('nombre');
+        if($n!=null && $n!=""){
+          $aseos=$aseos->where('nombre', 'like', '%'.$n.'%');
+        }
+        $n=$request->input('direccion');
+        if($n!=null && $n!=""){
+          $aseos=$aseos->where('dir', 'like', '%'.$n.'%');
+        }
+
+		return view('pages/admin/aseos', array('aseos'=>$aseos->get(), 'ocultos' => $request->input('ocultos')=="on"));
 	}
 
 	public function aseo($id){
@@ -94,7 +123,7 @@ class AdminController extends Controller
 		$aseo=Aseo::where('id',$id)->first();
 		$aseo->oculto=new \DateTime();
 		$aseo->save();
-		
+
 		$n=new Notification;
 		$n->tipo="ocultarAseo";
 		$n->para=$aseo->user_id;
@@ -122,9 +151,17 @@ class AdminController extends Controller
     }
 
     //MENSAJES
-	public function mensajes(){
-		$mensajes=Message::all();
-		return view('pages/admin/mensajes', array('mensajes'=>$mensajes));
+	public function mensajes(Request $request){
+		$mensajes=Message::where('respondido',null);
+        $n=$request->input('nombre');
+        if($n!=null && $n!=""){
+          $mensajes=$mensajes->where('name', 'like', '%'.$n.'%');
+        }
+        $n=$request->input('email');
+        if($n!=null && $n!=""){
+          $mensajes=$mensajes->where('email', 'like', '%'.$n.'%');
+        }
+		return view('pages/admin/mensajes', array('mensajes'=>$mensajes->get()));
 	}
 	public function eliminarMensaje($id){
         Message::where('id',$id)->delete();

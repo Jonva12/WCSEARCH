@@ -79,3 +79,6 @@ form{
     box-shadow: 2px 3px 3px 2px #3c3c3b;
   }
 }
+#imgWC{
+  object-fit: contain;
+}
