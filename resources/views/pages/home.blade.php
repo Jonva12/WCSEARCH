@@ -24,7 +24,7 @@
       margin-top: -20px;
     }
     .fa-arrow-left{
-      color: green;
+      color: white;
       padding: 10px;
     }
     #error_zoom{
@@ -64,7 +64,7 @@
   <div class="container-fluid">
   <div class="row">
     <aside id="aside" class="col-md-3" hidden>
-      <div class="atras" onclick="volver()">
+      <div class="atras" id="atrasServicio" onclick="volver()">
         <i class="fas fa-arrow-left fa-2x"></i>
       </div>
       <img alt="Imagen no disponible" id="imgWC">
