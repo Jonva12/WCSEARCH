@@ -37,21 +37,24 @@
 		<tr>
 			<td>{{$u->id}}</td>
 			<td>{{$u->name}}</td>
-			<td>{{$u->email}}</td>
+			<td>{{$u->email}} <b>{{$u->email_verified_at==null?"(sin verificar)":""}}</b></td>
 			<td>{{$u->role->nombre}}</td>
 			<td>{{$u->puntuacion}}</td>
 			<td>{{$u->reportes}}</td>
 			<td>
 			@if($baneados==true)
-
 				{{$u->fecha_de_baneo}}
 			</td>
 			<td>
+				
 				<a href="{{route('admin.usuario.desbanear',$u->id)}}" class="btn btn-danger">Desbanear</a>
 			@else
 				<a href="{{route('admin.usuario.banear',$u->id)}}" class="btn btn-danger">Banear</a>
 
 			@endif
+				@if($u->email_verified_at==null)
+					<a href="{{route('admin.usuario.validar',$u->id)}}" class="btn btn-secondary">Validar</a>
+				@endif
 				<a href="{{route('admin.usuario.editar',$u->id)}}" class="btn btn-primary">Editar</a>
 			</td>
 		</tr>

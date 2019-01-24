@@ -80,6 +80,14 @@ class AdminController extends Controller
         return redirect()->route('admin.usuarios');
     }
 
+    public function validarUsuario($id){
+        $usuario=User::where('id',$id)->first();
+        $usuario->email_verified_at = new \DateTime();
+        $usuario->save();
+        return redirect()->route('admin.usuarios');
+    }
+
+
     public function desbanearUsuario($id){
         $usuario=User::where('id',$id)->first();
         $usuario->fecha_de_baneo=null;
