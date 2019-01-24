@@ -81,5 +81,9 @@ form{
   }
 }
 #imgWC{
-  object-fit: contain;
+  object-fit: cover;
+}
+
+#atrasServicio{
+  background-color: #28a745;
 }
