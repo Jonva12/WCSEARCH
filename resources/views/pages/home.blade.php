@@ -121,6 +121,9 @@
               <p class="fecha">2018-12-10</p>
               <p>Vendo opel corsa</p>
             </div>
+            <div>
+              <input type="button" name="editar" value="Editar">
+            </div>
           </div>
         </div>
       </div>
