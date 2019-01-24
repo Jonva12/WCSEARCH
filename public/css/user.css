@@ -1,6 +1,7 @@
 .navbar{
   background-color: rgb(40, 167, 69);
   font-family: sans-serif;
+  position: static;
 }
 .navbar-brand{
   width: 50%;
