@@ -80,5 +80,5 @@ form{
   }
 }
 #imgWC{
-  object-fit: contain;
+  resize: contain;
 }
