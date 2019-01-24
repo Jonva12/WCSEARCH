@@ -1,6 +1,7 @@
 .navbar{
   background-color: rgb(40, 167, 69);
   font-family: sans-serif;
+  position: static;
 }
 .navbar-brand{
   width: 50%;
@@ -78,4 +79,11 @@ form{
     border-radius: 5px;
     box-shadow: 2px 3px 3px 2px #3c3c3b;
   }
+}
+#imgWC{
+  object-fit: cover;
+}
+
+#atrasServicio{
+  background-color: #28a745;
 }

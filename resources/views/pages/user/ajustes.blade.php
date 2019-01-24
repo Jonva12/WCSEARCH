@@ -3,6 +3,9 @@
   @section('title', 'WCSearch')
 
   @section('content')
+  @if(Session::has('status'))
+    <div id="alert" class="alert {{ Session::get('alert-class', 'alert-warning') }}"><div>{{ Session::get('status') }}</div><i id="x" class="fas fa-times" onclick="cerrar()"></i></div>
+  @endif
 	<div class="container">
 		<h1>Ajustes de usuario</h1>
 		@if ($errors->any())
