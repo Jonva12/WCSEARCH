@@ -135,13 +135,10 @@ function markerOnClick(e){
     aside.hidden = false;
 	setVista(e.latlng.lat,e.latlng.lng);
 	var aseo={id: e.target.aseo};
-
-
  	$.get( "/api/mapa/getAseo/"+ e.target.aseo, function( data ) {
 		cambiarInfoFicha(data);
 	});
-
-
+	getComentarios(e.target.aseo);
 }
 function setVista(x,y){
 	mapa.setView([x, y],16);
@@ -159,4 +156,33 @@ function cambiarInfoFicha(data){
 	document.getElementById("horario").innerHTML=data.horas24 == 1?"24 horas":data.horarioApertura+"-"+data.horarioCierre;
 	document.getElementById("precio").innerHTML=data.precio==null?"GRATIS": data.precio+" €";
 	document.getElementById("accesible").innerHTML=data.accesibilidad==1?"Accesible":"No accesible";
+	document.getElementById("aseoComentario").value=data.id;
+}
+
+function getComentarios(idAseo){
+
+ 	$.get( "/api/comentarios/"+idAseo , function( data ) {
+ 		var comentarios="";
+ 		if (data.length==0){
+			comentarios="<i>No hay comentarios</i>";
+		}else{
+			for(var i=0;i<data.length;i++){
+				comentarios+='<div class="comentario"><p class="usuario">'+data[i].usuario.name+'</p><p class="fecha">'+data[i].created_at+'</p><p>'+data[i].text+'</p><div class="botones-like"><i class="fas fa-thumbs-up"></i><i class="far fa-thumbs-down"></i></div></div>';
+			}
+			document.getElementById("comentarios").innerHTML=comentarios;
+		}
+	});
+}
+
+function enviarComentario(e){
+	e.preventDefault();
+	var aseo=document.getElementById("aseoComentario").value;
+	var usuario=document.getElementById("userComentario").value;
+	var text=document.getElementById("textComentario").value;
+	var data={ aseoId:aseo, userId:usuario, text:text};
+	$.post( "/api/comentarios/", data, function( data ) {
+		console.log(data);
+		getComentarios(aseo);
+	});
+	return false;
 }
