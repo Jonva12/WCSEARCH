@@ -22,7 +22,7 @@
     <div id="app">
 
       @include('includes.app.navbar')
-        <div>
+        <div id="container">
             @yield('content')
         </div>
     </div>

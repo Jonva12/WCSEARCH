@@ -1,3 +1,11 @@
+#container{
+  background-image: url('../img/map.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#formWC{
+  background-color: white;
+}
 p{
   display: flex;
   justify-content: space-between;
@@ -20,5 +28,5 @@ form{
   margin-bottom: 30px;
 }
 .btn{
-  width: 100%; 
+  width: 100%;
 }
