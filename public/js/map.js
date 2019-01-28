@@ -225,7 +225,7 @@ function votar(coment,bool){
 	var data={ userId:usuario, voto:bool};
 	$.post( "/api/comentarios/"+coment+"/valorar", data, function( data ) {
 		var aseo=document.getElementById("aseoComentario").value;
-	    getComentarios(aseo);
+	    getComentarios(aseo);;
 	});
 }
 
