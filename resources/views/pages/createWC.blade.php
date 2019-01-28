@@ -7,6 +7,15 @@
 <link rel="stylesheet" href="/css/createWC.css">
 <div id="formWC">
   <h1>Crear WC</h1>
+    @if ($errors->any())
+      <div class="alert alert-danger">
+          <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+      </div>
+    @endif
   <form method="post" action="{{route('wc.create')}}" enctype="multipart/form-data">
     @csrf
       <p><label>Nombre:</label><input type="text"name="nombre" class="form-control" value=""></p>
