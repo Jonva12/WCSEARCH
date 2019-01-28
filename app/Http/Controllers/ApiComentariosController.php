@@ -35,7 +35,7 @@ class ApiComentariosController extends Controller
         $comentario->save();
 
         $user=User::where('id', $request->userId)->first();
-        $user->puntuacion=2;
+        $user->puntuacion+=2;
         $user->save();
     
     }
@@ -51,6 +51,8 @@ class ApiComentariosController extends Controller
         $comentarios=Comentario::where('aseo_id',$id)->orderBy("created_at", 'desc')->get();
         foreach ($comentarios as $c) {
             $aux=$c->usuario->name;
+            $c->like=$c->valoracion()->where('comentarios_users.puntuacion',1)->count();
+            $c->dislike=$c->valoracion()->where('comentarios_users.puntuacion',-1)->count();
         }
 
         return $comentarios;
@@ -76,6 +78,20 @@ class ApiComentariosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Comentario::where('id',$id)->delete();
+        return 1;
     }
+
+    public function valorar(Request $request, $id)
+    {
+        $u=User::where('id', $request->userId)->first();
+        $v=$request->voto=="true"?1:-1;
+
+        $comentario=Comentario::where('id',$id)->first()->valoracion()->detach($u);
+
+        $c=Comentario::where('id',$id)->first()->valoracion()->attach($u,['puntuacion'=>$v]);
+
+        return 1;
+    }
+
 }

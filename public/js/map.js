@@ -167,7 +167,29 @@ function getComentarios(idAseo){
 			comentarios="<i>No hay comentarios</i>";
 		}else{
 			for(var i=0;i<data.length;i++){
-				comentarios+='<div class="comentario"><p class="usuario">'+data[i].usuario.name+'</p><p class="fecha">'+data[i].created_at+'</p><p>'+data[i].text+'</p><div class="botones-like"><i class="fas fa-thumbs-up"></i><i class="far fa-thumbs-down"></i></div></div>';
+				comentarios+='<div class="card comentario">'+
+      				'<div class="card-body">'+
+				          '<div class="row">'+
+				              '<div class="col-md-12">'+
+				                  '<p>'+
+				                      '<a class="float-left" href="/usuario/p/'+data[i].user_id+'"><strong>'+data[i].usuario.name+'</strong> - '+data[i].created_at+'</a>'+
+				                      '<span class="float-right"><i class="text-warning fa fa-star"></i></span>'+
+				                      '<span class="float-right"><i class="text-warning fa fa-star"></i></span>'+
+				                      '<span class="float-right"><i class="text-warning fa fa-star"></i></span>'+
+				                      '<span class="float-right"><i class="text-warning fa fa-star"></i></span>'+
+
+				                 '</p>'+
+				                 '<div class="clearfix"></div>'+
+				                  '<p>'+data[i].text+'</p>'+
+				                  '<p>'+
+				                      '<a onclick="votar('+data[i].id+',false)" class="float-right btn btn-outline-danger ml-2">'+data[i].dislike+' <i class="fa fa-thumbs-down"></i></a>'+
+				                      '<a onclick="votar('+data[i].id+',true)" class="float-right btn btn-outline-primary ml-2">'+data[i].like+' <i class="fa fa-thumbs-up"></i></a>'+
+				                      '<a onclick="deleteComentario('+data[i].id+')" class="float-right btn btn-outline-secondary"> <i class="fa fa-trash-alt"></i></a>'+
+				                 '</p>'+
+				              '</div>'+
+				          '</div>'+
+				      '</div>'+
+				  '</div>';
 			}
 			document.getElementById("comentarios").innerHTML=comentarios;
 		}
@@ -181,8 +203,28 @@ function enviarComentario(e){
 	var text=document.getElementById("textComentario").value;
 	var data={ aseoId:aseo, userId:usuario, text:text};
 	$.post( "/api/comentarios/", data, function( data ) {
-		console.log(data);
 		getComentarios(aseo);
+		document.getElementById("textComentario").value="";
 	});
 	return false;
+}
+
+function deleteComentario(id){
+	$.ajax({
+	    url: '/api/comentarios/'+id,
+	    type: 'DELETE',
+	    success: function(result) {
+	    	var aseo=document.getElementById("aseoComentario").value;
+	        getComentarios(aseo);
+	    }
+	});
+}
+
+function votar(coment,bool){
+	var usuario=document.getElementById("userComentario").value;
+	var data={ userId:usuario, voto:bool};
+	$.post( "/api/comentarios/"+coment+"/valorar", data, function( data ) {
+		var aseo=document.getElementById("aseoComentario").value;
+	    getComentarios(aseo);
+	});
 }
