@@ -5,6 +5,7 @@
 aside {
   box-shadow: 10px 0px 10px 1px #aaaaaa;
   padding: 0px !important;
+  overflow: auto;
 }
 aside img{
   width: 100%;
@@ -20,8 +21,10 @@ aside .info{
 }
 #mapid{
   margin-top: 2px;
-  height: 800px;
-  width: 100%;
+  height: 100%;
+  width: 98.4%;
+
+  position: fixed;
 }
 .fa-arrow-left{
   color: green;
