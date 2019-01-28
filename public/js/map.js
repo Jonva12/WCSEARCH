@@ -228,3 +228,4 @@ function votar(coment,bool){
 	    getComentarios(aseo);
 	});
 }
+
