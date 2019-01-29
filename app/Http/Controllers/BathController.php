@@ -68,7 +68,7 @@ class BathController extends Controller
             CURLOPT_POSTFIELDS => array('image' => $image64),
             CURLOPT_HTTPHEADER => array(
               // "Authorization: Client-ID {{1cb45b7462006f}}",
-              "Authorization: Bearer ".$token //nuestro token para acceder a ala api
+              "Authorization: Bearer ".$token //nuestro token para acceder a la api
             ),
           ));
           $response = curl_exec($curl);

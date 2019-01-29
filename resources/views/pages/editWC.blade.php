@@ -14,12 +14,14 @@
       <p>Dirección: (Haz click para colocar el marcador)</p>
       <input type="text" id="latitud" name="latitud" value="{{$aseo->latitud}}" hidden>
       <input type="text" id="longitud" name="longitud" value="{{$aseo->longitud}}" hidden>
-      <div id="mapid" onload="getAseoEdit({{$aseo->latitud}}, {{$aseo->longitud}})"></div>
-       <script>
+      <div id="mapid" ></div>
+       <script >
         function getAseoEdit(x,y){
+          var marker1 = null;
           limpiarMapaAseos();
-          //var loc={latitud: x, longitud: y}
-          setVista(latitud.lat,longitud.lng);
+          var loc={latitud: x, longitud: y};
+          setVista(loc.latitud,loc.longitud);
+          marker1 = L.marker(loc,{icon:aseoIcon}).addTo(mapa);
         }
       </script>
       <input type="text" id="dir" name="dir" value="{{$aseo->dir}}" hidden>
@@ -61,7 +63,7 @@
   </form>
 </div>
 @include('includes.geoscripts')
-<script src="/js/map.js"></script>
+<script src="/js/map.js" onload="getAseoEdit({{$aseo->latitud}}, {{$aseo->longitud}})"></script>
 <script src="/js/createWC.js"></script>
 
   @endsection
