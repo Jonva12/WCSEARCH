@@ -191,8 +191,9 @@ function getComentarios(idAseo){
 				      '</div>'+
 				  '</div>';
 			}
-			document.getElementById("comentarios").innerHTML=comentarios;
 		}
+		document.getElementById("comentarios").innerHTML=comentarios;
+		
 	});
 }
 
