@@ -170,8 +170,8 @@ function cambiarInfoFicha(data){
 
 }
 
-	document.getElementById("aseoComentario").value=data.id;
-}
+	
+
 
 function getComentarios(){
 
