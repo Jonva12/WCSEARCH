@@ -6,6 +6,7 @@
 <div class="container">
   <div>
     <form action="{{route('admin.usuarios')}}" method="get">
+      <i class="fas fa-search"></i>
       <input type="text" name="nombre" placeholder="Nombre de usuario">
       <input type="text" name="email" placeholder="Email">
       Rol:
@@ -17,10 +18,10 @@
       </select>
       <input type="checkbox" id="baneados" name="baneados">
       <label for="baneados">Mostrar baneados</label>
-      <input type="submit" value="Filtrar">
+      <input type="submit" value="Filtrar" class="btn btn-success">
     </form>
   </div>
-	<table>
+	<table class="table">
 		<tr>
 			<th>Id</th>
 			<th>Nombre</th>
@@ -46,7 +47,7 @@
 				{{$u->fecha_de_baneo}}
 			</td>
 			<td>
-				
+
 				<a href="{{route('admin.usuario.desbanear',$u->id)}}" class="btn btn-danger">Desbanear</a>
 			@else
 				<a href="{{route('admin.usuario.banear',$u->id)}}" class="btn btn-danger">Banear</a>

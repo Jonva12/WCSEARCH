@@ -42,6 +42,7 @@ aside li{
 i{
   padding-left: 20px;
   width: 100px;
+  margin-bottom: 10px;
 }
 #data{
   z-index: -1;
@@ -53,7 +54,7 @@ i{
   align-self: flex-start;
 }
 .boton{
-	width: auto;
+	width: 300px;
 	height: 110px;
 	border-radius: 10px;
 	padding: 20px;
@@ -71,12 +72,25 @@ i{
   color: white;
   background-color: #1D93D1;
   opacity: 0.85;
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.5);
 }
 .boton-wc{
   background-color: rgba(72, 211, 96, 0.7);
 }
+.boton-wc:hover{
+  color: white;
+  background-color: #43C266;
+  opacity: 0.85;
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.5);
+}
 .boton-comments{
   background-color: rgba(251, 74, 74, 0.7);
+}
+.boton-comments:hover{
+  color: white;
+  background-color: rgb(252, 74, 74);
+  opacity: 0.85;
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.5);
 }
 .boton i{
 	font-size: 50px;
@@ -128,6 +142,10 @@ tr:nth-child(even) {
 #form-year{
   width: 400px;
   height: 50px;
-  margin-left: auto;
-  margin-right: auto;
+  display: inline-flex;
+  align-items: baseline;
+  margin-left: 25%;
+}
+.btn{
+  margin-left: 20px;
 }

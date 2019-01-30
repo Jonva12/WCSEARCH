@@ -56,8 +56,8 @@
 	</a>
 	</div>
 	<form id="form-year">
-		<input type="number" name="year">
-		<input type="submit" name="enviar" value='@lang("adminContent.yearChange")'>
+		<input type="number" name="year" class="form-control">
+		<input type="submit" name="enviar" class="btn btn-primary" value='@lang("adminContent.yearChange")'>
 	</form>
 	<div id="chart_div" style="width: 100%; height: 500px;"></div>
 @endsection
