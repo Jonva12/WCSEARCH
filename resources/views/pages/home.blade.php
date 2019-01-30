@@ -40,6 +40,9 @@ aside .info{
   margin-right: auto;
   display: hidden;
 }
+.comentario{
+  margin: 5px;
+}
 </style>
 
 </head>
@@ -93,27 +96,14 @@ aside .info{
         <div>
           <h2>Comentarios</h2>
           <form action="#" onsubmit="return enviarComentario(event)">
-            <input id="aseoComentario" type="text"/>
-            <input id="userComentario" type="text" value="{{Auth::user()->id}}" />
+            @csrf
+            <input id="aseoComentario" type="text" hidden/>
+            <input id="userComentario" type="text" value="{{Auth::user()->id}}" hidden/>
             <input id="textComentario" type="text" placeholder="Escribe tu comentario"/>
             <input type="submit" value="Comentar">
           </form>
           <div id="comentarios">
-            <div class="comentario">
-              <p class="usuario">Juan</p>
-              <p class="fecha">2018-12-10</p>
-              <p>El mejor baño que he probado en mi vida. Mis dieces :) </p>
-              <div class="botones-like">
-                <i class="fas fa-thumbs-up"></i>
-                <i class="far fa-thumbs-down"></i>
-              </div>
-
-            </div>
-            <div class="comentario">
-              <p class="usuario">Tomas</p>
-              <p class="fecha">2018-12-10</p>
-              <p>Vendo opel corsa</p>
-            </div>
+            <i>Cargando comentarios...</i>
             <div>
               <input type="button" name="editar" value="Editar">
             </div>

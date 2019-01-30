@@ -25,19 +25,19 @@ class ApiComentariosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        dump($request);
+        //dump($request);
+
         $comentario= new Comentario;
-        $comentario->text=$request->text;
-        $comentario->user_id=$request->userId;
-        $comentario->aseo_id=$request->aseoId;
+        $comentario->text=$request->input('text');
+        $comentario->user_id=Auth::user()->id;
+        $comentario->aseo_id=$id;
         $comentario->save();
 
-        $user=User::where('id', $request->userId)->first();
+        $user=User::where('id', Auth::user()->id)->first();
         $user->puntuacion=2;
-        $user->save();
-    
+        $user->save(); 
     }
 
     /**
@@ -51,6 +51,8 @@ class ApiComentariosController extends Controller
         $comentarios=Comentario::where('aseo_id',$id)->orderBy("created_at", 'desc')->get();
         foreach ($comentarios as $c) {
             $aux=$c->usuario->name;
+            $c->like=$c->valoracion()->where('comentarios_users.puntuacion',1)->count();
+            $c->dislike=$c->valoracion()->where('comentarios_users.puntuacion',-1)->count();
         }
 
         return $comentarios;
@@ -76,6 +78,20 @@ class ApiComentariosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Comentario::where([['id',$id],['user_id', Auth::user()->id]])->delete();
+        return 1;
     }
+
+    public function valorar(Request $request, $id)
+    {
+        //$u=User::where('id', Auth::user()->id)->first();
+        $v=$request->voto=="true"?1:-1;
+
+        $comentario=Comentario::where('id',$id)->first()->valoracion()->detach(Auth::user());
+
+        $c=Comentario::where('id',$id)->first()->valoracion()->attach(Auth::user(),['puntuacion'=>$v]);
+
+        return 1;
+    }
+
 }
