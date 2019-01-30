@@ -45,14 +45,19 @@
       margin-left: 5%;
       margin-right: 5%;
       border: 0.5px solid #857B26;
-      box-shadow: 1px 1.5px 2px 1px #857B26; 
+      box-shadow: 1px 1.5px 2px 1px #857B26;
     }
     .fa-times{
       font-size: 2em;
     }
   </style>
 
-
+</head>
+@if(isset($latitud)&&isset($longitud))
+  <body  onload="getAseos2({{$latitud}}, {{$longitud}})">
+@else
+  <body>
+@endif
   @if(Session::has('status'))
   <div id="alert" class="alert {{ Session::get('alert-class', 'alert-warning') }}"><div>{{ Session::get('status') }}</div><i class="fas fa-times" onclick="cerrar()"></i></div>
   @endif
@@ -134,13 +139,7 @@
   </div>
   </div>
   @include('includes.geoscripts')
-
-@if(isset($latitud)&&isset($longitud))
-  <script src="/js/map.js" onload="getAseos2({{$latitud}}, {{$longitud}})"></script>
-@else
   <script src="/js/map.js"></script>
-@endif
-  
   <script type="text/javascript">
             function valorar(n){
               for(var i=1; i<=5; i++){
