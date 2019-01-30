@@ -98,8 +98,6 @@ aside .info{
           <h2>Comentarios</h2>
           <form action="#" onsubmit="return enviarComentario(event)">
             @csrf
-            <input id="aseoComentario" type="text" hidden/>
-            <input id="userComentario" type="text" value="{{Auth::user()->id}}" hidden/>
             <input id="textComentario" type="text" placeholder="Escribe tu comentario"/>
             <input type="submit" value="Comentar">
           </form>

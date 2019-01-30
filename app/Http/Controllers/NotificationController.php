@@ -38,7 +38,7 @@ class NotificationController extends Controller
                         $texto='Tu aseo ('.$n->aseo->nombre.') vuelve a estar visible';
                         break;
                     case 'mensajeRecibido':
-                        $texto='Has recivido un nuevo mensaje';
+                        $texto='Has recibido un nuevo mensaje';
                         break;
 
     			}
