@@ -1,0 +1,22 @@
+.alert-warning{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 10px;
+  border: 0.5px solid #857B26;
+  box-shadow: 1px 1.5px 2px 1px #857B26;
+}
+.fa-times{
+  font-size: 2em;
+}
+
+.alert-danger{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+  border: 0.5px solid #721c24;
+  box-shadow: 0.5px 1.5px 1.5px 0.5px #721c24;
+}

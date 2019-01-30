@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\DB;
 use App\Aseo;
 use Auth;
 
-
 class BathController extends Controller
 {
     public function __construct()
@@ -30,8 +29,16 @@ class BathController extends Controller
 
     public function create(Request $request){
 
-      $foto = $request->file('foto');
+      $request->validate([
+        'nombre' => 'required',
+        'horarioApertura' => 'nullable',
+        'horarioCierre' => 'nullable',
+        'horas24' => 'required',
+        'precio' => 'nullable',
+        'accesibilidad' => 'required'
+      ]);
 
+      $foto = $request->file('foto');
 
       $aseo = new Aseo();
       $aseo->nombre = $request->input('nombre');

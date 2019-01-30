@@ -11,33 +11,31 @@
       <form id="register" method="POST" action="{{ route('register') }}">
         @csrf
         <img class="img-fluid rounded float-center" src="img/logo.ico" alt="WCSearch">
+
           <div class="form-group">
               <input type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" id="name" placeholder="Nombre" name="name" value="{{ old('name') }}" required autofocus min="2" max="255">
               @if ($errors->has('name'))
-              <br>
-              <br>
-                <span class="alert alert-danger" role="alert">
+                <span class="alert alert-danger" role="alert" id="alert">
                   <strong>{{ $errors->first('name') }}</strong>
+                  <i id="x" class="fas fa-times"></i>
                 </span>
               @endif
           </div>
            <div class="form-group">
                <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" id="email" placeholder="Email" name="email" value="{{ old('email') }}" required min="6" max="255">
                 @if ($errors->has('email'))
-                <br>
-                <br>
-                  <span class="alert alert-danger" role="alert">
+                  <span class="alert alert-danger" role="alert" id="alert">
                     <strong>{{ $errors->first('email') }}</strong>
+                    <i id="x" class="fas fa-times"></i>
                   </span>
                 @endif
            </div>
            <div class="form-group">
                <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" id="password" placeholder="Contraseña" name="password" required min="6" max="255">
                 @if ($errors->has('password'))
-                <br>
-                <br>
-                  <span class="alert alert-danger" role="alert">
+                  <span class="alert alert-danger" role="alert" id="alert">
                     <strong>{{ $errors->first('password') }}</strong>
+                    <i id="x" class="fas fa-times"></i>
                   </span>
                 @endif
            </div>

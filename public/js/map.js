@@ -1,3 +1,4 @@
+var aseo={};
 var mapa = L.map('mapid').setView([43.3073225, -1.9914354], 13);
 mapa.addEventListener('moveend', function(ev) {
 	if (document.getElementById("error_zoom")) {
@@ -144,14 +145,11 @@ function markerOnClick(e){
     mapaSection.classList.add('col-md-9');
     aside.hidden = false;
 	setVista(e.latlng.lat,e.latlng.lng);
-	var aseo={id: e.target.aseo};
-
-
+	aseo={id: e.target.aseo};
  	$.get( "/api/mapa/getAseo/"+ e.target.aseo, function( data ) {
 		cambiarInfoFicha(data);
 	});
-
-
+	getComentarios(e.target.aseo);
 }
 function setVista(x,y){
 	mapa.setView([x, y],16);
@@ -169,4 +167,73 @@ function cambiarInfoFicha(data){
 	document.getElementById("horario").innerHTML=data.horas24 == 1?"24 horas":data.horarioApertura+"-"+data.horarioCierre;
 	document.getElementById("precio").innerHTML=data.precio==null?"GRATIS": data.precio+" €";
 	document.getElementById("accesible").innerHTML=data.accesibilidad==1?"Accesible":"No accesible";
+<<<<<<< HEAD
 }
+=======
+	document.getElementById("aseoComentario").value=data.id;
+}
+
+function getComentarios(){
+
+ 	$.get( "/api/comentarios/"+aseo.id , function( data ) {
+ 		var comentarios="";
+ 		if (data.length==0){
+			comentarios="<i>No hay comentarios</i>";
+		}else{
+			for(var i=0;i<data.length;i++){
+				comentarios+='<div class="card comentario">'+
+      				'<div class="card-body">'+
+				          '<div class="row">'+
+				              '<div class="col-md-12">'+
+				                  '<p>'+
+				                      '<a class="float-left" href="/usuario/p/'+data[i].user_id+'"><strong>'+data[i].usuario.name+'</strong> - '+data[i].created_at+'</a>'+
+				                      '<span class="float-right"><i class="text-warning fa fa-star"></i></span>'+
+				                      '<span class="float-right"><i class="text-warning fa fa-star"></i></span>'+
+				                      '<span class="float-right"><i class="text-warning fa fa-star"></i></span>'+
+				                      '<span class="float-right"><i class="text-warning fa fa-star"></i></span>'+
+
+				                 '</p>'+
+				                 '<div class="clearfix"></div>'+
+				                  '<p>'+data[i].text+'</p>'+
+				                  '<p>'+
+				                      '<a onclick="votar('+data[i].id+',false)" class="float-right btn btn-outline-danger ml-2">'+data[i].dislike+' <i class="fa fa-thumbs-down"></i></a>'+
+				                      '<a onclick="votar('+data[i].id+',true)" class="float-right btn btn-outline-primary ml-2">'+data[i].like+' <i class="fa fa-thumbs-up"></i></a>'+
+				                      '<a onclick="deleteComentario('+data[i].id+')" class="float-right btn btn-outline-secondary"> <i class="fa fa-trash-alt"></i></a>'+
+				                 '</p>'+
+				              '</div>'+
+				          '</div>'+
+				      '</div>'+
+				  '</div>';
+			}
+		}
+		document.getElementById("comentarios").innerHTML=comentarios;
+		
+	});
+}
+
+function enviarComentario(e){
+	e.preventDefault();
+	var text=document.getElementById("textComentario").value;
+	var data={text:text};
+	$.get( "/api/comentarios/"+aseo.id+"/comentar", data, function( data ) {
+		getComentarios();
+		document.getElementById("textComentario").value="";
+	});
+	return false;
+}
+
+function deleteComentario(id){
+	$.get( "/api/comentarios/"+id+"/eliminar", function( data ) {
+		getComentarios();
+	});
+	
+}
+
+function votar(coment,bool){
+	var data={voto:bool};
+	$.get( "/api/comentarios/"+coment+"/valorar", data, function( data ) {
+	    getComentarios();
+	});
+}
+
+>>>>>>> c8d6e875aae213d2411c912dd12b7647fe53583c

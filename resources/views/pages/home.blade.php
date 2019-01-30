@@ -1,56 +1,50 @@
 @extends('layout.app')
-  @section('title','WCSEARCH')
-  @section('content')
-  <style type="text/css">
-    aside {
-      box-shadow: 10px 0px 10px 1px #aaaaaa;
-      padding: 0px !important;
-    }
-    aside img{
-      width: 100%;
-      height: 300px;
-    }
-    aside .general{
-      color: white;
-      background-color: #28a745;
-      padding: 5px;
-    }
-    aside .info{
-      padding-left: 15px;
-    }
-    #mapid{
-      height: 800px;
-      width: 100%;
-      margin-top: -20px;
-    }
-    .fa-arrow-left{
-      color: white;
-      padding: 10px;
-    }
-    #error_zoom{
-      color: white;
-      width: 100%;
-      height: 50px;
-      text-align: center;
-      background-color: #778899;
-      margin-top: 0px;
-      margin-left: auto;
-      margin-right: auto;
-      display: hidden;
-    }
-    .alert{
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      margin-left: 5%;
-      margin-right: 5%;
-      border: 0.5px solid #857B26;
-      box-shadow: 1px 1.5px 2px 1px #857B26; 
-    }
-    .fa-times{
-      font-size: 2em;
-    }
-  </style>
+@section('title','WCSEARCH')
+@section('content')
+<style type="text/css">
+aside {
+  box-shadow: 10px 0px 10px 1px #aaaaaa;
+  padding: 0px !important;
+  overflow: auto;
+}
+aside img{
+  width: 100%;
+  height: 300px;
+}
+aside .general{
+  color: white;
+  background-color: #28a745;
+  padding: 5px;
+}
+aside .info{
+  padding-left: 15px;
+}
+#mapid{
+  margin-top: 2px;
+  height: 100%;
+  width: 98.4%;
+
+  position: fixed;
+}
+.fa-arrow-left{
+  color: green;
+  padding: 10px;
+}
+#error_zoom{
+  color: white;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  background-color: #778899;
+  margin-top: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  display: hidden;
+}
+.comentario{
+  margin: 5px;
+}
+</style>
 
 
   @if(Session::has('status'))
@@ -97,25 +91,15 @@
         <hr>
         <div>
           <h2>Comentarios</h2>
-          <form>
-            <input type="text" placeholder="Escribe tu comentario"><input type="submit" value="Comentar">
+          <form action="#" onsubmit="return enviarComentario(event)">
+            @csrf
+            <input id="aseoComentario" type="text" hidden/>
+            <input id="userComentario" type="text" value="{{Auth::user()->id}}" hidden/>
+            <input id="textComentario" type="text" placeholder="Escribe tu comentario"/>
+            <input type="submit" value="Comentar">
           </form>
-          <div class="comentarios">
-            <div class="comentario">
-              <p class="usuario">Juan</p>
-              <p class="fecha">2018-12-10</p>
-              <p>El mejor baño que he probado en mi vida. Mis dieces :) </p>
-              <div class="botones-like">
-                <i class="fas fa-thumbs-up"></i>
-                <i class="far fa-thumbs-down"></i>
-              </div>
-
-            </div>
-            <div class="comentario">
-              <p class="usuario">Tomas</p>
-              <p class="fecha">2018-12-10</p>
-              <p>Vendo opel corsa</p>
-            </div>
+          <div id="comentarios">
+            <i>Cargando comentarios...</i>
             <div>
               <a href="#"><input type="button" name="editar" value="Editar"></a>
             </div>
@@ -162,9 +146,5 @@
                 mapaSection.classList.add('col-md-12');
                 aside.hidden = true;
             }
-
-            function cerrar(){
-              document.getElementById("alert").remove();
-            }
-  </script>
-  @endsection
+</script>
+@endsection

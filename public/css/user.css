@@ -1,6 +1,10 @@
+#container{
+  background-color: white;
+}
 .navbar{
   background-color: rgb(40, 167, 69);
   font-family: sans-serif;
+  position: static;
 }
 .navbar-brand{
   width: 50%;
@@ -57,12 +61,13 @@ form{
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    border: 1px solid green;
     margin: 5px;
     margin-left: 10%;
     margin-right: 10%;
     border-radius: 5px;
-    box-shadow: 2px 3px 3px 2px #3c3c3b;
+    -webkit-box-shadow: 15px 10px 19px 3px rgba(0,0,0,0.3);
+    -moz-box-shadow: 15px 10px 19px 3px rgba(0,0,0,0.3);
+    box-shadow: 15px 10px 19px 3px rgba(0,0,0,0.3);
   }
 }
 @media (min-width: 900px){
@@ -71,12 +76,13 @@ form{
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    border: 1px solid green;
     margin: 5px;
     margin-left: 20%;
     margin-right: 20%;
     border-radius: 5px;
-    box-shadow: 2px 3px 3px 2px #3c3c3b;
+    -webkit-box-shadow: 15px 10px 19px 3px rgba(0,0,0,0.3);
+    -moz-box-shadow: 15px 10px 19px 3px rgba(0,0,0,0.3);
+    box-shadow: 15px 10px 19px 3px rgba(0,0,0,0.3);
   }
 }
 #imgWC{

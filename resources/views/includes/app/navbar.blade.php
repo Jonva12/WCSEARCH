@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light ">
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/home') }}">
+        <a class="navbar-brand" href="{{ url('/home') }}" id="navbarDropdown">
           <img src="/img/logo.png" alt="WCSearch" id="icon" class="rounded float-left">
             {{__('WCSEARCH')}}
         </a>

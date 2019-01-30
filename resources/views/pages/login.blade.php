@@ -12,15 +12,16 @@
           </div>
           <form method="post" action="{{ route('login') }}">
             @csrf
-            
+
            <div class="form-group">
             @if ($errors->any())
-                <div class=" alert alert-danger" role="alert">
-                  <strong>El correo electrónico y la contraseña que ingresaste no coinciden con nuestros registros.</strong> Por favor, revisa e inténtalo de nuevo.
+                <div class="alert alert-danger" role="alert" id="alert">
+                  <div><strong>El correo electrónico y la contraseña que ingresaste no coinciden con nuestros registros.</strong> Por favor, revisa e inténtalo de nuevo.</div>
+                  <i id="x" class="fas fa-times"></i>
                 </div>
               @endif
               <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="Email" required autofocus>
-              
+
            </div>
 
            <div class="form-group">

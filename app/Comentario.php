@@ -9,7 +9,7 @@ use App\Aseo;
 class Comentario extends Model
 {
     public function usuario(){
-    	return $this->belongsTo('App\User');
+    	return $this->belongsTo('App\User', 'user_id');
     }
 
     public function aseo(){
@@ -17,7 +17,7 @@ class Comentario extends Model
     }
 
     public function valoracion(){
-    	return $this->belongsToMany('App\User')->withPivot('puntuacion');
+    	return $this->belongsToMany('App\User', 'comentarios_users')->withPivot('puntuacion');
     }
 
     public function notificaciones(){

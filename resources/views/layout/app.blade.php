@@ -12,6 +12,7 @@
     <script src="{{ asset('js/app.js') }}"></script> <!-- quitar defer del link del script -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/user.css')}}">
+    <link rel="stylesheet" href="/css/alerts.css">
     <link rel="stylesheet" href="{{ asset('/assets/vendor/leaflet/leaflet.css')}}">
     <script src="{{ asset('/assets/vendor/leaflet/leaflet.js')}}"></script>
 
@@ -21,10 +22,18 @@
     <div id="app">
 
       @include('includes.app.navbar')
-        <main class="py-4">
+        <div id="container">
             @yield('content')
-        </main>
+        </div>
     </div>
+    <script type="text/javascript">
+
+    document.getElementById("x").addEventListener('click', cerrar);
+      //para todas las alertas
+      function cerrar(){
+        document.getElementById("alert").remove();
+      }
+    </script>
     <script src="/js/ajax.js"></script>
     <link href="/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
