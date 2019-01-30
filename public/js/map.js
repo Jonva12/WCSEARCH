@@ -167,9 +167,9 @@ function cambiarInfoFicha(data){
 	document.getElementById("horario").innerHTML=data.horas24 == 1?"24 horas":data.horarioApertura+"-"+data.horarioCierre;
 	document.getElementById("precio").innerHTML=data.precio==null?"GRATIS": data.precio+" €";
 	document.getElementById("accesible").innerHTML=data.accesibilidad==1?"Accesible":"No accesible";
-<<<<<<< HEAD
+
 }
-=======
+
 	document.getElementById("aseoComentario").value=data.id;
 }
 
@@ -235,5 +235,3 @@ function votar(coment,bool){
 	    getComentarios();
 	});
 }
-
->>>>>>> c8d6e875aae213d2411c912dd12b7647fe53583c
