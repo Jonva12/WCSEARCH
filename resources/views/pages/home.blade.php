@@ -3,7 +3,7 @@
 @section('content')
 <style type="text/css">
 aside {
-  box-shadow: 10px 0px 10px 1px #aaaaaa;
+  box-shadow: 10px 8px 10px #aaaaaa;
   padding: 0px !important;
   overflow: auto;
 }
