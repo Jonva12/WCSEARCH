@@ -23,7 +23,6 @@ aside .info{
   margin-top: 2px;
   height: 100%;
   width: 98.4%;
-
   position: fixed;
 }
 .fa-arrow-left{

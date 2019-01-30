@@ -28,27 +28,30 @@
 </script>
   <div class="botones">
 	<a href="{{ route('admin.usuarios') }}">
-		<div class="boton">
-			<i class="fas fa-users"></i>
-			<p>
-				<b>{{$usuarios}}</b> @lang('adminContent.users')
-			</p>
+		<div class="boton boton-users">
+			<i class="fas fa-users" id="data"></i>
+			<div class="text">
+        <b>@lang('adminContent.users')</b>
+        <p class="num">{{$usuarios}}</p>
+      </div>
 		</div>
 	</a>
 	<a href="{{ route('admin.aseos') }}">
-		<div class="boton">
-			<i class="fas fa-map-marker-alt"></i>
-			<p>
-				<b>{{$aseos}}</b> @lang('adminContent.wc')
-			</p>
+		<div class="boton boton-wc">
+			<i class="fas fa-map-marker-alt" id="data"></i>
+			<div class="text">
+				  <b> @lang('adminContent.wc')</b>
+          <p class="num">{{$aseos}}</p>
+      </div>
 		</div>
 	</a>
 	<a href="{{ route('admin.mensajes') }}">
-		<div class="boton">
-			<i class="far fa-envelope"></i>
-			<p>
-				<b>{{$message}}</b> @lang('adminContent.comments')
-			</p>
+		<div class="boton boton-comments">
+			<i class="far fa-envelope" id="data"></i>
+			<div class="text">
+			  <b>@lang('adminContent.comments')</b>
+        <p class="num">{{$message}}</p>
+      </div>
 		</div>
 	</a>
 	</div>

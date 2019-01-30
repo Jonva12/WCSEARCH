@@ -1,5 +1,6 @@
-#mainNav{
-  background-color: #28a745;
+.navbar{
+  /* background-color: #28a745; */
+  background-color: grey;
 }
 .navbar-right{
   display: inline-flex;
@@ -8,12 +9,17 @@
 #usuarioMenu{
   color:white;
 }
-
+.row{
+  height: 100%;
+}
 aside{
-  background-color: #7CDF93;
+  background-color: rgb(237, 237, 237);
   padding-right:0px !important;
-  margin-top: 100px;
-  height: 80vh;
+  height: auto;
+  margin-bottom: -5%;
+  -webkit-box-shadow: -3px -9px 24px 3px rgba(0,0,0,0.3);
+  -moz-box-shadow: -3px -9px 24px 3px rgba(0,0,0,0.3);
+  box-shadow: -3px -9px 24px 3px rgba(0,0,0,0.3);
 }
 aside ul{
   list-style-type: none;
@@ -23,36 +29,85 @@ aside a:link{
   text-decoration: none;
 }
 aside li:hover{
-  background-color: #28a745;
+  background-color: lightgrey;
+  border-radius: 30px;
 }
 aside li{
-  padding: 5px;
-  padding-left: 20px;
-  border:1px #0C3516 solid;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 0.5px #0C3516 solid;
   color: black;
 }
-  
-.boton{
-	width: 20%;
-	height: 100px;
-	border: 1px solid grey;
-	border-radius: 10px;
-	padding: 10px;
-	margin: 10px;
-	background-color: #6FB07E;
-	display: inline-block;
+i{
+  padding-left: 20px;
+  width: 100px;
 }
-.boton:hover{
-	background-color: #28a745;
-	color: white;
+#data{
+  z-index: -1;
+  /* position: absolute; */
+  width: 200px;
+  opacity: 0.7;
+  font-size: 59pt;
+  display: flex;
+  align-self: flex-start;
+}
+.boton{
+	width: auto;
+	height: 110px;
+	border-radius: 10px;
+	padding: 20px;
+  padding-right: 30px;
+	display: inline-flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
+}
+.boton-users{
+  background-color: rgba(29, 146, 207, 0.5);
+}
+.boton-users:hover{
+  color: white;
+  background-color: #1D93D1;
+  opacity: 0.85;
+}
+.boton-wc{
+  background-color: rgba(72, 211, 96, 0.7);
+}
+.boton-comments{
+  background-color: rgba(251, 74, 74, 0.7);
 }
 .boton i{
 	font-size: 50px;
 }
+
 .botones{
 	text-align: center;
+  margin-top: -50px;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: space-around;
 }
 
+@media only screen and (max-width: 600px) {
+  .botones {
+    text-align: center;
+    margin-top: -70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+}
+
+.text{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.num{
+  font-size: 24pt;
+}
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;

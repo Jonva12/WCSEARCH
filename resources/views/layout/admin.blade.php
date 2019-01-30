@@ -10,14 +10,13 @@
 	@include('includes.app.navbar')
 
 	<div class="row">
-		<aside class="col-md-3 col-lg-2">
+		<aside class="col-md-3">
 			@include('includes.admin.aside')
 		</aside>
-		<section class="col-md-9 col-lg-10">
+		<section class="col-md-9">
 			@yield('content')
 		</section>
 	</div>
-	@include('includes.login.footer')
 	@include('includes.scripts')
 </body>
 </html>
