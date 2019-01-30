@@ -27,7 +27,7 @@ aside .info{
   position: fixed;
 }
 .fa-arrow-left{
-  color: green;
+  color: white;
   padding: 10px;
 }
 #error_zoom{
