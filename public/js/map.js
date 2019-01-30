@@ -1,3 +1,4 @@
+var aseo={};
 var mapa = L.map('mapid').setView([43.3073225, -1.9914354], 13);
 mapa.addEventListener('moveend', function(ev) {
 	if (document.getElementById("error_zoom")) {
@@ -134,7 +135,7 @@ function markerOnClick(e){
     mapaSection.classList.add('col-md-9');
     aside.hidden = false;
 	setVista(e.latlng.lat,e.latlng.lng);
-	var aseo={id: e.target.aseo};
+	aseo={id: e.target.aseo};
  	$.get( "/api/mapa/getAseo/"+ e.target.aseo, function( data ) {
 		cambiarInfoFicha(data);
 	});
@@ -159,9 +160,9 @@ function cambiarInfoFicha(data){
 	document.getElementById("aseoComentario").value=data.id;
 }
 
-function getComentarios(idAseo){
+function getComentarios(){
 
- 	$.get( "/api/comentarios/"+idAseo , function( data ) {
+ 	$.get( "/api/comentarios/"+aseo.id , function( data ) {
  		var comentarios="";
  		if (data.length==0){
 			comentarios="<i>No hay comentarios</i>";
@@ -199,34 +200,26 @@ function getComentarios(idAseo){
 
 function enviarComentario(e){
 	e.preventDefault();
-	var aseo=document.getElementById("aseoComentario").value;
-	var usuario=document.getElementById("userComentario").value;
 	var text=document.getElementById("textComentario").value;
-	var data={ aseoId:aseo, userId:usuario, text:text};
-	$.post( "/api/comentarios/", data, function( data ) {
-		getComentarios(aseo);
+	var data={text:text};
+	$.get( "/api/comentarios/"+aseo.id+"/comentar", data, function( data ) {
+		getComentarios();
 		document.getElementById("textComentario").value="";
 	});
 	return false;
 }
 
 function deleteComentario(id){
-	$.ajax({
-	    url: '/api/comentarios/'+id,
-	    type: 'DELETE',
-	    success: function(result) {
-	    	var aseo=document.getElementById("aseoComentario").value;
-	        getComentarios(aseo);
-	    }
+	$.get( "/api/comentarios/"+id+"/eliminar", function( data ) {
+		getComentarios();
 	});
+	
 }
 
 function votar(coment,bool){
-	var usuario=document.getElementById("userComentario").value;
-	var data={ userId:usuario, voto:bool};
-	$.post( "/api/comentarios/"+coment+"/valorar", data, function( data ) {
-		var aseo=document.getElementById("aseoComentario").value;
-	    getComentarios(aseo);;
+	var data={voto:bool};
+	$.get( "/api/comentarios/"+coment+"/valorar", data, function( data ) {
+	    getComentarios();
 	});
 }
 
