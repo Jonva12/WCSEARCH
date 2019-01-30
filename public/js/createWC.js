@@ -55,3 +55,11 @@ function onMapClick(e) {
     
 }
 mapa.on('click', onMapClick);
+
+function getAseoEdit(x,y){
+          limpiarMapaAseos();
+          var loc={lat: x, lng: y};
+          var e={latlng:loc};
+          onMapClick(e);
+          setVista(loc.lat,loc.lng);
+}

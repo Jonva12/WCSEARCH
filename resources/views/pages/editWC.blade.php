@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="/css/createWC.css">
 <div id="formWC">
   <h1>Editar WC</h1>
-  <form method="post" action="" enctype="multipart/form-data" >
+  <form method="post" action="{{route('wc.update')}}" enctype="multipart/form-data" >
     @csrf
       <input type="hidden" name="id" value="{{$aseo->id}}">
       <p><label>Nombre:</label><input type="text"name="nombre" class="form-control" value="{{$aseo->nombre}}"></p>
@@ -15,15 +15,7 @@
       <input type="text" id="latitud" name="latitud" value="{{$aseo->latitud}}" hidden>
       <input type="text" id="longitud" name="longitud" value="{{$aseo->longitud}}" hidden>
       <div id="mapid" ></div>
-       <script >
-        function getAseoEdit(x,y){
-          var marker1 = null;
-          limpiarMapaAseos();
-          var loc={latitud: x, longitud: y};
-          setVista(loc.latitud,loc.longitud);
-          marker1 = L.marker(loc,{icon:aseoIcon}).addTo(mapa);
-        }
-      </script>
+       
       <input type="text" id="dir" name="dir" value="{{$aseo->dir}}" hidden>
       <p><label>Horario Apertura:</label> <input type="time" class="form-control" class="horario" name="horarioApertura" value="{{$aseo->horarioApertura}}"></p>
       <p><label>Horario Cierre: </label><input type="time" class="form-control" class="horario" name="horarioCierre" value="{{$aseo->horarioCierre}}"></p>
@@ -63,7 +55,10 @@
   </form>
 </div>
 @include('includes.geoscripts')
-<script src="/js/map.js" onload="getAseoEdit({{$aseo->latitud}}, {{$aseo->longitud}})"></script>
-<script src="/js/createWC.js"></script>
+<script src="/js/map.js" ></script>
+<script >
+        
+      </script>
+<script src="/js/createWC.js" onload="getAseoEdit({{$aseo->latitud}}, {{$aseo->longitud}})"></script>
 
   @endsection

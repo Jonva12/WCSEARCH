@@ -98,7 +98,9 @@ class BathController extends Controller
       return view('pages.editWC', array('aseo'=>$aseo));
     }
 
-    public function guardarAseo(Request $request){
+    public function update(Request $request){
+
+        $foto = $request->file('foto');
         $request->validate(['nombre'=>'string|required|min:2|max:255']);
         $aseo=Aseo::find($request->input('id'));
         $aseo->nombre = $request->input('nombre');
@@ -156,7 +158,7 @@ class BathController extends Controller
         $aseo->accesibilidad = $request->input('accesibilidad');
         $aseo->user_id = Auth::user()->id;
         $aseo->save();
-        return redirect()->route('/home');
+        return redirect()->route('home', ['latitud' => $request->input('latitud'), 'longitud' => $request->input('longitud')]);
     }
 
     public function getAseos(Request $request){
