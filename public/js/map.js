@@ -91,15 +91,25 @@ var aseoIcon = L.icon({
 });
 
 function getAseos(x,y){
-	limpiarMapaAseos();
+	if (aseos!== 'undefined'){
+		for(var i=0;i<aseos.length;i++){
+			aseos[i].nuevo=false;
+		}
+	}
 	var loc={latitud: x, longitud: y}
 	$.get( "/api/mapa/getAseos/", loc, function( data ) {
 		for (var i=0;i<data.length;i++){
 			var marker=L.marker([data[i].latitud, data[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
 			marker.aseo=data[i].id;
+			marker.nuevo=true;
 			aseos.push(marker);
+
 		}
+		limpiarMapaAseosViejos();
 	});
+	
+	
+	
 }
 
 function getAseos2(x,y){
@@ -124,7 +134,13 @@ function getAseos2(x,y){
 	//var loc={latitud: x, longitud: y}
 	setVista(latitud.lat,longitud.lng);
 }*/
-
+function limpiarMapaAseosViejos(){
+	for (var i=0;i<aseos.length;i++){
+		if (!aseos[i].nuevo){
+			mapa.removeLayer(aseos[i]);
+		}
+	}
+}
 function limpiarMapaAseos(){
 	for (var i=0;i<aseos.length;i++){
 		mapa.removeLayer(aseos[i]);
