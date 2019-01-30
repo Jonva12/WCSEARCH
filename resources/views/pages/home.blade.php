@@ -52,12 +52,7 @@
     }
   </style>
 
-</head>
-@if(isset($latitud)&&isset($longitud))
-  <body  onload="getAseos2({{$latitud}}, {{$longitud}})">
-@else
-  <body>
-@endif
+
   @if(Session::has('status'))
   <div id="alert" class="alert {{ Session::get('alert-class', 'alert-warning') }}"><div>{{ Session::get('status') }}</div><i class="fas fa-times" onclick="cerrar()"></i></div>
   @endif
@@ -122,7 +117,7 @@
               <p>Vendo opel corsa</p>
             </div>
             <div>
-              <input type="button" name="editar" value="Editar">
+              <a href="#"><input type="button" name="editar" value="Editar"></a>
             </div>
           </div>
         </div>
@@ -139,7 +134,13 @@
   </div>
   </div>
   @include('includes.geoscripts')
+
+@if(isset($latitud)&&isset($longitud))
+  <script src="/js/map.js" onload="getAseos2({{$latitud}}, {{$longitud}})"></script>
+@else
   <script src="/js/map.js"></script>
+@endif
+  
   <script type="text/javascript">
             function valorar(n){
               for(var i=1; i<=5; i++){
