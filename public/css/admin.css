@@ -104,9 +104,10 @@ i{
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 15px;
 }
 .num{
-  font-size: 24pt;
+  font-size: 20pt;
 }
 table {
   font-family: arial, sans-serif;
