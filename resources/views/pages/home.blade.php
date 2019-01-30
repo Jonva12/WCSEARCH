@@ -3,7 +3,7 @@
 @section('content')
 <style type="text/css">
 aside {
-  box-shadow: 10px 0px 10px 1px #aaaaaa;
+  box-shadow: 10px 8px 10px #aaaaaa;
   padding: 0px !important;
   overflow: auto;
 }
@@ -23,11 +23,10 @@ aside .info{
   margin-top: 2px;
   height: 100%;
   width: 98.4%;
-
   position: fixed;
 }
 .fa-arrow-left{
-  color: green;
+  color: white;
   padding: 10px;
 }
 #error_zoom{
@@ -46,29 +45,24 @@ aside .info{
 }
 </style>
 
-</head>
-@if(isset($latitud)&&isset($longitud))
-<body  onload="getAseos2({{$latitud}}, {{$longitud}})">
-  @else
-  <body>
-    @endif
-    @if(Session::has('status'))
-    <div id="alert" class="alert {{ Session::get('alert-class', 'alert-warning') }}"><div>{{ Session::get('status') }}</div><i id="x" class="fas fa-times"></i></div>
-    @endif
-    <div class="container-fluid">
-      <div class="row">
-        <aside id="aside" class="col-md-3" hidden>
-          <div class="atras" onclick="volver()">
-            <i class="fas fa-arrow-left fa-2x"></i>
-          </div>
-          <img alt="Imagen no disponible" id="imgWC">
-          <div class="general">
-            <h1 id="nombre"></h1>
-            <p>Puntuacion: <b id="puntuacion"></b></p>
-            <p id="dir"></p>
-            <!-- <form method="post" action="ficha" enctype="multipart/form-data">
-            @csrf
-            <div class="form-group">
+
+  @if(Session::has('status'))
+  <div id="alert" class="alert {{ Session::get('alert-class', 'alert-warning') }}"><div>{{ Session::get('status') }}</div><i class="fas fa-times" onclick="cerrar()"></i></div>
+  @endif
+  <div class="container-fluid">
+  <div class="row">
+    <aside id="aside" class="col-md-3" hidden>
+      <div class="atras" id="atrasServicio" onclick="volver()">
+        <i class="fas fa-arrow-left fa-2x"></i>
+      </div>
+      <img alt="Imagen no disponible" id="imgWC">
+      <div class="general">
+        <h1 id="nombre"></h1>
+        <p>Puntuacion: <b id="puntuacion"></b></p>
+        <p id="dir"></p>
+        <!-- <form method="post" action="ficha" enctype="multipart/form-data">
+          @csrf
+          <div class="form-group">
             <input type="file" class="form-control" name="foto">
           </div>
         </form> -->
@@ -106,7 +100,7 @@ aside .info{
           <div id="comentarios">
             <i>Cargando comentarios...</i>
             <div>
-              <input type="button" name="editar" value="Editar">
+              <a href="#"><input type="button" name="editar" value="Editar"></a>
             </div>
           </div>
         </div>
@@ -121,29 +115,35 @@ aside .info{
       </div>
     </section>
   </div>
-</div>
-@include('includes.geoscripts')
-<script src="/js/map.js"></script>
-<script type="text/javascript">
-  function valorar(n){
-    for(var i=1; i<=5; i++){
-      var estrella=document.getElementById('estrella'+i);
-      if(i>n){
-        estrella.classList.add("far");
-        estrella.classList.remove("fas");
-      }else{
-        estrella.classList.remove("far");
-        estrella.classList.add("fas");
-      }
-    }
-  }
+  </div>
+  @include('includes.geoscripts')
 
-  function volver(){
-    var mapaSection = document.getElementById('section');
-    var aside = document.getElementById('aside');
-    mapaSection.classList.remove('col-md-9');
-    mapaSection.classList.add('col-md-12');
-    aside.hidden = true;
-  }
+@if(isset($latitud)&&isset($longitud))
+  <script src="/js/map.js" onload="getAseos2({{$latitud}}, {{$longitud}})"></script>
+@else
+  <script src="/js/map.js"></script>
+@endif
+  
+  <script type="text/javascript">
+            function valorar(n){
+              for(var i=1; i<=5; i++){
+                var estrella=document.getElementById('estrella'+i);
+                if(i>n){
+                  estrella.classList.add("far");
+                  estrella.classList.remove("fas");
+                }else{
+                  estrella.classList.remove("far");
+                  estrella.classList.add("fas");
+                }
+              }
+            }
+
+            function volver(){
+                var mapaSection = document.getElementById('section');
+                var aside = document.getElementById('aside');
+                mapaSection.classList.remove('col-md-9');
+                mapaSection.classList.add('col-md-12');
+                aside.hidden = true;
+            }
 </script>
 @endsection

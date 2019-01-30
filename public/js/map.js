@@ -106,7 +106,7 @@ function getAseos2(x,y){
 	limpiarMapaAseos();
 	setVista(x,y);
 	var loc={latitud: x, longitud: y}
-	$.get( "/api/mapa/getAseos/", loc, function( data ) {
+	$.get( "/api/mapa/getAseo/", loc, function( data ) {
 		for (var i=0;i<data.length;i++){
 			var marker=L.marker([data[i].latitud, data[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
 			marker.aseo=data[i].id;
@@ -114,6 +114,16 @@ function getAseos2(x,y){
 		}
 	});
 }
+
+/*function getAseoEdit(x,y){
+	console.log('entra');
+	limpiarMapaAseos();
+	var latitud=x;
+	var longitud=y;
+	alert(latitud);
+	//var loc={latitud: x, longitud: y}
+	setVista(latitud.lat,longitud.lng);
+}*/
 
 function limpiarMapaAseos(){
 	for (var i=0;i<aseos.length;i++){
@@ -158,6 +168,7 @@ function cambiarInfoFicha(data){
 	document.getElementById("precio").innerHTML=data.precio==null?"GRATIS": data.precio+" €";
 	document.getElementById("accesible").innerHTML=data.accesibilidad==1?"Accesible":"No accesible";
 }
+
 function newComentario(c,mio){
 	return '<div class="card comentario">'+
       				'<div class="card-body">'+
@@ -169,7 +180,6 @@ function newComentario(c,mio){
 				                      '<span class="float-right"><i class="text-warning fa fa-star"></i></span>'+
 				                      '<span class="float-right"><i class="text-warning fa fa-star"></i></span>'+
 				                      '<span class="float-right"><i class="text-warning fa fa-star"></i></span>'+
-
 				                 '</p>'+
 				                 '<div class="clearfix"></div>'+
 				                  '<p>'+c.text+'</p>'+
@@ -226,4 +236,3 @@ function votar(coment,bool){
 	    getComentarios();
 	});
 }
-

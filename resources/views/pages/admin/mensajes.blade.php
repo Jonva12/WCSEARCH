@@ -6,9 +6,10 @@
 <div class="container">
   <div>
     <form action="{{route('admin.mensajes')}}" method="get">
+      <i class="fas fa-search"></i>
       <input type="text" name="nombre" placeholder="Nombre de usuario">
       <input type="text" name="email" placeholder="Email">
-      <input type="submit" value="Filtrar">
+      <input type="submit" value="Filtrar" class="btn btn-success">
     </form>
   </div>
 	<table>

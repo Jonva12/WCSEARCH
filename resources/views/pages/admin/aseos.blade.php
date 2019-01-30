@@ -6,11 +6,12 @@
 <div class="container">
   <div>
     <form action="{{route('admin.aseos')}}" method="get">
+      <i class="fas fa-search"></i>
       <input type="text" name="nombre" placeholder="Nombre de aseo">
       <input type="text" name="direccion" placeholder="Direccion">
       <input type="checkbox" id="ocultos" name="ocultos">
       <label for="ocultos">Mostrar ocultos</label>
-      <input type="submit" value="Filtrar">
+      <input type="submit" value="Filtrar" class="btn btn-success">
     </form>
   </div>
 	<table>
@@ -44,7 +45,7 @@
 				@else
 					<td>
 						<a href="{{route('admin.aseo',$a->id)}}" class="btn btn-primary">Ver reportes</a>
-						<a href="{{route('admin.aseo.ocultar',$a->id)}}" class="btn btn-danger">Ocultar</a>
+						<a href="{{route('admin.aseo.ocultar',$a->id)}}" class="btn btn-dark">Ocultar</a>
 						<a href="{{route('admin.aseo.eliminar',$a->id)}}" class="btn btn-danger">Eliminar</a>
 					</td>
 				@endif

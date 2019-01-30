@@ -85,9 +85,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/ficha', function () {
 //     return view('pages/fichaWC');
 // });
+
 Route::get('/createWC', 'BathController@form')->name('wc.form')->middleware(array('auth', 'verified'));
 Route::post('/fichaCreated','BathController@create')->name('wc.create')->middleware(array('auth', 'verified'));
 Route::get('/eliminar/{id}', 'BathController@ocultarAseo')->name('wc.ocultar')->middleware(array('auth', 'verified'));
+
+Route::get('/editWC/{id}', 'BathController@edit')->name('wc.edit')->middleware(array('auth', 'verified'));
+Route::post('/fichaUpdated','BathController@update')->name('wc.update')->middleware(array('auth', 'verified'));
 
 //routas lenguaje
 Route::get('lang/{lang}', function($lang) {
