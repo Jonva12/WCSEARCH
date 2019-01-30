@@ -96,11 +96,13 @@ aside .info{
         <hr>
         <div>
           <h2>Comentarios</h2>
-          <form action="#" onsubmit="return enviarComentario(event)">
-            @csrf
-            <input id="textComentario" type="text" placeholder="Escribe tu comentario"/>
-            <input type="submit" value="Comentar">
-          </form>
+          @auth
+            <form action="#" onsubmit="return enviarComentario(event)">
+              @csrf
+              <input id="textComentario" type="text" placeholder="Escribe tu comentario"/>
+              <input type="submit" value="Comentar">
+            </form>
+          @endauth
           <div id="comentarios">
             <i>Cargando comentarios...</i>
             <div>
