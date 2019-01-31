@@ -14,7 +14,7 @@ class AddColumnsToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('puntuacion')->default(0);
+            $table->integer('puntuacion')->default(20);
             $table->integer('reportes')->default(0);
         });
     }

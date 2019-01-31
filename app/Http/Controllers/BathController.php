@@ -11,10 +11,6 @@ use Auth;
 
 class BathController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(array('auth', 'verified'));
-    }
 
     public function form(Request $request){
       $aseos = DB::table('aseos')->where('user_id', Auth::user()->id)->get()->count();

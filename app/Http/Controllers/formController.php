@@ -30,7 +30,7 @@ class formController extends Controller
         $admins=User::join('roles','users.role_id','roles.id')->where('roles.nombre','admin')->get();
         foreach ($admins as $admin) {
             $n=new Notification;
-            $n->tipo=$tipo;
+            $n->tipo="mensajeRecibido";
             $n->para=$admin->id;
             $n->save();
         }

@@ -91,15 +91,25 @@ var aseoIcon = L.icon({
 });
 
 function getAseos(x,y){
-	limpiarMapaAseos();
+	if (aseos!== 'undefined'){
+		for(var i=0;i<aseos.length;i++){
+			aseos[i].nuevo=false;
+		}
+	}
 	var loc={latitud: x, longitud: y}
 	$.get( "/api/mapa/getAseos/", loc, function( data ) {
 		for (var i=0;i<data.length;i++){
 			var marker=L.marker([data[i].latitud, data[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
 			marker.aseo=data[i].id;
+			marker.nuevo=true;
 			aseos.push(marker);
+
 		}
+		limpiarMapaAseosViejos();
 	});
+	
+	
+	
 }
 
 function getAseos2(x,y){
@@ -124,7 +134,13 @@ function getAseos2(x,y){
 	//var loc={latitud: x, longitud: y}
 	setVista(latitud.lat,longitud.lng);
 }*/
-
+function limpiarMapaAseosViejos(){
+	for (var i=0;i<aseos.length;i++){
+		if (!aseos[i].nuevo){
+			mapa.removeLayer(aseos[i]);
+		}
+	}
+}
 function limpiarMapaAseos(){
 	for (var i=0;i<aseos.length;i++){
 		mapa.removeLayer(aseos[i]);
@@ -167,47 +183,48 @@ function cambiarInfoFicha(data){
 	document.getElementById("horario").innerHTML=data.horas24 == 1?"24 horas":data.horarioApertura+"-"+data.horarioCierre;
 	document.getElementById("precio").innerHTML=data.precio==null?"GRATIS": data.precio+" €";
 	document.getElementById("accesible").innerHTML=data.accesibilidad==1?"Accesible":"No accesible";
-
 }
 
-	
-
-
-function getComentarios(){
-
- 	$.get( "/api/comentarios/"+aseo.id , function( data ) {
- 		var comentarios="";
- 		if (data.length==0){
-			comentarios="<i>No hay comentarios</i>";
-		}else{
-			for(var i=0;i<data.length;i++){
-				comentarios+='<div class="card comentario">'+
+function newComentario(c,mio){
+	return '<div class="card comentario">'+
       				'<div class="card-body">'+
 				          '<div class="row">'+
 				              '<div class="col-md-12">'+
 				                  '<p>'+
-				                      '<a class="float-left" href="/usuario/p/'+data[i].user_id+'"><strong>'+data[i].usuario.name+'</strong> - '+data[i].created_at+'</a>'+
+				                      '<a class="float-left" href="/usuario/p/'+c.user_id+'"><strong>'+c.usuario.name+'</strong> '+(mio?'<i class="fas fa-pen"></i>':'')+' - '+c.created_at+'</a>'+
 				                      '<span class="float-right"><i class="text-warning fa fa-star"></i></span>'+
 				                      '<span class="float-right"><i class="text-warning fa fa-star"></i></span>'+
 				                      '<span class="float-right"><i class="text-warning fa fa-star"></i></span>'+
 				                      '<span class="float-right"><i class="text-warning fa fa-star"></i></span>'+
-
 				                 '</p>'+
 				                 '<div class="clearfix"></div>'+
-				                  '<p>'+data[i].text+'</p>'+
+				                  '<p>'+c.text+'</p>'+
 				                  '<p>'+
-				                      '<a onclick="votar('+data[i].id+',false)" class="float-right btn btn-outline-danger ml-2">'+data[i].dislike+' <i class="fa fa-thumbs-down"></i></a>'+
-				                      '<a onclick="votar('+data[i].id+',true)" class="float-right btn btn-outline-primary ml-2">'+data[i].like+' <i class="fa fa-thumbs-up"></i></a>'+
-				                      '<a onclick="deleteComentario('+data[i].id+')" class="float-right btn btn-outline-secondary"> <i class="fa fa-trash-alt"></i></a>'+
+				                      '<a onclick="votar('+c.id+',false)" class="float-right btn btn-outline-danger ml-2">'+c.dislike+' <i class="fa fa-thumbs-down"></i></a>'+
+				                      '<a onclick="votar('+c.id+',true)" class="float-right btn btn-outline-primary ml-2">'+c.like+' <i class="fa fa-thumbs-up"></i></a>'+
+				                      (mio?'<a onclick="deleteComentario('+c.id+')" class="float-right btn btn-outline-secondary"> <i class="fa fa-trash-alt"></i></a>':'')+
 				                 '</p>'+
 				              '</div>'+
 				          '</div>'+
 				      '</div>'+
 				  '</div>';
-			}
+}
+function getComentarios(){
+
+	$.get( "/api/comentarios/"+aseo.id+"/mios" , function( data ) {
+ 		var comentarios="";
+		for(var i=0;i<data.length;i++){
+			comentarios+=newComentario(data[i], true);		
 		}
-		document.getElementById("comentarios").innerHTML=comentarios;
-		
+		$.get( "/api/comentarios/"+aseo.id , function( data ) {
+			for(var i=0;i<data.length;i++){
+				comentarios+=newComentario(data[i], false);		
+			}
+			if(comentarios==""){
+				comentarios="<i>No hay comentarios</i>";
+			}
+			document.getElementById("comentarios").innerHTML=comentarios;
+		});
 	});
 }
 

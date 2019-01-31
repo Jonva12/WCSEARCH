@@ -85,11 +85,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/ficha', function () {
 //     return view('pages/fichaWC');
 // });
-Route::get('/createWC', 'BathController@form')->name('wc.form');
-Route::get('/editWC/{id}', 'BathController@edit')->name('wc.edit');
-Route::post('/fichaCreated','BathController@create')->name('wc.create');
-Route::post('/fichaUpdated','BathController@update')->name('wc.update');
-Route::get('/eliminar/{id}', 'BathController@ocultarAseo')->name('wc.ocultar');
+
+Route::get('/createWC', 'BathController@form')->name('wc.form')->middleware(array('auth', 'verified'));
+Route::post('/fichaCreated','BathController@create')->name('wc.create')->middleware(array('auth', 'verified'));
+Route::get('/eliminar/{id}', 'BathController@ocultarAseo')->name('wc.ocultar')->middleware(array('auth', 'verified'));
+
+Route::get('/editWC/{id}', 'BathController@edit')->name('wc.edit')->middleware(array('auth', 'verified'));
+Route::post('/fichaUpdated','BathController@update')->name('wc.update')->middleware(array('auth', 'verified'));
 
 //routas lenguaje
 Route::get('lang/{lang}', function($lang) {
@@ -110,6 +112,7 @@ Route::get('/api/mapa/getAseos/', 'BathController@getAseos');
 Route::get('/api/mapa/getAseo/{id}', 'BathController@getAseo');
 
 Route::get('/api/comentarios/{id}', 'ApiComentariosController@show');
-Route::get('/api/comentarios/{id}/comentar', 'ApiComentariosController@store')->middleware('auth');
-Route::get('/api/comentarios/{id}/eliminar', 'ApiComentariosController@destroy')->middleware('auth');
-Route::get('/api/comentarios/{id}/valorar', 'ApiComentariosController@valorar')->middleware('auth');
+Route::get('/api/comentarios/{id}/mios', 'ApiComentariosController@showMio');
+Route::get('/api/comentarios/{id}/comentar', 'ApiComentariosController@store')->middleware(array('auth', 'verified'));
+Route::get('/api/comentarios/{id}/eliminar', 'ApiComentariosController@destroy')->middleware(array('auth', 'verified'));
+Route::get('/api/comentarios/{id}/valorar', 'ApiComentariosController@valorar')->middleware(array('auth', 'verified'));

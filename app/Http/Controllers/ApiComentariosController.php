@@ -48,7 +48,11 @@ class ApiComentariosController extends Controller
      */
     public function show($id)
     {
-        $comentarios=Comentario::where('aseo_id',$id)->orderBy("created_at", 'desc')->get();
+        if (Auth::user()!==null){
+            $comentarios=Comentario::where([['aseo_id',$id],['user_id','!=',Auth::user()->id]])->orderBy("created_at", 'desc')->get();
+        }else{
+            $comentarios=Comentario::where([['aseo_id',$id]])->orderBy("created_at", 'desc')->get();
+        }
         foreach ($comentarios as $c) {
             $aux=$c->usuario->name;
             $c->like=$c->valoracion()->where('comentarios_users.puntuacion',1)->count();
@@ -56,6 +60,23 @@ class ApiComentariosController extends Controller
         }
 
         return $comentarios;
+    }
+
+    public function showMio($id)
+    {
+        if (Auth::user()!==null){
+                
+            $comentarios=Comentario::where([['aseo_id',$id],['user_id',Auth::user()->id]])->orderBy("created_at", 'desc')->get();
+            foreach ($comentarios as $c) {
+                $aux=$c->usuario->name;
+                $c->like=$c->valoracion()->where('comentarios_users.puntuacion',1)->count();
+                $c->dislike=$c->valoracion()->where('comentarios_users.puntuacion',-1)->count();
+            }
+
+            return $comentarios;
+        }else{
+            return null;
+        }
     }
 
     /**
@@ -78,6 +99,8 @@ class ApiComentariosController extends Controller
      */
     public function destroy($id)
     {
+        Comentario::where('id',$id)->first()->valoracion()->detach();
+
         Comentario::where([['id',$id],['user_id', Auth::user()->id]])->delete();
         return 1;
     }
