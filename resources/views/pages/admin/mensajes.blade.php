@@ -12,7 +12,7 @@
       <input type="submit" value="Filtrar" class="btn btn-success">
     </form>
   </div>
-	<table class="table" width="100%">
+	<table class="table">
 		<tr>
 			<th>Id</th>
 			<th>Nombre</th>

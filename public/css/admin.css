@@ -125,16 +125,14 @@ a{
 }
 .num{
   font-size: 20pt;
-
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
 }
 
 td, th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+  min-width: 120px;
+  max-width: auto;
 }
 
 tbody{
