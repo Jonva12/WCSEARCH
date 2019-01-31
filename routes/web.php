@@ -107,10 +107,6 @@ Route::get('/api/notificaciones/leer/{id}', 'NotificationController@leerNotifica
 Route::get('/api/notificaciones/leerTodas', 'NotificationController@leerTodas');
 
 
-//rutas para mapa api
-Route::get('/api/mapa/getAseos/', 'BathController@getAseos');
-Route::get('/api/mapa/getAseo/{id}', 'BathController@getAseo');
-
 Route::get('/api/comentarios/{id}', 'ApiComentariosController@show');
 Route::get('/api/comentarios/{id}/mios', 'ApiComentariosController@showMio');
 Route::get('/api/comentarios/{id}/comentar', 'ApiComentariosController@store')->middleware(array('auth', 'verified'));
