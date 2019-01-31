@@ -66,6 +66,7 @@ aside .info{
         <p><b id="puntuacion"></b>
           <span id="puntuacionEstre"></span>
           </p>
+        <a href="" class="btn btn-primary" id="editarLink">Editar <i class="fas fa-edit"></i></a>
         <p id="dir"></p>
         <!-- <form method="post" action="ficha" enctype="multipart/form-data">
           @csrf
@@ -140,7 +141,24 @@ aside .info{
                 }
               }
             }
-
+            function esMio(idUsuario,id){
+              @guest
+                editarLink.href="";
+                editarLink.style.display = 'none';
+              @endguest
+              @auth
+                var editarLink=document.getElementById("editarLink");
+                if ({{Auth::user()->id}}==idUsuario){
+                  editarLink.href="/editWC/"+id;
+                  editarLink.style.display = 'block';
+                }else{
+                  editarLink.href="";
+                  editarLink.style.display = 'none';
+                }
+              @endauth
+              
+            }
+            
 
             function volver(){
                 var mapaSection = document.getElementById('section');
