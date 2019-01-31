@@ -81,11 +81,11 @@ aside .info{
             <p>4,2 puntos</p>
             <p>(16 votos)</p>
           </div>
-          <i onclick="valorar(1)" class="fas fa-star" id="estrella1"></i>
-          <i onclick="valorar(2)" class="fas fa-star" id="estrella2"></i>
-          <i onclick="valorar(3)" class="fas fa-star" id="estrella3"></i>
-          <i onclick="valorar(4)" class="fas fa-star" id="estrella4"></i>
-          <i onclick="valorar(5)" class="far fa-star" id="estrella5"></i>
+          <i onclick="valorar(1)" class="far fa-star" id="estrella1" value="1"></i>
+          <i onclick="valorar(2)" class="far fa-star" id="estrella2" value="2"></i>
+          <i onclick="valorar(3)" class="far fa-star" id="estrella3" value="3"></i>
+          <i onclick="valorar(4)" class="far fa-star" id="estrella4" value="4"></i>
+          <i onclick="valorar(5)" class="far fa-star" id="estrella5" value="5"></i>
         </div>
         <hr>
         <div>
@@ -123,14 +123,15 @@ aside .info{
 @else
   <script src="/js/map.js"></script>
 @endif
-  
+
   <script type="text/javascript">
             function valorar(n){
               for(var i=1; i<=5; i++){
                 var estrella=document.getElementById('estrella'+i);
                 if(i>n){
-                  estrella.classList.add("far");
-                  estrella.classList.remove("fas");
+                  estrella.classList.add("fas");
+                  estrella.classList.remove("far");
+                  console.log(estrella.value);
                 }else{
                   estrella.classList.remove("far");
                   estrella.classList.add("fas");

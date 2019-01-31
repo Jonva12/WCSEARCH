@@ -107,9 +107,9 @@ function getAseos(x,y){
 		}
 		limpiarMapaAseosViejos();
 	});
-	
-	
-	
+
+
+
 }
 
 function getAseos2(x,y){
@@ -170,6 +170,12 @@ function markerOnClick(e){
 function setVista(x,y){
 	mapa.setView([x, y],16);
 }
+function enviarPuntos(n){
+
+	$.get("/api/aseo/"+aseo.id+"/valorar",n,function(result){
+
+	});
+}
 
 function cambiarInfoFicha(data){
 	console.log(data.foto);
@@ -214,11 +220,11 @@ function getComentarios(){
 	$.get( "/api/comentarios/"+aseo.id+"/mios" , function( data ) {
  		var comentarios="";
 		for(var i=0;i<data.length;i++){
-			comentarios+=newComentario(data[i], true);		
+			comentarios+=newComentario(data[i], true);
 		}
 		$.get( "/api/comentarios/"+aseo.id , function( data ) {
 			for(var i=0;i<data.length;i++){
-				comentarios+=newComentario(data[i], false);		
+				comentarios+=newComentario(data[i], false);
 			}
 			if(comentarios==""){
 				comentarios="<i>No hay comentarios</i>";
@@ -243,7 +249,7 @@ function deleteComentario(id){
 	$.get( "/api/comentarios/"+id+"/eliminar", function( data ) {
 		getComentarios();
 	});
-	
+
 }
 
 function votar(coment,bool){
