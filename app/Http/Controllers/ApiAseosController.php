@@ -17,7 +17,7 @@ class ApiAseosController extends Controller
         $aseos=Aseo::where('oculto',null)
         ->whereBetween('latitud',[$request->latitud-0.05,$request->latitud+0.05])
         ->whereBetween('longitud',[$request->longitud-0.05,$request->longitud+0.05])->get();
-        
+
       return $aseos;
     }
 
@@ -43,6 +43,8 @@ class ApiAseosController extends Controller
       $aseo=Aseo::where(
         'id',$id
       )->first();
+      $aseo->numPuntuacion=$aseo->valoracion()->sum('aseos_users.puntuacion');
+      $aseo->countPuntuacion=$aseo->valoracion()->count();
 
       return $aseo;
     }

@@ -58,7 +58,9 @@ aside .info{
       <img alt="Imagen no disponible" id="imgWC">
       <div class="general">
         <h1 id="nombre"></h1>
-        <p>Puntuacion: <b id="puntuacion"></b></p>
+        <p><b id="puntuacion"></b>
+          <span id="puntuacionEstre"></span>
+          </p>
         <p id="dir"></p>
         <!-- <form method="post" action="ficha" enctype="multipart/form-data">
           @csrf
@@ -76,16 +78,12 @@ aside .info{
         </div>
         <hr>
         <div class="valorar">
-          <h2>Valoracion</h2>
-          <div class="valoracion">
-            <p>4,2 puntos</p>
-            <p>(16 votos)</p>
-          </div>
-          <i onclick="valorar(1)" class="far fa-star" id="estrella1" value="1"></i>
-          <i onclick="valorar(2)" class="far fa-star" id="estrella2" value="2"></i>
-          <i onclick="valorar(3)" class="far fa-star" id="estrella3" value="3"></i>
-          <i onclick="valorar(4)" class="far fa-star" id="estrella4" value="4"></i>
-          <i onclick="valorar(5)" class="far fa-star" id="estrella5" value="5"></i>
+          <h2>Valorar</h2>
+          <i onclick="enviarPuntos(1)" class="far fa-star" id="estrella1" value="1"></i>
+          <i onclick="enviarPuntos(2)" class="far fa-star" id="estrella2" value="2"></i>
+          <i onclick="enviarPuntos(3)" class="far fa-star" id="estrella3" value="3"></i>
+          <i onclick="enviarPuntos(4)" class="far fa-star" id="estrella4" value="4"></i>
+          <i onclick="enviarPuntos(5)" class="far fa-star" id="estrella5" value="5"></i>
         </div>
         <hr>
         <div>
@@ -129,15 +127,15 @@ aside .info{
               for(var i=1; i<=5; i++){
                 var estrella=document.getElementById('estrella'+i);
                 if(i>n){
-                  estrella.classList.add("fas");
-                  estrella.classList.remove("far");
-                  console.log(estrella.value);
+                  estrella.classList.add("far");
+                  estrella.classList.remove("fas");
                 }else{
                   estrella.classList.remove("far");
                   estrella.classList.add("fas");
                 }
               }
             }
+
 
             function volver(){
                 var mapaSection = document.getElementById('section');

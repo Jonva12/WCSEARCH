@@ -171,9 +171,21 @@ function setVista(x,y){
 	mapa.setView([x, y],16);
 }
 function enviarPuntos(n){
-
-	$.get("/api/aseo/"+aseo.id+"/valorar",n,function(result){
-
+	var data = {
+		voto: n
+	}
+	$.get("/api/aseo/"+aseo.id+"/valorar",data, function(result){
+		document.getElementById("puntuacion").innerHTML=result.numPuntuacion/result.countPuntuacion;
+		var text="";
+		for (var i=0; i<5;i++){
+			if (i<result.numPuntuacion/result.countPuntuacion){
+				text+='  <i class="fas fa-star" ></i>';
+			}else{
+				text+='  <i class="far fa-star" ></i>';
+			}
+		}
+		document.getElementById("puntuacionEstre").innerHTML=text;
+		valorar(n);
 	});
 }
 
@@ -185,10 +197,21 @@ function cambiarInfoFicha(data){
 		document.getElementById("imgWC").src=data.foto; //link de la foto
 	}
 	document.getElementById("nombre").innerHTML=data.nombre;
+	document.getElementById("puntuacion").innerHTML=data.numPuntuacion/data.countPuntuacion;
+	var text="";
+	for (var i=0; i<5;i++){
+		if (i<data.numPuntuacion/data.countPuntuacion){
+			text+='  <i class="fas fa-star" ></i>';
+		}else{
+			text+='  <i class="far fa-star" ></i>';
+		}
+	}
+	document.getElementById("puntuacionEstre").innerHTML=text;
 	document.getElementById("dir").innerHTML=data.dir;
 	document.getElementById("horario").innerHTML=data.horas24 == 1?"24 horas":data.horarioApertura+"-"+data.horarioCierre;
 	document.getElementById("precio").innerHTML=data.precio==null?"GRATIS": data.precio+" €";
 	document.getElementById("accesible").innerHTML=data.accesibilidad==1?"Accesible":"No accesible";
+	valorar(0);
 }
 
 function newComentario(c,mio){
