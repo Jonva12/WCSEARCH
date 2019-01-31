@@ -43,6 +43,11 @@ aside .info{
 .comentario{
   margin: 5px;
 }
+#textComentario{
+  border-radius: 5px;
+  width: 90%;
+}
+
 </style>
 
 
@@ -93,7 +98,7 @@ aside .info{
           @auth
             <form action="#" onsubmit="return enviarComentario(event)">
               @csrf
-              <input id="textComentario" type="text" placeholder="Escribe tu comentario"/>
+              <textarea id="textComentario" placeholder="Escribe tu comentario"></textarea>
               <input type="submit" value="Comentar">
             </form>
           @endauth
