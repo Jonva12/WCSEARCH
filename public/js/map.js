@@ -97,7 +97,7 @@ function getAseos(x,y){
 		}
 	}
 	var loc={latitud: x, longitud: y}
-	$.get( "/api/mapa/getAseos/", loc, function( data ) {
+	$.get( "/api/aseo", loc, function( data ) {
 		for (var i=0;i<data.length;i++){
 			var marker=L.marker([data[i].latitud, data[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
 			marker.aseo=data[i].id;
@@ -116,7 +116,7 @@ function getAseos2(x,y){
 	limpiarMapaAseos();
 	setVista(x,y);
 	var loc={latitud: x, longitud: y}
-	$.get( "/api/mapa/getAseo/", loc, function( data ) {
+	$.get( "/api/aseo", loc, function( data ) {
 		for (var i=0;i<data.length;i++){
 			var marker=L.marker([data[i].latitud, data[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
 			marker.aseo=data[i].id;
@@ -162,10 +162,10 @@ function markerOnClick(e){
     aside.hidden = false;
 	setVista(e.latlng.lat,e.latlng.lng);
 	aseo={id: e.target.aseo};
- 	$.get( "/api/mapa/getAseo/"+ e.target.aseo, function( data ) {
+ 	$.get( "/api/aseo/"+ aseo.id, function( data ) {
 		cambiarInfoFicha(data);
 	});
-	getComentarios(e.target.aseo);
+	getComentarios();
 }
 function setVista(x,y){
 	mapa.setView([x, y],16);
