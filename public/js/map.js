@@ -197,7 +197,7 @@ function cambiarInfoFicha(data){
 		document.getElementById("imgWC").src=data.foto; //link de la foto
 	}
 	document.getElementById("nombre").innerHTML=data.nombre;
-	document.getElementById("puntuacion").innerHTML=data.numPuntuacion/data.countPuntuacion;
+	document.getElementById("puntuacion").innerHTML=isNaN(data.numPuntuacion/data.countPuntuacion) ? 0 : data.numPuntuacion/data.countPuntuacion;
 	var text="";
 	for (var i=0; i<5;i++){
 		if (i<data.numPuntuacion/data.countPuntuacion){
