@@ -17,7 +17,7 @@ class Aseo extends Model
     }
 
     public function valoracion(){
-    	return $this->belongsToMany('App\User')->withPivot('puntuacion');
+    	return $this->belongsToMany('App\User', 'aseos_users')->withPivot('puntuacion');
     }
 
     public function reportes(){

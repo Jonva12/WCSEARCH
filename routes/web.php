@@ -100,6 +100,8 @@ Route::get('lang/{lang}', function($lang) {
 })->middleware('web')->name('change_lang');
 
 
+Route::get('/api/aseo/{id}/valorar', 'BathController@valorar')->middleware('auth');
+
 //Routas notificaciones
 Route::get('/api/notificaciones/tiene', 'NotificationController@tieneNotificaciones');
 Route::get('/api/notificaciones/get', 'NotificationController@getNotificaciones');
