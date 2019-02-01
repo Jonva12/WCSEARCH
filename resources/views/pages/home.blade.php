@@ -43,6 +43,11 @@ aside .info{
 .comentario{
   margin: 5px;
 }
+#textComentario{
+  border-radius: 5px;
+  width: 90%;
+}
+
 </style>
 
 
@@ -61,6 +66,7 @@ aside .info{
         <p><b id="puntuacion"></b>
           <span id="puntuacionEstre"></span>
           </p>
+        <a href="" class="btn btn-light" id="editarLink">Editar <i class="fas fa-edit"></i></a>
         <p id="dir"></p>
         <!-- <form method="post" action="ficha" enctype="multipart/form-data">
           @csrf
@@ -91,15 +97,12 @@ aside .info{
           @auth
             <form action="#" onsubmit="return enviarComentario(event)">
               @csrf
-              <input id="textComentario" type="text" placeholder="Escribe tu comentario"/>
+              <textarea id="textComentario" placeholder="Escribe tu comentario"></textarea>
               <input type="submit" value="Comentar">
             </form>
           @endauth
           <div id="comentarios">
             <i>Cargando comentarios...</i>
-            <div>
-              <a href="#"><input type="button" name="editar" value="Editar"></a>
-            </div>
           </div>
         </div>
       </div>
@@ -135,7 +138,24 @@ aside .info{
                 }
               }
             }
-
+            function esMio(idUsuario,id){
+              @guest
+                editarLink.href="";
+                editarLink.hidden = true;
+              @endguest
+              @auth
+                var editarLink=document.getElementById("editarLink");
+                if ({{Auth::user()->id}}==idUsuario){
+                  editarLink.href="/editWC/"+id;
+                  editarLink.hidden = false;
+                }else{
+                  editarLink.href="";
+                  editarLink.hidden = true;
+                }
+              @endauth
+              
+            }
+            
 
             function volver(){
                 var mapaSection = document.getElementById('section');
