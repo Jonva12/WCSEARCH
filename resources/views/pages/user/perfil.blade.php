@@ -3,6 +3,25 @@
   @section('title', 'WCSearch')
 
   @section('content')
+  <style media="screen">
+
+  @media(min-width: 600px){
+    form{
+      display: inline-flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: baseline;
+    }
+  }
+
+  thead{
+    table-layout: fixed;
+  }
+  tbody{
+    overflow: scroll;
+  }
+  
+  </style>
     @if(Session::has('status'))
       <div id="alert" class="alert {{ Session::get('alert-class', 'alert-warning') }}"><div>{{ Session::get('status') }}</div><i id="x" class="fas fa-times" onclick="cerrar()"></i></div>
     @endif
@@ -25,12 +44,14 @@
 				@endif
 				<div>
 				    <form action="{{route('usuario.perfil', $usuario->id)}}" method="get">
-				    	<input type="text" name="nombre" placeholder="Nombre de aseo">
-				    	<input type="text" name="direccion" placeholder="Direccion">
-				    	<input type="submit" value="Filtrar">
+              <i class="fas fa-search"></i>
+				    	<input type="text" name="nombre" class="form-control" placeholder="Nombre de aseo">
+				    	<input type="text" name="direccion" class="form-control" placeholder="Direccion">
+				    	<input type="submit" value="Filtrar" class="btn btn-success">
 				    </form>
 				</div>
-					<table class="table table-hover">
+        <div class="table-responsive">
+          <table class="table table-hover">
 						<thead>
 							<tr>
 								<th>Aseo</th>
@@ -71,6 +92,8 @@
 								@endif
 						</tbody>
 					</table>
+        </div>
+
 			</div>
 		</div>
 </div>
