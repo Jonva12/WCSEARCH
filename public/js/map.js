@@ -1,5 +1,5 @@
 var aseo={};
-var mapa = L.map('mapid').setView([43.3073225, -1.9914354], 13);
+var mapa = L.map('mapid').setView([0, 0], 3);
 mapa.addEventListener('moveend', function(ev) {
 	if (document.getElementById("error_zoom")) {
 	   var centro=mapa.getCenter();
