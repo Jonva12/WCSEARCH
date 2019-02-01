@@ -54,8 +54,8 @@ class UserController extends Controller
             'nombre'=>'string|required|min:2|max:255',
             'email'=>'email|required|min:6|max:255']);
         $usuario=User::where('id',Auth::user()->id)->first();
-        $usuario->name=$request->input('nombre');
-        $usuario->email=$request->input('email');
+        $usuario->name=htmlentities($request->input('nombre'));
+        $usuario->email=htmlentities($request->input('email'));
         $usuario->save();
 
 

@@ -30,7 +30,7 @@ class ApiComentariosController extends Controller
         //dump($request);
 
         $comentario= new Comentario;
-        $comentario->text=$request->input('text');
+        $comentario->text=htmlentities($request->input('text'));
         $comentario->user_id=Auth::user()->id;
         $comentario->aseo_id=$id;
         $comentario->save();

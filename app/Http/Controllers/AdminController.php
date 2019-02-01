@@ -178,10 +178,10 @@ class AdminController extends Controller
             'name'=>'string|required|min:2|max:255',
             'email'=>'email|required|min:6|max:255']);
         $user=User::find($request->input('id'));
-        $user->name=$request->input('name');
-        $user->email=$request->input('email');
-        $user->role_id=$request->input('rol');
-        $user->puntuacion=$request->input('puntuacion');
+        $user->name=htmlentities($request->input('name'));
+        $user->email=htmlentities($request->input('email'));
+        $user->role_id=htmlentities($request->input('rol'));
+        $user->puntuacion=htmlentities($request->input('puntuacion'));
         $user->save();
         return redirect()->route('admin.usuarios');
     }

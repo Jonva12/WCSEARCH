@@ -195,7 +195,7 @@ function cambiarInfoFicha(data){
 		document.getElementById("imgWC").src = "/img/"+data.foto;
 	}else{
 		document.getElementById("imgWC").src=data.foto; //link de la foto
-	}
+	};
 	document.getElementById("nombre").innerHTML=data.nombre;
 	
 	esMio(data.user_id, data.id);
