@@ -85,11 +85,16 @@ aside .info{
         <hr>
         <div class="valorar">
           <h2>Valorar</h2>
+          @auth
           <i onclick="enviarPuntos(1)" class="far fa-star" id="estrella1" value="1"></i>
           <i onclick="enviarPuntos(2)" class="far fa-star" id="estrella2" value="2"></i>
           <i onclick="enviarPuntos(3)" class="far fa-star" id="estrella3" value="3"></i>
           <i onclick="enviarPuntos(4)" class="far fa-star" id="estrella4" value="4"></i>
           <i onclick="enviarPuntos(5)" class="far fa-star" id="estrella5" value="5"></i>
+          @endauth
+          @guest
+            <i>Inicia sesion para poder valorar</i> 
+          @endguest
         </div>
         <hr>
         <div>
