@@ -19,3 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //rutas para mapa api
 Route::apiResource('aseo', 'ApiAseosController');
+
+Route::apiResource('comentarios', 'ApiComentariosController');
