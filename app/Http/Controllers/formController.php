@@ -21,9 +21,9 @@ class formController extends Controller
 
     	//pillar los daos del input
 
-    	$data->name=$request->input('nombre');
-    	$data->email=$request->input('email');
-    	$data->message=$request->input('mensaje');
+    	$data->name=htmlentities($request->input('nombre'));
+    	$data->email=htmlentities($request->input('email'));
+    	$data->message=htmlentities($request->input('mensaje'));
 
     	$data->save();
 
