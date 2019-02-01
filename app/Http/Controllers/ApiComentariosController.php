@@ -36,7 +36,7 @@ class ApiComentariosController extends Controller
         $comentario->save();
 
         $user=User::where('id', Auth::user()->id)->first();
-        $user->puntuacion=2;
+        $user->puntuacion+=20;
         $user->save(); 
     }
 
