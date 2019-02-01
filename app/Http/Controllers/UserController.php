@@ -35,7 +35,7 @@ class UserController extends Controller
             } 
         }
 
-        $aseos=Aseo::where('user_id', $id);
+        $aseos=Aseo::where([['user_id', $id],['oculto',null]]);
         $n=$request->input('nombre');
         if($n!=null && $n!=""){
           $aseos=$aseos->where('nombre', 'like', '%'.$n.'%');

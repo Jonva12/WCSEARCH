@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
 use App\Aseo;
+use App\User;
 use Auth;
 
 class BathController extends Controller
@@ -35,7 +36,6 @@ class BathController extends Controller
       ]);
 
       $foto = $request->file('foto');
-
       $aseo = new Aseo();
       $aseo->nombre = $request->input('nombre');
       $aseo->latitud = $request->input('latitud');
@@ -91,14 +91,24 @@ class BathController extends Controller
       $aseo->precio = $request->input('precio');
       $aseo->accesibilidad = $request->input('accesibilidad');
       $aseo->user_id = Auth::user()->id;
-
+      $user = User::where('id',$aseo->user_id)->first();
+      $user->puntuacion+=20;
+      $user->save();
       $aseo->save();
       return redirect()->route('home', ['latitud' => $request->input('latitud'), 'longitud' => $request->input('longitud')]);
     }
 
     public function edit($id){
       $aseo=Aseo::where('id',$id)->first();
-      return view('pages.editWC', array('aseo'=>$aseo));
+      if(!$aseo){
+        return redirect()->route('home');
+      }else{
+        if($aseo->user_id!=Auth::user()->id){
+          return redirect()->route('home');
+        }else{
+          return view('pages.editWC', array('aseo'=>$aseo));
+        }
+      }
     }
 
     public function update(Request $request){
