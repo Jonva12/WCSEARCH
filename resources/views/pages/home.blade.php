@@ -66,7 +66,7 @@ aside .info{
         <p><b id="puntuacion"></b>
           <span id="puntuacionEstre"></span>
           </p>
-        <a href="" class="btn btn-primary" id="editarLink">Editar <i class="fas fa-edit"></i></a>
+        <a href="" class="btn btn-light" id="editarLink">Editar <i class="fas fa-edit"></i></a>
         <p id="dir"></p>
         <!-- <form method="post" action="ficha" enctype="multipart/form-data">
           @csrf
@@ -103,9 +103,6 @@ aside .info{
           @endauth
           <div id="comentarios">
             <i>Cargando comentarios...</i>
-            <div>
-              <a href="#"><input type="button" name="editar" value="Editar"></a>
-            </div>
           </div>
         </div>
       </div>
@@ -144,16 +141,16 @@ aside .info{
             function esMio(idUsuario,id){
               @guest
                 editarLink.href="";
-                editarLink.style.display = 'none';
+                editarLink.hidden = true;
               @endguest
               @auth
                 var editarLink=document.getElementById("editarLink");
                 if ({{Auth::user()->id}}==idUsuario){
                   editarLink.href="/editWC/"+id;
-                  editarLink.style.display = 'block';
+                  editarLink.hidden = false;
                 }else{
                   editarLink.href="";
-                  editarLink.style.display = 'none';
+                  editarLink.hidden = true;
                 }
               @endauth
               

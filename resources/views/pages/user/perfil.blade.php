@@ -62,8 +62,9 @@
 											<td>{{$a->comentarios->count()}}</td>
 											<td>{{$a->reportes->count()}}</td>
 											<td>
-												<a class="btn btn-primary" href="{{route('home',['latitud'=>$a->latitud, 'longitud'=>$a->longitud])}}">Ver</a>
-												<a class="btn btn-danger" onclick="return confirm('¿Estas seguro?')" href="{{route('wc.ocultar', $a->id)}}">Eliminar</a>
+												<a class="btn btn-primary" href="{{route('home',['latitud'=>$a->latitud, 'longitud'=>$a->longitud])}}">Ver <i class="fas fa-eye"></i></a>
+												<a href="{{route('wc.edit', $a->id)}}" class="btn btn-secondary" id="editarLink">Editar <i class="fas fa-edit"></i></a>
+												<a class="btn btn-danger" onclick="return confirm('¿Estas seguro?')" href="{{route('wc.ocultar', $a->id)}}">Eliminar <i class="fas fa-trash"></i></a>
 											</td>
 										</tr>
 									@endforeach
