@@ -100,16 +100,14 @@ Route::get('lang/{lang}', function($lang) {
 })->middleware('web')->name('change_lang');
 
 
+Route::get('/api/aseo/{id}/valorar', 'BathController@valorar')->middleware('auth');
+
 //Routas notificaciones
 Route::get('/api/notificaciones/tiene', 'NotificationController@tieneNotificaciones');
 Route::get('/api/notificaciones/get', 'NotificationController@getNotificaciones');
 Route::get('/api/notificaciones/leer/{id}', 'NotificationController@leerNotificacion');
 Route::get('/api/notificaciones/leerTodas', 'NotificationController@leerTodas');
 
-
-//rutas para mapa api
-Route::get('/api/mapa/getAseos/', 'BathController@getAseos');
-Route::get('/api/mapa/getAseo/{id}', 'BathController@getAseo');
 
 Route::get('/api/comentarios/{id}', 'ApiComentariosController@show');
 Route::get('/api/comentarios/{id}/mios', 'ApiComentariosController@showMio');

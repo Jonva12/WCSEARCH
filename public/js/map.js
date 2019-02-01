@@ -1,5 +1,5 @@
 var aseo={};
-var mapa = L.map('mapid').setView([43.3073225, -1.9914354], 13);
+var mapa = L.map('mapid').setView([0, 0], 3);
 mapa.addEventListener('moveend', function(ev) {
 	if (document.getElementById("error_zoom")) {
 	   var centro=mapa.getCenter();
@@ -97,7 +97,7 @@ function getAseos(x,y){
 		}
 	}
 	var loc={latitud: x, longitud: y}
-	$.get( "/api/mapa/getAseos/", loc, function( data ) {
+	$.get( "/api/aseo", loc, function( data ) {
 		for (var i=0;i<data.length;i++){
 			var marker=L.marker([data[i].latitud, data[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
 			marker.aseo=data[i].id;
@@ -107,16 +107,16 @@ function getAseos(x,y){
 		}
 		limpiarMapaAseosViejos();
 	});
-	
-	
-	
+
+
+
 }
 
 function getAseos2(x,y){
 	limpiarMapaAseos();
 	setVista(x,y);
 	var loc={latitud: x, longitud: y}
-	$.get( "/api/mapa/getAseo/", loc, function( data ) {
+	$.get( "/api/aseo", loc, function( data ) {
 		for (var i=0;i<data.length;i++){
 			var marker=L.marker([data[i].latitud, data[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
 			marker.aseo=data[i].id;
@@ -162,13 +162,31 @@ function markerOnClick(e){
     aside.hidden = false;
 	setVista(e.latlng.lat,e.latlng.lng);
 	aseo={id: e.target.aseo};
- 	$.get( "/api/mapa/getAseo/"+ e.target.aseo, function( data ) {
+ 	$.get( "/api/aseo/"+ aseo.id, function( data ) {
 		cambiarInfoFicha(data);
 	});
-	getComentarios(e.target.aseo);
+	getComentarios();
 }
 function setVista(x,y){
 	mapa.setView([x, y],16);
+}
+function enviarPuntos(n){
+	var data = {
+		voto: n
+	}
+	$.get("/api/aseo/"+aseo.id+"/valorar",data, function(result){
+		document.getElementById("puntuacion").innerHTML=result.numPuntuacion/result.countPuntuacion;
+		var text="";
+		for (var i=0; i<5;i++){
+			if (i<result.numPuntuacion/result.countPuntuacion){
+				text+='  <i class="fas fa-star" ></i>';
+			}else{
+				text+='  <i class="far fa-star" ></i>';
+			}
+		}
+		document.getElementById("puntuacionEstre").innerHTML=text;
+		valorar(n);
+	});
 }
 
 function cambiarInfoFicha(data){
@@ -179,10 +197,24 @@ function cambiarInfoFicha(data){
 		document.getElementById("imgWC").src=data.foto; //link de la foto
 	}
 	document.getElementById("nombre").innerHTML=data.nombre;
+	
+	esMio(data.user_id, data.id);
+
+	document.getElementById("puntuacion").innerHTML=isNaN(data.numPuntuacion/data.countPuntuacion) ? 0 : data.numPuntuacion/data.countPuntuacion;
+	var text="";
+	for (var i=0; i<5;i++){
+		if (i<data.numPuntuacion/data.countPuntuacion){
+			text+='  <i class="fas fa-star" ></i>';
+		}else{
+			text+='  <i class="far fa-star" ></i>';
+		}
+	}
+	document.getElementById("puntuacionEstre").innerHTML=text;
 	document.getElementById("dir").innerHTML=data.dir;
 	document.getElementById("horario").innerHTML=data.horas24 == 1?"24 horas":data.horarioApertura+"-"+data.horarioCierre;
 	document.getElementById("precio").innerHTML=data.precio==null?"GRATIS": data.precio+" €";
 	document.getElementById("accesible").innerHTML=data.accesibilidad==1?"Accesible":"No accesible";
+	valorar(0);
 }
 
 function newComentario(c,mio){
@@ -214,11 +246,11 @@ function getComentarios(){
 	$.get( "/api/comentarios/"+aseo.id+"/mios" , function( data ) {
  		var comentarios="";
 		for(var i=0;i<data.length;i++){
-			comentarios+=newComentario(data[i], true);		
+			comentarios+=newComentario(data[i], true);
 		}
 		$.get( "/api/comentarios/"+aseo.id , function( data ) {
 			for(var i=0;i<data.length;i++){
-				comentarios+=newComentario(data[i], false);		
+				comentarios+=newComentario(data[i], false);
 			}
 			if(comentarios==""){
 				comentarios="<i>No hay comentarios</i>";
@@ -243,7 +275,7 @@ function deleteComentario(id){
 	$.get( "/api/comentarios/"+id+"/eliminar", function( data ) {
 		getComentarios();
 	});
-	
+
 }
 
 function votar(coment,bool){

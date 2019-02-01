@@ -202,5 +202,16 @@ class BathController extends Controller
       )->first();
       return $aseo;
     }
+    public function valorar(Request $request, $id){
+      $voto = $request->voto;
+
+      $aseo=Aseo::where('id', $id)->first();
+      $aseo->valoracion()->detach(Auth::user());
+      $aseo->valoracion()->attach(Auth::user(), ['puntuacion' => $voto]);
+
+      $aseo->numPuntuacion=$aseo->valoracion()->sum('aseos_users.puntuacion');
+      $aseo->countPuntuacion=$aseo->valoracion()->count();
+      return $aseo;
+    }
 
 }
