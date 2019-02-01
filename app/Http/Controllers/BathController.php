@@ -183,9 +183,16 @@ class BathController extends Controller
 
     public function ocultarAseo($id){
       $aseo = Aseo::find($id);
-      $aseo->oculto = new \DateTime();
-      $aseo->save();
-
+      if(!$aseo){
+        return redirect()->route('home');
+      }else{
+        if($aseo->user_id!=Auth::user()->id){
+          return redirect()->route('home');
+        }else{
+          $aseo->oculto = new \DateTime();
+          $aseo->save();
+        }
+      }
       return redirect()->route('usuario');
     }
 
