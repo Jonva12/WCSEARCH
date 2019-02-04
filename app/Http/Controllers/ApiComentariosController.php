@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Comentario;
 use Auth;
 use App\User;
+use Carbon\Carbon;
 
 class ApiComentariosController extends Controller
 {
@@ -37,7 +38,7 @@ class ApiComentariosController extends Controller
 
         $user=User::where('id', Auth::user()->id)->first();
         $user->puntuacion=2;
-        $user->save(); 
+        $user->save();
     }
 
     /**
@@ -57,6 +58,7 @@ class ApiComentariosController extends Controller
             $aux=$c->usuario->name;
             $c->like=$c->valoracion()->where('comentarios_users.puntuacion',1)->count();
             $c->dislike=$c->valoracion()->where('comentarios_users.puntuacion',-1)->count();
+            $c->time=(new Carbon\Carbon($c->created_at))->diffForHumans();
         }
 
         return $comentarios;
@@ -65,12 +67,14 @@ class ApiComentariosController extends Controller
     public function showMio($id)
     {
         if (Auth::user()!==null){
-                
+
             $comentarios=Comentario::where([['aseo_id',$id],['user_id',Auth::user()->id]])->orderBy("created_at", 'desc')->get();
             foreach ($comentarios as $c) {
                 $aux=$c->usuario->name;
                 $c->like=$c->valoracion()->where('comentarios_users.puntuacion',1)->count();
                 $c->dislike=$c->valoracion()->where('comentarios_users.puntuacion',-1)->count();
+                Carbon::setLocale('es'); 
+                $c->time= Carbon::parse($c->created_at)->diffForHumans();
             }
 
             return $comentarios;

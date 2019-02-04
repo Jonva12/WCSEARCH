@@ -1,5 +1,5 @@
 var aseo={};
-var mapa = L.map('mapid').setView([0, 0], 3);
+var mapa = L.map('mapid').setView([43.385537, -1.949364], 3);
 mapa.addEventListener('moveend', function(ev) {
 	if (document.getElementById("error_zoom")) {
 	   var centro=mapa.getCenter();
@@ -195,7 +195,7 @@ function cambiarInfoFicha(data){
 		document.getElementById("imgWC").src=data.foto; //link de la foto
 	};
 	document.getElementById("nombre").innerHTML=data.nombre;
-	
+
 	esMio(data.user_id, data.id);
 
 	document.getElementById("puntuacion").innerHTML=isNaN(data.numPuntuacion/data.countPuntuacion) ? 0 : data.numPuntuacion/data.countPuntuacion;
@@ -214,18 +214,14 @@ function cambiarInfoFicha(data){
 	document.getElementById("accesible").innerHTML=data.accesibilidad==1?"Accesible":"No accesible";
 	valorar(0);
 }
-
 function newComentario(c,mio){
 	return '<div class="card comentario">'+
       				'<div class="card-body">'+
 				          '<div class="row">'+
 				              '<div class="col-md-12">'+
 				                  '<p>'+
-				                      '<a class="float-left" href="/usuario/p/'+c.user_id+'"><strong>'+c.usuario.name+'</strong> '+(mio?'<i class="fas fa-pen"></i>':'')+' - '+c.created_at+'</a>'+
-				                      '<span class="float-right"><i class="text-warning fa fa-star"></i></span>'+
-				                      '<span class="float-right"><i class="text-warning fa fa-star"></i></span>'+
-				                      '<span class="float-right"><i class="text-warning fa fa-star"></i></span>'+
-				                      '<span class="float-right"><i class="text-warning fa fa-star"></i></span>'+
+				                      '<a class="float-left" href="/usuario/p/'+c.user_id+'"><strong>'+c.usuario.name+'</strong> '+(mio?'<i class="fas fa-pen" ></i>':'')+
+															'</a><span class="float-right">'+c.time+'</span>'+
 				                 '</p>'+
 				                 '<div class="clearfix"></div>'+
 				                  '<p>'+c.text+'</p>'+
