@@ -96,7 +96,7 @@ function getAseos(x,y){
 			aseos[i].nuevo=false;
 		}
 	}
-	var loc={latitud: x, longitud: y}
+	var loc={latitud: x, longitud: y, auth: token}
 	$.get( "/api/aseo", loc, function( data ) {
 		for (var i=0;i<data.length;i++){
 			var marker=L.marker([data[i].latitud, data[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
@@ -115,7 +115,7 @@ function getAseos(x,y){
 function getAseos2(x,y){
 	limpiarMapaAseos();
 	setVista(x,y);
-	var loc={latitud: x, longitud: y}
+	var loc={latitud: x, longitud: y, auth: token}
 	$.get( "/api/aseo", loc, function( data ) {
 		for (var i=0;i<data.length;i++){
 			var marker=L.marker([data[i].latitud, data[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
@@ -161,7 +161,7 @@ function markerOnClick(e){
     mapaSection.classList.add('col-md-9');
     aside.hidden = false;
 	setVista(e.latlng.lat,e.latlng.lng);
-	aseo={id: e.target.aseo};
+	aseo={id: e.target.aseo , auth: token};
  	$.get( "/api/aseo/"+ aseo.id, function( data ) {
 		cambiarInfoFicha(data);
 	});
@@ -171,9 +171,7 @@ function setVista(x,y){
 	mapa.setView([x, y],16);
 }
 function enviarPuntos(n){
-	var data = {
-		voto: n
-	}
+	var data = {voto: n, auth: token};
 	$.get("/api/aseo/"+aseo.id+"/valorar",data, function(result){
 		document.getElementById("puntuacion").innerHTML=result.numPuntuacion/result.countPuntuacion;
 		var text="";
@@ -242,8 +240,8 @@ function newComentario(c,mio){
 				  '</div>';
 }
 function getComentarios(){
-
-	$.get( "/api/comentarios/"+aseo.id+"/mios" , function( data ) {
+	var data={auth: token};
+	$.get( "/api/comentarios/"+aseo.id+"/mios", data, function( data ) {
  		var comentarios="";
 		for(var i=0;i<data.length;i++){
 			comentarios+=newComentario(data[i], true);
@@ -263,7 +261,7 @@ function getComentarios(){
 function enviarComentario(e){
 	e.preventDefault();
 	var text=document.getElementById("textComentario").value;
-	var data={text:text};
+	var data={text:text, auth: token};
 	$.get( "/api/comentarios/"+aseo.id+"/comentar", data, function( data ) {
 		getComentarios();
 		document.getElementById("textComentario").value="";
@@ -279,7 +277,7 @@ function deleteComentario(id){
 }
 
 function votar(coment,bool){
-	var data={voto:bool};
+	var data={voto:bool, auth: token};
 	$.get( "/api/comentarios/"+coment+"/valorar", data, function( data ) {
 	    getComentarios();
 	});
