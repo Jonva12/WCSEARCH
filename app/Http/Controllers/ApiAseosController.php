@@ -14,9 +14,9 @@ class ApiAseosController extends Controller
      */
     public function index(Request $request)
     {
-        $aseos=Aseo::where('oculto',null)
-        ->whereBetween('latitud',[$request->latitud-0.05,$request->latitud+0.05])
-        ->whereBetween('longitud',[$request->longitud-0.05,$request->longitud+0.05])->get();
+        $aseos=Aseo::where('oculto',null)->get();
+        //->whereBetween('latitud',[$request->latitud-0.05,$request->latitud+0.05])
+        //->whereBetween('longitud',[$request->longitud-0.05,$request->longitud+0.05])->get();
 
       return $aseos;
     }
