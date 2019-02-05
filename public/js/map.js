@@ -120,7 +120,11 @@ function getAseos(x,y){
 			}
 			//jarri grupun markadorik
 			for (var i=0;i<grupuk.length;i++){
-				var marker=L.marker([grupuk[i].latitud, grupuk[i].longitud],{title: 'Aqui hay '+grupuk[i].kop+' aseos'}).on('click',zoom).addTo(mapa);
+				if (grupuk[i].kop!=1){
+					var marker=L.marker([grupuk[i].latitud, grupuk[i].longitud],{title: 'Aqui hay '+grupuk[i].kop+' aseos'}).on('click',zoom).addTo(mapa);
+				}else{
+					var marker=L.marker([grupuk[i].latitud, grupuk[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
+				}
 				marker.aseo=data[i].id;
 				marker.nuevo=true;
 				aseos.push(marker);
