@@ -38,12 +38,12 @@ class BathController extends Controller
 
       $aseo = new Aseo();
       $aseo->nombre = htmlentities($request->input('nombre'));
-      $aseo->latitud = htmlentities($request->input('latitud'));
-      $aseo->longitud = htmlentities($request->input('longitud'));
+      $aseo->latitud =$request->input('latitud');
+      $aseo->longitud = $request->input('longitud');
       $aseo->dir = htmlentities($request->input('dir'));
-      $aseo->horarioApertura = htmlentities($request->input('horarioApertura'));
-      $aseo->horarioCierre = htmlentities($request->input('horarioCierre'));
-      $aseo->horas24 = htmlentities($request->input('horas24'));
+      $aseo->horarioApertura = $request->input('horarioApertura');
+      $aseo->horarioCierre =$request->input('horarioCierre');
+      $aseo->horas24 = $request->input('horas24');
 
       if($foto == ''){
         $aseo->foto = 'wc.jpg';
@@ -88,8 +88,8 @@ class BathController extends Controller
         //$aseo->foto = $foto->getFileName(). '.' .$extension;
         // $request->foto->storeAs($pathToFile);
       }
-      $aseo->precio = 0.05;
-      $aseo->accesibilidad = htmlentities($request->input('accesibilidad'));
+      $aseo->precio = $request->input('precio');
+      $aseo->accesibilidad = $request->input('accesibilidad');
       $aseo->user_id = Auth::user()->id;
 
       $aseo->save();
