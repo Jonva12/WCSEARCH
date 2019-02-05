@@ -92,7 +92,7 @@ class BathController extends Controller
       $aseo->accesibilidad = htmlentities($request->input('accesibilidad'));
       $aseo->user_id = Auth::user()->id;
 
-      //$aseo->save();
+      $aseo->save();
       return redirect()->route('home', ['latitud' => $request->input('latitud'), 'longitud' => $request->input('longitud')]);
     }
 
