@@ -104,10 +104,10 @@ function getAseos(x,y){
 			for (var i=0;i< data.length;i++){
 				var nuevo=true;
 				for(var j=0;j< grupuk.length;j++){//grupoko batek gertuko coordenadak bazauzkeik aldau kopuru numerue ta ez gorde berrixe bezela
-					if ((grupuk[j].latitud > data[i].latitud-margena && grupuk[j].latitud < data[i].latitud+margena) 
-						&& (grupuk[j].longitud > data[i].longitud-margena && grupuk[j].longitud < data[i].longitud+margena)){
-						grupuk[j].latitud= (grupuk[j].latitud+data[i].latitud)/2;
-						grupuk[j].longitud= (grupuk[j].longitud+data[i].longitud)/2;
+					if ((Number(grupuk[j].latitud) > Number(data[i].latitud)-margena && Number(grupuk[j].latitud) < Number(data[i].latitud)+margena) 
+						&& (Number(grupuk[j].longitud) > Number(data[i].longitud)-margena && Number(grupuk[j].longitud) < Number(data[i].longitud)+margena)){
+						grupuk[j].latitud= (Number(grupuk[j].latitud)+Number(data[i].latitud))/2;
+						grupuk[j].longitud= (Number(grupuk[j].longitud)+Number(data[i].longitud))/2;
 						grupuk[j].kop+=1;
 						nuevo=false;
 					}
