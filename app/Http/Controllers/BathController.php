@@ -88,11 +88,11 @@ class BathController extends Controller
         //$aseo->foto = $foto->getFileName(). '.' .$extension;
         // $request->foto->storeAs($pathToFile);
       }
-      $aseo->precio = $request->input('precio');
-      $aseo->accesibilidad = $request->input('accesibilidad');
+      $aseo->precio = htmlentities($request->input('precio'));
+      $aseo->accesibilidad = htmlentities($request->input('accesibilidad'));
       $aseo->user_id = Auth::user()->id;
 
-      $aseo->save();
+      //$aseo->save();
       return redirect()->route('home', ['latitud' => $request->input('latitud'), 'longitud' => $request->input('longitud')]);
     }
 
