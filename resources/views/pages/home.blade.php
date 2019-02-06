@@ -83,7 +83,7 @@ aside .info{
           <i onclick="enviarPuntos(5)" class="far fa-star" id="estrella5" value="5"></i>
           @endauth
           @guest
-            <i>Inicia sesion para poder valorar</i> 
+            <i>Inicia sesion para poder valorar</i>
           @endguest
         </div>
         <hr>
@@ -105,16 +105,17 @@ aside .info{
     <section id="section" class="col-md-12">
       <style type="text/css">
         .my-custom-icon{
-          width: 24px !important;
-          height: 24px !important;
+          width: 28px !important;
+          height: 27px !important;
           margin-left: -12px;
           margin-top: -12px;
           border-radius: 18px;
-          border: 2px solid red;
+          border: 2px solid rgb(255, 75, 75);
           text-align: center;
-          color: red;
-          background-color: #fff;
-          font-size: 16px;
+          color: white;
+          background-color: rgba(255, 75, 75, 0.6);
+          font-size: 14px;
+          font-weight: bold;
         }
       </style>
       <div id="mapid">
@@ -166,9 +167,9 @@ aside .info{
                   editarLink.hidden = true;
                 }
               @endauth
-              
+
             }
-            
+
 
             function volver(){
                 var mapaSection = document.getElementById('section');
