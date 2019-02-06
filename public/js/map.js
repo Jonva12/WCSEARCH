@@ -132,8 +132,8 @@ function mostrarAseos(){
 					})}).on('click',zoom).addTo(mapa);
 			}else{
 				var marker=L.marker([grupuk[i].latitud, grupuk[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
+                marker.aseo=grupuk[i].id;
 			}
-			marker.aseo=aseos[i].id;
 			marker.nuevo=true;
 			marcadores.push(marker);
 		}
