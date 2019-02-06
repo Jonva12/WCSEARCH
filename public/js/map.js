@@ -101,7 +101,7 @@ function mostrarAseos(){
 		}
 	}
 	if (mapa.getZoom()<12){
-		var margena=0.3*((12-mapa.getZoom())*1.5);
+		var margena=0.3*(12-mapa.getZoom())*0.3*(12-mapa.getZoom());
 		var grupuk=[];
 		for (var i=0;i< aseos.length;i++){
 			var nuevo=true;
@@ -328,10 +328,15 @@ function enviarComentario(e){
 }
 
 function deleteComentario(id){
-	$.post( "/api/comentarios/"+id+"/eliminar", function( data ) {
-		getComentarios();
+	var info={api_token:token}
+	$.ajax({
+	    url: '/api/comentarios/'+id,
+	    type: 'DELETE',
+	    data: info,
+	    success: function(result) {
+	        getComentarios();
+	    }
 	});
-
 }
 
 function votar(coment,bool){

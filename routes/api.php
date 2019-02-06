@@ -26,4 +26,4 @@ Route::get('comentarios/{id}/mios', 'ApiComentariosController@showMio')->middlew
 
 Route::post('comentarios/{id}', 'ApiComentariosController@store')->middleware('auth:api');
 
-Route::post('comentarios/{id}/valorar', 'ApiComentariosController@showMio')->middleware('auth:api');
+Route::post('comentarios/{id}/valorar', 'ApiComentariosController@valorar')->middleware('auth:api');
