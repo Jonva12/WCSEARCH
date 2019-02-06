@@ -117,7 +117,7 @@ function mostrarAseos(){
 			}
 
 			if(nuevo){//forra pasau tagero berrixe ba ein grupo berri bat bakarrakin
-				var nuevoGrupo={latitud:aseos[i].latitud, longitud:aseos[i].longitud, kop:[i]};
+				var nuevoGrupo={latitud:aseos[i].latitud, longitud:aseos[i].longitud, kop:[i], id:aseos[i].id};
 				grupuk.push(nuevoGrupo);
 			}
 		}
