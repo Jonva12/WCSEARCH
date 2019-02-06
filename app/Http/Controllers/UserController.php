@@ -32,10 +32,10 @@ class UserController extends Controller
         if (Auth::user()->role->nombre!="admin"){
             if($usuario->role->nombre=="admin" || $usuario->fecha_de_baneo!=null){
                 return redirect()->route('sinPermisos');
-            } 
+            }
         }
 
-        $aseos=Aseo::where('user_id', $id);
+        $aseos=Aseo::where('user_id', $id )->Where('oculto', '=', null);
         $n=$request->input('nombre');
         if($n!=null && $n!=""){
           $aseos=$aseos->where('nombre', 'like', '%'.$n.'%');
@@ -45,10 +45,10 @@ class UserController extends Controller
           $aseos=$aseos->where('dir', 'like', '%'.$n.'%');
         }
 
-        
+
 		return view('pages/user/perfil', array('usuario'=>$usuario, 'aseos'=>$aseos->get()));
 	}
-    
+
     public function cambiarDatos(Request $request){
         $request->validate([
             'nombre'=>'string|required|min:2|max:255',
@@ -67,13 +67,13 @@ class UserController extends Controller
             'passwordActual'=>'required',
             'passwordNueva'=>'required|min:6|max:255',
             'passwordNueva2'=>'required|min:6|max:255',]);
-        
+
         $usuario=User::where('id',Auth::user()->id)->first();
         if (password_verify ( $request->input('passwordActual'), $usuario->password )){
             if ($request->input('passwordNueva')==$request->input('passwordNueva2')){
 
                 $usuario->password=Hash::make($request->input('passwordNueva'));
-                
+
                 $usuario->save();
                 return redirect()->route('usuario');
             }
@@ -93,6 +93,6 @@ class UserController extends Controller
         }
         return redirect()->route('usuario.ajustes')
                         ->withErrors(["Informacion incorrecta"]);
-        
+
     }
 }

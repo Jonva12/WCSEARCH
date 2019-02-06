@@ -13,7 +13,7 @@ class BathController extends Controller
 {
 
     public function form(Request $request){
-      $aseos = DB::table('aseos')->where('user_id', Auth::user()->id)->get()->count();
+      $aseos = DB::table('aseos')->where('user_id', Auth::user()->id)->where('oculto', null)->get()->count();
       if(Auth::user()->role->nombre == 'normal' && $aseos == 1){
         return back()->with('status', 'Ya has creado 1 Baño. Necesitas 100 puntos para poder crear baños ilimitados.');
         // $request->session()->flash('status', 'No eres golden. Necesitas 100 puntos para poder crear baños.');
