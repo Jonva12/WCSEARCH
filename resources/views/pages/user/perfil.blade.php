@@ -24,24 +24,13 @@
     overflow: scroll;
   }
   @media (max-width: 700px){
-    .float-right{
-     position:fixed;
-	   width:30px;
-	   height:30px;
-	   bottom:140px;
-	   right:10px;
-	   background-color: rgb(236, 236, 236);
-	   border-radius:50px;
-	   text-align:center;
-	   box-shadow: 2px 2px 3px #999;
-    }
 
-    .fa-chevron-right{
+    .fa-chevron-right, .fa-chevron-left{
       margin-top: 10px;
     }
   }
   @media (min-width: 700px){
-    .float-right{
+    .fa-chevron-right, .fa-chevron-left{
       visibility: hidden;
     }
   }
@@ -75,6 +64,8 @@
 				    </form>
 				</div>
         <div class="table-responsive">
+          <a class="float-left"><i class="fas fa-chevron-left"></i></a>
+          <a class="float-right"><i class="fas fa-chevron-right"></i></a>
           <table class="table table-hover">
 						<thead>
 							<tr>
@@ -115,21 +106,10 @@
 								@endif
 						</tbody>
 					</table>
-          <a class="float-right" id="float-right"><i class="fas fa-chevron-right"></i></a>
+
         </div>
 
 			</div>
 		</div>
 </div>
-<script>
-   $('#float-right').one('click', function() {
-      event.preventDefault();
-      $('table').animate({
-        marginLeft: "-=250px"
-      }, "fast");
-      $('#float-right').css('visibility', 'hidden');
-   });
-
-
-</script>
 	@endsection
