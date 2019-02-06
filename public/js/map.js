@@ -2,7 +2,9 @@ var aseo={};
 var token="";
 var mapa = L.map('mapid').setView([43.385537, -1.949364], 3);
 mapa.addEventListener('moveend', function(ev) {
-	if (document.getElementById("error_zoom")) {
+	mostrarAseos();
+});
+	/*if (document.getElementById("error_zoom")) {
 	   var centro=mapa.getCenter();
 	   var zoom=mapa.getZoom();
 	   if(false){
@@ -16,7 +18,7 @@ mapa.addEventListener('moveend', function(ev) {
 	   //lng = ev.latlng.lng;
 	   console.log(centro, zoom);
 	}
-});
+});*/
 
 var baselayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
@@ -58,7 +60,7 @@ var toplayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png
 			 results.clearLayers();
 			 for (var i = data.results.length - 1; i >= 0; i--) {
 					 results.addLayer(L.marker(data.results[i].latlng));
-					 getAseos(data.results[i].latlng.lat,data.results[i].latlng.lng);
+					 getAseos();
 			 }
 	 });
 
@@ -80,6 +82,7 @@ var toplayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png
 // }
 // mapa.on('locationerror', onLocationError);
 var aseos=[];
+var marcadores=[];
 
 var aseoIcon = L.icon({
     iconUrl: '/img/marker.png',
@@ -91,55 +94,65 @@ var aseoIcon = L.icon({
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
-function getAseos(x,y){
-	if (aseos!== 'undefined'){
-		for(var i=0;i<aseos.length;i++){
-			aseos[i].nuevo=false;
+function mostrarAseos(){
+	if (marcadores!== 'undefined'){
+		for(var i=0;i<marcadores.length;i++){
+			marcadores[i].nuevo=false;
 		}
 	}
-	var loc={latitud: x, longitud: y, api_token: token}
-	$.get( "/api/aseo", loc, function( data ) {
-		if (mapa.getZoom()<12){
-			var margena=0.3*(12-mapa.getZoom());
-			var grupuk=[];
-			for (var i=0;i< data.length;i++){
-				var nuevo=true;
-				for(var j=0;j< grupuk.length;j++){//grupoko batek gertuko coordenadak bazauzkeik aldau kopuru numerue ta ez gorde berrixe bezela
-					if ((Number(grupuk[j].latitud) > Number(data[i].latitud)-margena && Number(grupuk[j].latitud) < Number(data[i].latitud)+margena) 
-						&& (Number(grupuk[j].longitud) > Number(data[i].longitud)-margena && Number(grupuk[j].longitud) < Number(data[i].longitud)+margena)){
-						grupuk[j].latitud= (Number(grupuk[j].latitud)+Number(data[i].latitud))/2;
-						grupuk[j].longitud= (Number(grupuk[j].longitud)+Number(data[i].longitud))/2;
-						grupuk[j].kop+=1;
-						nuevo=false;
-					}
-				}
-
-				if(nuevo){//forra pasau tagero berrixe ba ein grupo berri bat bakarrakin
-					data[i].kop=1;
-					grupuk.push(data[i]);
+	if (mapa.getZoom()<12){
+		var margena=0.3*((12-mapa.getZoom())*1.5);
+		var grupuk=[];
+		for (var i=0;i< aseos.length;i++){
+			var nuevo=true;
+			for(var j=0;j< grupuk.length;j++){//grupoko batek gertuko coordenadak bazauzkeik aldau kopuru numerue ta ez gorde berrixe bezela
+				if ((Number(grupuk[j].latitud) > Number(aseos[i].latitud)-margena && Number(grupuk[j].latitud) < Number(aseos[i].latitud)+margena) 
+					&& (Number(grupuk[j].longitud) > Number(aseos[i].longitud)-margena && Number(grupuk[j].longitud) < Number(aseos[i].longitud)+margena)){
+					grupuk[j].latitud= (Number(grupuk[j].latitud)+Number(aseos[i].latitud))/2;
+					grupuk[j].longitud= (Number(grupuk[j].longitud)+Number(aseos[i].longitud))/2;
+					grupuk[j].kop.push(i);
+					nuevo=false;
 				}
 			}
-			//jarri grupun markadorik
-			for (var i=0;i<grupuk.length;i++){
-				if (grupuk[i].kop!=1){
-					var marker=L.marker([grupuk[i].latitud, grupuk[i].longitud],{title: 'Aqui hay '+grupuk[i].kop+' aseos'}).on('click',zoom).addTo(mapa);
-				}else{
-					var marker=L.marker([grupuk[i].latitud, grupuk[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
-				}
-				marker.aseo=data[i].id;
-				marker.nuevo=true;
-				aseos.push(marker);
-			}
 
-		}else{
-			for (var i=0;i<data.length;i++){
-				var marker=L.marker([data[i].latitud, data[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
-				marker.aseo=data[i].id;
-				marker.nuevo=true;
-				aseos.push(marker);
+			if(nuevo){//forra pasau tagero berrixe ba ein grupo berri bat bakarrakin
+				var nuevoGrupo={latitud:aseos[i].latitud, longitud:aseos[i].longitud, kop:[i]};
+				grupuk.push(nuevoGrupo);
 			}
 		}
-		limpiarMapaAseosViejos();
+		//jarri grupun markadorik
+		for (var i=0;i<grupuk.length;i++){
+			if (grupuk[i].kop.length!=1){
+				var marker=L.marker([grupuk[i].latitud, grupuk[i].longitud],{
+					title: 'Aqui hay '+grupuk[i].kop.length+' aseos',
+					icon:L.divIcon({
+						className: 'my-custom-icon',
+					    html: grupuk[i].kop.length
+					})}).on('click',zoom).addTo(mapa);
+			}else{
+				var marker=L.marker([grupuk[i].latitud, grupuk[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
+			}
+			marker.aseo=aseos[i].id;
+			marker.nuevo=true;
+			marcadores.push(marker);
+		}
+
+	}else{
+		for (var i=0;i<aseos.length;i++){
+			var marker=L.marker([aseos[i].latitud, aseos[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
+			marker.aseo=aseos[i].id;
+			marker.nuevo=true;
+			marcadores.push(marker);
+		}
+	}
+	limpiarMapaAseosViejos();
+}
+
+function getAseos(){
+	var info={api_token: token}
+	$.get( "/api/aseo", info, function( data ) {
+		aseos=data;
+		mostrarAseos();
 	});
 
 
@@ -153,13 +166,10 @@ function zoom(e){
 function getAseos2(x,y){
 	limpiarMapaAseos();
 	setVista(x,y);
-	var loc={latitud: x, longitud: y, api_token: token}
-	$.get( "/api/aseo", loc, function( data ) {
-		for (var i=0;i<data.length;i++){
-			var marker=L.marker([data[i].latitud, data[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
-			marker.aseo=data[i].id;
-			aseos.push(marker);
-		}
+	var info={api_token: token}
+	$.get( "/api/aseo", info, function( data ) {
+		aseos=data;
+		mostrarAseos();
 	});
 }
 
@@ -173,21 +183,21 @@ function getAseos2(x,y){
 	setVista(latitud.lat,longitud.lng);
 }*/
 function limpiarMapaAseosViejos(){
-	for (var i=0;i<aseos.length;i++){
-		if (!aseos[i].nuevo){
-			mapa.removeLayer(aseos[i]);
+	for (var i=0;i<marcadores.length;i++){
+		if (!marcadores[i].nuevo){
+			mapa.removeLayer(marcadores[i]);
 		}
 	}
 }
 function limpiarMapaAseos(){
-	for (var i=0;i<aseos.length;i++){
-		mapa.removeLayer(aseos[i]);
+	for (var i=0;i<marcadores.length;i++){
+		mapa.removeLayer(marcadores[i]);
 	}
 }
 
 function limpiarMapa(){
-	for (var i=0;i<aseos.length;i++){
-		mapa.removeLayer(aseos[i]);
+	for (var i=0;i<marcadores.length;i++){
+		mapa.removeLayer(marcadores[i]);
 	}
 	results.clearLayers();
 }
