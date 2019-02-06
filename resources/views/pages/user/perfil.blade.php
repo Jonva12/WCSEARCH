@@ -20,7 +20,7 @@
   tbody{
     overflow: scroll;
   }
-  
+
   </style>
     @if(Session::has('status'))
       <div id="alert" class="alert {{ Session::get('alert-class', 'alert-warning') }}"><div>{{ Session::get('status') }}</div><i id="x" class="fas fa-times" onclick="cerrar()"></i></div>
@@ -66,17 +66,16 @@
 								<tr>
 									<td colspan="5">
 										@if($usuario->id==Auth::user()->id && $usuario->role->nombre=="normal")
-											Puedes crear 1 baño. Para crear baños ilimitados necesitas ser golden.
+											Puedes tener 1 baño. Para crear baños ilimitados necesitas ser golden.
 										@elseif($usuario->id==Auth::user()->id )
-											Todavia no has creado ningun aseo, tienes opcion de crear un 1 aseo. Con 100 puntos aseos ilimitados.
+											Todavia no tienes ningun aseo.
 										@else
-											No has creado ningun aseo, tienes opcion de crear un 1 aseo sin tener 100 puntos.
+											No tienes ningun aseo.
 										@endif
 									</td>
 								</tr>
 								@else
 									@foreach($aseos as $a)
-
 										<tr>
 											<td>{{$a->nombre}}</td>
 											<td>{{$a->dir}}</td>
