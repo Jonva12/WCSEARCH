@@ -147,6 +147,7 @@ function mostrarAseos(){
 		}
 	}
 	limpiarMapaAseosViejos();
+    console.log(marcadores);
 }
 
 function getAseos(){
@@ -161,7 +162,7 @@ function getAseos(){
 }
 
 function zoom(e){
-	mapa.setView([e.latlng.lat,e.latlng.lng],mapa.getZoom()+2);
+	mapa.setView([e.latlng.lat,e.latlng.lng],mapa.getZoom()+1);
 }
 
 function getAseos2(x,y){
