@@ -10,6 +10,7 @@ use Carbon\Carbon;
 
 class ApiComentariosController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -29,16 +30,18 @@ class ApiComentariosController extends Controller
     public function store(Request $request, $id)
     {
         //dump($request);
+        if (Auth::user()){
+            $comentario= new Comentario;
+            $comentario->text=htmlentities($request->input('text'));
+            $comentario->user_id=Auth::user()->id;
+            $comentario->aseo_id=$id;
+            $comentario->save();
 
-        $comentario= new Comentario;
-        $comentario->text=htmlentities($request->input('text'));
-        $comentario->user_id=Auth::user()->id;
-        $comentario->aseo_id=$id;
-        $comentario->save();
-
-        $user=User::where('id', Auth::user()->id)->first();
-        $user->puntuacion=2;
-        $user->save();
+            $user=User::where('id', Auth::user()->id)->first();
+            $user->puntuacion=2;
+            $user->save();
+        }
+        
     }
 
     /**
