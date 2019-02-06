@@ -240,9 +240,9 @@ function getComentarios(){
 	var data={api_token: token};
 	var comentarios="";
 	if(token==""){
-		$.get( "/api/comentarios/"+aseo.id, function( data ) {
-			for(var i=0;i<data.length;i++){
-				comentarios+=newComentario(data[i], false);
+		$.get( "/api/comentarios/"+aseo.id, function( result ) {
+			for(var i=0;i<result.length;i++){
+				comentarios+=newComentario(result[i], false);
 			}
 			if(comentarios==""){
 				comentarios="<i>No hay comentarios</i>";
@@ -250,13 +250,13 @@ function getComentarios(){
 			document.getElementById("comentarios").innerHTML=comentarios;
 		});
 	}else{
-		$.get( "/api/comentarios/"+aseo.id+"/mios", data, function( data ) {
-			for(var i=0;i<data.length;i++){
-				comentarios+=newComentario(data[i], true);
+		$.get( "/api/comentarios/"+aseo.id+"/mios", data, function( result ) {
+			for(var i=0;i<result.length;i++){
+				comentarios+=newComentario(result[i], true);
 			}
-			$.get( "/api/comentarios/"+aseo.id, data, function( data ) {
-				for(var i=0;i<data.length;i++){
-					comentarios+=newComentario(data[i], false);
+			$.get( "/api/comentarios/"+aseo.id, data, function( result2 ) {
+				for(var i=0;i<result2.length;i++){
+					comentarios+=newComentario(result2[i], false);
 				}
 				if(comentarios==""){
 					comentarios="<i>No hay comentarios</i>";

@@ -49,7 +49,8 @@ class ApiComentariosController extends Controller
      */
     public function show($id)
     {
-        if (Auth::user()!==null){
+         Auth::shouldUse('api');
+        if (Auth::user()){
             $comentarios=Comentario::where([['aseo_id',$id],['user_id','!=',Auth::user()->id]])->orderBy("created_at", 'desc')->get();
         }else{
             $comentarios=Comentario::where([['aseo_id',$id]])->orderBy("created_at", 'desc')->get();

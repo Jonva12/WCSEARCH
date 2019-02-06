@@ -19,6 +19,7 @@ class usuariosPruebas extends Seeder
             'reportes' => 0,
             'email_verified_at' => '2019-01-10 09:52:37',
             'role_id' => '1',
+            'api_token' => str_random(60),
         ]);
         DB::table('users')->insert([
             'name' => 'Admin',
@@ -28,6 +29,7 @@ class usuariosPruebas extends Seeder
             'reportes' => 0,
             'email_verified_at' => '2019-01-10 09:52:37',
             'role_id' => '3',
+            'api_token' => str_random(60),
         ]);
     }
 }
