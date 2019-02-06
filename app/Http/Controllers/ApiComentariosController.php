@@ -58,7 +58,8 @@ class ApiComentariosController extends Controller
             $aux=$c->usuario->name;
             $c->like=$c->valoracion()->where('comentarios_users.puntuacion',1)->count();
             $c->dislike=$c->valoracion()->where('comentarios_users.puntuacion',-1)->count();
-            $c->time=(new Carbon\Carbon($c->created_at))->diffForHumans();
+            Carbon::setLocale('es');
+            $c->time=Carbon::parse($c->created_at)->diffForHumans();
         }
 
         return $comentarios;
@@ -73,7 +74,7 @@ class ApiComentariosController extends Controller
                 $aux=$c->usuario->name;
                 $c->like=$c->valoracion()->where('comentarios_users.puntuacion',1)->count();
                 $c->dislike=$c->valoracion()->where('comentarios_users.puntuacion',-1)->count();
-                Carbon::setLocale('es'); 
+                Carbon::setLocale('es');
                 $c->time= Carbon::parse($c->created_at)->diffForHumans();
             }
 

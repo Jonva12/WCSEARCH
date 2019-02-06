@@ -211,7 +211,9 @@ function cambiarInfoFicha(data){
 	}
 	document.getElementById("puntuacionEstre").innerHTML=text;
 	document.getElementById("dir").innerHTML=data.dir;
-	document.getElementById("horario").innerHTML=data.horas24 == 1?"24 horas":data.horarioApertura+"-"+data.horarioCierre;
+	document.getElementById("horario").innerHTML=data.horas24 == 1
+		? "24 horas"
+		: data.horarioApertura.substring(0, 5)+" - "+data.horarioCierre.substring(0,5);
 	document.getElementById("precio").innerHTML=data.precio==null?"GRATIS": data.precio+" €";
 	document.getElementById("accesible").innerHTML=data.accesibilidad==1?"Accesible":"No accesible";
 	valorar(0);
