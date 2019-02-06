@@ -108,9 +108,10 @@ Route::get('/api/notificaciones/get', 'NotificationController@getNotificaciones'
 Route::get('/api/notificaciones/leer/{id}', 'NotificationController@leerNotificacion');
 Route::get('/api/notificaciones/leerTodas', 'NotificationController@leerTodas');
 
-
+/*
 Route::get('/api/comentarios/{id}', 'ApiComentariosController@show');
 Route::get('/api/comentarios/{id}/mios', 'ApiComentariosController@showMio');
 Route::get('/api/comentarios/{id}/comentar', 'ApiComentariosController@store')->middleware(array('auth', 'verified'));
 Route::get('/api/comentarios/{id}/eliminar', 'ApiComentariosController@destroy')->middleware(array('auth', 'verified'));
 Route::get('/api/comentarios/{id}/valorar', 'ApiComentariosController@valorar')->middleware(array('auth', 'verified'));
+*/

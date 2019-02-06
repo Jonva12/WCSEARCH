@@ -1,7 +1,10 @@
 var aseo={};
+var token="";
 var mapa = L.map('mapid').setView([43.385537, -1.949364], 3);
 mapa.addEventListener('moveend', function(ev) {
-	if (document.getElementById("error_zoom")) {
+	mostrarAseos();
+});
+	/*if (document.getElementById("error_zoom")) {
 	   var centro=mapa.getCenter();
 	   var zoom=mapa.getZoom();
 	   if(false){
@@ -15,7 +18,7 @@ mapa.addEventListener('moveend', function(ev) {
 	   //lng = ev.latlng.lng;
 	   console.log(centro, zoom);
 	}
-});
+});*/
 
 var baselayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
@@ -57,7 +60,7 @@ var toplayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png
 			 results.clearLayers();
 			 for (var i = data.results.length - 1; i >= 0; i--) {
 					 results.addLayer(L.marker(data.results[i].latlng));
-					 getAseos(data.results[i].latlng.lat,data.results[i].latlng.lng);
+					 getAseos();
 			 }
 	 });
 
@@ -79,6 +82,7 @@ var toplayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png
 // }
 // mapa.on('locationerror', onLocationError);
 var aseos=[];
+var marcadores=[];
 
 var aseoIcon = L.icon({
     iconUrl: '/img/marker.png',
@@ -90,55 +94,65 @@ var aseoIcon = L.icon({
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
-function getAseos(x,y){
-	if (aseos!== 'undefined'){
-		for(var i=0;i<aseos.length;i++){
-			aseos[i].nuevo=false;
+function mostrarAseos(){
+	if (marcadores!== 'undefined'){
+		for(var i=0;i<marcadores.length;i++){
+			marcadores[i].nuevo=false;
 		}
 	}
-	var loc={latitud: x, longitud: y}
-	$.get( "/api/aseo", loc, function( data ) {
-		if (mapa.getZoom()<12){
-			var margena=0.3*(12-mapa.getZoom());
-			var grupuk=[];
-			for (var i=0;i< data.length;i++){
-				var nuevo=true;
-				for(var j=0;j< grupuk.length;j++){//grupoko batek gertuko coordenadak bazauzkeik aldau kopuru numerue ta ez gorde berrixe bezela
-					if ((Number(grupuk[j].latitud) > Number(data[i].latitud)-margena && Number(grupuk[j].latitud) < Number(data[i].latitud)+margena) 
-						&& (Number(grupuk[j].longitud) > Number(data[i].longitud)-margena && Number(grupuk[j].longitud) < Number(data[i].longitud)+margena)){
-						grupuk[j].latitud= (Number(grupuk[j].latitud)+Number(data[i].latitud))/2;
-						grupuk[j].longitud= (Number(grupuk[j].longitud)+Number(data[i].longitud))/2;
-						grupuk[j].kop+=1;
-						nuevo=false;
-					}
-				}
-
-				if(nuevo){//forra pasau tagero berrixe ba ein grupo berri bat bakarrakin
-					data[i].kop=1;
-					grupuk.push(data[i]);
+	if (mapa.getZoom()<12){
+		var margena=0.3*((12-mapa.getZoom())*1.5);
+		var grupuk=[];
+		for (var i=0;i< aseos.length;i++){
+			var nuevo=true;
+			for(var j=0;j< grupuk.length;j++){//grupoko batek gertuko coordenadak bazauzkeik aldau kopuru numerue ta ez gorde berrixe bezela
+				if ((Number(grupuk[j].latitud) > Number(aseos[i].latitud)-margena && Number(grupuk[j].latitud) < Number(aseos[i].latitud)+margena) 
+					&& (Number(grupuk[j].longitud) > Number(aseos[i].longitud)-margena && Number(grupuk[j].longitud) < Number(aseos[i].longitud)+margena)){
+					grupuk[j].latitud= (Number(grupuk[j].latitud)+Number(aseos[i].latitud))/2;
+					grupuk[j].longitud= (Number(grupuk[j].longitud)+Number(aseos[i].longitud))/2;
+					grupuk[j].kop.push(i);
+					nuevo=false;
 				}
 			}
-			//jarri grupun markadorik
-			for (var i=0;i<grupuk.length;i++){
-				if (grupuk[i].kop!=1){
-					var marker=L.marker([grupuk[i].latitud, grupuk[i].longitud],{title: 'Aqui hay '+grupuk[i].kop+' aseos'}).on('click',zoom).addTo(mapa);
-				}else{
-					var marker=L.marker([grupuk[i].latitud, grupuk[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
-				}
-				marker.aseo=data[i].id;
-				marker.nuevo=true;
-				aseos.push(marker);
-			}
 
-		}else{
-			for (var i=0;i<data.length;i++){
-				var marker=L.marker([data[i].latitud, data[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
-				marker.aseo=data[i].id;
-				marker.nuevo=true;
-				aseos.push(marker);
+			if(nuevo){//forra pasau tagero berrixe ba ein grupo berri bat bakarrakin
+				var nuevoGrupo={latitud:aseos[i].latitud, longitud:aseos[i].longitud, kop:[i]};
+				grupuk.push(nuevoGrupo);
 			}
 		}
-		limpiarMapaAseosViejos();
+		//jarri grupun markadorik
+		for (var i=0;i<grupuk.length;i++){
+			if (grupuk[i].kop.length!=1){
+				var marker=L.marker([grupuk[i].latitud, grupuk[i].longitud],{
+					title: 'Aqui hay '+grupuk[i].kop.length+' aseos',
+					icon:L.divIcon({
+						className: 'my-custom-icon',
+					    html: grupuk[i].kop.length
+					})}).on('click',zoom).addTo(mapa);
+			}else{
+				var marker=L.marker([grupuk[i].latitud, grupuk[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
+			}
+			marker.aseo=aseos[i].id;
+			marker.nuevo=true;
+			marcadores.push(marker);
+		}
+
+	}else{
+		for (var i=0;i<aseos.length;i++){
+			var marker=L.marker([aseos[i].latitud, aseos[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
+			marker.aseo=aseos[i].id;
+			marker.nuevo=true;
+			marcadores.push(marker);
+		}
+	}
+	limpiarMapaAseosViejos();
+}
+
+function getAseos(){
+	var info={api_token: token}
+	$.get( "/api/aseo", info, function( data ) {
+		aseos=data;
+		mostrarAseos();
 	});
 
 
@@ -152,13 +166,10 @@ function zoom(e){
 function getAseos2(x,y){
 	limpiarMapaAseos();
 	setVista(x,y);
-	var loc={latitud: x, longitud: y}
-	$.get( "/api/aseo", loc, function( data ) {
-		for (var i=0;i<data.length;i++){
-			var marker=L.marker([data[i].latitud, data[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
-			marker.aseo=data[i].id;
-			aseos.push(marker);
-		}
+	var info={api_token: token}
+	$.get( "/api/aseo", info, function( data ) {
+		aseos=data;
+		mostrarAseos();
 	});
 }
 
@@ -172,21 +183,21 @@ function getAseos2(x,y){
 	setVista(latitud.lat,longitud.lng);
 }*/
 function limpiarMapaAseosViejos(){
-	for (var i=0;i<aseos.length;i++){
-		if (!aseos[i].nuevo){
-			mapa.removeLayer(aseos[i]);
+	for (var i=0;i<marcadores.length;i++){
+		if (!marcadores[i].nuevo){
+			mapa.removeLayer(marcadores[i]);
 		}
 	}
 }
 function limpiarMapaAseos(){
-	for (var i=0;i<aseos.length;i++){
-		mapa.removeLayer(aseos[i]);
+	for (var i=0;i<marcadores.length;i++){
+		mapa.removeLayer(marcadores[i]);
 	}
 }
 
 function limpiarMapa(){
-	for (var i=0;i<aseos.length;i++){
-		mapa.removeLayer(aseos[i]);
+	for (var i=0;i<marcadores.length;i++){
+		mapa.removeLayer(marcadores[i]);
 	}
 	results.clearLayers();
 }
@@ -198,7 +209,7 @@ function markerOnClick(e){
     mapaSection.classList.add('col-md-9');
     aside.hidden = false;
 	setVista(e.latlng.lat,e.latlng.lng);
-	aseo={id: e.target.aseo};
+	aseo={id: e.target.aseo , api_token: token};
  	$.get( "/api/aseo/"+ aseo.id, function( data ) {
 		cambiarInfoFicha(data);
 	});
@@ -208,9 +219,7 @@ function setVista(x,y){
 	mapa.setView([x, y],16);
 }
 function enviarPuntos(n){
-	var data = {
-		voto: n
-	}
+	var data = {voto: n, api_token: token};
 	$.get("/api/aseo/"+aseo.id+"/valorar",data, function(result){
 		document.getElementById("puntuacion").innerHTML=result.numPuntuacion/result.countPuntuacion;
 		var text="";
@@ -267,8 +276,8 @@ function newComentario(c,mio){
 				                 '<div class="clearfix"></div>'+
 				                  '<p>'+c.text+'</p>'+
 				                  '<p>'+
-				                      '<a onclick="votar('+c.id+',false)" class="float-right btn btn-outline-danger ml-2">'+c.dislike+' <i class="fa fa-thumbs-down"></i></a>'+
-				                      '<a onclick="votar('+c.id+',true)" class="float-right btn btn-outline-primary ml-2">'+c.like+' <i class="fa fa-thumbs-up"></i></a>'+
+				                      '<a onclick="'+(token==""?'alert(\'Inicia sesion para poder votar\')':'votar('+c.id+',false)')+'" class="float-right btn btn-outline-danger ml-2">'+c.dislike+' <i class="fa fa-thumbs-down"></i></a>'+
+				                      '<a onclick="'+(token==""?'alert(\'Inicia sesion para poder votar\')':'votar('+c.id+',true)')+'" class="float-right btn btn-outline-primary ml-2">'+c.like+' <i class="fa fa-thumbs-up"></i></a>'+
 				                      (mio?'<a onclick="deleteComentario('+c.id+')" class="float-right btn btn-outline-secondary"> <i class="fa fa-trash-alt"></i></a>':'')+
 				                 '</p>'+
 				              '</div>'+
@@ -277,29 +286,41 @@ function newComentario(c,mio){
 				  '</div>';
 }
 function getComentarios(){
-
-	$.get( "/api/comentarios/"+aseo.id+"/mios" , function( data ) {
- 		var comentarios="";
-		for(var i=0;i<data.length;i++){
-			comentarios+=newComentario(data[i], true);
-		}
-		$.get( "/api/comentarios/"+aseo.id , function( data ) {
-			for(var i=0;i<data.length;i++){
-				comentarios+=newComentario(data[i], false);
+	var data={api_token: token};
+	var comentarios="";
+	if(token==""){
+		$.get( "/api/comentarios/"+aseo.id, function( result ) {
+			for(var i=0;i<result.length;i++){
+				comentarios+=newComentario(result[i], false);
 			}
 			if(comentarios==""){
 				comentarios="<i>No hay comentarios</i>";
 			}
 			document.getElementById("comentarios").innerHTML=comentarios;
 		});
-	});
+	}else{
+		$.get( "/api/comentarios/"+aseo.id+"/mios", data, function( result ) {
+			for(var i=0;i<result.length;i++){
+				comentarios+=newComentario(result[i], true);
+			}
+			$.get( "/api/comentarios/"+aseo.id, data, function( result2 ) {
+				for(var i=0;i<result2.length;i++){
+					comentarios+=newComentario(result2[i], false);
+				}
+				if(comentarios==""){
+					comentarios="<i>No hay comentarios</i>";
+				}
+				document.getElementById("comentarios").innerHTML=comentarios;
+			});
+		});
+	}
 }
 
 function enviarComentario(e){
 	e.preventDefault();
 	var text=document.getElementById("textComentario").value;
-	var data={text:text};
-	$.get( "/api/comentarios/"+aseo.id+"/comentar", data, function( data ) {
+	var data={text:text, api_token: token};
+	$.post( "/api/comentarios/"+aseo.id, data, function( data ) {
 		getComentarios();
 		document.getElementById("textComentario").value="";
 	});
@@ -307,15 +328,19 @@ function enviarComentario(e){
 }
 
 function deleteComentario(id){
-	$.get( "/api/comentarios/"+id+"/eliminar", function( data ) {
+	$.post( "/api/comentarios/"+id+"/eliminar", function( data ) {
 		getComentarios();
 	});
 
 }
 
 function votar(coment,bool){
-	var data={voto:bool};
-	$.get( "/api/comentarios/"+coment+"/valorar", data, function( data ) {
+	var data={voto:bool, api_token: token};
+	$.post( "/api/comentarios/"+coment+"/valorar", data, function( data ) {
 	    getComentarios();
 	});
+}
+
+function setToken(code){
+	token=code;
 }

@@ -29,17 +29,7 @@ aside .info{
   color: white;
   padding: 10px;
 }
-#error_zoom{
-  color: white;
-  width: 100%;
-  height: 50px;
-  text-align: center;
-  background-color: #778899;
-  margin-top: 0px;
-  margin-left: auto;
-  margin-right: auto;
-  display: hidden;
-}
+
 .comentario{
   margin: 5px;
 }
@@ -113,21 +103,39 @@ aside .info{
       </div>
     </aside>
     <section id="section" class="col-md-12">
-      <div id="error_zoom">
-        <p><h3>Haz zoom o realiza una busqueda para visualizar los aseos</h3></p>
-      </div>
+      <style type="text/css">
+        .my-custom-icon{
+          width: 24px !important;
+          height: 24px !important;
+          margin-left: -12px;
+          margin-top: -12px;
+          border-radius: 18px;
+          border: 2px solid red;
+          text-align: center;
+          color: red;
+          background-color: #fff;
+          font-size: 16px;
+        }
+      </style>
       <div id="mapid">
 
       </div>
+
     </section>
   </div>
   </div>
   @include('includes.geoscripts')
 
 @if(isset($latitud)&&isset($longitud))
-  <script src="/js/map.js" onload="getAseos2({{$latitud}}, {{$longitud}})"></script>
+  @if(Auth::user())
+    <script src="/js/map.js" onload="setToken('{{Auth::user()->api_token}}'); getAseos2({{$latitud}}, {{$longitud}})"></script>
+  @else
+    <script src="/js/map.js" onload="getAseos2({{$latitud}}, {{$longitud}})"></script>
+  @endif
+@elseif(Auth::user())
+  <script src="/js/map.js" onload="setToken('{{Auth::user()->api_token}}');getAseos()"></script>
 @else
-  <script src="/js/map.js"></script>
+  <script src="/js/map.js" onload="getAseos()"></script>
 @endif
 
   <script type="text/javascript">
