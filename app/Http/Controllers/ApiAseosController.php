@@ -69,4 +69,13 @@ class ApiAseosController extends Controller
     {
         //
     }
+
+    public function reportar(Request $request, $id){
+        $reporte=new ReportesAseos();
+        $reporte->tipo=htmlentities($request->tipo);
+        $reporte->comentario=htmlentities($request->comentario);
+        $reporte->aseo_id=$id;
+
+        $reporte->save();
+    }
 }
