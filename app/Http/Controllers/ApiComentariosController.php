@@ -11,6 +11,11 @@ use Carbon\Carbon;
 class ApiComentariosController extends Controller
 {
 
+
+    public function __construct()
+    {
+        $this->middleware('auth:api')->except('show');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -108,14 +113,15 @@ class ApiComentariosController extends Controller
      */
     public function destroy($id)
     {
-        Comentario::where('id',$id)->first()->valoracion()->detach();
+        Comentario::where([['id', $id],['user_id', Auth::user()->id]])->first()->valoracion()->detach();
 
-        Comentario::where([['id',$id],['user_id', Auth::user()->id]])->delete();
+        Comentario::where([['id', $id],['user_id', Auth::user()->id]])->delete();
         return 1;
     }
 
     public function valorar(Request $request, $id)
     {
+
         //$u=User::where('id', Auth::user()->id)->first();
         $v=$request->voto=="true"?1:-1;
 
