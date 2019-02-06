@@ -13,6 +13,9 @@
       align-items: baseline;
     }
   }
+  table{
+    width: inherit;
+  }
 
   thead{
     table-layout: fixed;
@@ -20,7 +23,28 @@
   tbody{
     overflow: scroll;
   }
+  @media (max-width: 700px){
+    .float-right{
+     position:fixed;
+	   width:30px;
+	   height:30px;
+	   bottom:140px;
+	   right:10px;
+	   background-color: rgb(236, 236, 236);
+	   border-radius:50px;
+	   text-align:center;
+	   box-shadow: 2px 2px 3px #999;
+    }
 
+    .fa-chevron-right{
+      margin-top: 10px;
+    }
+  }
+  @media (min-width: 700px){
+    .float-right{
+      visibility: hidden;
+    }
+  }
   </style>
     @if(Session::has('status'))
       <div id="alert" class="alert {{ Session::get('alert-class', 'alert-warning') }}"><div>{{ Session::get('status') }}</div><i id="x" class="fas fa-times" onclick="cerrar()"></i></div>
@@ -91,9 +115,21 @@
 								@endif
 						</tbody>
 					</table>
+          <a class="float-right" id="float-right"><i class="fas fa-chevron-right"></i></a>
         </div>
 
 			</div>
 		</div>
 </div>
+<script>
+   $('#float-right').one('click', function() {
+      event.preventDefault();
+      $('table').animate({
+        marginLeft: "-=300px"
+      }, "fast");
+      $('#float-right').css('visibility', 'hidden');
+   });
+
+
+</script>
 	@endsection
