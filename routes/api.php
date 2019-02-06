@@ -19,3 +19,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //rutas para mapa api
 Route::apiResource('aseo', 'ApiAseosController');
+
+Route::apiResource('comentarios', 'ApiComentariosController');
+
+Route::get('comentarios/{id}/mios', 'ApiComentariosController@showMio')->middleware('auth:api');
+
+Route::post('comentarios/{id}', 'ApiComentariosController@store')->middleware('auth:api');
+
+Route::post('comentarios/{id}/valorar', 'ApiComentariosController@showMio')->middleware('auth:api');

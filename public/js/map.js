@@ -1,4 +1,5 @@
 var aseo={};
+var token="";
 var mapa = L.map('mapid').setView([43.385537, -1.949364], 3);
 mapa.addEventListener('moveend', function(ev) {
 	if (document.getElementById("error_zoom")) {
@@ -96,7 +97,7 @@ function getAseos(x,y){
 			aseos[i].nuevo=false;
 		}
 	}
-	var loc={latitud: x, longitud: y}
+	var loc={latitud: x, longitud: y, api_token: token}
 	$.get( "/api/aseo", loc, function( data ) {
 		if (mapa.getZoom()<12){
 			var margena=0.3*(12-mapa.getZoom());
@@ -152,7 +153,7 @@ function zoom(e){
 function getAseos2(x,y){
 	limpiarMapaAseos();
 	setVista(x,y);
-	var loc={latitud: x, longitud: y}
+	var loc={latitud: x, longitud: y, api_token: token}
 	$.get( "/api/aseo", loc, function( data ) {
 		for (var i=0;i<data.length;i++){
 			var marker=L.marker([data[i].latitud, data[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
@@ -198,7 +199,7 @@ function markerOnClick(e){
     mapaSection.classList.add('col-md-9');
     aside.hidden = false;
 	setVista(e.latlng.lat,e.latlng.lng);
-	aseo={id: e.target.aseo};
+	aseo={id: e.target.aseo , api_token: token};
  	$.get( "/api/aseo/"+ aseo.id, function( data ) {
 		cambiarInfoFicha(data);
 	});
@@ -208,9 +209,7 @@ function setVista(x,y){
 	mapa.setView([x, y],16);
 }
 function enviarPuntos(n){
-	var data = {
-		voto: n
-	}
+	var data = {voto: n, api_token: token};
 	$.get("/api/aseo/"+aseo.id+"/valorar",data, function(result){
 		document.getElementById("puntuacion").innerHTML=result.numPuntuacion/result.countPuntuacion;
 		var text="";
@@ -265,8 +264,8 @@ function newComentario(c,mio){
 				                 '<div class="clearfix"></div>'+
 				                  '<p>'+c.text+'</p>'+
 				                  '<p>'+
-				                      '<a onclick="votar('+c.id+',false)" class="float-right btn btn-outline-danger ml-2">'+c.dislike+' <i class="fa fa-thumbs-down"></i></a>'+
-				                      '<a onclick="votar('+c.id+',true)" class="float-right btn btn-outline-primary ml-2">'+c.like+' <i class="fa fa-thumbs-up"></i></a>'+
+				                      '<a onclick="'+(token==""?'alert(\'Inicia sesion para poder votar\')':'votar('+c.id+',false)')+'" class="float-right btn btn-outline-danger ml-2">'+c.dislike+' <i class="fa fa-thumbs-down"></i></a>'+
+				                      '<a onclick="'+(token==""?'alert(\'Inicia sesion para poder votar\')':'votar('+c.id+',true)')+'" class="float-right btn btn-outline-primary ml-2">'+c.like+' <i class="fa fa-thumbs-up"></i></a>'+
 				                      (mio?'<a onclick="deleteComentario('+c.id+')" class="float-right btn btn-outline-secondary"> <i class="fa fa-trash-alt"></i></a>':'')+
 				                 '</p>'+
 				              '</div>'+
@@ -275,29 +274,41 @@ function newComentario(c,mio){
 				  '</div>';
 }
 function getComentarios(){
-
-	$.get( "/api/comentarios/"+aseo.id+"/mios" , function( data ) {
- 		var comentarios="";
-		for(var i=0;i<data.length;i++){
-			comentarios+=newComentario(data[i], true);
-		}
-		$.get( "/api/comentarios/"+aseo.id , function( data ) {
-			for(var i=0;i<data.length;i++){
-				comentarios+=newComentario(data[i], false);
+	var data={api_token: token};
+	var comentarios="";
+	if(token==""){
+		$.get( "/api/comentarios/"+aseo.id, function( result ) {
+			for(var i=0;i<result.length;i++){
+				comentarios+=newComentario(result[i], false);
 			}
 			if(comentarios==""){
 				comentarios="<i>No hay comentarios</i>";
 			}
 			document.getElementById("comentarios").innerHTML=comentarios;
 		});
-	});
+	}else{
+		$.get( "/api/comentarios/"+aseo.id+"/mios", data, function( result ) {
+			for(var i=0;i<result.length;i++){
+				comentarios+=newComentario(result[i], true);
+			}
+			$.get( "/api/comentarios/"+aseo.id, data, function( result2 ) {
+				for(var i=0;i<result2.length;i++){
+					comentarios+=newComentario(result2[i], false);
+				}
+				if(comentarios==""){
+					comentarios="<i>No hay comentarios</i>";
+				}
+				document.getElementById("comentarios").innerHTML=comentarios;
+			});
+		});
+	}
 }
 
 function enviarComentario(e){
 	e.preventDefault();
 	var text=document.getElementById("textComentario").value;
-	var data={text:text};
-	$.get( "/api/comentarios/"+aseo.id+"/comentar", data, function( data ) {
+	var data={text:text, api_token: token};
+	$.post( "/api/comentarios/"+aseo.id, data, function( data ) {
 		getComentarios();
 		document.getElementById("textComentario").value="";
 	});
@@ -305,15 +316,19 @@ function enviarComentario(e){
 }
 
 function deleteComentario(id){
-	$.get( "/api/comentarios/"+id+"/eliminar", function( data ) {
+	$.post( "/api/comentarios/"+id+"/eliminar", function( data ) {
 		getComentarios();
 	});
 
 }
 
 function votar(coment,bool){
-	var data={voto:bool};
-	$.get( "/api/comentarios/"+coment+"/valorar", data, function( data ) {
+	var data={voto:bool, api_token: token};
+	$.post( "/api/comentarios/"+coment+"/valorar", data, function( data ) {
 	    getComentarios();
 	});
+}
+
+function setToken(code){
+	token=code;
 }

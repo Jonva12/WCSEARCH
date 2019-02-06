@@ -125,7 +125,13 @@ aside .info{
   @include('includes.geoscripts')
 
 @if(isset($latitud)&&isset($longitud))
-  <script src="/js/map.js" onload="getAseos2({{$latitud}}, {{$longitud}})"></script>
+  @if(Auth::user())
+    <script src="/js/map.js" onload="setToken('{{Auth::user()->api_token}}'); getAseos2({{$latitud}}, {{$longitud}})"></script>
+  @else
+    <script src="/js/map.js" onload="getAseos2({{$latitud}}, {{$longitud}})"></script>
+  @endif
+@elseif(Auth::user())
+  <script src="/js/map.js" onload="setToken('{{Auth::user()->api_token}}')"></script>
 @else
   <script src="/js/map.js"></script>
 @endif
