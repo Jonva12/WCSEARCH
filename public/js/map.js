@@ -4,7 +4,7 @@ mapa.addEventListener('moveend', function(ev) {
 	if (document.getElementById("error_zoom")) {
 	   var centro=mapa.getCenter();
 	   var zoom=mapa.getZoom();
-	   if(zoom<12){
+	   if(false){
 	   		limpiarMapaAseos();
 	   		document.getElementById('error_zoom').style.display='block';
 	   }else{
@@ -98,18 +98,55 @@ function getAseos(x,y){
 	}
 	var loc={latitud: x, longitud: y}
 	$.get( "/api/aseo", loc, function( data ) {
-		for (var i=0;i<data.length;i++){
-			var marker=L.marker([data[i].latitud, data[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
-			marker.aseo=data[i].id;
-			marker.nuevo=true;
-			aseos.push(marker);
+		if (mapa.getZoom()<12){
+			var margena=0.3*(12-mapa.getZoom());
+			var grupuk=[];
+			for (var i=0;i< data.length;i++){
+				var nuevo=true;
+				for(var j=0;j< grupuk.length;j++){//grupoko batek gertuko coordenadak bazauzkeik aldau kopuru numerue ta ez gorde berrixe bezela
+					if ((Number(grupuk[j].latitud) > Number(data[i].latitud)-margena && Number(grupuk[j].latitud) < Number(data[i].latitud)+margena) 
+						&& (Number(grupuk[j].longitud) > Number(data[i].longitud)-margena && Number(grupuk[j].longitud) < Number(data[i].longitud)+margena)){
+						grupuk[j].latitud= (Number(grupuk[j].latitud)+Number(data[i].latitud))/2;
+						grupuk[j].longitud= (Number(grupuk[j].longitud)+Number(data[i].longitud))/2;
+						grupuk[j].kop+=1;
+						nuevo=false;
+					}
+				}
 
+				if(nuevo){//forra pasau tagero berrixe ba ein grupo berri bat bakarrakin
+					data[i].kop=1;
+					grupuk.push(data[i]);
+				}
+			}
+			//jarri grupun markadorik
+			for (var i=0;i<grupuk.length;i++){
+				if (grupuk[i].kop!=1){
+					var marker=L.marker([grupuk[i].latitud, grupuk[i].longitud],{title: 'Aqui hay '+grupuk[i].kop+' aseos'}).on('click',zoom).addTo(mapa);
+				}else{
+					var marker=L.marker([grupuk[i].latitud, grupuk[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
+				}
+				marker.aseo=data[i].id;
+				marker.nuevo=true;
+				aseos.push(marker);
+			}
+
+		}else{
+			for (var i=0;i<data.length;i++){
+				var marker=L.marker([data[i].latitud, data[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
+				marker.aseo=data[i].id;
+				marker.nuevo=true;
+				aseos.push(marker);
+			}
 		}
 		limpiarMapaAseosViejos();
 	});
 
 
 
+}
+
+function zoom(e){
+	mapa.setView([e.latlng.lat,e.latlng.lng],mapa.getZoom()+2);
 }
 
 function getAseos2(x,y){
