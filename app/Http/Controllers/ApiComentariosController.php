@@ -46,6 +46,7 @@ class ApiComentariosController extends Controller
             $user->puntuacion=20;
             $user->save();
         }
+        return $comentario;
 
     }
 
