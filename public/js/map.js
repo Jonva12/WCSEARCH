@@ -112,6 +112,7 @@ function mostrarAseos(){
 					grupuk[j].longitud= (Number(grupuk[j].longitud)+Number(aseos[i].longitud))/2;
 					grupuk[j].kop.push(i);
 					nuevo=false;
+                    break;
 				}
 			}
 
