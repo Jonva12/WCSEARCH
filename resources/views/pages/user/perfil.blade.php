@@ -125,7 +125,7 @@
    $('#float-right').one('click', function() {
       event.preventDefault();
       $('table').animate({
-        marginLeft: "-=300px"
+        marginLeft: "-=250px"
       }, "fast");
       $('#float-right').css('visibility', 'hidden');
    });
