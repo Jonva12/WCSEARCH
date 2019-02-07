@@ -127,6 +127,9 @@ class AdminController extends Controller
 		$aseo->oculto=new \DateTime();
 		$aseo->save();
 
+        $u=new UserController;
+        $u->sumarPuntos(Auth::user()->id,-40);
+
 		$n=new Notification;
 		$n->tipo="ocultarAseo";
 		$n->para=$aseo->user_id;

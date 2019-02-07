@@ -94,25 +94,28 @@ class ApiAseosController extends Controller
     public function valorar(Request $request, $id){
       $voto = $request->voto;
       $aseo=Aseo::where('id', $id)->first();
-      $userValora=User::where('id',Auth::user()->id)->first();
-      $userValora->puntuacion+=5;
-      $userValora->save();
-      $userAseo = User::where('id',$aseo->user_id)->first();
-      $userAseo->puntuacion+=5;
-      $userAseo->save();
 
+      if (Auth::user()->id!=$aseo->user_id && !$aseo->valoracion()->where('user_id',Auth::user()->id)->first()){
+         $u=new UserController;
+          $u->sumarPuntos(Auth::user()->id,5);
+          $u->sumarPuntos($aseo->user_id,10);
+
+      }
+     
       $aseo->valoracion()->detach(Auth::user());
       $aseo->valoracion()->attach(Auth::user(), ['puntuacion' => $voto]);
 
       $aseo->numPuntuacion=$aseo->valoracion()->sum('aseos_users.puntuacion');
       $aseo->countPuntuacion=$aseo->valoracion()->count();
 
-      $n=new Notification;
+      if(Auth::user()->id!=$aseo->user_id){
+        $n=new Notification;
         $n->tipo="aseoValorado";
         $n->de=Auth::user()->id;
         $n->para=$aseo->user_id;
         $n->aseo_id=$aseo->id;
         $n->save();
+      }
       return $aseo;
     }
 }

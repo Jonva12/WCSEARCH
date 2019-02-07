@@ -59,6 +59,10 @@ class NotificationController extends Controller
                         $texto=$n->deUsuario->name.' ha valorado tu aseo ('.$n->aseo->nombre.')';
                         $link='/home?latitud='.$n->aseo->latitud.'&longitud='.$n->aseo->longitud;
                         break;
+                    case 'eresGolden':
+                        $texto='Enorabuena ya eres usuario GOLDEN';
+                        $link="";
+                        break;
     			}
     			$paraEnviar=["id"=>$n->id,"texto"=>$texto,"link"=>$link, "leido"=>$n->leido_fecha!=null];
 

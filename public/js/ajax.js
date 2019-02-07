@@ -61,7 +61,7 @@ function leerTodas(){
 	});
 }
 function notificacionClick(link){
-	if(link!=null)
+	if(link!="")
 		window.location.href=link;
 }
 

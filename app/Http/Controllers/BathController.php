@@ -91,9 +91,8 @@ class BathController extends Controller
       $aseo->precio = $request->input('precio');
       $aseo->accesibilidad = $request->input('accesibilidad');
       $aseo->user_id = Auth::user()->id;
-      $user = User::where('id',$aseo->user_id)->first();
-      $user->puntuacion+=20;
-      $user->save();
+      $u=new UserController;
+        $u->sumarPuntos(Auth::user()->id,20);
       $aseo->save();
       return redirect()->route('home', ['latitud' => $request->input('latitud'), 'longitud' => $request->input('longitud')]);
     }

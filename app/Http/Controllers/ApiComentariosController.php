@@ -45,12 +45,12 @@ class ApiComentariosController extends Controller
             $comentario->user_id=Auth::user()->id;
             $comentario->aseo_id=$id;
             $comentario->save();
-
-            $user=User::where('id', Auth::user()->id)->first();
-            $user->puntuacion+=20;
-            $user->save();
-        
+            
             $aseo=Aseo::find($id);
+            if (Auth::user()->id!=$aseo->user_id){
+                $u=new UserController;
+                $u->sumarPuntos(Auth::user()->id,5);
+            }
 
             $n=new Notification;
             $n->tipo="aseoComentado";
@@ -58,6 +58,7 @@ class ApiComentariosController extends Controller
             $n->para=$aseo->user_id;
             $n->aseo_id=$aseo->id;
             $n->save();
+
         }
 
         return $comentario;
@@ -140,24 +141,25 @@ class ApiComentariosController extends Controller
         $v=$request->voto=="true"?1:-1;
         $comentario=Comentario::where('id',$id)->first();
         
-        $userValora=User::where('id',Auth::user()->id)->first();
-        $userValora->puntuacion+=5;
-        $userValora->save();
-        $userComentario = User::where('id',$comentario->user_id)->first();
-        $userComentario->puntuacion+=10;
-        $userComentario->save();
+        if (Auth::user()->id!=$comentario->user_id && $v==1 && !$comentario->valoracion()->where('user_id',Auth::user()->id)->first()){
+            $u=new UserController;
+            $u->sumarPuntos(Auth::user()->id,5);
+            $u->sumarPuntos($comentario->user_id,10);
+        }
 
         $comentario->valoracion()->detach(Auth::user());
         $c=Comentario::where('id',$id)->first()->valoracion()->attach(Auth::user(),['puntuacion'=>$v]);
 
         $aseo=Aseo::find($comentario->aseo_id);
 
-        $n=new Notification;
-        $n->tipo="comentarioValorado";
-        $n->de=Auth::user()->id;
-        $n->para=$comentario->user_id;
-        $n->aseo_id=$aseo->id;
-        $n->save();
+        if (Auth::user()->id!=$comentario->user_id){
+            $n=new Notification;
+            $n->tipo="comentarioValorado";
+            $n->de=Auth::user()->id;
+            $n->para=$comentario->user_id;
+            $n->aseo_id=$aseo->id;
+            $n->save();
+        }
 
         return 1;
     }

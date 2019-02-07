@@ -8,6 +8,7 @@ use Auth;
 use App\User;
 use Hash;
 use App\Aseo;
+use App\Notification;
 
 class UserController extends Controller
 {
@@ -98,5 +99,19 @@ class UserController extends Controller
         return redirect()->route('usuario.ajustes')
                         ->withErrors(["Informacion incorrecta"]);
 
+    }
+
+    public function sumarPuntos($id, $cantidad){
+        $usuario=User::find($id);
+        $usuario->puntuacion+=$cantidad;
+
+        if ($usuario->puntuacion>100 && $usuario->role_id==1){
+            $usuario->role_id=2;
+            $n=new Notification;
+            $n->tipo="eresGolden";
+            $n->para=Auth::user()->id;
+            $n->save();
+        }
+        $usuario->save();
     }
 }
