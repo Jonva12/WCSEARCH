@@ -38,7 +38,7 @@
   		@foreach($usuarios as $u)
   		<tr>
   			<td>{{$u->id}}</td>
-  			<td>{{$u->name}}</td>
+  			<td>{!!$u->name!!}</td>
   			<td>{{$u->email}} <b>{{$u->email_verified_at==null?"(sin verificar)":""}}</b></td>
   			<td>{{$u->role->nombre}}</td>
   			<td>{{$u->puntuacion}}</td>

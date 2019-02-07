@@ -4,7 +4,7 @@
 
   @section('content')
 <div class="container">
-	<h1>Aseo numero: {{$aseo->id}} ({{$aseo->nombre}})</h1>
+	<h1>Aseo numero: {{$aseo->id}} ({!!$aseo->nombre!!})</h1>
 	<a href="{{route('home',['latitud'=>$aseo->latitud, 'longitud'=>$aseo->longitud])}}" class="btn btn-info">Comprobar aseo</a> 
 	@if($aseo->oculto==null)
 	<a href="{{route('admin.aseo.ocultar',$aseo->id)}}" class="btn btn-danger">Ocultar</a>
@@ -22,8 +22,8 @@
 		@foreach($aseo->reportes as $r)
 		<tr>
 			<td>{{$r->id}}</td>
-			<td>{{$r->tipo}}</td>
-			<td>{{$r->comentario}}</td>
+			<td>{!!$r->tipo!!}</td>
+			<td>{!!$r->comentario!!}</td>
 			<td>{{$r->created_at}}</td>
 		</tr>
 		@endforeach

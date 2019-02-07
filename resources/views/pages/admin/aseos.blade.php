@@ -30,9 +30,9 @@
   		@foreach($aseos as $a)
   			<tr>
   				<td>{{$a->id}}</td>
-  				<td>{{$a->nombre}}</td>
-  				<td>{{$a->dir}}</td>
-  				<td>{{$a->usuario->name}}</td>
+  				<td>{!!$a->nombre!!}</td>
+  				<td>{!!$a->dir!!}</td>
+  				<td>{!!$a->usuario->name!!}</td>
   				<td>{{$a->reportes->count()}}</td>
   				@if($ocultos==true)
   					<td>

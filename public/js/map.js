@@ -223,7 +223,7 @@ function setVista(x,y){
 function enviarPuntos(n){
 	var data = {voto: n, api_token: token};
 	$.get("/api/aseo/"+aseo.id+"/valorar",data, function(result){
-		document.getElementById("puntuacion").innerHTML=result.numPuntuacion/result.countPuntuacion;
+		document.getElementById("puntuacion").innerHTML=parseFloat(Math.round(result.numPuntuacion/result.countPuntuacion * 100) / 100).toFixed(1);
 		var text="";
 		for (var i=0; i<5;i++){
 			if (i<result.numPuntuacion/result.countPuntuacion){
@@ -239,6 +239,7 @@ function enviarPuntos(n){
 
 function cambiarInfoFicha(data){
 	console.log(data.foto);
+	document.getElementById("error_comentario").style.display = "none";
 	if(data.foto == 'wc.jpg'){
 		document.getElementById("imgWC").src = "/img/"+data.foto;
 	}else{
@@ -248,7 +249,7 @@ function cambiarInfoFicha(data){
 
 	esMio(data.user_id, data.id);
 
-	document.getElementById("puntuacion").innerHTML=isNaN(data.numPuntuacion/data.countPuntuacion) ? 0 : data.numPuntuacion/data.countPuntuacion;
+	document.getElementById("puntuacion").innerHTML=isNaN(data.numPuntuacion/data.countPuntuacion) ? 0 :  parseFloat(Math.round(data.numPuntuacion/data.countPuntuacion * 100) / 100).toFixed(1);
 	var text="";
 	for (var i=0; i<5;i++){
 		if (i<data.numPuntuacion/data.countPuntuacion){
@@ -320,11 +321,14 @@ function getComentarios(){
 
 function enviarComentario(e){
 	e.preventDefault();
+	document.getElementById("error_comentario").style.display = "none";
 	var text=document.getElementById("textComentario").value;
 	var data={text:text, api_token: token};
-	$.post( "/api/comentarios/"+aseo.id, data, function( data ) {
+	$.post( "/api/comentarios/"+aseo.id, data, function( result ) {
 		getComentarios();
 		document.getElementById("textComentario").value="";
+	}).fail(function(){
+		document.getElementById("error_comentario").style.display = "block";
 	});
 	return false;
 }

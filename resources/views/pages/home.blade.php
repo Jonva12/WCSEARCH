@@ -109,8 +109,13 @@ textarea{
             <form action="#" onsubmit="return enviarComentario(event)">
               @csrf
               <textarea id="textComentario" placeholder="Escribe tu comentario"></textarea>
+              <p id="error_comentario" style="display: none; color:red;">
+                Introce texto para comentario
+              </p>
               <input type="submit" value="Comentar">
             </form>
+            <div 
+              </div>
           @endauth
           <div id="comentarios">
             <i>Cargando comentarios...</i>
@@ -143,7 +148,7 @@ textarea{
   </div>
   @include('includes.geoscripts')
 
-@if(isset($latitud)&&isset($longitud))
+@if(isset($latitud) && isset($longitud))
   @if(Auth::user())
     <script src="/js/map.js" onload="setToken('{{Auth::user()->api_token}}'); getAseos2({{$latitud}}, {{$longitud}})"></script>
   @else

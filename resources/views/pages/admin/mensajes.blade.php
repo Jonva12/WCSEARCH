@@ -25,10 +25,10 @@
   		@foreach($mensajes as $m)
   		<tr>
   			<td>{{$m->id}}</td>
-  			<td>{{$m->name}}</td>
-  			<td>{{$m->email}}</td>
+  			<td>{!!$m->name!!}</td>
+  			<td>{!!$m->email!!}</td>
   			<td>{{$m->created_at}}</td>
-  			<td>{{$m->message}}</td>
+  			<td>{!!$m->message!!}</td>
   			<td>
   				<a href="mailto:{{$m->email}}?Subject=Respuesta%20de%20WCSearch" class="btn btn-primary">Responder</a>
   				<a href="{{route('admin.mensaje.eliminar',$m->id)}}" class="btn btn-danger">Eliminar</a>

@@ -13,7 +13,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(array('auth', 'verified','baneado'));
+        $this->middleware(array('auth', 'verified','baneado'))->except('perfil');
     }
     public function index()
     {
@@ -29,11 +29,14 @@ class UserController extends Controller
             $id=Auth::user()->id;
         }
     	$usuario=User::where('id',$id)->first();
-        if (Auth::user()->role->nombre!="admin"){
+        if (Auth::user()){
+            if (Auth::user()->role->nombre!="admin"){
             if($usuario->role->nombre=="admin" || $usuario->fecha_de_baneo!=null){
                 return redirect()->route('sinPermisos');
             }
         }
+        }
+        
         
         $aseos=Aseo::where('user_id', $id )->Where('oculto', '=', null);
         $aseos=Aseo::where([['user_id', $id],['oculto',null]]);

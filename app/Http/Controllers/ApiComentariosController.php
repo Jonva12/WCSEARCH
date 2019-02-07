@@ -36,7 +36,9 @@ class ApiComentariosController extends Controller
      */
     public function store(Request $request, $id)
     {
-        //dump($request);
+        $request->validate([
+        'text' => 'required|min:1|max:255',
+        ]);
         if (Auth::user()){
             $comentario= new Comentario;
             $comentario->text=htmlentities($request->input('text'));

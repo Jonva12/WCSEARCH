@@ -41,16 +41,16 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4">
-				<h1>{{$usuario->name}}</h1>
+				<h1>{!!$usuario->name!!}</h1>
 				<p><strong>Email:</strong> {{$usuario->email}}</p>
 				<p><strong>Nivel:</strong> {{$usuario->role->nombre}}</p>
 				<p><strong>Puntuacion:</strong> {{$usuario->puntuacion}}</p>
-				@if($usuario->id==Auth::user()->id)
+				@if(Auth::user() && $usuario->id==Auth::user()->id)
 					<a href="{{route('usuario.ajustes')}}"><button class="btn btn-info">Ajustes</button></a>
 				@endif
 			</div>
 			<div class="col-md-8">
-				@if($usuario->id==Auth::user()->id)
+				@if(Auth::user() && $usuario->id==Auth::user()->id)
 					<h2>Tus aseos</h2>
 				@else
 					<h2>Sus aseos</h2>
@@ -80,9 +80,9 @@
 								@if($aseos->count()==0)
 								<tr>
 									<td colspan="5">
-										@if($usuario->id==Auth::user()->id && $usuario->role->nombre=="normal")
+										@if(Auth::user() && $usuario->id==Auth::user()->id && $usuario->role->nombre=="normal")
 											Puedes tener 1 baño. Para crear baños ilimitados necesitas ser golden.
-										@elseif($usuario->id==Auth::user()->id )
+										@elseif(Auth::user() && $usuario->id==Auth::user()->id )
 											Todavia no tienes ningun aseo.
 										@else
 											No tienes ningun aseo.
@@ -92,14 +92,16 @@
 								@else
 									@foreach($aseos as $a)
 										<tr>
-											<td>{{$a->nombre}}</td>
-											<td>{{$a->dir}}</td>
+											<td>{!!$a->nombre!!}</td>
+											<td>{!!$a->dir!!}</td>
 											<td>{{$a->comentarios->count()}}</td>
 											<td>{{$a->reportes->count()}}</td>
 											<td>
 												<a class="btn btn-primary" href="{{route('home',['latitud'=>$a->latitud, 'longitud'=>$a->longitud])}}">Ver <i class="fas fa-eye"></i></a>
+												@if(Auth::user() && $usuario->id==Auth::user()->id)
 												<a href="{{route('wc.edit', $a->id)}}" class="btn btn-secondary" id="editarLink">Editar <i class="fas fa-edit"></i></a>
 												<a class="btn btn-danger" onclick="return confirm('¿Estas seguro?')" href="{{route('wc.ocultar', $a->id)}}">Eliminar <i class="fas fa-trash"></i></a>
+												@endif
 											</td>
 										</tr>
 									@endforeach
