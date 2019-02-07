@@ -10,7 +10,7 @@ $( document ).ready(function() {
 	$('body').click(function(){
 		$.get( "/api/notificaciones/tiene", function( data ) {
 		  if(data=="1"){
-		  	$('#notificaciones_nav').html('<i class="fa fa-exclamation fa-inverse"></i>');
+		  	$('#notificaciones_nav').html('<img src="/img/bell-svg.ico"></img>');
 		  }else{
 		  	$('#notificaciones_nav').html('<i class="fa fa-bell"></i>');
 		  }
