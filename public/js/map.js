@@ -349,3 +349,21 @@ function votar(coment,bool){
 function setToken(code){
 	token=code;
 }
+function reportBox(){
+	var x = document.getElementById("reportDiv");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function reportar(){
+	var tipo=document.getElementById("tipoRep").value;
+	var comentario=document.getElementById("comentarioRep").value;
+	var data={tipo:tipo, comentario:comentario};
+	$.post( "/api/aseo/"+aseo.id+"/reportar", data, function( result ) {
+		alert("Tu reporte a sido guardado");
+		reportBox();
+	});
+}
