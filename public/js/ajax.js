@@ -1,6 +1,10 @@
-
+var api_token="";
+function crearToken(code){
+	api_token=code;
+}
 $( document ).ready(function() {
-	$.get("/api/notificaciones/tiene", function( data ) {
+	var info={api_token:api_token};
+	$.get("/api/notificaciones/tiene",info, function( data ) {
 	  if(data=="1"){
 	  	$('#notificaciones_nav').html('<i class="fa fa-exclamation fa-inverse"></i>');
 	  }else{
@@ -8,7 +12,7 @@ $( document ).ready(function() {
 	  }
 	});
 	$('body').click(function(){
-		$.get( "/api/notificaciones/tiene", function( data ) {
+		$.get( "/api/notificaciones/tiene",info, function( data ) {
 		  if(data=="1"){
 		  	$('#notificaciones_nav').html('<img src="/img/bell-svg.ico"></img>');
 		  }else{
@@ -21,47 +25,43 @@ $( document ).ready(function() {
 
 
 function getNotificaciones(){
-	$.get("/api/notificaciones/get", function( data ) {
+	var info={api_token:api_token};
+	$.get("/api/notificaciones/get",info, function( data ) {
 		var texto="";
 		if (data.length==0){
 			texto+='<div class="dropdown-item">No tienes notificaciones</div>';
 		}else{
 			for (var i = 0; i < data.length; i++) {
 			  	if(!data[i].leido){
-			  		texto+='<div class="dropdown-item" onclick="leer('+data[i].id+')"><b>'+data[i].texto+'</b></div>';
+			  		texto+='<div class="dropdown-item" onclick="leer('+data[i].id+', \''+data[i].link+'\')"><b>'+data[i].texto+'</b></div>';
 			  	}else{
-			  		texto+='<div class="dropdown-item">'+data[i].texto+'</div>';
+			  		texto+='<div class="dropdown-item" onclick="notificacionClick(\''+data[i].link+'\')" >'+data[i].texto+'</div>';
 			  	}
+			  	
 	  		}
+	  		texto+='<div class="dropdown-item" onclick="leerTodas()"><i>Marcar todas como leidas</i></div>';
 	  	}
 
 	  $('#notificaciones').html(texto);
 	});
 }
 
-function leer(id){
-	$.get( "/api/notificaciones/leer/"+id, function( data ) {
+function leer(id, link){
+	var info={api_token:api_token};
+	$.get( "/api/notificaciones/leer/"+id,info, function( data ) {
 		getNotificaciones();
+		notificacionClick(link);
 	});
 }
 
-function uploadImage(image64){
-	var form = new FormData();
-form.append("image", "imagen en base 64");
-
-var settings = {
-  "url": "https://api.imgur.com/3/image",
-  "method": "POST",
-  "timeout": 0,
-  "headers": {
-    "Authorization": "Client-ID {{clientId}}"
-  },
-  "processData": false,
-  "mimeType": "multipart/form-data",
-  "contentType": false,
-  "data": form
-};
-$.ajax(settings).done(function (response) {
-  console.log(response);
-});
+function leerTodas(){
+	var info={api_token:api_token};
+	$.get( "/api/notificaciones/leerTodas",info, function( data ) {
+		getNotificaciones();
+	});
 }
+function notificacionClick(link){
+	if(link!=null)
+		window.location.href=link;
+}
+

@@ -22,6 +22,8 @@ Route::apiResource('aseo', 'ApiAseosController');
 
 Route::post('aseo/{id}/reportar', 'ApiAseosController@reportar');
 
+Route::get('aseo/{id}/valorar', 'ApiAseosController@valorar')->middleware('auth:api');
+
 Route::apiResource('comentarios', 'ApiComentariosController');
 
 Route::get('comentarios/{id}/mios', 'ApiComentariosController@showMio')->middleware('auth:api');
@@ -29,3 +31,9 @@ Route::get('comentarios/{id}/mios', 'ApiComentariosController@showMio')->middlew
 Route::post('comentarios/{id}', 'ApiComentariosController@store')->middleware('auth:api');
 
 Route::post('comentarios/{id}/valorar', 'ApiComentariosController@valorar')->middleware('auth:api');
+
+//Routas notificaciones
+Route::get('notificaciones/tiene', 'NotificationController@tieneNotificaciones');
+Route::get('notificaciones/get', 'NotificationController@getNotificaciones');
+Route::get('notificaciones/leer/{id}', 'NotificationController@leerNotificacion');
+Route::get('notificaciones/leerTodas', 'NotificationController@leerTodas');

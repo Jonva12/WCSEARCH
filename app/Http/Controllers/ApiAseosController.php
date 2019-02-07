@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Aseo;
 use App\ReportesAseos;
+use App\Notification;
+use App\User;
+use Auth;
 
 class ApiAseosController extends Controller
 {
@@ -77,6 +80,39 @@ class ApiAseosController extends Controller
         $reporte->comentario=htmlentities($request->comentario);
         $reporte->aseo_id=$id;
 
+        $aseo=Aseo::find($id);
+
+        $n=new Notification;
+        $n->tipo="aseoReportado";
+        $n->para=$aseo->user_id;
+        $n->aseo_id=$aseo->id;
+        $n->save();
+
         $reporte->save();
+    }
+
+    public function valorar(Request $request, $id){
+      $voto = $request->voto;
+      $aseo=Aseo::where('id', $id)->first();
+      $userValora=User::where('id',Auth::user()->id)->first();
+      $userValora->puntuacion+=5;
+      $userValora->save();
+      $userAseo = User::where('id',$aseo->user_id)->first();
+      $userAseo->puntuacion+=5;
+      $userAseo->save();
+
+      $aseo->valoracion()->detach(Auth::user());
+      $aseo->valoracion()->attach(Auth::user(), ['puntuacion' => $voto]);
+
+      $aseo->numPuntuacion=$aseo->valoracion()->sum('aseos_users.puntuacion');
+      $aseo->countPuntuacion=$aseo->valoracion()->count();
+
+      $n=new Notification;
+        $n->tipo="aseoValorado";
+        $n->de=Auth::user()->id;
+        $n->para=$aseo->user_id;
+        $n->aseo_id=$aseo->id;
+        $n->save();
+      return $aseo;
     }
 }

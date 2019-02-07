@@ -7,6 +7,8 @@ use App\Comentario;
 use Auth;
 use App\User;
 use Carbon\Carbon;
+use App\Notification;
+use App\Aseo;
 
 class ApiComentariosController extends Controller
 {
@@ -45,9 +47,18 @@ class ApiComentariosController extends Controller
             $user=User::where('id', Auth::user()->id)->first();
             $user->puntuacion+=20;
             $user->save();
-        }
-        return $comentario;
+        
+            $aseo=Aseo::find($id);
 
+            $n=new Notification;
+            $n->tipo="aseoComentado";
+            $n->de=Auth::user()->id;
+            $n->para=$aseo->user_id;
+            $n->aseo_id=$aseo->id;
+            $n->save();
+        }
+
+        return $comentario;
     }
 
     /**
@@ -136,6 +147,15 @@ class ApiComentariosController extends Controller
 
         $comentario->valoracion()->detach(Auth::user());
         $c=Comentario::where('id',$id)->first()->valoracion()->attach(Auth::user(),['puntuacion'=>$v]);
+
+        $aseo=Aseo::find($comentario->aseo_id);
+
+        $n=new Notification;
+        $n->tipo="comentarioValorado";
+        $n->de=Auth::user()->id;
+        $n->para=$comentario->user_id;
+        $n->aseo_id=$aseo->id;
+        $n->save();
 
         return 1;
     }
