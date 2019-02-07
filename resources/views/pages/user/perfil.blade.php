@@ -16,6 +16,8 @@
 				<p><strong>Puntuacion:</strong> {{$usuario->puntuacion}}</p>
 				@if(Auth::user() && $usuario->id==Auth::user()->id)
 					<a href="{{route('usuario.ajustes')}}"><button class="btn btn-info">Ajustes</button></a>
+				@else
+					<a href="{{route('usuario.reportar', $usuario->id)}}" onclick="return confirm('¿Estas seguro?')"><button class="btn btn-danger">Reportar</button></a>
 				@endif
 			</div>
 			<div class="col-md-8">
@@ -78,9 +80,9 @@
 						</tbody>
 					</table>
 
-        </div>
+        	</div>
 
-			</div>
-		</div>
+	</div>
+</div>
 </div>
 	@endsection

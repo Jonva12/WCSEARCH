@@ -64,4 +64,3 @@ function notificacionClick(link){
 	if(link!="")
 		window.location.href=link;
 }
-

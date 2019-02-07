@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(array('auth', 'verified','baneado'))->except('perfil');
+        $this->middleware(array('auth', 'verified','baneado'))->except('perfil', 'reportar');
     }
     public function index()
     {
@@ -113,5 +113,13 @@ class UserController extends Controller
             $n->save();
         }
         $usuario->save();
+    }
+
+    public function reportar($id){
+        $usuario=User::find($id);
+        $usuario->reportes+=1;
+        $usuario->save();
+        return redirect()->route('home');
+
     }
 }

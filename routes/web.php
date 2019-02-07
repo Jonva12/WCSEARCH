@@ -46,6 +46,7 @@ Route::get('/usuario/ajustes', 'UserController@ajustes')->name('usuario.ajustes'
 Route::get('/usuario/cambiarDatos', 'UserController@cambiarDatos')->name('usuario.cambiarDatos');
 Route::get('/usuario/cambiarPassword', 'UserController@cambiarPassword')->name('usuario.cambiarPassword');
 Route::get('/usuario/borrarCuenta', 'UserController@borrarCuenta')->name('usuario.borrarCuenta');
+Route::get('/usuario/reportar/{id}', 'UserController@reportar')->name('usuario.reportar');
 
 
 Route::get('/baneado', 'BaneoController@index')->name('baneado');
