@@ -1,7 +1,6 @@
 .masthead{
-  width: 100%;
-  min-height: 1000px;
-  max-height:100%;
+  width: 100vw;
+  height: 100vh;
   padding-top: 10rem;
   padding-bottom: calc(10rem - 56px);
   background-image: url("../img/FondoLogin.png");
