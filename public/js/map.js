@@ -351,7 +351,7 @@ function votar(coment,bool){
 function setToken(code){
 	token=code;
 }
-<<<<<<< HEAD
+
 function reportBox(){
 	var x = document.getElementById("reportDiv");
   if (x.style.display === "none") {
@@ -370,5 +370,3 @@ function reportar(){
 		reportBox();
 	});
 }
-=======
->>>>>>> fb9248bef6d6e6e8237e971af3fd49c570528453

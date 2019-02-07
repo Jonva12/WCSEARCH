@@ -31,7 +31,7 @@
                       <a id="createWC" class="nav-link" class="link" href="{{route('wc.form')}}">Crear WC</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre id="notificaciones_nav" onclick="getNotificaciones()"><i id="navbarDropdown" class="fa fa-bell"></i></a>
+                        <a class="nav-link dropdown-toggle"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre id="notificaciones_nav" onclick="getNotificaciones()"><i class="fa fa-bell"></i></a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" id="notificaciones">
 
@@ -59,10 +59,10 @@
                     </li>
                 @endguest
                 <li class="nav-item">
-                    <a id="navbarDropdown" class="nav-link" href="{{ route('change_lang', ['lang' => 'es']) }}">ES </a>
+                    <a class="nav-link" href="{{ route('change_lang', ['lang' => 'es']) }}">ES </a>
                 </li>
                 <li class="nav-item">
-                    <a id="navbarDropdown" class="nav-link" href="{{ route('change_lang', ['lang' => 'en']) }}">EN</a>
+                    <a class="nav-link" href="{{ route('change_lang', ['lang' => 'en']) }}">EN</a>
                 </li>
             </ul>
         </div>

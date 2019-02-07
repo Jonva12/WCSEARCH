@@ -74,18 +74,6 @@ textarea{
           <p>Horario: <span id="horario"></span></p>
           <p>Precio: <span id="precio"></span></p>
           <p><i class="fas fa-wheelchair"></i> <span id="accesible"></span></p>
-          <br>
-          <a class="fake-link" onclick="reportBox()"><i>Reportar aseo</i></a>
-          <div id="reportDiv" style="display: none;">
-            <select id="tipoRep">
-              <option value="Informacion incorrecta" selected>Informacion incorrecta</option>
-              <option value="El baño no existe">El baño no existe</option>
-            </select>
-            <br>
-            <textarea id="comentarioRep" placeholder="Comentario (opcional)"></textarea>
-            <br>
-            <button class="btn btn-danger" onclick="reportar()">Reportar</button>
-          </div>
         </div>
         <hr>
         <div class="valorar">
@@ -100,9 +88,22 @@ textarea{
           @guest
             <i>Inicia sesion para poder valorar</i>
           @endguest
+
         </div>
         <hr>
         <div>
+          <a class="fake-link" onclick="reportBox()"><i>Reportar aseo</i></a>
+          <div id="reportDiv" style="display: none;">
+            <select id="tipoRep">
+              <option value="Informacion incorrecta" selected>Informacion incorrecta</option>
+              <option value="El baño no existe">El baño no existe</option>
+            </select>
+            <br>
+            <textarea id="comentarioRep" placeholder="Comentario (opcional)"></textarea>
+            <br>
+            <button class="btn btn-danger" onclick="reportar()">Reportar</button>
+          </div>
+          <hr>
           <h2>Comentarios</h2>
           @auth
             <form action="#" onsubmit="return enviarComentario(event)">
