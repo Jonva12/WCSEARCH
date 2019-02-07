@@ -147,8 +147,8 @@ textarea{
     <section id="section" class="col-md-12">
       <style type="text/css">
         .my-custom-icon{
-          width: 28px !important;
-          height: 27px !important;
+          width: 30px !important;
+          height: 30px !important;
           margin-left: -12px;
           margin-top: -12px;
           border-radius: 18px;
@@ -156,9 +156,10 @@ textarea{
           text-align: center;
           color: white;
           background-color: rgba(255, 75, 75, 0.6);
-          font-size: 14px;
+          font-size: 18px;
           font-weight: bold;
         }
+
       </style>
       <div id="mapid">
 

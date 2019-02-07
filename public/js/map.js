@@ -101,7 +101,7 @@ function mostrarAseos(){
 		}
 	}
 	if (mapa.getZoom()<12){
-		var margena=0.3*(12-mapa.getZoom())*0.3*(12-mapa.getZoom());
+		var margena=0.2*(12-mapa.getZoom())*0.2*(12-mapa.getZoom());
 		var grupuk=[];
 		for (var i=0;i< aseos.length;i++){
 			var nuevo=true;
@@ -128,7 +128,7 @@ function mostrarAseos(){
 					title: 'Aqui hay '+grupuk[i].kop.length+' aseos',
 					icon:L.divIcon({
 						className: 'my-custom-icon',
-					    html: grupuk[i].kop.length
+					    html: '<span>'+grupuk[i].kop.length+'</span>'
 					})}).on('click',zoom).addTo(mapa);
 			}else{
 				var marker=L.marker([grupuk[i].latitud, grupuk[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
