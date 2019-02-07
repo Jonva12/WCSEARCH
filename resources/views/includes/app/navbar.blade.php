@@ -19,16 +19,16 @@
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" class="link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
+                        <a class="nav-link" class="link" href="{{ route('login') }}">@lang('navbar.startSession')</a>
                     </li>
                     <li class="nav-item">
                         @if (Route::has('register'))
-                            <a class="nav-link" class="link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
+                            <a class="nav-link" class="link" href="{{ route('register') }}">@lang('navbar.register')</a>
                         @endif
                     </li>
                 @else
                     <li class="nav-item">
-                      <a id="createWC" class="nav-link" class="link" href="{{route('wc.form')}}">Crear WC</a>
+                      <a id="createWC" class="nav-link" class="link" href="{{route('wc.form')}}">@lang('navbar.createWC')</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre id="notificaciones_nav" onclick="getNotificaciones()"><i class="fa fa-bell"></i></a>
@@ -44,12 +44,12 @@
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('usuario.perfil', Auth::user()->id) }}">
-                                {{ __('Perfil') }}
+                                @lang('navbar.profile')
                             </a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
-                                {{ __('Cerrar Sesión') }}
+                                @lang('navbar.endSession')
                             </a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

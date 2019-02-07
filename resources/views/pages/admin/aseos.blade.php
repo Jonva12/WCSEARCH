@@ -7,25 +7,25 @@
   <div>
     <form action="{{route('admin.aseos')}}" method="get">
       <i class="fas fa-search"></i>
-      <input type="text" name="nombre" placeholder="Nombre de aseo">
-      <input type="text" name="direccion" placeholder="Direccion">
+      <input type="text" name="nombre" placeholder="@lang('aseosAdmin.Name')">
+      <input type="text" name="direccion" placeholder="@lang('aseosAdmin.Direction')">
       <input type="checkbox" id="ocultos" name="ocultos">
       <label for="ocultos">Mostrar ocultos</label>
-      <input type="submit" value="Filtrar" class="btn btn-success">
+      <input type="submit" value="@lang('aseosAdmin.Filter')" class="btn btn-success">
     </form>
   </div>
   <div class="table-responsive">
     <table class="table">
   		<tr>
   			<th>Id</th>
-  			<th>Nombre</th>
-  			<th>Direccion</th>
-  			<th>Autor</th>
-  			<th>Reportes</th>
+  			<th>@lang('aseosAdmin.Name')</th>
+  			<th>@lang('aseosAdmin.Direction')</th>
+  			<th>@lang('aseosAdmin.Author')</th>
+  			<th>@lang('aseosAdmin.Reports')</th>
   			@if($ocultos==true)
-  				<th>Fecha de ocultacion
+  				<th>@lang('aseosAdmin.Date')
   			@endif
-  			<th>Opciones</th>
+  			<th>@lang('aseosAdmin.Options')</th>
   		</tr>
   		@foreach($aseos as $a)
   			<tr>
@@ -39,22 +39,22 @@
   						{{$a->oculto}}
   					</td>
   					<td>
-  						<a href="{{route('admin.aseo',$a->id)}}" class="btn btn-primary">Ver reportes</a>
-  						<a href="{{route('admin.aseo.mostrar',$a->id)}}" class="btn btn-danger">Mostrar</a>
-  						<a href="{{route('admin.aseo.eliminar',$a->id)}}" class="btn btn-danger">Eliminar</a>
+  						<a href="{{route('admin.aseo',$a->id)}}" class="btn btn-primary">@lang('aseosAdmin.seeReports')</a>
+  						<a href="{{route('admin.aseo.mostrar',$a->id)}}" class="btn btn-danger">@lang('aseosAdmin.Reveal')</a>
+  						<a href="{{route('admin.aseo.eliminar',$a->id)}}" class="btn btn-danger">@lang('aseosAdmin.Delete')</a>
   					</td>
   				@else
   					<td>
-  						<a href="{{route('admin.aseo',$a->id)}}" class="btn btn-primary">Ver reportes</a>
-  						<a href="{{route('admin.aseo.ocultar',$a->id)}}" class="btn btn-dark">Ocultar</a>
-  						<a href="{{route('admin.aseo.eliminar',$a->id)}}" class="btn btn-danger">Eliminar</a>
+  						<a href="{{route('admin.aseo',$a->id)}}" class="btn btn-primary">@lang('aseosAdmin.seeReports')</a>
+  						<a href="{{route('admin.aseo.ocultar',$a->id)}}" class="btn btn-dark">@lang('aseosAdmin.Hide')</a>
+  						<a href="{{route('admin.aseo.eliminar',$a->id)}}" class="btn btn-danger">@lang('aseosAdmin.Delete')</a>
   					</td>
   				@endif
   			</tr>
   		@endforeach
   		@if($aseos->count()==0)
   			<tr>
-  				<td colspan="{{$ocultos?6:5}}"> No hay aseos </td>
+  				<td colspan="{{$ocultos?6:5}}"> @lang('aseosAdmin.noWC') </td>
   			</tr>
   		@endif
   	</table>
