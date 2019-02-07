@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Aseo;
+use App\ReportesAseos;
 
 class ApiAseosController extends Controller
 {
@@ -68,5 +69,14 @@ class ApiAseosController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function reportar(Request $request, $id){
+        $reporte=new ReportesAseos();
+        $reporte->tipo=htmlentities($request->tipo);
+        $reporte->comentario=htmlentities($request->comentario);
+        $reporte->aseo_id=$id;
+
+        $reporte->save();
     }
 }
