@@ -3,38 +3,7 @@
   @section('title', 'WCSearch')
 
   @section('content')
-  <style media="screen">
-
-  @media(min-width: 600px){
-    form{
-      display: inline-flex;
-      flex-direction: row;
-      justify-content: space-around;
-      align-items: baseline;
-    }
-  }
-  table{
-    width: inherit;
-  }
-
-  thead{
-    table-layout: fixed;
-  }
-  tbody{
-    overflow: scroll;
-  }
-  @media (max-width: 700px){
-
-    .fa-chevron-right, .fa-chevron-left{
-      margin-top: 10px;
-    }
-  }
-  @media (min-width: 700px){
-    .fa-chevron-right, .fa-chevron-left{
-      visibility: hidden;
-    }
-  }
-  </style>
+  <link rel="stylesheet" href="/css/perfil.css">
     @if(Session::has('status'))
       <div id="alert" class="alert {{ Session::get('alert-class', 'alert-warning') }}"><div>{{ Session::get('status') }}</div><i id="x" class="fas fa-times" onclick="cerrar()"></i></div>
     @endif

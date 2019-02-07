@@ -14,14 +14,14 @@ aside img{
 aside .general{
   color: white;
   background-color: #28a745;
-  padding: 5px;
+  padding-left: 15px;
 }
 aside .info{
   padding-left: 15px;
 }
 #mapid{
   margin-top: 2px;
-  height: 100%;
+  height: 100vh;
   width: 98.4%;
   position: fixed;
 }
@@ -37,6 +37,27 @@ aside .info{
   border-radius: 5px;
   width: 90%;
 }
+
+@media(max-width: 700px){
+  .float{
+  position:fixed;
+  width:60px;
+  height:60px;
+  bottom:40px;
+  right:40px;
+  background-color:#28A745;
+  color:#FFF;
+  border-radius:50px;
+  text-align:center;
+  box-shadow: 2px 2px 3px #999;
+  }
+  .my-float{
+    margin-top: 15px;
+    font-size: 24pt;
+    color: white;
+  }
+}
+
 
 </style>
 
@@ -121,6 +142,7 @@ aside .info{
       <div id="mapid">
 
       </div>
+      <a class="float"><i class="fa fa-plus my-float"></i></a>
 
     </section>
   </div>
