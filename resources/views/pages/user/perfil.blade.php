@@ -13,6 +13,9 @@
       align-items: baseline;
     }
   }
+  table{
+    width: inherit;
+  }
 
   thead{
     table-layout: fixed;
@@ -20,7 +23,17 @@
   tbody{
     overflow: scroll;
   }
+  @media (max-width: 700px){
 
+    .fa-chevron-right, .fa-chevron-left{
+      margin-top: 10px;
+    }
+  }
+  @media (min-width: 700px){
+    .fa-chevron-right, .fa-chevron-left{
+      visibility: hidden;
+    }
+  }
   </style>
     @if(Session::has('status'))
       <div id="alert" class="alert {{ Session::get('alert-class', 'alert-warning') }}"><div>{{ Session::get('status') }}</div><i id="x" class="fas fa-times" onclick="cerrar()"></i></div>
@@ -51,6 +64,8 @@
 				    </form>
 				</div>
         <div class="table-responsive">
+          <a class="float-left"><i class="fas fa-chevron-left"></i></a>
+          <a class="float-right"><i class="fas fa-chevron-right"></i></a>
           <table class="table table-hover">
 						<thead>
 							<tr>
@@ -91,6 +106,7 @@
 								@endif
 						</tbody>
 					</table>
+
         </div>
 
 			</div>

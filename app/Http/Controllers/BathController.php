@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
 use App\Aseo;
+use App\User;
 use Auth;
 
 class BathController extends Controller
@@ -35,7 +36,6 @@ class BathController extends Controller
       ]);
 
       $foto = $request->file('foto');
-
       $aseo = new Aseo();
       $aseo->nombre = htmlentities($request->input('nombre'));
       $aseo->latitud =$request->input('latitud');
@@ -91,14 +91,24 @@ class BathController extends Controller
       $aseo->precio = $request->input('precio');
       $aseo->accesibilidad = $request->input('accesibilidad');
       $aseo->user_id = Auth::user()->id;
-
+      $user = User::where('id',$aseo->user_id)->first();
+      $user->puntuacion+=20;
+      $user->save();
       $aseo->save();
       return redirect()->route('home', ['latitud' => $request->input('latitud'), 'longitud' => $request->input('longitud')]);
     }
 
     public function edit($id){
       $aseo=Aseo::where('id',$id)->first();
-      return view('pages.editWC', array('aseo'=>$aseo));
+      if(!$aseo){
+        return redirect()->route('home');
+      }else{
+        if($aseo->user_id!=Auth::user()->id){
+          return redirect()->route('home');
+        }else{
+          return view('pages.editWC', array('aseo'=>$aseo));
+        }
+      }
     }
 
     public function update(Request $request){
@@ -176,9 +186,16 @@ class BathController extends Controller
 
     public function ocultarAseo($id){
       $aseo = Aseo::find($id);
-      $aseo->oculto = new \DateTime();
-      $aseo->save();
-
+      if(!$aseo){
+        return redirect()->route('home');
+      }else{
+        if($aseo->user_id!=Auth::user()->id){
+          return redirect()->route('home');
+        }else{
+          $aseo->oculto = new \DateTime();
+          $aseo->save();
+        }
+      }
       return redirect()->route('usuario');
     }
 
@@ -190,8 +207,14 @@ class BathController extends Controller
     }
     public function valorar(Request $request, $id){
       $voto = $request->voto;
-
       $aseo=Aseo::where('id', $id)->first();
+      $userValora=User::where('id',Auth::user()->id)->first();
+      $userValora->puntuacion+=5;
+      $userValora->save();
+      $userAseo = User::where('id',$aseo->user_id)->first();
+      $userAseo->puntuacion+=5;
+      $userAseo->save();
+
       $aseo->valoracion()->detach(Auth::user());
       $aseo->valoracion()->attach(Auth::user(), ['puntuacion' => $voto]);
 
@@ -199,5 +222,4 @@ class BathController extends Controller
       $aseo->countPuntuacion=$aseo->valoracion()->count();
       return $aseo;
     }
-
 }

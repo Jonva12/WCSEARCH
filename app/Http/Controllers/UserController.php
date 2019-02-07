@@ -34,8 +34,9 @@ class UserController extends Controller
                 return redirect()->route('sinPermisos');
             }
         }
-
+        
         $aseos=Aseo::where('user_id', $id )->Where('oculto', '=', null);
+        $aseos=Aseo::where([['user_id', $id],['oculto',null]]);
         $n=$request->input('nombre');
         if($n!=null && $n!=""){
           $aseos=$aseos->where('nombre', 'like', '%'.$n.'%');

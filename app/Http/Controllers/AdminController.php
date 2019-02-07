@@ -121,6 +121,9 @@ class AdminController extends Controller
 
 	public function ocultarAseo($id){
 		$aseo=Aseo::where('id',$id)->first();
+        $user = User::where('id',$aseo->user_id)->first();
+        $user->puntuacion-=40;
+        $user->save();
 		$aseo->oculto=new \DateTime();
 		$aseo->save();
 

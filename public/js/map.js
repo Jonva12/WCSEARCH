@@ -112,11 +112,12 @@ function mostrarAseos(){
 					grupuk[j].longitud= (Number(grupuk[j].longitud)+Number(aseos[i].longitud))/2;
 					grupuk[j].kop.push(i);
 					nuevo=false;
+                    break;
 				}
 			}
 
 			if(nuevo){//forra pasau tagero berrixe ba ein grupo berri bat bakarrakin
-				var nuevoGrupo={latitud:aseos[i].latitud, longitud:aseos[i].longitud, kop:[i]};
+				var nuevoGrupo={latitud:aseos[i].latitud, longitud:aseos[i].longitud, kop:[i], id:aseos[i].id};
 				grupuk.push(nuevoGrupo);
 			}
 		}
@@ -131,8 +132,8 @@ function mostrarAseos(){
 					})}).on('click',zoom).addTo(mapa);
 			}else{
 				var marker=L.marker([grupuk[i].latitud, grupuk[i].longitud],{icon:aseoIcon}).on('click',markerOnClick).addTo(mapa);
+                marker.aseo=grupuk[i].id;
 			}
-			marker.aseo=aseos[i].id;
 			marker.nuevo=true;
 			marcadores.push(marker);
 		}
@@ -146,6 +147,7 @@ function mostrarAseos(){
 		}
 	}
 	limpiarMapaAseosViejos();
+    console.log(marcadores);
 }
 
 function getAseos(){
@@ -160,7 +162,7 @@ function getAseos(){
 }
 
 function zoom(e){
-	mapa.setView([e.latlng.lat,e.latlng.lng],mapa.getZoom()+2);
+	mapa.setView([e.latlng.lat,e.latlng.lng],mapa.getZoom()+1);
 }
 
 function getAseos2(x,y){
@@ -349,6 +351,7 @@ function votar(coment,bool){
 function setToken(code){
 	token=code;
 }
+<<<<<<< HEAD
 function reportBox(){
 	var x = document.getElementById("reportDiv");
   if (x.style.display === "none") {
@@ -367,3 +370,5 @@ function reportar(){
 		reportBox();
 	});
 }
+=======
+>>>>>>> fb9248bef6d6e6e8237e971af3fd49c570528453

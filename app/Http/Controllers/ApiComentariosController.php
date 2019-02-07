@@ -43,10 +43,11 @@ class ApiComentariosController extends Controller
             $comentario->save();
 
             $user=User::where('id', Auth::user()->id)->first();
-            $user->puntuacion=2;
+            $user->puntuacion+=20;
             $user->save();
         }
-        
+        return $comentario;
+
     }
 
     /**
@@ -124,9 +125,16 @@ class ApiComentariosController extends Controller
 
         //$u=User::where('id', Auth::user()->id)->first();
         $v=$request->voto=="true"?1:-1;
+        $comentario=Comentario::where('id',$id)->first();
+        
+        $userValora=User::where('id',Auth::user()->id)->first();
+        $userValora->puntuacion+=5;
+        $userValora->save();
+        $userComentario = User::where('id',$comentario->user_id)->first();
+        $userComentario->puntuacion+=10;
+        $userComentario->save();
 
-        $comentario=Comentario::where('id',$id)->first()->valoracion()->detach(Auth::user());
-
+        $comentario->valoracion()->detach(Auth::user());
         $c=Comentario::where('id',$id)->first()->valoracion()->attach(Auth::user(),['puntuacion'=>$v]);
 
         return 1;
