@@ -4,7 +4,7 @@ h1{
 
 @media (min-width: 576px) {
   .content{
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
   }
 }
@@ -16,7 +16,7 @@ h1{
 }
 @media (min-width: 992px) {
   .content{
-    display: inline-flex;
+    display: flex;
     flex-direction: row;
   }
   .links{
@@ -25,7 +25,7 @@ h1{
 }
 @media (min-width: 1200px) {
   .content{
-    display: inline-flex;
+    display: flex;
     flex-direction: row;
   }
   .links{
