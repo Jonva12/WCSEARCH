@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Aseo;
+use App\ReportesAseos;
 
 class ApiAseosController extends Controller
 {

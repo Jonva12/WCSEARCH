@@ -364,5 +364,6 @@ function reportar(){
 	var data={tipo:tipo, comentario:comentario};
 	$.post( "/api/aseo/"+aseo.id+"/reportar", data, function( result ) {
 		alert("Tu reporte a sido guardado");
+		reportBox();
 	});
 }

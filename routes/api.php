@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //rutas para mapa api
 Route::apiResource('aseo', 'ApiAseosController');
 
-Route::post('aseo/{id}/reportar', 'ApiAseosController');
+Route::post('aseo/{id}/reportar', 'ApiAseosController@reportar');
 
 Route::apiResource('comentarios', 'ApiComentariosController');
 

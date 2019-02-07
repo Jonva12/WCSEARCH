@@ -78,8 +78,8 @@ textarea{
           <a class="fake-link" onclick="reportBox()"><i>Reportar aseo</i></a>
           <div id="reportDiv" style="display: none;">
             <select id="tipoRep">
-              <option value="informacion" selected>Informacion incorrecta</option>
-              <option value="existencia">El baño no existe</option>
+              <option value="Informacion incorrecta" selected>Informacion incorrecta</option>
+              <option value="El baño no existe">El baño no existe</option>
             </select>
             <br>
             <textarea id="comentarioRep" placeholder="Comentario (opcional)"></textarea>
