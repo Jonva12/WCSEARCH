@@ -164,7 +164,9 @@ textarea{
       <div id="mapid">
 
       </div>
-      <a class="float"><i class="fa fa-plus my-float"></i></a>
+      @auth
+      <a href="{{route('wc.form')}}" class="float"><i class="fa fa-plus my-float"></i></a>
+      @endauth
 
     </section>
   </div>
