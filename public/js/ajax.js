@@ -3,7 +3,7 @@ function crearToken(code){
 	api_token=code;
 }
 $( document ).ready(function() {
-	if (api_token!=null){
+	if (api_token!=null && api_token!=""){
 		var info={api_token:api_token};
 		$.get("/api/notificaciones/tiene",info, function( data ) {
 		  if(data=="1"){
