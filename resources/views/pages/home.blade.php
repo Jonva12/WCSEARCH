@@ -184,7 +184,9 @@ textarea{
 @endif
 
   <script type="text/javascript">
+            
             function valorar(n){
+              @auth
               for(var i=1; i<=5; i++){
                 var estrella=document.getElementById('estrella'+i);
                 if(i>n){
@@ -195,7 +197,9 @@ textarea{
                   estrella.classList.add("fas");
                 }
               }
+              @endauth
             }
+            
             function esMio(idUsuario,id){
               @guest
                 editarLink.href="";

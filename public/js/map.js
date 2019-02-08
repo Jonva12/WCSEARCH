@@ -147,7 +147,7 @@ function mostrarAseos(){
 		}
 	}
 	limpiarMapaAseosViejos();
-    console.log(marcadores);
+
 }
 
 function getAseos(){
@@ -238,7 +238,6 @@ function enviarPuntos(n){
 }
 
 function cambiarInfoFicha(data){
-	console.log(data.foto);
 	var c = document.getElementById("error_comentario");
 	if (c!=null){ c.style.display = "none"; }
 	if(data.foto == 'wc.jpg'){
