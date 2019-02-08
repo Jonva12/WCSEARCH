@@ -3,23 +3,25 @@ function crearToken(code){
 	api_token=code;
 }
 $( document ).ready(function() {
-	var info={api_token:api_token};
-	$.get("/api/notificaciones/tiene",info, function( data ) {
-	  if(data=="1"){
-	  	$('#notificaciones_nav').html('<i class="fa fa-exclamation fa-inverse"></i>');
-	  }else{
-	  	$('#notificaciones_nav').html('<i class="fa fa-bell"></i>');
-	  }
-	});
-	$('body').click(function(){
-		$.get( "/api/notificaciones/tiene",info, function( data ) {
+	if (api_token!=null){
+		var info={api_token:api_token};
+		$.get("/api/notificaciones/tiene",info, function( data ) {
 		  if(data=="1"){
-		  	$('#notificaciones_nav').html('<img src="/img/bell-svg.ico"></img>');
+		  	$('#notificaciones_nav').html('<i class="fa fa-exclamation fa-inverse"></i>');
 		  }else{
 		  	$('#notificaciones_nav').html('<i class="fa fa-bell"></i>');
 		  }
 		});
-	});
+		$('body').click(function(){
+			$.get( "/api/notificaciones/tiene",info, function( data ) {
+			  if(data=="1"){
+			  	$('#notificaciones_nav').html('<img src="/img/bell-svg.ico"></img>');
+			  }else{
+			  	$('#notificaciones_nav').html('<i class="fa fa-bell"></i>');
+			  }
+			});
+		});
+	}
 
 });
 

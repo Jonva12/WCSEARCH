@@ -239,7 +239,8 @@ function enviarPuntos(n){
 
 function cambiarInfoFicha(data){
 	console.log(data.foto);
-	document.getElementById("error_comentario").style.display = "none";
+	var c = document.getElementById("error_comentario");
+	if (c!=null){ c.style.display = "none"; }
 	if(data.foto == 'wc.jpg'){
 		document.getElementById("imgWC").src = "/img/"+data.foto;
 	}else{
