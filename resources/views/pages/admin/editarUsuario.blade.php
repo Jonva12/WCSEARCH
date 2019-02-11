@@ -27,22 +27,22 @@
             		@switch($usuario->role_id)
     					@case(1)
         					<option selected value="1">Normal</option>
-        					<option value="2">Golden</option>
+        					<option value="2">Premium</option>
         					<option value="3">Admin</option>
         				@break
 						@case(2)
 							<option value="1">Normal</option>
-        					<option selected value="2">Golden</option>
+        					<option selected value="2">Premium</option>
         					<option value="3">Admin</option>
         				@break
         				@case(3)
         					<option value="1">Normal</option>
-							<option value="2">Golden</option>
+							<option value="2">Premium</option>
         					<option selected value="3">Admin</option>
         				@break
 						@default
 							<option value="1">Normal</option>
-							<option value="2">Golden</option>
+							<option value="2">Premium</option>
         					<option value="3">Admin</option>
 						@endswitch
             		</select>
