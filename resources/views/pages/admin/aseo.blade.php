@@ -4,20 +4,20 @@
 
   @section('content')
 <div class="container">
-	<h1>Aseo numero: {{$aseo->id}} ({!!$aseo->nombre!!})</h1>
-	<a href="{{route('home',['latitud'=>$aseo->latitud, 'longitud'=>$aseo->longitud])}}" class="btn btn-info">Comprobar aseo</a> 
+	<h1>@lang('aseoAdmin.wcNumber'): {{$aseo->id}} ({{$aseo->nombre}})</h1>
+	<a href="{{route('home',['latitud'=>$aseo->latitud, 'longitud'=>$aseo->longitud])}}" class="btn btn-info">@lang('aseoAdmin.checkWC')</a>
 	@if($aseo->oculto==null)
-	<a href="{{route('admin.aseo.ocultar',$aseo->id)}}" class="btn btn-danger">Ocultar</a>
+	<a href="{{route('admin.aseo.ocultar',$aseo->id)}}" class="btn btn-danger">@lang('aseoAdmin.hidden')</a>
 	@else
-	<a href="{{route('admin.aseo.mostrar',$aseo->id)}}" class="btn btn-danger">Mostrar</a>
+	<a href="{{route('admin.aseo.mostrar',$aseo->id)}}" class="btn btn-danger">@lang('aseoAdmin.reveal')</a>
 	@endif
 
 	<table>
 		<tr>
 			<th>Id</th>
-			<th>Tipo</th>
-			<th>Comentario</th>
-			<th>Fecha</th>
+			<th>@lang('aseoAdmin.type')</th>
+			<th>@lang('aseoAdmin.comment')</th>
+			<th>@lang('aseoAdmin.date')</th>
 		</tr>
 		@foreach($aseo->reportes as $r)
 		<tr>
@@ -29,7 +29,7 @@
 		@endforeach
 		@if($aseo->reportes->count()==0)
 			<tr>
-				<td colspan="6"> No hay reportes </td>
+				<td colspan="6"> @lang('aseoAdmin.noReports') </td>
 			</tr>
 		@endif
 	</table>

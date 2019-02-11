@@ -16,7 +16,7 @@ class roles extends Seeder
           'nombre' => 'normal',
         ]);
        	DB::table('roles')->insert([
-          'nombre' => 'golden',
+          'nombre' => 'premium',
         ]);
         DB::table('roles')->insert([
             'nombre' => 'admin',

@@ -51,9 +51,9 @@
 								@if($aseos->count()==0)
 								<tr>
 									<td colspan="5">
-										@if(Auth::user() && $usuario->id==Auth::user()->id && $usuario->role->nombre=="normal")
-											Puedes tener 1 baño. Para crear baños ilimitados necesitas ser golden.
-										@elseif(Auth::user() && $usuario->id==Auth::user()->id )
+										@if($usuario->id==Auth::user()->id && $usuario->role->nombre=="normal")
+											Puedes tener 1 baño. Para crear baños ilimitados necesitas ser Premium.
+										@elseif($usuario->id==Auth::user()->id )
 											Todavia no tienes ningun aseo.
 										@else
 											No tienes ningun aseo.

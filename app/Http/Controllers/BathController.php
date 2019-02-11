@@ -17,7 +17,7 @@ class BathController extends Controller
       $aseos = DB::table('aseos')->where('user_id', Auth::user()->id)->where('oculto', null)->get()->count();
       if(Auth::user()->role->nombre == 'normal' && $aseos == 1){
         return back()->with('status', 'Ya has creado 1 Baño. Necesitas 100 puntos para poder crear baños ilimitados.');
-        // $request->session()->flash('status', 'No eres golden. Necesitas 100 puntos para poder crear baños.');
+        // $request->session()->flash('status', 'No eres premium. Necesitas 100 puntos para poder crear baños.');
         return view('pages.home');
       }else{
         return view('pages.createWC');
