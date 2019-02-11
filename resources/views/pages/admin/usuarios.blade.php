@@ -28,7 +28,7 @@
   			<th>@lang('usuariosAdmin.Name')</th>
   			<th>@lang('usuariosAdmin.Email')</th>
   			<th>Rol</th>
-  			<th>@lang('usuariosAdmin.Puntuation')</th>
+  			<th>@lang('usuariosAdmin.Score')</th>
   			<th>@lang('usuariosAdmin.Reports')</th>
   			@if($baneados==true)
   				<th>@lang('usuariosAdmin.BanDate')</th>
