@@ -22,7 +22,7 @@ return [
   'opinion3.date' => 'November 16, 2017',
   'opinion3.name' => 'Fran You',
   'opinion3.text' => 'I have been looking for this kind of application for 3 years, my diezes',
-  'opinion4.date' => ' 20, 2017',
+  'opinion4.date' => 'January 20, 2017',
   'opinion4.name' => 'Ana Lois',
   'opinion4.text' => 'Excellent',
   'aboutus' => 'Who are we?',
