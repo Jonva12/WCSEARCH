@@ -24,5 +24,5 @@
           </div>
         </div>
         <!-- Copyright -->
-        <div class="footer-copyright text-center py-3 bg-grey">© 2018 Copyright: WCSearch</div>
+        <div class="footer-copyright text-center py-3 bg-grey">© 2019 Copyright: WCSearch</div>
     </footer>

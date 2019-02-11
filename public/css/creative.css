@@ -15,8 +15,9 @@ body {
 }
 
 #icon{
-  width: 6%;
+  width: 4%;
   height: 6%;
+  min-width: 40px;
 }
 
 hr {
