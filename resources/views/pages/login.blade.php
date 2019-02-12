@@ -8,7 +8,9 @@
   <div class="masthead text-center text-white d-flex">
     <div class="container my-auto">
           <div class="img">
-            <img class="img-fluid" src="img/logo.ico" alt="WCSearch">
+            <a href="/">
+              <img class="img-fluid" src="img/logo.ico" alt="WCSearch">
+            </a>
           </div>
           <form method="post" action="{{ route('login') }}">
             @csrf
@@ -44,6 +46,11 @@
               <button type="submit" class="btn btn-primary">
                 {{ __('Login') }}
               </button>
+            </div>
+            <div style="margin-top: 10%;">
+              <a class="btn btn-link" style="color: white;"  href="{{ route('register') }}">
+                {{ __('¿No puedes iniciar sesión? Registrate') }}
+              </a>
             </div>
        </form>
       </div>

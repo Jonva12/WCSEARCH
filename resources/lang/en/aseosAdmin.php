@@ -1,5 +1,5 @@
 <?php
- 
+
 return [
   'Name' => 'Name',
   'Direction' => 'Direction',
@@ -9,7 +9,7 @@ return [
   'Date' => 'Date',
   'Options' => 'Options',
   'seeReports' => 'See Reports',
-  'Reveal' => 'Reveal',
+  'Reveal' => 'View',
   'Delete' => 'Delete',
   'Hide' => 'Hide',
   'noWC' => 'No WC',
