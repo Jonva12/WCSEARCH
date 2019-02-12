@@ -21,9 +21,11 @@ aside .info{
 }
 #mapid{
   margin-top: 2px;
-  height: 100vh;
-  width: 98.4%;
+  height: 100%;
+  width: 100%;
   position: fixed;
+  margin-left: -15px;
+  margin-right: 1px;
 }
 .fa-arrow-left{
   color: white;
@@ -135,7 +137,7 @@ textarea{
               </p>
               <input type="submit" value="Comentar">
             </form>
-            <div 
+            <div
               </div>
           @endauth
           <div id="comentarios">
@@ -186,7 +188,7 @@ textarea{
 @endif
 
   <script type="text/javascript">
-            
+
             function valorar(n){
               @auth
               for(var i=1; i<=5; i++){
@@ -201,7 +203,7 @@ textarea{
               }
               @endauth
             }
-            
+
             function esMio(idUsuario,id){
               @guest
                 editarLink.href="";
