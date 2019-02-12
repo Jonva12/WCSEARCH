@@ -39,6 +39,10 @@ aside li{
   border-bottom: 0.5px #0C3516 solid;
   color: black;
 }
+h1{
+  margin-top: -60px;
+  margin-bottom: 30px;
+}
 i{
   padding-left: 20px;
   width: 100px;
@@ -107,13 +111,34 @@ a{
   justify-content: space-around;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1100px) {
   .botones {
     text-align: center;
     margin-top: -70px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+  }
+  .boton{
+    margin: 5px;
+    height: 80px;
+  }
+  #data{
+    font-size: 36pt;
+  }
+}
+@media only screen and (max-width: 600px){
+  #form-year{
+    display: flex;
+    flex-direction: column;
+  }
+  .form-control{
+    width:50%;
+  }
+  .btn{
+    align-items: center;
+    display: inline-flex;
+    margin-top: 10px;
   }
 }
 
@@ -155,4 +180,21 @@ tr:nth-child(even) {
 }
 .btn{
   margin-left: 20px;
+}
+#chart_div{
+  margin-top: 50px;
+  width: inherit;
+  min-height: 450px;
+}
+
+.table-responsive{
+  width: inherit;
+}
+form{
+  margin-bottom: 20px;
+}
+.checkbox{
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
 }

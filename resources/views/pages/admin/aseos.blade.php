@@ -4,13 +4,16 @@
 
   @section('content')
 <div class="container">
+  <h1>Lista de Aseos</h1>
   <div>
     <form action="{{route('admin.aseos')}}" method="get">
       <i class="fas fa-search"></i>
       <input type="text" name="nombre" placeholder="@lang('aseosAdmin.Name')">
       <input type="text" name="direccion" placeholder="@lang('aseosAdmin.Direction')">
-      <input type="checkbox" id="ocultos" name="ocultos">
-      <label for="ocultos">Mostrar ocultos</label>
+      <div class="checkbox">
+        <input type="checkbox" id="ocultos" name="ocultos">
+        <label for="ocultos">Mostrar ocultos</label>
+      </div>
       <input type="submit" value="@lang('aseosAdmin.Filter')" class="btn btn-success">
     </form>
   </div>

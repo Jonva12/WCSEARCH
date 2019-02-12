@@ -4,6 +4,7 @@
 
   @section('content')
 <div class="container">
+  <h1>Lista de Mensajes</h1>
   <div>
     <form action="{{route('admin.mensajes')}}" method="get">
       <i class="fas fa-search"></i>

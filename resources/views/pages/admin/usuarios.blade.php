@@ -4,6 +4,7 @@
 
   @section('content')
 <div class="container">
+  <h1>Lista de Usuarios</h1>
   <div>
     <form action="{{route('admin.usuarios')}}" method="get">
       <i class="fas fa-search"></i>
@@ -16,8 +17,10 @@
         <option value="2">@lang('usuariosAdmin.rolPremium')</option>
         <option value="3">@lang('usuariosAdmin.rolAdmin')</option>
       </select>
-      <input type="checkbox" id="baneados" name="baneados">
-      <label for="baneados">@lang('usuariosAdmin.seeBanned')</label>
+      <div class="checkbox">
+        <input type="checkbox" id="baneados" name="baneados">
+        <label for="baneados">@lang('usuariosAdmin.seeBanned')</label>
+      </div>
       <input type="submit" value="@lang('usuariosAdmin.Filter')" class="btn btn-success">
     </form>
   </div>
