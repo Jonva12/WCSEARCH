@@ -28,6 +28,8 @@ class BathController extends Controller
 
       $request->validate([
         'nombre' => 'required',
+        'latitud' => 'required|numeric',
+        'longitud' => 'required|numeric',
         'horarioApertura' => 'nullable',
         'horarioCierre' => 'nullable',
         'horas24' => 'required',
