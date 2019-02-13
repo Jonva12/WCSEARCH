@@ -11,28 +11,29 @@ searchControl.on('results', function(e){
   document.getElementById('dir').value = dir;
 });
 
-
+$("#horarioDiv").hide();
 $("input[name*=horarioApertura],input[name*=horarioCierre]").change(function(){
   var apertura=$("input[name*=horarioApertura]").val();
   var cierre=$("input[name*=horarioCierre]").val();
   if (apertura!=null && cierre!=null){
-    $('#horas24').val('0');
+    $('#24h').val('0');
   }
 
 });
 
-$('#horas24').change(function(){
+$('#24h').click(function(){
   var apertura=$("input[name*=horarioApertura]");
   var cierre=$("input[name*=horarioCierre]");
-  if($(this).val()=="1"){
+  if($(this).is(':checked')){
     apertura.val(null);
     cierre.val(null);
     apertura.prop('disabled', true);
     cierre.prop('disabled', true); 
-    
+    $("#horarioDiv").hide( "slow" );
   }else{
     apertura.prop('disabled', false);
     cierre.prop('disabled', false); 
+    $("#horarioDiv").show( "slow" );
   }
   
 });

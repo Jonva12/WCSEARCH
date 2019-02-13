@@ -1,8 +1,14 @@
+body{
+  height: 100%;
+}
+
 #container{
   background-image: url('../img/map.png');
   background-repeat: no-repeat;
   background-size: cover;
+  height: 100%;
 }
+
 #formWC{
   background-color: white;
 }
@@ -29,4 +35,10 @@ form{
 }
 .btn{
   width: 100%;
+}
+#horarioDiv{
+  background-color: #eee;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
 }
