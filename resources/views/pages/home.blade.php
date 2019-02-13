@@ -76,13 +76,13 @@ textarea{
       <div class="atras" id="atrasServicio" onclick="volver()">
         <i class="fas fa-arrow-left fa-2x"></i>
       </div>
-      <img alt="Imagen no disponible" id="imgWC">
+      <img alt="Imagen no disponible" src="/img/wc.jpg" id="imgWC">
       <div class="general">
         <h1 id="nombre"></h1>
         <p><b id="puntuacion"></b>
           <span id="puntuacionEstre"></span>
           </p>
-        <a href="" class="btn btn-light" id="editarLink">Editar <i class="fas fa-edit"></i></a>
+        <a href="" class="btn btn-light" id="editarLink" hidden>Editar <i class="fas fa-edit"></i></a>
         <p id="dir"></p>
         <!-- <form method="post" action="ficha" enctype="multipart/form-data">
           @csrf
