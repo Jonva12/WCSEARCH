@@ -115,18 +115,26 @@ class BathController extends Controller
     public function update(Request $request){
 
         $foto = $request->file('foto');
-        $request->validate(['nombre'=>'string|required|min:2|max:255']);
-        $aseo=Aseo::find(htmlentities($request->input('id')));
+        $request->validate(['nombre'=>'string|required|min:2|max:255',
+                            'latitud' => 'required|numeric',
+                            'longitud' => 'required|numeric',
+                            'horarioApertura' => 'nullable',
+                            'horarioCierre' => 'nullable',
+                            'horas24' => 'required',
+                            'precio' => 'nullable',
+                            'accesibilidad' => 'required'
+                           ]);
+        $aseo=Aseo::find($request->input('id'));
         if(!$aseo){
           return redirect()->route('home');
         }
         $aseo->nombre = htmlentities($request->input('nombre'));
-        $aseo->latitud = htmlentities($request->input('latitud'));
-        $aseo->longitud = htmlentities($request->input('longitud'));
+        $aseo->latitud = $request->input('latitud');
+        $aseo->longitud = $request->input('longitud');
         $aseo->dir = htmlentities($request->input('dir'));
-        $aseo->horarioApertura = htmlentities($request->input('horarioApertura'));
-        $aseo->horarioCierre = htmlentities($request->input('horarioCierre'));
-        $aseo->horas24 = htmlentities($request->input('horas24'));
+        $aseo->horarioApertura = $request->input('horarioApertura');
+        $aseo->horarioCierre =$request->input('horarioCierre');
+        $aseo->horas24 = $request->input('horas24');
 
         if($foto == ''){
           $aseo->foto = 'wc.jpg';
@@ -171,8 +179,8 @@ class BathController extends Controller
         //$aseo->foto = $foto->getFileName(). '.' .$extension;
         // $request->foto->storeAs($pathToFile);
         }
-        $aseo->precio = htmlentities($request->input('precio'));
-        $aseo->accesibilidad = htmlentities($request->input('accesibilidad'));
+        $aseo->precio =$request->input('precio');
+        $aseo->accesibilidad =$request->input('accesibilidad');
         $aseo->user_id = Auth::user()->id;
         $aseo->save();
         return redirect()->route('home', ['latitud' => $request->input('latitud'), 'longitud' => $request->input('longitud')]);
