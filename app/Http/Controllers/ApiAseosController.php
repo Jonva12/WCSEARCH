@@ -18,7 +18,7 @@ class ApiAseosController extends Controller
      */
     public function index(Request $request)
     {
-        $aseos=Aseo::where('oculto',null)->get();
+        $aseos=Aseo::whereNull('oculto')->whereNotNull(['latitud','longitud'])->get();
 
       return $aseos;
     }
