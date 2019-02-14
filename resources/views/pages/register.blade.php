@@ -60,6 +60,15 @@
               {{ __('Registrarse') }}
             </button>
        </form>
+
+       <div style="margin-top: 10%;">
+              <a class="btn btn-link" style="color: white;"  href="{{ route('login') }}">
+                {{ __('¿Ya tienes cuenta? Inicia sesion') }}
+              </a>
+              <a class="btn btn-link" style="color: white;"  href="{{ route('home') }}">
+                {{ __('Ir al mapa') }}
+              </a>
+      </div>
     </div>
   </div>
 

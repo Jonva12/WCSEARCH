@@ -5,7 +5,7 @@
   @section('content')
 <div class="container">
 	<h1>@lang('aseoAdmin.wcNumber'): {{$aseo->id}} ({{$aseo->nombre}})</h1>
-	<a href="{{route('home',['latitud'=>$aseo->latitud, 'longitud'=>$aseo->longitud])}}" class="btn btn-info">@lang('aseoAdmin.checkWC')</a>
+	<a href="{{route('home',['idAseo'=>$aseo->id])}}" class="btn btn-info">@lang('aseoAdmin.checkWC')</a>
 	@if($aseo->oculto==null)
 	<a href="{{route('admin.aseo.ocultar',$aseo->id)}}" class="btn btn-danger">@lang('aseoAdmin.hidden')</a>
 	@else

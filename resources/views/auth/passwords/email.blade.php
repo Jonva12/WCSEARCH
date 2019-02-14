@@ -83,6 +83,11 @@
                     </div>
                 </div>
             </form>
+            <div style="margin-top: 10%;">
+              <a class="btn btn-link" style="color: white;"  href="{{ route('login') }}">
+                {{ __('Volver atras') }}
+              </a>
+            </div>
         </div>
     </div>
   </div>

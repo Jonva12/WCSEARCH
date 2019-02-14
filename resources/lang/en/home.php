@@ -15,6 +15,7 @@ return [
   'Comments' => 'Comments',
   'textComments' => 'Write your comment',
   'errorComment' => 'Write some text for the comment',
+  'errorComment2' => 'Too long',
   'Submit' => 'Send Comment',
   'CommentCharging' => 'Charging comments...',
 ];

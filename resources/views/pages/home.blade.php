@@ -119,7 +119,7 @@ textarea{
           <div id="reportDiv" style="display: none;">
             <select id="tipoRep">
               <option value="Informacion incorrecta" selected>@lang('home.BadInfo')</option>
-              <option value="El baño no existe">@lang('home.BadInfo')</option>
+              <option value="El baño no existe">@lang('home.DontExist')</option>
             </select>
             <br>
             <textarea id="comentarioRep" placeholder="@lang('home.Comment')"></textarea>
@@ -131,9 +131,12 @@ textarea{
           @auth
             <form action="#" onsubmit="return enviarComentario(event)">
               @csrf
-              <textarea id="textComentario" placeholder="@lang('home.textComments')"></textarea>
+              <textarea id="textComentario" placeholder="@lang('home.textComments')" oninput="comprobarTxt(this)"></textarea>
               <p id="error_comentario" style="display: none; color:red;">
                 @lang('home.errorComment')
+              </p>
+              <p id="error_comentario2" style="display: none; color:red;">
+                @lang('home.errorComment2')
               </p>
               <input type="submit" value="@lang('home.Submit')">
             </form>
@@ -177,9 +180,9 @@ textarea{
 
 @if(isset($latitud) && isset($longitud))
   @if(Auth::user())
-    <script src="/js/map.js" onload="setToken('{{Auth::user()->api_token}}'); getAseos2({{$latitud}}, {{$longitud}})"></script>
+    <script src="/js/map.js" onload="setToken('{{Auth::user()->api_token}}'); getAseos2({{$idAseo}},{{$latitud}}, {{$longitud}})"></script>
   @else
-    <script src="/js/map.js" onload="getAseos2({{$latitud}}, {{$longitud}})"></script>
+    <script src="/js/map.js" onload="getAseos2({{$idAseo}},{{$latitud}}, {{$longitud}})"></script>
   @endif
 @elseif(Auth::user())
   <script src="/js/map.js" onload="setToken('{{Auth::user()->api_token}}');getAseos()"></script>
@@ -221,7 +224,7 @@ textarea{
               @endauth
 
             }
-
+            
 
             function volver(){
                 var mapaSection = document.getElementById('section');

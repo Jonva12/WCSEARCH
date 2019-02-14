@@ -27,7 +27,7 @@ class BathController extends Controller
     public function create(Request $request){
 
       $request->validate([
-        'nombre' => 'required',
+        'nombre' => 'required|max:25',
         'latitud' => 'required|numeric',
         'longitud' => 'required|numeric',
         'horarioApertura' => 'nullable',
@@ -40,7 +40,13 @@ class BathController extends Controller
           'horarioCierre' => 'required',
         ]);
       }
+      $existe=Aseo::where('oculto',null)
+      ->whereBetween('latitud',[$request->input('latitud')-0.0003,$request->input('latitud')+0.0003])
+        ->whereBetween('longitud',[$request->input('longitud')-0.0003,$request->input('longitud')+0.0003])->count();
 
+      if($existe!=0){
+        return back()->withErrors(["Gracias, pero ese aseo ya existe"]);
+      }
       $foto = $request->file('foto');
       $aseo = new Aseo();
       $aseo->nombre = htmlentities($request->input('nombre'));
@@ -103,7 +109,8 @@ class BathController extends Controller
       $u=new UserController;
         $u->sumarPuntos(Auth::user()->id,20);
       $aseo->save();
-      return redirect()->route('home', ['latitud' => $request->input('latitud'), 'longitud' => $request->input('longitud')]);
+      return redirect()->route('home', ['idAseo'=>$aseo->id]);
+      
     }
 
     public function edit($id){
@@ -121,18 +128,8 @@ class BathController extends Controller
 
     public function update(Request $request){
 
-        
-        /*$request->validate(['nombre'=>'string|required|min:2|max:255',
-                            'latitud' => 'required|numeric',
-                            'longitud' => 'required|numeric',
-                            'horarioApertura' => 'nullable',
-                            'horarioCierre' => 'nullable',
-                            'horas24' => 'required',
-                            'precio' => 'nullable',
-                            'accesibilidad' => 'required'
-                           ]);*/
         $request->validate([
-          'nombre' => 'required',
+          'nombre' => 'required|max:25',
           'latitud' => 'required|numeric',
           'longitud' => 'required|numeric',
           'horarioApertura' => 'nullable',
@@ -145,10 +142,22 @@ class BathController extends Controller
             'horarioCierre' => 'required',
           ]);
         }
-        $aseo=Aseo::find($request->input('id'));
+        $aseo=Aseo::where([['id',$request->input('id')],['user_id',Auth::user()->id]])->first();
+
         if(!$aseo){
           return redirect()->route('home');
         }
+        if ($aseo->latitud!=$request->input('latitud') || $aseo->longitud!=$request->input('longitud')){
+          $existe=Aseo::where('oculto',null)
+            ->whereBetween('latitud',[$request->input('latitud')-0.0003,$request->input('latitud')+0.0003])
+            ->whereBetween('longitud',[$request->input('longitud')-0.0003,$request->input('longitud')+0.0003])->count();
+
+          if($existe!=0){
+            return back()->withErrors(["Gracias, pero ese aseo ya existe"]);
+          }
+        }
+        
+
         $aseo->nombre = htmlentities($request->input('nombre'));
         $aseo->latitud = $request->input('latitud');
         $aseo->longitud = $request->input('longitud');
@@ -206,7 +215,7 @@ class BathController extends Controller
         $aseo->accesibilidad =$request->input('accesible')==1;
         $aseo->user_id = Auth::user()->id;
         $aseo->save();
-        return redirect()->route('home', ['latitud' => $request->input('latitud'), 'longitud' => $request->input('longitud')]);
+        return redirect()->route('home', ['idAseo'=>$aseo->id]);
     }
 
     public function getAseos(Request $request){

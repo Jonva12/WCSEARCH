@@ -37,7 +37,7 @@ class ApiComentariosController extends Controller
     public function store(Request $request, $id)
     {
         $request->validate([
-        'text' => 'required|min:1|max:255',
+        'text' => 'required|min:1|max:140',
         ]);
         if (Auth::user()){
             $comentario= new Comentario;
@@ -50,14 +50,14 @@ class ApiComentariosController extends Controller
             if (Auth::user()->id!=$aseo->user_id){
                 $u=new UserController;
                 $u->sumarPuntos(Auth::user()->id,5);
+           
+                $n=new Notification;
+                $n->tipo="aseoComentado";
+                $n->de=Auth::user()->id;
+                $n->para=$aseo->user_id;
+                $n->aseo_id=$aseo->id;
+                $n->save();
             }
-
-            $n=new Notification;
-            $n->tipo="aseoComentado";
-            $n->de=Auth::user()->id;
-            $n->para=$aseo->user_id;
-            $n->aseo_id=$aseo->id;
-            $n->save();
 
         }
 

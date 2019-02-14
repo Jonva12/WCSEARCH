@@ -51,6 +51,9 @@
               <a class="btn btn-link" style="color: white;"  href="{{ route('register') }}">
                 {{ __('¿No puedes iniciar sesión? Registrate') }}
               </a>
+              <a class="btn btn-link" style="color: white;"  href="{{ route('home') }}">
+                {{ __('Ir al mapa') }}
+              </a>
             </div>
        </form>
       </div>

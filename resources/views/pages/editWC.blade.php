@@ -7,16 +7,31 @@
 <link rel="stylesheet" href="/css/createWC.css">
 <div id="formWC">
   <h1>@lang('editWC.editWC')</h1>
+  @if ($errors->any())
+      <div class="alert alert-danger">
+          <ul>
+              @foreach ($errors->all() as $error)
+                @if(!strpos($error,'latitud') && !strpos($error,'longitud'))
+                  <li>{{ $error }}</li>
+                @endif
+              @endforeach
+
+              @if($errors->has('latitud') || $errors->has('longitud'))
+                <li>Introduce una direccion</li>
+              @endif
+          </ul>
+      </div>
+    @endif
   <form method="post" action="{{route('wc.update')}}" enctype="multipart/form-data" >
     @csrf
       <input type="hidden" name="id" value="{{$aseo->id}}">
-      <p><label>@lang('editWC.Name'):</label><input type="text"name="nombre" class="form-control" value="{{$aseo->nombre}}"></p>
+      <p><label>@lang('editWC.Name'):</label><input type="text"name="nombre" class="form-control" value="{!!$aseo->nombre!!}"></p>
       <p>@lang('editWC.Direction')</p>
       <input type="text" id="latitud" name="latitud" value="{{$aseo->latitud}}" hidden>
       <input type="text" id="longitud" name="longitud" value="{{$aseo->longitud}}" hidden>
       <div id="mapid" ></div>
        
-      <input type="text" id="dir" name="dir" value="{{$aseo->dir}}" hidden>
+      <input type="text" id="dir" name="dir" value="{!!$aseo->dir!!}" hidden>
       <p>
         @if($aseo->horas24)
           <label for="24h">@lang('editWC.24Hours')</label><input type="checkbox" name="24h" id="24h" value="1" style="margin-right: auto;" checked>

@@ -18,6 +18,11 @@
 
                     {{ __('Antes de continuar, por favor comprueba en tu email el link de verificacion.') }}
                     {{ __('Si no has recibido nada') }}, <a id="verify" href="{{ route('verification.resend') }}">{{ __('pulsa aqui para que se reenvie.') }}</a>.
+                    <div style="margin-top: 10%;">
+                      <a class="btn btn-link" style="color: white;"  href="{{ route('home') }}">
+                        {{ __('Volver al mapa') }}
+                      </a>
+                    </div>
                 </div>
             </div>
         </div>

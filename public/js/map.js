@@ -1,6 +1,17 @@
 var aseo={};
 var token="";
-var mapa = L.map('mapid').setView([43.385537, -1.949364], 3);
+var mapa = L.map('mapid',).setView([43.385537, -1.949364], 3);
+
+var southWest = L.latLng(-89.98155760646617, -180),
+northEast = L.latLng(89.99346179538875, 180);
+var bounds = L.latLngBounds(southWest, northEast);
+
+mapa.setMaxBounds(bounds);
+mapa.on('drag', function() {
+    mapa.panInsideBounds(bounds, { animate: false });
+});
+mapa.options.minZoom = 3;
+
 mapa.addEventListener('moveend', function(ev) {
 	mostrarAseos();
 });
@@ -165,14 +176,15 @@ function zoom(e){
 	mapa.setView([e.latlng.lat,e.latlng.lng],mapa.getZoom()+1);
 }
 
-function getAseos2(x,y){
+function getAseos2(id,lat,lon){
 	limpiarMapaAseos();
-	setVista(x,y);
 	var info={api_token: token}
 	$.get( "/api/aseo", info, function( data ) {
 		aseos=data;
 		mostrarAseos();
 	});
+	var e={latlng: {lat:lat, lng:lon}, target:{aseo:id}};
+	markerOnClick(e);
 }
 
 /*function getAseoEdit(x,y){
@@ -205,7 +217,7 @@ function limpiarMapa(){
 }
 
 function markerOnClick(e){
-		var mapaSection = document.getElementById('section');
+	var mapaSection = document.getElementById('section');
     var aside = document.getElementById('aside');
     mapaSection.classList.remove('col-md-12');
     mapaSection.classList.add('col-md-9');
@@ -238,8 +250,10 @@ function enviarPuntos(n){
 }
 
 function cambiarInfoFicha(data){
-	var c = document.getElementById("error_comentario");
-	if (c!=null){ c.style.display = "none"; }
+	var c_empty = document.getElementById("error_comentario");
+	if (c_empty!=null){ c_empty.style.display = "none"; }
+	var c_long = document.getElementById("error_comentario2");
+	if (c_long!=null){ c_long.style.display = "none"; }
 	if(data.foto == 'wc.jpg'){
 		document.getElementById("imgWC").src = "/img/"+data.foto;
 	}else{
@@ -319,6 +333,14 @@ function getComentarios(){
 	}
 }
 
+function comprobarTxt(x){
+  if (x.value.length>140){
+    document.getElementById("error_comentario2").style.display = "block";
+  }else{
+  	document.getElementById("error_comentario2").style.display = "none";
+  }
+}
+
 function enviarComentario(e){
 	e.preventDefault();
 	document.getElementById("error_comentario").style.display = "none";
@@ -328,7 +350,12 @@ function enviarComentario(e){
 		getComentarios();
 		document.getElementById("textComentario").value="";
 	}).fail(function(){
-		document.getElementById("error_comentario").style.display = "block";
+		if (text.length==0){
+			document.getElementById("error_comentario").style.display = "block";
+		}else{
+			
+		}
+		
 	});
 	return false;
 }

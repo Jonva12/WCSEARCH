@@ -1,7 +1,7 @@
 <?php
  
 return [
-  'edit' => 'Editar',
+  'Edit' => 'Editar',
   'Details' => 'Detalles',
   'Schedule' => 'Horario',
   'Price' => 'Precio',
@@ -14,7 +14,8 @@ return [
   'Report' => 'Reportar',
   'Comments' => 'Comentarios',
   'textComments' => 'Escribe tu comentario',
-  'errorComment' => 'Write some text for the commet',
+  'errorComment' => 'Escribe el comentario',
+  'errorComment2' => 'Demasiado largo',
   'Submit' => 'Enviar Comentario',
   'CommentCharging' => 'Cargando comentarios...',
 ];
