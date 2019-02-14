@@ -11,8 +11,14 @@
       <div class="alert alert-danger">
           <ul>
               @foreach ($errors->all() as $error)
+                @if(!strpos($error,'latitud') && !strpos($error,'longitud'))
                   <li>{{ $error }}</li>
+                @endif
               @endforeach
+
+              @if($errors->has('latitud') || $errors->has('longitud'))
+                <li>Introduce una direccion</li>
+              @endif
           </ul>
       </div>
     @endif
@@ -25,7 +31,7 @@
       <input type="text" id="longitud" name="longitud" value="" hidden>
       <input type="text" id="dir" name="dir" value="" hidden>
       <p>
-        <label for="24h">24 horas</label><input type="checkbox" name="24h" id="24h" value="1" style="margin-right: auto;" checked>
+        <label for="24h">24 horas</label><input type="checkbox" name="24h" id="24h" value="1" style="margin-right: auto;">
         <label for="accesible">Accesible</label><input type="checkbox" name="accesible" id="accesible" value="1" style="margin-right: auto;">
       <div id="horarioDiv" class="padding">
         <p>

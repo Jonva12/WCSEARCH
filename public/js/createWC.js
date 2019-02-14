@@ -11,7 +11,6 @@ searchControl.on('results', function(e){
   document.getElementById('dir').value = dir;
 });
 
-$("#horarioDiv").hide();
 $("input[name*=horarioApertura],input[name*=horarioCierre]").change(function(){
   var apertura=$("input[name*=horarioApertura]").val();
   var cierre=$("input[name*=horarioCierre]").val();
@@ -20,11 +19,10 @@ $("input[name*=horarioApertura],input[name*=horarioCierre]").change(function(){
   }
 
 });
-
-$('#24h').click(function(){
+function horario(){
   var apertura=$("input[name*=horarioApertura]");
   var cierre=$("input[name*=horarioCierre]");
-  if($(this).is(':checked')){
+  if($('#24h').is(':checked')){
     apertura.val(null);
     cierre.val(null);
     apertura.prop('disabled', true);
@@ -35,7 +33,28 @@ $('#24h').click(function(){
     cierre.prop('disabled', false); 
     $("#horarioDiv").show( "slow" );
   }
-  
+}
+
+horario();
+
+$('#24h').click(function(){
+  horario();
+});
+
+function foto(){
+  var foto=$("input[name*=foto]");
+  if(!$('#camFoto').is(':checked')){
+    foto.val(null);
+    foto.prop('disabled', true);
+    $("#fotoDiv").hide( "slow" );
+  }else{
+    foto.prop('disabled', false);
+    $("#fotoDiv").show( "slow" );
+  }
+}
+
+$('#camFoto').click(function(){
+  foto();
 });
 
 var marker1 = null;
