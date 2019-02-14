@@ -34,7 +34,7 @@ return [
   'email' => 'Email',
   'message' => 'Message',
   'send' => 'Send',
-  'title' => 'FIND THE PUBLIC WC EASY AND FAST',
+  'title' => 'FIND PUBLIC TOILETS EASY AND FAST',
   'map' => 'View map',
   'login' => 'Log in',
   'signup' => 'Sign up'
