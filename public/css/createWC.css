@@ -1,8 +1,14 @@
+body{
+  height: 100%;
+}
+
 #container{
   background-image: url('../img/map.png');
   background-repeat: no-repeat;
   background-size: cover;
+  height: 100%;
 }
+
 #formWC{
   background-color: white;
 }

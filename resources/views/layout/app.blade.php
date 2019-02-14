@@ -43,10 +43,12 @@
     </div>
     <script type="text/javascript">
 
-    document.getElementById("x").addEventListener('click', cerrar);
-      //para todas las alertas
-      function cerrar(){
-        document.getElementById("alert").remove();
+    if(document.getElementById("x")!=null){
+        document.getElementById("x").addEventListener('click', cerrar);
+        //para todas las alertas
+        function cerrar(){
+          document.getElementById("alert").remove();
+        }
       }
     </script>
     @if(Auth::user())

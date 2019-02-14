@@ -17,40 +17,36 @@
       <div id="mapid" ></div>
        
       <input type="text" id="dir" name="dir" value="{{$aseo->dir}}" hidden>
-      <p><label>Horario Apertura:</label> <input type="time" class="form-control" class="horario" name="horarioApertura" value="{{$aseo->horarioApertura}}"></p>
-      <p><label>Horario Cierre: </label><input type="time" class="form-control" class="horario" name="horarioCierre" value="{{$aseo->horarioCierre}}"></p>
-      <p><label>24Horas: </label><select name="horas24" id="horas24" class="form-control" >
-          @switch($aseo->horas24)
-            @case(0)
-              <option value="1">Si</option>
-              <option selected value="0">No</option>
-            @break
-            @case(1)
-              <option selected value="1">Si</option>
-              <option value="0">No</option>
-            @break
-            @default
-              <option value="1">Si</option>
-              <option value="0">No</option>
-            @endswitch
-      </select></p>
-      <p><label>Foto: </label><input type="file" name="foto" class="form-control-file" ></p>
+
+      <p>
+        @if($aseo->horas24)
+          <label for="24h">24 horas</label><input type="checkbox" name="24h" id="24h" value="1" style="margin-right: auto;" checked>
+        @else
+          <label for="24h">24 horas</label><input type="checkbox" name="24h" id="24h" value="1" style="margin-right: auto;">
+        @endif
+        @if($aseo->accesibilidad)
+          <label for="accesible">Accesible</label><input type="checkbox" name="accesible" id="accesible" value="1" style="margin-right: auto;"checked >
+        @else
+          <label for="accesible">Accesible</label><input type="checkbox" name="accesible" id="accesible" value="1" style="margin-right: auto;">
+        @endif
+      <div id="horarioDiv" class="padding">
+        <p>
+          <label id="apertura">Apertura: </label>
+          <input type="time" id="apertura" class="form-control" class="horario" name="horarioApertura" value="{{$aseo->horarioApertura}}">
+        </p>
+        <p>
+          <label for="cierre">Cierre: </label>
+          <input type="time" id="cierre" class="form-control" class="horario" name="horarioCierre" value="{{$aseo->horarioCierre}}">
+        </p>
+      </div>
       <p><label>Precio: </label><input type="number" min="0" step="0.05" class="form-control" name="precio" value="{{$aseo->precio}}"></p>
-      <p><label>Accesible: </label><select name="accesibilidad" class="form-control" >
-          @switch($aseo->accesibilidad)
-            @case(0)
-              <option value="1">Si</option>
-              <option selected value="0">No</option>
-            @break
-            @case(1)
-              <option selected value="1">Si</option>
-              <option value="0">No</option>
-            @break
-            @default
-              <option value="1">Si</option>
-              <option value="0">No</option>
-            @endswitch
-      </select></p>
+      <hr>
+      <p>
+        <label for="camFoto">Cambiar foto:</label><input type="checkbox" name="camFoto" id="camFoto" value="1" style="margin-right: auto;">
+      </p>
+      <p id="fotoDiv">
+        <label>Foto: </label><input type="file" name="foto" class="form-control-file" ></p>
+      
     <input type="submit" name="submit" class="btn btn-success" value="Enviar">
   </form>
 </div>
@@ -59,6 +55,6 @@
 <script >
         
       </script>
-<script src="/js/createWC.js" onload="getAseoEdit({{$aseo->latitud}}, {{$aseo->longitud}})"></script>
+<script src="/js/createWC.js" onload="getAseoEdit({{$aseo->latitud}}, {{$aseo->longitud}});foto()"></script>
 
   @endsection
