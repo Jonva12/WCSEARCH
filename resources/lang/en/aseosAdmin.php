@@ -12,5 +12,6 @@ return [
   'Reveal' => 'View',
   'Delete' => 'Delete',
   'Hide' => 'Hide',
+  'Hide2' => 'See Hidden',
   'noWC' => 'No WC',
 ];

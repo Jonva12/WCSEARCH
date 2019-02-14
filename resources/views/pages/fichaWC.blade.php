@@ -73,21 +73,6 @@
 						<input type="text" placeholder="Escribe tu comentario"><input type="submit" value="Comentar">
 					</form>
 					<div class="comentarios">
-						<div class="comentario">
-							<p class="usuario">Juan</p>
-							<p class="fecha">2018-12-10</p>
-							<p>El mejor baño que he probado en mi vida. Mis dieces :) </p>
-							<div class="botones-like">
-								<i class="fas fa-thumbs-up"></i>
-								<i class="far fa-thumbs-down"></i>
-							</div>
-
-						</div>
-						<div class="comentario">
-							<p class="usuario">Tomas</p>
-							<p class="fecha">2018-12-10</p>
-							<p>Vendo opel corsa</p>
-						</div>
 					</div>
 				</div>
 			</div>

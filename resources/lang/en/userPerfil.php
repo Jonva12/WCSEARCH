@@ -1,0 +1,25 @@
+<?php
+ 
+return [
+  'Email' => 'Email',
+  'Level' => 'Level',
+  'Score' => 'Score',
+  'Settings' => 'Settings',
+  'Report' => 'Report',
+  'Sure' => 'Are you sure?',
+  'meWC' => 'My WC',
+  'otherWC' => 'Other WC',
+  'WCName' => 'WC Name',
+  'Direction' => 'Direction',
+  'Filter' => 'Filter',
+  'WC' => 'WC',
+  'Comments' => 'Comments',
+  'Reports' => 'Reports',
+  'Options' => 'Options',
+  'comment1' => 'You can have 1 WC. To create unlimited WC you need to be Premium.',
+  'comment2' => 'You still do not have any WC.',
+  'comment3' => 'You do not have any WC.',
+  'See' => 'See',
+  'Edit' => 'Edit',
+  'Delete' => 'Delete',
+];
