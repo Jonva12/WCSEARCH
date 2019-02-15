@@ -1,17 +1,17 @@
 <?php
 
 return [
-  'title1' => '¿Que es WCSearch?',
-  'content1' => 'WCSearch es un localizador de aseos publicos que busca la manera mas rápida para satisfacer tus necesidades.',
+  'title1' => '¿Qué es WCSearch?',
+  'content1' => 'WCSearch es un localizador de aseos públicos que busca la manera mas rápida para satisfacer tus necesidades.',
   'register' => 'REGISTRATE',
   'locator' => 'Localizador de WC',
   'locatorText' => 'Muestra todos los aseos que localizados mediante un mapa.',
   'info' => 'Informacion de WC',
-  'infoText' => 'Se encuentra todo tipo de informacion sobre los aseos.',
+  'infoText' => 'Se encuentra todo tipo de información sobre los aseos.',
   'reviews' => 'Reseñas',
   'reviewsText' => 'Los usuarios pueden realizar comentarios sobre las condiciones del aseo.',
   'ratings' => 'Calificación',
-  'ratingText' => 'Cada aseo recibirá valoraciones de los usuarios.',
+  'ratingsText' => 'Cada aseo recibirá valoraciones de los usuarios.',
   'opinions' => 'Opiniones',
   'opinion1.date' => 'Junio 13, 2015',
   'opinion1.name' => 'Aitor Menta',
@@ -25,7 +25,7 @@ return [
   'opinion4.date' => 'Enero 20, 2017',
   'opinion4.name' => 'Igor Dito',
   'opinion4.text' => 'Gracias por poner los precios, me ha ayudado a encontrar baños gratuitos.',
-  'aboutus' => 'Quienes somos',
+  'aboutus' => 'Quiénes somos',
   'artola' => 'Director y coordinador',
   'yaiza' => '2ª jefa de dirección',
   'valdes' => 'CTO Desarrollador FullStack',
@@ -37,5 +37,5 @@ return [
   'title' => 'ENCUENTRA LOS ASEOS PUBLICOS DE MANERA RAPIDA Y SENCILLA',
   'map' => 'Ver mapa',
   'login' => 'Iniciar sesión',
-  'signup' => 'Registrarse'
+  'signup' => 'Regístrarse'
 ];

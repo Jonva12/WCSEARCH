@@ -30,7 +30,7 @@
       <input type="text" id="latitud" name="latitud" value="{{$aseo->latitud}}" hidden>
       <input type="text" id="longitud" name="longitud" value="{{$aseo->longitud}}" hidden>
       <div id="mapid" ></div>
-       
+
       <input type="text" id="dir" name="dir" value="{!!$aseo->dir!!}" hidden>
       <p>
         @if($aseo->horas24)
@@ -60,15 +60,12 @@
       </p>
       <p id="fotoDiv">
         <label>@lang('editWC.Photo2'): </label><input type="file" name="foto" class="form-control-file" ></p>
-      
+
     <input type="submit" name="submit" class="btn btn-success" value="Enviar">
   </form>
 </div>
 @include('includes.geoscripts')
-<script src="/js/map.js" ></script>
-<script >
-        
-      </script>
-<script src="/js/createWC.js" onload="getAseoEdit({{$aseo->latitud}}, {{$aseo->longitud}});foto()"></script>
+<script charset="UTF-8" src="/js/map.js" ></script>
+<script charset="UTF-8" src="/js/createWC.js" onload="getAseoEdit({{$aseo->latitud}}, {{$aseo->longitud}})"></script>
 
   @endsection

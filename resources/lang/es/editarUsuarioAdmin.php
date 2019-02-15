@@ -8,5 +8,5 @@ return [
   'rolPremium' => 'Premium',
   'rolAdmin' => 'Admin',
   'Change' => 'Cambiar',
-  'Score' => 'Puntuacion',
+  'Score' => 'Puntuación',
 ];
