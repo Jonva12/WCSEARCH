@@ -9,7 +9,7 @@ return [
   'rolPremium' => 'Premium',
   'rolAdmin' => 'Admin',
   'seeBanned' => 'Ver Baneados',
-  'Score' => 'Puntacion',
+  'Score' => 'Puntación',
   'Reports' => 'Reportes',
   'Options' => 'Opciones',
   'Ban' => 'Banear',

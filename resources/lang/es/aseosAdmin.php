@@ -2,7 +2,7 @@
  
 return [
   'Name' => 'Nombre',
-  'Direction' => 'Direccion',
+  'Direction' => 'Dirección',
   'Filter' => 'Filtro',
   'Author' => 'Autor',
   'Reports' => 'Reportes',
