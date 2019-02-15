@@ -70,7 +70,7 @@
 											<td>
 												<a class="btn btn-primary" href="{{route('home',['idAseo'=>$a->id])}}">@lang('userPerfil.See') <i class="fas fa-eye"></i></a>
 												@if(Auth::user() && $usuario->id==Auth::user()->id)
-												<a href="{{route('wc.edit', $a->id)}}" class="btn btn-secondary" id="editarLink">@lang('userPerfil.Edit') <i class="fas fa-edit"></i></a>
+												<a href="{{route('wc.edit', $a->id)}}" class="btn btn-secondary">@lang('userPerfil.Edit') <i class="fas fa-edit"></i></a>
 												<a class="btn btn-danger" onclick="return confirm('¿Estas seguro?')" href="{{route('wc.ocultar', $a->id)}}">@lang('userPerfil.Delete') <i class="fas fa-trash"></i></a>
 												@endif
 											</td>
