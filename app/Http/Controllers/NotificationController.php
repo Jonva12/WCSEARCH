@@ -30,14 +30,14 @@ class NotificationController extends Controller
     			switch ($n->tipo) {
     				case 'comentar':
     					$texto=$n->deUsuario->name." ha puesto un comentario en tu aseo(".$n->aseo->nombre.")";
-                        $link='/home?idAseo'.$a->id;
+                        $link='/home?idAseo'.$n->aseo->id;
     					break;
                     case 'ocultarAseo':
                         $texto='Tu aseo ('.$n->aseo->nombre.') ha sido eliminado';
                         break;
                     case 'mostrarAseo':
                         $texto='Tu aseo ('.$n->aseo->nombre.') vuelve a estar visible';
-                        $link='/home?idAseo'.$a->id;
+                        $link='/home?idAseo'.$n->aseo->id;
                         break;
                     case 'mensajeRecibido':
                         $texto='Has recibido un nuevo mensaje';
@@ -45,19 +45,19 @@ class NotificationController extends Controller
                         break;
                     case 'aseoReportado':
                         $texto='Tu aseo ('.$n->aseo->nombre.') ha recibido un reporte. Revisa si esta todo bien';
-                        $link='/home?idAseo'.$a->id;
+                        $link='/home?idAseo'.$n->aseo->id;
                         break;
                     case 'comentarioValorado':
                         $texto=$n->deUsuario->name.' ha valorado tu comentario en el aseo '.$n->aseo->nombre;
-                        $link='/home?idAseo'.$a->id;
+                        $link='/home?idAseo'.$n->aseo->id;
                         break;
                     case 'aseoComentado':
                         $texto=$n->deUsuario->name.' ha comentado tu aseo ('.$n->aseo->nombre.')';
-                        $link='/home?idAseo'.$a->id;
+                        $link='/home?idAseo'.$n->aseo->id;
                         break;
                      case 'aseoValorado':
                         $texto=$n->deUsuario->name.' ha valorado tu aseo ('.$n->aseo->nombre.')';
-                        $link='/home?idAseo'.$a->id;
+                        $link='/home?idAseo'.$n->aseo->id;
                         break;
                     case 'eresGolden':
                         $texto='Enorabuena ya eres usuario GOLDEN';
