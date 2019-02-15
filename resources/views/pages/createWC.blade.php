@@ -40,7 +40,7 @@
   </form>
 </div>
 @include('includes.geoscripts')
-<script src="/js/map.js"></script>
-<script src="/js/createWC.js"></script>
+<script charset="UTF-8" src="/js/map.js"></script>
+<script charset="UTF-8" src="/js/createWC.js"></script>
 
   @endsection

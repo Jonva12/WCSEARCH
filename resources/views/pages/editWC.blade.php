@@ -15,7 +15,7 @@
       <input type="text" id="latitud" name="latitud" value="{{$aseo->latitud}}" hidden>
       <input type="text" id="longitud" name="longitud" value="{{$aseo->longitud}}" hidden>
       <div id="mapid" ></div>
-       
+
       <input type="text" id="dir" name="dir" value="{{$aseo->dir}}" hidden>
       <p><label>Horario Apertura:</label> <input type="time" class="form-control" class="horario" name="horarioApertura" value="{{$aseo->horarioApertura}}"></p>
       <p><label>Horario Cierre: </label><input type="time" class="form-control" class="horario" name="horarioCierre" value="{{$aseo->horarioCierre}}"></p>
@@ -55,10 +55,7 @@
   </form>
 </div>
 @include('includes.geoscripts')
-<script src="/js/map.js" ></script>
-<script >
-        
-      </script>
-<script src="/js/createWC.js" onload="getAseoEdit({{$aseo->latitud}}, {{$aseo->longitud}})"></script>
+<script charset="UTF-8" src="/js/map.js" ></script>
+<script charset="UTF-8" src="/js/createWC.js" onload="getAseoEdit({{$aseo->latitud}}, {{$aseo->longitud}})"></script>
 
   @endsection
