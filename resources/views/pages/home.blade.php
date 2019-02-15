@@ -138,7 +138,7 @@ textarea{
               <p id="error_comentario2" style="display: none; color:red;">
                 @lang('home.errorComment2')
               </p>
-              <input type="submit" value="@lang('home.Submit')">
+              <input type="submit" id="buttonComentar" value="@lang('home.Submit')">
             </form>
             <div
               </div>

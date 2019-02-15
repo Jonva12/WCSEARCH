@@ -336,12 +336,18 @@ function getComentarios(){
 function comprobarTxt(x){
   if (x.value.length>140){
     document.getElementById("error_comentario2").style.display = "block";
+    document.getElementById("buttonComentar").disabled = true;
   }else{
   	document.getElementById("error_comentario2").style.display = "none";
+  	document.getElementById("buttonComentar").disabled = false;
   }
 }
 
 function enviarComentario(e){
+	if (tieneComentarios()){
+		alert('Has comentado demasiado, espera unos minutos para poder volver a comentar');
+		return false;
+	}
 	e.preventDefault();
 	document.getElementById("error_comentario").style.display = "none";
 	var text=document.getElementById("textComentario").value;
@@ -349,15 +355,31 @@ function enviarComentario(e){
 	$.post( "/api/comentarios/"+aseo.id, data, function( result ) {
 		getComentarios();
 		document.getElementById("textComentario").value="";
+
+		//cookie
+		var date=new Date();
+		var d=new Date();
+		d.setTime(date.getTime() + (3*60*1000));
+		document.cookie="coment"+date.getTime()+"=1; expires="+d.toUTCString();
+
 	}).fail(function(){
 		if (text.length==0){
 			document.getElementById("error_comentario").style.display = "block";
-		}else{
-			
 		}
 		
 	});
 	return false;
+}
+
+function tieneComentarios(){
+	var cont=0;
+	var cookies = document.cookie.split('; ');
+	for (var i = 0; i < cookies.length; i++) {
+		if (cookies[i].startsWith('coment')) {
+			cont++;
+		}
+	}
+	return cont>2;
 }
 
 function deleteComentario(id){
