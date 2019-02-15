@@ -4,7 +4,7 @@ return [
   'editWC' => 'Editar Aseo',
   'Submit' => 'Guardar',
   'Name' => 'Nombre',
-  'Direction' => 'Direccion: Haz click en el mapa para añadir el marcador',
+  'Direction' => 'Dirección: Haz click en el mapa para añadir el marcador',
   'OpenTime' => 'Hora Apertura',
   'CloseTime' => 'Hora Cierre',
   '24Hours' => '24 Horas',

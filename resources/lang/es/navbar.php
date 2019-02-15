@@ -1,9 +1,9 @@
 <?php
 
 return [
-  'startSession' => 'Iniciar Sesion',
+  'startSession' => 'Iniciar Sesión',
   'register' => 'Registrarse',
   'createWC' => 'Crear WC',
   'profile' => 'Perfil',
-  'endSession' => 'Cerrar Sesion',
+  'endSession' => 'Cerrar Sesión',
 ];
