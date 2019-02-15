@@ -12,5 +12,6 @@ return [
   'Reveal' => 'Mostrar',
   'Delete' => 'Borrar',
   'Hide' => 'Ocultar',
+  'Hide2' => 'Mostrar Ocultos',
   'noWC' => 'No hay servicios',
 ];

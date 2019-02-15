@@ -76,13 +76,13 @@ textarea{
       <div class="atras" id="atrasServicio" onclick="volver()">
         <i class="fas fa-arrow-left fa-2x"></i>
       </div>
-      <img alt="Imagen no disponible" id="imgWC">
+      <img alt="Imagen no disponible" src="/img/wc.jpg" id="imgWC">
       <div class="general">
         <h1 id="nombre"></h1>
         <p><b id="puntuacion"></b>
           <span id="puntuacionEstre"></span>
           </p>
-        <a href="" class="btn btn-light" id="editarLink">Editar <i class="fas fa-edit"></i></a>
+        <a href="" class="btn btn-light" id="editarLink" hidden>@lang('home.Edit') <i class="fas fa-edit"></i></a>
         <p id="dir"></p>
         <!-- <form method="post" action="ficha" enctype="multipart/form-data">
           @csrf
@@ -93,14 +93,14 @@ textarea{
       </div>
       <div class="info">
         <div class="detalles">
-          <h2>Detalles</h2>
-          <p>Horario: <span id="horario"></span></p>
-          <p>Precio: <span id="precio"></span></p>
+          <h2>@lang('home.Details')</h2>
+          <p>@lang('home.Schedule'): <span id="horario"></span></p>
+          <p>@lang('home.Price'): <span id="precio"></span></p>
           <p><i class="fas fa-wheelchair"></i> <span id="accesible"></span></p>
         </div>
         <hr>
         <div class="valorar">
-          <h2>Valorar</h2>
+          <h2>@lang('home.Rate')</h2>
           @auth
           <i onclick="enviarPuntos(1)" class="far fa-star" id="estrella1" value="1"></i>
           <i onclick="enviarPuntos(2)" class="far fa-star" id="estrella2" value="2"></i>
@@ -109,39 +109,42 @@ textarea{
           <i onclick="enviarPuntos(5)" class="far fa-star" id="estrella5" value="5"></i>
           @endauth
           @guest
-            <i>Inicia sesion para poder valorar</i>
+            <i>@lang('home.LogInTo')</i>
           @endguest
 
         </div>
         <hr>
         <div>
-          <a class="fake-link" onclick="reportBox()"><i>Reportar aseo</i></a>
+          <a class="fake-link" onclick="reportBox()"><i>@lang('home.ReportWC')</i></a>
           <div id="reportDiv" style="display: none;">
             <select id="tipoRep">
-              <option value="Informacion incorrecta" selected>Informacion incorrecta</option>
-              <option value="El baño no existe">El baño no existe</option>
+              <option value="Informacion incorrecta" selected>@lang('home.BadInfo')</option>
+              <option value="El baño no existe">@lang('home.DontExist')</option>
             </select>
             <br>
-            <textarea id="comentarioRep" placeholder="Comentario (opcional)"></textarea>
+            <textarea id="comentarioRep" placeholder="@lang('home.Comment')"></textarea>
             <br>
-            <button class="btn btn-danger" onclick="reportar()">Reportar</button>
+            <button class="btn btn-danger" onclick="reportar()">@lang('home.Report')</button>
           </div>
           <hr>
-          <h2>Comentarios</h2>
+          <h2>@lang('home.Comments')</h2>
           @auth
             <form action="#" onsubmit="return enviarComentario(event)">
               @csrf
-              <textarea id="textComentario" placeholder="Escribe tu comentario"></textarea>
+              <textarea id="textComentario" placeholder="@lang('home.textComments')" oninput="comprobarTxt(this)"></textarea>
               <p id="error_comentario" style="display: none; color:red;">
-                Introce texto para comentario
+                @lang('home.errorComment')
               </p>
-              <input type="submit" value="Comentar">
+              <p id="error_comentario2" style="display: none; color:red;">
+                @lang('home.errorComment2')
+              </p>
+              <input type="submit" value="@lang('home.Submit')">
             </form>
             <div
               </div>
           @endauth
           <div id="comentarios">
-            <i>Cargando comentarios...</i>
+            <i>@lang('home.CommentCharging')</i>
           </div>
         </div>
       </div>

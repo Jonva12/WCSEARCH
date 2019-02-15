@@ -4,7 +4,7 @@
 
   @section('content')
 	<div class="container">
-		<h1>Editar Usuario</h1>
+		<h1>@lang('editarUsuarioAdmin.editUser')</h1>
 		@if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -17,41 +17,41 @@
 		<form action="{{route('admin.guardarUsuario')}}" method="get">
             <input type="hidden" name="id" value="{{$usuario->id}}">
             <div>
-                Nombre: <input type="text" name="name" value="{{$usuario->name}}">
+                @lang('editarUsuarioAdmin.Name'): <input type="text" name="name" value="{{$usuario->name}}">
             </div>
             <div>
-                Email: <input type="Email" name="email" value="{{$usuario->email}}">
+                @lang('editarUsuarioAdmin.Email'): <input type="Email" name="email" value="{{$usuario->email}}">
             </div>
             <div>
             	Rol:<select name="rol">
             		@switch($usuario->role_id)
     					@case(1)
-        					<option selected value="1">Normal</option>
-        					<option value="2">Premium</option>
-        					<option value="3">Admin</option>
+        					<option selected value="1">@lang('editarUsuarioAdmin.rolNormal')</option>
+        					<option value="2">@lang('editarUsuarioAdmin.rolPremium')</option>
+        					<option value="3">@lang('editarUsuarioAdmin.rolAdmin')</option>
         				@break
 						@case(2)
-							<option value="1">Normal</option>
-        					<option selected value="2">Premium</option>
-        					<option value="3">Admin</option>
+							<option value="1">@lang('editarUsuarioAdmin.rolNormal')</option>
+        					<option selected value="2">@lang('editarUsuarioAdmin.rolPremium')</option>
+        					<option value="3">@lang('editarUsuarioAdmin.rolAdmin')</option>
         				@break
         				@case(3)
-        					<option value="1">Normal</option>
-							<option value="2">Premium</option>
-        					<option selected value="3">Admin</option>
+        					<option value="1">@lang('editarUsuarioAdmin.rolNormal')</option>
+							<option value="2">@lang('editarUsuarioAdmin.rolPremium')</option>
+        					<option selected value="3">@lang('editarUsuarioAdmin.rolAdmin')</option>
         				@break
 						@default
-							<option value="1">Normal</option>
-							<option value="2">Premium</option>
-        					<option value="3">Admin</option>
+							<option value="1">@lang('editarUsuarioAdmin.rolNormal')</option>
+							<option value="2">@lang('editarUsuarioAdmin.rolPremium')</option>
+        					<option value="3">@lang('editarUsuarioAdmin.rolAdmin')</option>
 						@endswitch
             		</select>
             </div>
             <div>
-            	Puntuacion: <input type="number" name="puntuacion" value="{{$usuario->puntuacion}}">
+            	@lang('editarUsuarioAdmin.Score'): <input type="number" name="puntuacion" value="{{$usuario->puntuacion}}">
             </div>
             <div>
-                <input type="submit" value="Cambiar">
+                <input type="submit" value="@lang('editarUsuarioAdmin.Change')">
             </div>  
         </form>
 	</div>

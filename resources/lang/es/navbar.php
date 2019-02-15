@@ -5,5 +5,5 @@ return [
   'register' => 'Registrarse',
   'createWC' => 'Crear WC',
   'profile' => 'Perfil',
-  'endSession' => 'Cerrar Sesión',
+  'endSession' => 'Cerrar Sesion',
 ];

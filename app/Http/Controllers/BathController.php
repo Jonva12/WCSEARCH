@@ -27,23 +27,38 @@ class BathController extends Controller
     public function create(Request $request){
 
       $request->validate([
-        'nombre' => 'required',
+        'nombre' => 'required|max:25',
+        'latitud' => 'required|numeric',
+        'longitud' => 'required|numeric',
         'horarioApertura' => 'nullable',
         'horarioCierre' => 'nullable',
-        'horas24' => 'required',
         'precio' => 'nullable',
-        'accesibilidad' => 'required'
       ]);
+      if ($request->input('24h')!=1){
+        $request->validate([
+          'horarioApertura' => 'required',
+          'horarioCierre' => 'required',
+        ]);
+      }
+      $existe=Aseo::where('oculto',null)
+      ->whereBetween('latitud',[$request->input('latitud')-0.0003,$request->input('latitud')+0.0003])
+        ->whereBetween('longitud',[$request->input('longitud')-0.0003,$request->input('longitud')+0.0003])->count();
 
+      if($existe!=0){
+        return back()->withErrors(["Gracias, pero ese aseo ya existe"]);
+      }
       $foto = $request->file('foto');
       $aseo = new Aseo();
       $aseo->nombre = htmlentities($request->input('nombre'));
       $aseo->latitud =$request->input('latitud');
       $aseo->longitud = $request->input('longitud');
       $aseo->dir = htmlentities($request->input('dir'));
-      $aseo->horarioApertura = $request->input('horarioApertura');
-      $aseo->horarioCierre =$request->input('horarioCierre');
-      $aseo->horas24 = $request->input('horas24');
+      $aseo->horas24 = $request->input('24h')==1;
+      if($request->input('24h')!=1){
+        $aseo->horarioApertura = $request->input('horarioApertura');
+        $aseo->horarioCierre =$request->input('horarioCierre');
+      }
+      
 
       if($foto == ''){
         $aseo->foto = 'wc.jpg';
@@ -89,12 +104,13 @@ class BathController extends Controller
         // $request->foto->storeAs($pathToFile);
       }
       $aseo->precio = $request->input('precio');
-      $aseo->accesibilidad = $request->input('accesibilidad');
+      $aseo->accesibilidad = $request->input('accesible')==1;
       $aseo->user_id = Auth::user()->id;
       $u=new UserController;
         $u->sumarPuntos(Auth::user()->id,20);
       $aseo->save();
-      return redirect()->route('home', ['latitud' => $request->input('latitud'), 'longitud' => $request->input('longitud')]);
+      return redirect()->route('home', ['idAseo'=>$aseo->id]);
+      
     }
 
     public function edit($id){
@@ -112,68 +128,94 @@ class BathController extends Controller
 
     public function update(Request $request){
 
-        $foto = $request->file('foto');
-        $request->validate(['nombre'=>'string|required|min:2|max:255']);
-        $aseo=Aseo::find(htmlentities($request->input('id')));
+        $request->validate([
+          'nombre' => 'required|max:25',
+          'latitud' => 'required|numeric',
+          'longitud' => 'required|numeric',
+          'horarioApertura' => 'nullable',
+          'horarioCierre' => 'nullable',
+          'precio' => 'nullable',
+        ]);
+        if ($request->input('24h')!=1){
+          $request->validate([
+            'horarioApertura' => 'required',
+            'horarioCierre' => 'required',
+          ]);
+        }
+        $aseo=Aseo::where([['id',$request->input('id')],['user_id',Auth::user()->id]])->first();
+
         if(!$aseo){
           return redirect()->route('home');
         }
-        $aseo->nombre = htmlentities($request->input('nombre'));
-        $aseo->latitud = htmlentities($request->input('latitud'));
-        $aseo->longitud = htmlentities($request->input('longitud'));
-        $aseo->dir = htmlentities($request->input('dir'));
-        $aseo->horarioApertura = htmlentities($request->input('horarioApertura'));
-        $aseo->horarioCierre = htmlentities($request->input('horarioCierre'));
-        $aseo->horas24 = htmlentities($request->input('horas24'));
+        if ($aseo->latitud!=$request->input('latitud') || $aseo->longitud!=$request->input('longitud')){
+          $existe=Aseo::where('oculto',null)
+            ->whereBetween('latitud',[$request->input('latitud')-0.0003,$request->input('latitud')+0.0003])
+            ->whereBetween('longitud',[$request->input('longitud')-0.0003,$request->input('longitud')+0.0003])->count();
 
-        if($foto == ''){
-          $aseo->foto = 'wc.jpg';
-        }else{
-        // $extension = $foto->getClientOriginalExtension();
-        // Storage::disk('public')->put($foto->getFileName().'.'.$extension, File::get($foto));
-          $image64 = base64_encode(file_get_contents($foto)); //pasar la foto a base64
-
-          //llamar a la api y subir la imagen
-          $curl = curl_init();
-
-          $client_id = "1cb45b7462006f";
-
-          $token = "968ce1bbb9d5c880ba1974cfe4463f951645f7c7";
-
-          curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://api.imgur.com/3/image",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => false,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => array('image' => $image64),
-            CURLOPT_HTTPHEADER => array(
-              // "Authorization: Client-ID {{1cb45b7462006f}}",
-              "Authorization: Bearer ".$token //nuestro token para acceder a ala api
-            ),
-          ));
-          $response = curl_exec($curl);
-          $err = curl_error($curl);
-
-          curl_close($curl);
-
-          if ($err) {
-            echo "cURL Error #:" . $err;
-          } else {
-            $json = json_decode($response);
-            $aseo->foto = $json->data->link; //pilla link de la api
+          if($existe!=0){
+            return back()->withErrors(["Gracias, pero ese aseo ya existe"]);
           }
-        //$aseo->foto = $foto->getFileName(). '.' .$extension;
-        // $request->foto->storeAs($pathToFile);
         }
-        $aseo->precio = htmlentities($request->input('precio'));
-        $aseo->accesibilidad = htmlentities($request->input('accesibilidad'));
+        
+
+        $aseo->nombre = htmlentities($request->input('nombre'));
+        $aseo->latitud = $request->input('latitud');
+        $aseo->longitud = $request->input('longitud');
+        $aseo->dir = htmlentities($request->input('dir'));
+        $aseo->horarioApertura = $request->input('horarioApertura');
+        $aseo->horarioCierre =$request->input('horarioCierre');
+        $aseo->horas24 = $request->input('24h')==1;
+        if ($request->input('camFoto')==1){
+          $foto = $request->file('foto');
+          if($foto == ''){
+            $aseo->foto = 'wc.jpg';
+          }else{
+          // $extension = $foto->getClientOriginalExtension();
+          // Storage::disk('public')->put($foto->getFileName().'.'.$extension, File::get($foto));
+            $image64 = base64_encode(file_get_contents($foto)); //pasar la foto a base64
+
+            //llamar a la api y subir la imagen
+            $curl = curl_init();
+
+            $client_id = "1cb45b7462006f";
+
+            $token = "968ce1bbb9d5c880ba1974cfe4463f951645f7c7";
+
+            curl_setopt_array($curl, array(
+              CURLOPT_URL => "https://api.imgur.com/3/image",
+              CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_ENCODING => "",
+              CURLOPT_MAXREDIRS => 10,
+              CURLOPT_TIMEOUT => 0,
+              CURLOPT_FOLLOWLOCATION => false,
+              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+              CURLOPT_CUSTOMREQUEST => "POST",
+              CURLOPT_POSTFIELDS => array('image' => $image64),
+              CURLOPT_HTTPHEADER => array(
+                // "Authorization: Client-ID {{1cb45b7462006f}}",
+                "Authorization: Bearer ".$token //nuestro token para acceder a ala api
+              ),
+            ));
+            $response = curl_exec($curl);
+            $err = curl_error($curl);
+
+            curl_close($curl);
+
+            if ($err) {
+              echo "cURL Error #:" . $err;
+            } else {
+              $json = json_decode($response);
+              $aseo->foto = $json->data->link; //pilla link de la api
+            }
+          //$aseo->foto = $foto->getFileName(). '.' .$extension;
+          // $request->foto->storeAs($pathToFile);
+          }
+        }
+        $aseo->precio =$request->input('precio');
+        $aseo->accesibilidad =$request->input('accesible')==1;
         $aseo->user_id = Auth::user()->id;
         $aseo->save();
-        return redirect()->route('home', ['latitud' => $request->input('latitud'), 'longitud' => $request->input('longitud')]);
+        return redirect()->route('home', ['idAseo'=>$aseo->id]);
     }
 
     public function getAseos(Request $request){

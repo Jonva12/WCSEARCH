@@ -11,27 +11,27 @@
 		<div class="row">
 			<div class="col-md-4">
 				<h1>{!!$usuario->name!!}</h1>
-				<p><strong>Email:</strong> {{$usuario->email}}</p>
-				<p><strong>Nivel:</strong> {{$usuario->role->nombre}}</p>
-				<p><strong>Puntuacion:</strong> {{$usuario->puntuacion}}</p>
+				<p><strong>@lang('userPerfil.Email'):</strong> {{$usuario->email}}</p>
+				<p><strong>@lang('userPerfil.Level'):</strong> {{$usuario->role->nombre}}</p>
+				<p><strong>@lang('userPerfil.Score'):</strong> {{$usuario->puntuacion}}</p>
 				@if(Auth::user() && $usuario->id==Auth::user()->id)
-					<a href="{{route('usuario.ajustes')}}"><button class="btn btn-info">Ajustes</button></a>
+					<a href="{{route('usuario.ajustes')}}"><button class="btn btn-info">@lang('userPerfil.Settings')</button></a>
 				@else
-					<a href="{{route('usuario.reportar', $usuario->id)}}" onclick="return confirm('¿Estas seguro?')"><button class="btn btn-danger">Reportar</button></a>
+					<a href="{{route('usuario.reportar', $usuario->id)}}" onclick="return confirm(@lang('userPerfil.Sure'))"><button class="btn btn-danger">@lang('userPerfil.Report')</button></a>
 				@endif
 			</div>
 			<div class="col-md-8">
 				@if(Auth::user() && $usuario->id==Auth::user()->id)
-					<h2>Tus aseos</h2>
+					<h2>@lang('userPerfil.meWC')</h2>
 				@else
-					<h2>Sus aseos</h2>
+					<h2>@lang('userPerfil.otherWC')</h2>
 				@endif
 				<div>
 				    <form action="{{route('usuario.perfil', $usuario->id)}}" method="get">
               <i class="fas fa-search"></i>
-				    	<input type="text" name="nombre" class="form-control" placeholder="Nombre de aseo">
-				    	<input type="text" name="direccion" class="form-control" placeholder="Direccion">
-				    	<input type="submit" value="Filtrar" class="btn btn-success">
+				    	<input type="text" name="nombre" class="form-control" placeholder="@lang('userPerfil.WCName')">
+				    	<input type="text" name="direccion" class="form-control" placeholder="@lang('userPerfil.Direction')">
+				    	<input type="submit" value="@lang('userPerfil.Filter')" class="btn btn-success">
 				    </form>
 				</div>
         <div class="table-responsive">
@@ -40,11 +40,11 @@
           <table class="table table-hover">
 						<thead>
 							<tr>
-								<th>Aseo</th>
-								<th>Direccion</th>
-								<th>Comentarios</th>
-								<th>Reportes</th>
-								<th>Opciones</th>
+								<th>@lang('userPerfil.WC')</th>
+								<th>@lang('userPerfil.Direction')</th>
+								<th>@lang('userPerfil.Comments')</th>
+								<th>@lang('userPerfil.Reports')</th>
+								<th>@lang('userPerfil.Options')</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -52,11 +52,11 @@
 								<tr>
 									<td colspan="5">
 										@if($usuario->id==Auth::user()->id && $usuario->role->nombre=="normal")
-											Puedes tener 1 baño. Para crear baños ilimitados necesitas ser Premium.
+											@lang('userPerfil.comment1')
 										@elseif($usuario->id==Auth::user()->id )
-											Todavia no tienes ningun aseo.
+											@lang('userPerfil.comment2')
 										@else
-											No tienes ningun aseo.
+											@lang('userPerfil.comment3')
 										@endif
 									</td>
 								</tr>
@@ -68,10 +68,10 @@
 											<td>{{$a->comentarios->count()}}</td>
 											<td>{{$a->reportes->count()}}</td>
 											<td>
-												<a class="btn btn-primary" href="{{route('home',['latitud'=>$a->latitud, 'longitud'=>$a->longitud])}}">Ver <i class="fas fa-eye"></i></a>
+												<a class="btn btn-primary" href="{{route('home',['idAseo'=>$a->id])}}">@lang('userPerfil.See') <i class="fas fa-eye"></i></a>
 												@if(Auth::user() && $usuario->id==Auth::user()->id)
-												<a href="{{route('wc.edit', $a->id)}}" class="btn btn-secondary" id="editarLink">Editar <i class="fas fa-edit"></i></a>
-												<a class="btn btn-danger" onclick="return confirm('¿Estas seguro?')" href="{{route('wc.ocultar', $a->id)}}">Eliminar <i class="fas fa-trash"></i></a>
+												<a href="{{route('wc.edit', $a->id)}}" class="btn btn-secondary">@lang('userPerfil.Edit') <i class="fas fa-edit"></i></a>
+												<a class="btn btn-danger" onclick="return confirm('¿Estas seguro?')" href="{{route('wc.ocultar', $a->id)}}">@lang('userPerfil.Delete') <i class="fas fa-trash"></i></a>
 												@endif
 											</td>
 										</tr>

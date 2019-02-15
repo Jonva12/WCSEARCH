@@ -12,7 +12,7 @@
       <input type="text" name="direccion" placeholder="@lang('aseosAdmin.Direction')">
       <div class="checkbox">
         <input type="checkbox" id="ocultos" name="ocultos">
-        <label for="ocultos">Mostrar ocultos</label>
+        <label for="ocultos">@lang('aseosAdmin.Hide2')</label>
       </div>
       <input type="submit" value="@lang('aseosAdmin.Filter')" class="btn btn-success">
     </form>
