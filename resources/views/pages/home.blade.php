@@ -180,9 +180,9 @@ textarea{
 
 @if(isset($latitud) && isset($longitud))
   @if(Auth::user())
-    <script src="/js/map.js" charset="UTF-8" onload="setToken('{{Auth::user()->api_token}}'); getAseos2({{$latitud}}, {{$longitud}})"></script>
+    <script src="/js/map.js" charset="UTF-8" onload="setToken('{{Auth::user()->api_token}}'); getAseos2({{$idAseo}},{{$latitud}}, {{$longitud}})"></script>
   @else
-    <script src="/js/map.js" charset="UTF-8" onload="getAseos2({{$latitud}}, {{$longitud}})"></script>
+    <script src="/js/map.js" charset="UTF-8" onload="getAseos2({{$idAseo}},{{$latitud}}, {{$longitud}})"></script>
   @endif
 @elseif(Auth::user())
   <script src="/js/map.js" charset="UTF-8"onload="setToken('{{Auth::user()->api_token}}');getAseos()"></script>
