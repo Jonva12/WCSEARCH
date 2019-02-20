@@ -60,7 +60,7 @@ class NotificationController extends Controller
                         $link='/home?idAseo='.$n->aseo->id;
                         break;
                     case 'eresGolden':
-                        $texto='Enorabuena ya eres usuario GOLDEN';
+                        $texto='Enorabuena ya eres usuario PREMIUM';
                         $link="";
                         break;
     			}
