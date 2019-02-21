@@ -49,6 +49,8 @@ $app = require_once __DIR__.'/../bootstrap/app.php';
 |
 */
 
+ ini_set('post_max_size', '100M'); ini_set('upload_max_filesize', '100M'); ini_set('memory_limit', '1000M'); ini_set('max_execution_time', '1920');
+
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
 $response = $kernel->handle(
