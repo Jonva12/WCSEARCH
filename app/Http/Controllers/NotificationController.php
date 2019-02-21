@@ -34,6 +34,7 @@ class NotificationController extends Controller
     					break;
                     case 'ocultarAseo':
                         $texto='Tu aseo ('.$n->aseo->nombre.') ha sido eliminado';
+                        $link="";
                         break;
                     case 'mostrarAseo':
                         $texto='Tu aseo ('.$n->aseo->nombre.') vuelve a estar visible';
