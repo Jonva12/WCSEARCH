@@ -10,5 +10,5 @@
 
     <!-- Custom scripts for this template -->
     <script src="/js/creative.min.js"></script>
-	<script src="/js/ajax.js"></script>
+	<script src="/js/ajax.js" onload="crearToken('{{Auth::user()->api_token}}')"></script>
 
